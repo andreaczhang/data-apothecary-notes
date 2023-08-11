@@ -1,0 +1,9 @@
+---
+title: "About"
+about:
+  id: hero-heading
+  template: solana
+  #image-shape: rectangle
+---
+
+This is the development documentation site for NorEden Project.

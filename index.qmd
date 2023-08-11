@@ -1,0 +1,18 @@
+---
+title: "NorEden"
+about:
+  id: hero-heading
+  template: trestles
+  # image-shape: rectangle
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/andreaczhang/data-apothecary-notes
+---
+
+::: {#hero-heading}
+
+Welcome. This is the development documentation website for NorEden Project.
+
+:::
+

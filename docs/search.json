@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "NorEden",
+    "section": "",
+    "text": "Github\n  \n\n  \n  \nWelcome. This is the development documentation website for NorEden Project."
+  },
+  {
+    "objectID": "documentation/understand_data.html",
+    "href": "documentation/understand_data.html",
+    "title": "Part 1: Understand the current diet",
+    "section": "",
+    "text": "Load the aggregated food groups and their attributes. We have 28 food groups.\n\nfoods <- read.csv('data/foods.csv', sep = ',')\ndata.table::setDT(foods) # use data.table format\nfoods[1:10,] # show the first 10\n\n                   food intake energy protein   fat carbs sugar alcohol  ghge\n 1:               Bread  175.4 10.696   0.091 0.030 0.441 0.002       0 0.001\n 2:        Other grains   45.0 14.022   0.100 0.042 0.607 0.011       0 0.002\n 3:               Cakes   35.6 14.185   0.067 0.152 0.424 0.185       0 0.002\n 4:            Potatoes   67.8  3.791   0.021 0.007 0.178 0.000       0 0.000\n 5:          Vegetables  154.6  1.565   0.015 0.008 0.050 0.005       0 0.001\n 6:             Legumes    3.5  8.571   0.143 0.029 0.286 0.000       0 0.001\n 7:      Fruit, berries  171.5  2.729   0.008 0.004 0.134 0.029       0 0.001\n 8:               Juice  111.0  1.928   0.005 0.002 0.103 0.000       0 0.001\n 9:                Nuts    4.3 25.581   0.209 0.535 0.116 0.000       0 0.005\n10: Vegetarian products    0.7  4.286   0.143 0.000 0.000 0.000       0 0.003\n\n\nDefine the constraints on\n\nenergy\nprotein, fat, carbs, sugar, alcohol\nGHGE (greenhouse gas equivalent)\n\n\nconstraints <- data.frame(\n  constraint = c('lower', 'upper'), \n  energy = c(9000, 10000), \n  protein = c(55, 111.5), \n  fat = c(61.8, 98.8), \n  carbs = c(250, 334.6), \n  sugar = c(0, 54.8), \n  alcohol = c(0, 10),\n  ghge = c(0, 4.7)\n)\nconstraints\n\n  constraint energy protein  fat carbs sugar alcohol ghge\n1      lower   9000    55.0 61.8 250.0   0.0       0  0.0\n2      upper  10000   111.5 98.8 334.6  54.8      10  4.7"
+  },
+  {
+    "objectID": "documentation/index.html",
+    "href": "documentation/index.html",
+    "title": "Documentation",
+    "section": "",
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPart 1: Understand the current diet\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This is the development documentation site for NorEden Project."
+  }
+]
