@@ -12,7 +12,19 @@ about:
 
 ::: {#hero-heading}
 
-Welcome. This is the notes.
+Hello, welcome!
+
+This is the note repository for **modern data science skills with a focus on drug development and clinical trials**. Content will be gradually added while I learn the topics. Therefore, it is *by no means* a complete guide by the time you read it!
+
+I try to organize the content in a modular way. I think these should cover the important aspects in which a data scientist / modern statistician should know.
+
+* study design
+* inference
+* models
+* reporting
+* programming
+
+Any feedback / mistake corrections are welcome, you can find me [here](https://andreaczhang.github.io). Thank you!
 
 :::
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Apothecary’s Notes - Part 1: Understand the current diet</title>
+<title>Data Apothecary’s Notes - (Placeholder)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Part 1: Understand the current diet</h1>
+<h1 class="title">(Placeholder)</h1>
 </div>
 
 
@@ -203,25 +203,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Load the aggregated food groups and their attributes. We have 28 food groups.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>foods <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/foods.csv'</span>, <span class="at">sep =</span> <span class="st">','</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">setDT</span>(foods) <span class="co"># use data.table format</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>foods[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,] <span class="co"># show the first 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                   food intake energy protein   fat carbs sugar alcohol  ghge
- 1:               Bread  175.4 10.696   0.091 0.030 0.441 0.002       0 0.001
- 2:        Other grains   45.0 14.022   0.100 0.042 0.607 0.011       0 0.002
- 3:               Cakes   35.6 14.185   0.067 0.152 0.424 0.185       0 0.002
- 4:            Potatoes   67.8  3.791   0.021 0.007 0.178 0.000       0 0.000
- 5:          Vegetables  154.6  1.565   0.015 0.008 0.050 0.005       0 0.001
- 6:             Legumes    3.5  8.571   0.143 0.029 0.286 0.000       0 0.001
- 7:      Fruit, berries  171.5  2.729   0.008 0.004 0.134 0.029       0 0.001
- 8:               Juice  111.0  1.928   0.005 0.002 0.103 0.000       0 0.001
- 9:                Nuts    4.3 25.581   0.209 0.535 0.116 0.000       0 0.005
-10: Vegetarian products    0.7  4.286   0.143 0.000 0.000 0.000       0 0.003</code></pre>
-</div>
-</div>
 <p>Define the constraints on</p>
 <ul>
 <li>energy</li>
@@ -229,17 +210,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>GHGE (greenhouse gas equivalent)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>constraints <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">constraint =</span> <span class="fu">c</span>(<span class="st">'lower'</span>, <span class="st">'upper'</span>), </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">energy =</span> <span class="fu">c</span>(<span class="dv">9000</span>, <span class="dv">10000</span>), </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">protein =</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="fl">111.5</span>), </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fat =</span> <span class="fu">c</span>(<span class="fl">61.8</span>, <span class="fl">98.8</span>), </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">carbs =</span> <span class="fu">c</span>(<span class="dv">250</span>, <span class="fl">334.6</span>), </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">54.8</span>), </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alcohol =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ghge =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.7</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>constraints</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>constraints <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">constraint =</span> <span class="fu">c</span>(<span class="st">'lower'</span>, <span class="st">'upper'</span>), </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">energy =</span> <span class="fu">c</span>(<span class="dv">9000</span>, <span class="dv">10000</span>), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">protein =</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="fl">111.5</span>), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fat =</span> <span class="fu">c</span>(<span class="fl">61.8</span>, <span class="fl">98.8</span>), </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">carbs =</span> <span class="fu">c</span>(<span class="dv">250</span>, <span class="fl">334.6</span>), </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">54.8</span>), </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alcohol =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ghge =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.7</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>constraints</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  constraint energy protein  fat carbs sugar alcohol ghge
 1      lower   9000    55.0 61.8 250.0   0.0       0  0.0

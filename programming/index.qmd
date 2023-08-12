@@ -1,12 +1,12 @@
 ---
-title: "Study design"
+title: "Programming"
 listing:
   - id: docs
     max-description-length: 500
     image-height: 150px
     fields: [title]
     contents: 
-      - "understand_data.qmd"
+      - "r_roop.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

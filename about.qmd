@@ -1,10 +1,17 @@
 ---
-title: "About"
+title: "What is Data Apothecary's Notes?"
 about:
   id: hero-heading
   template: solana
   #image-shape: rectangle
 ---
 
-This is the note website for some documentation and demonstration on ...
+Hello, welcome! 
 
+This is the note repository for some documentation and demonstration on modern data science skills related to drug development. 
+
+I created this repo so that I can find **notes with code and rendered results** easily. Therefore, the target audience is the future-me; if it helps you in some way as well, I'd be more than happy! 
+
+If you see some errors or have any suggestions, please feel free to reach out.
+
+Find out who I am [here](https://andreaczhang.github.io)! 

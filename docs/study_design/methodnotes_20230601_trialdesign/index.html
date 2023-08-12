@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.242">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2023-06-01">
+<meta name="description" content="Notes related to clinical trial design. Constantly updating.">
+
+<title>Data Apothecary’s Notes - Clinical trial design</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Data Apothecary’s Notes</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../study_design/index.html">
+ <span class="menu-text">Study design</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../inference/index.html">
+ <span class="menu-text">Inference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../models/index.html">
+ <span class="menu-text">Models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../reporting/index.html">
+ <span class="menu-text">Reporting</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../programming/index.html">
+ <span class="menu-text">Programming</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#types-of-trials-designs" id="toc-types-of-trials-designs" class="nav-link active" data-scroll-target="#types-of-trials-designs">Types of trials designs</a></li>
+  <li><a href="#randomisation-and-masking" id="toc-randomisation-and-masking" class="nav-link" data-scroll-target="#randomisation-and-masking">Randomisation and masking</a></li>
+  <li><a href="#outcomes-and-analysis" id="toc-outcomes-and-analysis" class="nav-link" data-scroll-target="#outcomes-and-analysis">Outcomes and analysis</a></li>
+  <li><a href="#reporting-results" id="toc-reporting-results" class="nav-link" data-scroll-target="#reporting-results">Reporting results</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Clinical trial design</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Notes</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Notes related to clinical trial design. Constantly updating.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 1, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="resources" class="level3">
+<h3 class="anchored" data-anchor-id="resources">Resources</h3>
+<ul>
+<li>Coursera course <a href="https://www.coursera.org/learn/clinical-trials/home/">Design and interpretation of clinical trials</a> by Johns Hopkins University</li>
+</ul>
+</section>
+<section id="types-of-trials-designs" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-trials-designs">Types of trials designs</h2>
+<p>Phase 1: 10-30, identify tolerable dose, information on drug metabolism, extretion and toxicity. Often not controlled</p>
+<p>Phase 2: 30-100, efficacy, safety and side effects,</p>
+<p>Phase 3: 100+, often randomized</p>
+<p>Phase 4: demonstration</p>
+<section id="types-of-design" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-design">Types of design</h3>
+<p>Population have the disease outcome of interest; not healthy voluteers vs diseased.</p>
+<p>Randomisation unit: persons, two eyes of a person, or groups of persons</p>
+<p><strong>Comparison structure</strong>: parallel, crossover, group allocation</p>
+<ul>
+<li><strong>Parallel</strong>: simultaneous treatment and control groups, subjects randomly assigned to one group.</li>
+<li><strong>Crossover</strong>: randomize of order in which treatments are received; TC or CT. Each patient is his/her own control. Washout period: time between two treatments.
+<ul>
+<li>Variability reduced because less variability within patient than between patients. Fewer patients needed.</li>
+<li>Disadvantages: only certain treatments can use crossover design, treatment can’t have permanent effects. Carry-over effects from first period; washout needs to be long enough. Dropouts more significant, analysis may be more difficult: correlated outcomes.</li>
+<li>Constant intensity of underlying disease: chronic diseases (e.g.&nbsp;asthma, hypertension, arthritis) + short-term treatment effects (relief of signs or symptoms)</li>
+<li>e.g.&nbsp;morning dose vs evening dose</li>
+</ul></li>
+<li><strong>Group allocation</strong>: a group of subjects (community, school, clinic).</li>
+</ul>
+<p><strong>Extensions of the parallel design</strong>: factorial, large simple</p>
+<ul>
+<li><strong>Factorial</strong>: two interventions tested simultaneously. Can be presented in a 2 by 2 table (treatment A +-, treatment B +-); or 3 by 2 etc.
+<ul>
+<li>Interested in main effect (if no interaction expected). A vs no A; B vs no B. The other treatment doesn’t matter.</li>
+</ul></li>
+<li><strong>Large simple</strong>: large number of patients, possibly from many study sites.</li>
+</ul>
+<section id="tests-other-than-superiority" class="level4">
+<h4 class="anchored" data-anchor-id="tests-other-than-superiority">Tests other than superiority</h4>
+<ul>
+<li><p><strong>Equivalency</strong>: intervention response is close to control group response</p></li>
+<li><p><strong>Non-inferiority</strong>: Treatment A (new) is at least as good as B (established). One-sided test, if A is worse than B, one can be rejected. Does not require as big sample size.</p></li>
+</ul>
+</section>
+<section id="adaptive-design" class="level4">
+<h4 class="anchored" data-anchor-id="adaptive-design">Adaptive design</h4>
+<p>Possible adaptations</p>
+<ul>
+<li><strong>randomization probabilities</strong></li>
+<li><strong>sample size</strong> (e.g.&nbsp;group sequential methods)</li>
+<li><strong>visit schedule</strong>: shorten/lengthen follow-up time, change number of timing of visits, treatments (dose/duration, concomitant meds)</li>
+<li><strong>hypothesis</strong> tested</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="randomisation-and-masking" class="level2">
+<h2 class="anchored" data-anchor-id="randomisation-and-masking">Randomisation and masking</h2>
+<p>Rationale:</p>
+<ul>
+<li>avoid <strong>selection bias</strong>: prognostic factors related to treatment assignment</li>
+<li>tends to produce comparable treatment groups</li>
+</ul>
+<section id="schemes" class="level3">
+<h3 class="anchored" data-anchor-id="schemes">Schemes</h3>
+<p>Simple randomization, restricted randomization, adaptive randomization</p>
+<section id="simple-rz" class="level4">
+<h4 class="anchored" data-anchor-id="simple-rz">Simple rz</h4>
+<p>Each assignment is unpredictable, number of patients in each group should be equal in the long run.</p>
+<p>Risks: imbalances in number assigned to treatment groups, or confounding factors (gender, disease severity) -&gt; reduced power</p>
+</section>
+<section id="restricted-rz" class="level4">
+<h4 class="anchored" data-anchor-id="restricted-rz">Restricted rz</h4>
+<p>Schemes with constraints to produce expected assignment ratio</p>
+<ul>
+<li>blocking</li>
+<li>stratification</li>
+</ul>
+<p>Blocking. Block of size 2 with treatment allocation ratio 1:1: A,B. Size 4: 2As, 2Bs. Need to be permuted: AABB, ABAB, … in total 6 combinations. Then choose one of the permutations.</p>
+<p>Stratification. Ensure balance in treatment assignments with subgroups defined before rz. Limit to a few variables (highly related to outcome and/or logistical): e.g.&nbsp;clinic in a multicenter trial, surgeon (skills, procedures), stage of disease, demographic such as gender and age.</p>
+<p>Use these two together.</p>
+</section>
+<section id="adaptive-rz" class="level4">
+<h4 class="anchored" data-anchor-id="adaptive-rz">Adaptive rz</h4>
+<p>Probability of assignment does not remain constant, but determined by the current balance and composition of the groups.</p>
+<ul>
+<li>minimization: choose the design that gives the smallest imbalance.</li>
+<li>play the winner: change allocation ratio or favor the better treatment based on the primary outcome. Need to evaluate outcomes relatively quickly.</li>
+</ul>
+</section>
+</section>
+<section id="masking-blinding" class="level3">
+<h3 class="anchored" data-anchor-id="masking-blinding">Masking (blinding)</h3>
+<p>Treatment assignment is not known <em>after</em> rz.</p>
+<ul>
+<li>patient, clinical personnel, evaluators, data processors, …</li>
+<li>single (only participant), double (+ investigator), triple (+ data processors, …), quadruple …</li>
+</ul>
+<p>Purpose: remove bias related to treatment effects.</p>
+<p>Different levels of masking protects to different extent against bias in different aspects</p>
+<ul>
+<li>data reporting</li>
+<li>data collection / follow-up</li>
+<li>testing, behaviors</li>
+<li>outcome assessment</li>
+</ul>
+<p>Decision to mask treatments</p>
+<ul>
+<li>ethical?</li>
+<li>possible? can you make the treatment seem identical so the participants do not know?</li>
+<li>trial design features: more important to mask subjective ones (e.g.&nbsp;alive or dead is the least subjective, hence wouldn’t benefit much; however if participants need to report effects that are not objectively measureable, they might report that treatment is better in contrast to placebo group)</li>
+<li>feasible? cost-benefit, practicality (adherence)</li>
+</ul>
+<p>Sometimes investigators in a double blind study might know which treatment is being assigned to participants, if the effect of drug is very obvious (both good or bad).</p>
+<p>Unmasking</p>
+<ul>
+<li>Planned: inform participants once the trial finished</li>
+<li>Unplanned (discouraged): in the event of adverse event</li>
+</ul>
+</section>
+</section>
+<section id="outcomes-and-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="outcomes-and-analysis">Outcomes and analysis</h2>
+<p>Outcome: endpoint. It is a quantitaive measure.</p>
+<p>Objectives of the trial</p>
+<ul>
+<li>efficacy / effectiveness</li>
+<li>safety</li>
+<li>process</li>
+<li>costs</li>
+</ul>
+<p>Example: evaluate treatment for asthma</p>
+<p>Outcomes: exhaled nitrous oxide, lung function (spirometry measures), asthma symptoms (wheezing, night awakenings), …</p>
+<p>Example: evaluate a procedure to reduce perioperative morbidity</p>
+<p>Outcome considerations: time window (what is postoperative), specific <strong>events</strong> to be considered an outcome, procedures to establish outcomes, …</p>
+<section id="metrics-for-events-as-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="metrics-for-events-as-outcomes">Metrics for events as outcomes</h3>
+<ul>
+<li>dichotomous: 1/0 for presence absense, normal abnormal; clinical state or cut-off value</li>
+<li>time-to-event: in addition to dichotomous, add time dimension; allow for censoring. More powerful than dichotomous.</li>
+<li>rates: 1/0 but allow for repeats, analyze count or rate. Events within a person are usually not independent, need to account for it.</li>
+<li>continuous variables: value or change from baseline; standard units (lab values, scores). Need to define an important difference. Distributional assumptions more important.</li>
+<li>ordinal scale: ranked categories (e.g.&nbsp;adverse event grading, 1-5). Difference between categories is usually qualitative.</li>
+</ul>
+<p>Patients opinions are subjective</p>
+<ul>
+<li>health status / change in status, e.g.&nbsp;pain relief, quality of life</li>
+<li>masking is more important</li>
+<li>hawthorne / placebo effect: effect of being studies, usually positive</li>
+<li>quantify with standardized scales</li>
+</ul>
+</section>
+<section id="influence-of-outcomes-on-design" class="level3">
+<h3 class="anchored" data-anchor-id="influence-of-outcomes-on-design">Influence of outcomes on design</h3>
+<p>Efficacy vs effectiveness:</p>
+<p>In a vaccine trial, efficacy is the clinical case with lab confirmation; effectivenenss is the clinical case of influenza in a larger population, may or may not be confirmed.</p>
+<p>In asthma, efficacy is FEV1, effectiveness is the decrease of the hospitalizations/steroid courses.</p>
+<p>Considerations (3Bs)</p>
+<ul>
+<li>biology: does outcome reflect a clinically relevant fact/change</li>
+<li>biostatistics: detectable difference between groups is plausible and practical</li>
+<li>budget: afford total N and can measure it reliably in every participant</li>
+</ul>
+<p>Example: HIV trial outcomes</p>
+<ul>
+<li>survival (deaths; AIDS status)</li>
+<li>immunologic response</li>
+<li>virologic response</li>
+<li>change in patient status (e.g QoL)</li>
+<li>specified toxicity</li>
+<li>other side effects</li>
+</ul>
+<p>Choice of primary outcome depends on the objectives or stage of research</p>
+<ul>
+<li>phase 1, emphasis on safety</li>
+<li>phase 2, short-term efficacy</li>
+<li>phase 3, long-term efficacy</li>
+<li>phase 4, long-term effectiveness</li>
+</ul>
+</section>
+<section id="intention-to-treat-itt" class="level3">
+<h3 class="anchored" data-anchor-id="intention-to-treat-itt">Intention to treat ITT</h3>
+<p>Cross-overs after rz: some patients might have a treatment (yes or no) beyond what they were assigned to, e.g.&nbsp;refuse surgery or medical treatment</p>
+<p>Non-adherence during followup: some in treatment group refuse of can not tolerate certain treatment; while some in placebo group require medication or take on their own</p>
+</section>
+<section id="subgroup-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="subgroup-analysis">Subgroup analysis</h3>
+<p>Stratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups</p>
+<p>Test for interaction: use of main effect and interaction.</p>
+<p>Issue of multiple testing when doing a series of analyses</p>
+<ul>
+<li>inflate sample size to plan for subgroup analysis</li>
+<li>report number of subgroup analyses performed</li>
+<li>possibly adjust for multiple comparisons</li>
+<li>report CI instead of just p-values</li>
+</ul>
+</section>
+</section>
+<section id="reporting-results" class="level2">
+<h2 class="anchored" data-anchor-id="reporting-results">Reporting results</h2>
+<section id="consort" class="level3">
+<h3 class="anchored" data-anchor-id="consort">CONSORT</h3>
+<p>Consolidated Standards of Reporting Trials</p>
+<p>25 item checklist. Not a guideline of how to do the trial; but a guideline for writers on how to report clearly.</p>
+<p>Title</p>
+<ul>
+<li>key design items</li>
+<li>treatment(s) evaluated</li>
+<li>disease or population studied</li>
+</ul>
+<p>Abstract</p>
+<ul>
+<li>design, method, results, conclusions</li>
+</ul>
+<p>Introduction</p>
+<ul>
+<li>backgrounds, rationale, establish equipoise (balance), systematic review, objectives / hypothesis</li>
+</ul>
+<p>Method</p>
+<ul>
+<li>IRB review and approvals</li>
+<li>trial design, allocation ratio</li>
+<li>eligibility criteria</li>
+<li>setting and location of the trial</li>
+<li>intervention - detailed enough to allow replication</li>
+<li>outcomes - primary, secondary, how assessed and defined</li>
+<li>sample size - how determined, interim analyses</li>
+<li>important changes during trial</li>
+<li>randomization, allocation concealment, implementation</li>
+<li>masking - who, how</li>
+<li>statistical methods - primary and secondary; subgroup analyses</li>
+</ul>
+<p>Convenient to use a flow-chart</p>
+<p>Baseline characteristics by treatment group</p>
+<p>p-values (common to not report in rct?)</p>
+</section>
+<section id="evaluate-literature" class="level3">
+<h3 class="anchored" data-anchor-id="evaluate-literature">Evaluate literature</h3>
+<ul>
+<li>Legitimacy, is it a fair comparison</li>
+<li>Trustworthy investigators? conflict of interest</li>
+<li>Adequate protections against bias
+<ul>
+<li>randomization</li>
+<li>masking</li>
+<li>follow-up design and execution</li>
+</ul></li>
+<li>ITT analysis
+<ul>
+<li>have all events (outcomes) observed been counted in the treatment group assigned?</li>
+<li>variations in denominators explained and consistent with good practice?</li>
+</ul></li>
+<li><strong>appropriate subgroup analysis interpretation</strong>
+<ul>
+<li>ad hoc or post hoc status</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

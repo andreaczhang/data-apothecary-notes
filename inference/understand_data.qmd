@@ -1,23 +1,11 @@
 ---
-title: "Part 1: Understand the current diet"
+title: "(Placeholder)"
 format: 
   html:
     code-fold: false
     code-tools: false
 editor: source
 ---
-
-Load the aggregated food groups and their attributes. We have 28 food groups.
-
-```{r}
-#| label: load-food-info
-#| echo: true
-#| eval: true
-
-foods <- read.csv('data/foods.csv', sep = ',')
-data.table::setDT(foods) # use data.table format
-foods[1:10,] # show the first 10
-```
 
 
 Define the constraints on 

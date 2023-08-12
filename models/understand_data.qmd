@@ -1,5 +1,5 @@
 ---
-title: "Part 1: Understand the current diet"
+title: "Mixed models"
 format: 
   html:
     code-fold: false
@@ -7,41 +7,4 @@ format:
 editor: source
 ---
 
-Load the aggregated food groups and their attributes. We have 28 food groups.
-
-```{r}
-#| label: load-food-info
-#| echo: true
-#| eval: true
-
-foods <- read.csv('data/foods.csv', sep = ',')
-data.table::setDT(foods) # use data.table format
-foods[1:10,] # show the first 10
-```
-
-
-Define the constraints on 
-
-* energy
-* protein, fat, carbs, sugar, alcohol 
-* GHGE (greenhouse gas equivalent)
-
-```{r}
-#| label: load-contraints
-#| echo: true
-#| eval: true
-
-constraints <- data.frame(
-  constraint = c('lower', 'upper'), 
-  energy = c(9000, 10000), 
-  protein = c(55, 111.5), 
-  fat = c(61.8, 98.8), 
-  carbs = c(250, 334.6), 
-  sugar = c(0, 54.8), 
-  alcohol = c(0, 10),
-  ghge = c(0, 4.7)
-)
-constraints
-```
-
-
+Yet to be filled in

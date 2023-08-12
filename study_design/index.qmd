@@ -6,7 +6,7 @@ listing:
     image-height: 150px
     fields: [title]
     contents: 
-      - "understand_data.qmd"
+      - "rct_design_overview.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

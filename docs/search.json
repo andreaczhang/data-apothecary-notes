@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Apothecary’s Notes",
     "section": "",
-    "text": "Github\n  \n\n  \n  \nWelcome. This is the notes."
+    "text": "Github\n  \n\n  \n  \nHello, welcome!\nThis is the note repository for modern data science skills with a focus on drug development and clinical trials. Content will be gradually added while I learn the topics. Therefore, it is by no means a complete guide by the time you read it!\nI try to organize the content in a modular way. I think these should cover the important aspects in which a data scientist / modern statistician should know.\n\nstudy design\ninference\nmodels\nreporting\nprogramming\n\nAny feedback / mistake corrections are welcome, you can find me here. Thank you!"
   },
   {
     "objectID": "documentation/understand_data.html",
@@ -23,16 +23,16 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "What is Data Apothecary’s Notes?",
     "section": "",
-    "text": "This is the note website for some documentation and demonstration on …"
+    "text": "Hello, welcome!\nThis is the note repository for some documentation and demonstration on modern data science skills related to drug development.\nI created this repo so that I can find notes with code and rendered results easily. Therefore, the target audience is the future-me; if it helps you in some way as well, I’d be more than happy!\nIf you see some errors or have any suggestions, please feel free to reach out.\nFind out who I am here!"
   },
   {
     "objectID": "reporting/index.html",
     "href": "reporting/index.html",
-    "title": "Study design",
+    "title": "Reporting",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPart 1: Understand the current diet\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nClinical trial: reporting results\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "reporting/understand_data.html",
@@ -44,23 +44,23 @@
   {
     "objectID": "models/index.html",
     "href": "models/index.html",
-    "title": "Study design",
+    "title": "Models",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPart 1: Understand the current diet\n\n\n\n\n\n\nNo matching items"
+    "text": "Models for repeated measurement, longitudinal data and related matters.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMixed models\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "models/understand_data.html",
     "href": "models/understand_data.html",
-    "title": "Part 1: Understand the current diet",
+    "title": "Mixed models",
     "section": "",
-    "text": "Load the aggregated food groups and their attributes. We have 28 food groups.\n\nfoods <- read.csv('data/foods.csv', sep = ',')\ndata.table::setDT(foods) # use data.table format\nfoods[1:10,] # show the first 10\n\n                   food intake energy protein   fat carbs sugar alcohol  ghge\n 1:               Bread  175.4 10.696   0.091 0.030 0.441 0.002       0 0.001\n 2:        Other grains   45.0 14.022   0.100 0.042 0.607 0.011       0 0.002\n 3:               Cakes   35.6 14.185   0.067 0.152 0.424 0.185       0 0.002\n 4:            Potatoes   67.8  3.791   0.021 0.007 0.178 0.000       0 0.000\n 5:          Vegetables  154.6  1.565   0.015 0.008 0.050 0.005       0 0.001\n 6:             Legumes    3.5  8.571   0.143 0.029 0.286 0.000       0 0.001\n 7:      Fruit, berries  171.5  2.729   0.008 0.004 0.134 0.029       0 0.001\n 8:               Juice  111.0  1.928   0.005 0.002 0.103 0.000       0 0.001\n 9:                Nuts    4.3 25.581   0.209 0.535 0.116 0.000       0 0.005\n10: Vegetarian products    0.7  4.286   0.143 0.000 0.000 0.000       0 0.003\n\n\nDefine the constraints on\n\nenergy\nprotein, fat, carbs, sugar, alcohol\nGHGE (greenhouse gas equivalent)\n\n\nconstraints <- data.frame(\n  constraint = c('lower', 'upper'), \n  energy = c(9000, 10000), \n  protein = c(55, 111.5), \n  fat = c(61.8, 98.8), \n  carbs = c(250, 334.6), \n  sugar = c(0, 54.8), \n  alcohol = c(0, 10),\n  ghge = c(0, 4.7)\n)\nconstraints\n\n  constraint energy protein  fat carbs sugar alcohol ghge\n1      lower   9000    55.0 61.8 250.0   0.0       0  0.0\n2      upper  10000   111.5 98.8 334.6  54.8      10  4.7"
+    "text": "Yet to be filled in"
   },
   {
     "objectID": "study_design/index.html",
     "href": "study_design/index.html",
     "title": "Study design",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPart 1: Understand the current diet\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nClinical trial design: overview\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "study_design/understand_data.html",
@@ -72,9 +72,9 @@
   {
     "objectID": "programming/index.html",
     "href": "programming/index.html",
-    "title": "Study design",
+    "title": "Programming",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPart 1: Understand the current diet\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -86,15 +86,155 @@
   {
     "objectID": "inference/index.html",
     "href": "inference/index.html",
-    "title": "Study design",
+    "title": "Inference",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPart 1: Understand the current diet\n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\n(Placeholder)\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
     "href": "inference/understand_data.html",
-    "title": "Part 1: Understand the current diet",
+    "title": "(Placeholder)",
     "section": "",
-    "text": "Load the aggregated food groups and their attributes. We have 28 food groups.\n\nfoods <- read.csv('data/foods.csv', sep = ',')\ndata.table::setDT(foods) # use data.table format\nfoods[1:10,] # show the first 10\n\n                   food intake energy protein   fat carbs sugar alcohol  ghge\n 1:               Bread  175.4 10.696   0.091 0.030 0.441 0.002       0 0.001\n 2:        Other grains   45.0 14.022   0.100 0.042 0.607 0.011       0 0.002\n 3:               Cakes   35.6 14.185   0.067 0.152 0.424 0.185       0 0.002\n 4:            Potatoes   67.8  3.791   0.021 0.007 0.178 0.000       0 0.000\n 5:          Vegetables  154.6  1.565   0.015 0.008 0.050 0.005       0 0.001\n 6:             Legumes    3.5  8.571   0.143 0.029 0.286 0.000       0 0.001\n 7:      Fruit, berries  171.5  2.729   0.008 0.004 0.134 0.029       0 0.001\n 8:               Juice  111.0  1.928   0.005 0.002 0.103 0.000       0 0.001\n 9:                Nuts    4.3 25.581   0.209 0.535 0.116 0.000       0 0.005\n10: Vegetarian products    0.7  4.286   0.143 0.000 0.000 0.000       0 0.003\n\n\nDefine the constraints on\n\nenergy\nprotein, fat, carbs, sugar, alcohol\nGHGE (greenhouse gas equivalent)\n\n\nconstraints <- data.frame(\n  constraint = c('lower', 'upper'), \n  energy = c(9000, 10000), \n  protein = c(55, 111.5), \n  fat = c(61.8, 98.8), \n  carbs = c(250, 334.6), \n  sugar = c(0, 54.8), \n  alcohol = c(0, 10),\n  ghge = c(0, 4.7)\n)\nconstraints\n\n  constraint energy protein  fat carbs sugar alcohol ghge\n1      lower   9000    55.0 61.8 250.0   0.0       0  0.0\n2      upper  10000   111.5 98.8 334.6  54.8      10  4.7"
+    "text": "Define the constraints on\n\nenergy\nprotein, fat, carbs, sugar, alcohol\nGHGE (greenhouse gas equivalent)\n\n\nconstraints <- data.frame(\n  constraint = c('lower', 'upper'), \n  energy = c(9000, 10000), \n  protein = c(55, 111.5), \n  fat = c(61.8, 98.8), \n  carbs = c(250, 334.6), \n  sugar = c(0, 54.8), \n  alcohol = c(0, 10),\n  ghge = c(0, 4.7)\n)\nconstraints\n\n  constraint energy protein  fat carbs sugar alcohol ghge\n1      lower   9000    55.0 61.8 250.0   0.0       0  0.0\n2      upper  10000   111.5 98.8 334.6  54.8      10  4.7"
+  },
+  {
+    "objectID": "study_design/methodnotes_20230601_trialdesign/index.html",
+    "href": "study_design/methodnotes_20230601_trialdesign/index.html",
+    "title": "Clinical trial design",
+    "section": "",
+    "text": "Coursera course Design and interpretation of clinical trials by Johns Hopkins University"
+  },
+  {
+    "objectID": "study_design/methodnotes_20230601_trialdesign/index.html#types-of-trials-designs",
+    "href": "study_design/methodnotes_20230601_trialdesign/index.html#types-of-trials-designs",
+    "title": "Clinical trial design",
+    "section": "Types of trials designs",
+    "text": "Types of trials designs\nPhase 1: 10-30, identify tolerable dose, information on drug metabolism, extretion and toxicity. Often not controlled\nPhase 2: 30-100, efficacy, safety and side effects,\nPhase 3: 100+, often randomized\nPhase 4: demonstration\n\nTypes of design\nPopulation have the disease outcome of interest; not healthy voluteers vs diseased.\nRandomisation unit: persons, two eyes of a person, or groups of persons\nComparison structure: parallel, crossover, group allocation\n\nParallel: simultaneous treatment and control groups, subjects randomly assigned to one group.\nCrossover: randomize of order in which treatments are received; TC or CT. Each patient is his/her own control. Washout period: time between two treatments.\n\nVariability reduced because less variability within patient than between patients. Fewer patients needed.\nDisadvantages: only certain treatments can use crossover design, treatment can’t have permanent effects. Carry-over effects from first period; washout needs to be long enough. Dropouts more significant, analysis may be more difficult: correlated outcomes.\nConstant intensity of underlying disease: chronic diseases (e.g. asthma, hypertension, arthritis) + short-term treatment effects (relief of signs or symptoms)\ne.g. morning dose vs evening dose\n\nGroup allocation: a group of subjects (community, school, clinic).\n\nExtensions of the parallel design: factorial, large simple\n\nFactorial: two interventions tested simultaneously. Can be presented in a 2 by 2 table (treatment A +-, treatment B +-); or 3 by 2 etc.\n\nInterested in main effect (if no interaction expected). A vs no A; B vs no B. The other treatment doesn’t matter.\n\nLarge simple: large number of patients, possibly from many study sites.\n\n\nTests other than superiority\n\nEquivalency: intervention response is close to control group response\nNon-inferiority: Treatment A (new) is at least as good as B (established). One-sided test, if A is worse than B, one can be rejected. Does not require as big sample size.\n\n\n\nAdaptive design\nPossible adaptations\n\nrandomization probabilities\nsample size (e.g. group sequential methods)\nvisit schedule: shorten/lengthen follow-up time, change number of timing of visits, treatments (dose/duration, concomitant meds)\nhypothesis tested"
+  },
+  {
+    "objectID": "study_design/methodnotes_20230601_trialdesign/index.html#randomisation-and-masking",
+    "href": "study_design/methodnotes_20230601_trialdesign/index.html#randomisation-and-masking",
+    "title": "Clinical trial design",
+    "section": "Randomisation and masking",
+    "text": "Randomisation and masking\nRationale:\n\navoid selection bias: prognostic factors related to treatment assignment\ntends to produce comparable treatment groups\n\n\nSchemes\nSimple randomization, restricted randomization, adaptive randomization\n\nSimple rz\nEach assignment is unpredictable, number of patients in each group should be equal in the long run.\nRisks: imbalances in number assigned to treatment groups, or confounding factors (gender, disease severity) -> reduced power\n\n\nRestricted rz\nSchemes with constraints to produce expected assignment ratio\n\nblocking\nstratification\n\nBlocking. Block of size 2 with treatment allocation ratio 1:1: A,B. Size 4: 2As, 2Bs. Need to be permuted: AABB, ABAB, … in total 6 combinations. Then choose one of the permutations.\nStratification. Ensure balance in treatment assignments with subgroups defined before rz. Limit to a few variables (highly related to outcome and/or logistical): e.g. clinic in a multicenter trial, surgeon (skills, procedures), stage of disease, demographic such as gender and age.\nUse these two together.\n\n\nAdaptive rz\nProbability of assignment does not remain constant, but determined by the current balance and composition of the groups.\n\nminimization: choose the design that gives the smallest imbalance.\nplay the winner: change allocation ratio or favor the better treatment based on the primary outcome. Need to evaluate outcomes relatively quickly.\n\n\n\n\nMasking (blinding)\nTreatment assignment is not known after rz.\n\npatient, clinical personnel, evaluators, data processors, …\nsingle (only participant), double (+ investigator), triple (+ data processors, …), quadruple …\n\nPurpose: remove bias related to treatment effects.\nDifferent levels of masking protects to different extent against bias in different aspects\n\ndata reporting\ndata collection / follow-up\ntesting, behaviors\noutcome assessment\n\nDecision to mask treatments\n\nethical?\npossible? can you make the treatment seem identical so the participants do not know?\ntrial design features: more important to mask subjective ones (e.g. alive or dead is the least subjective, hence wouldn’t benefit much; however if participants need to report effects that are not objectively measureable, they might report that treatment is better in contrast to placebo group)\nfeasible? cost-benefit, practicality (adherence)\n\nSometimes investigators in a double blind study might know which treatment is being assigned to participants, if the effect of drug is very obvious (both good or bad).\nUnmasking\n\nPlanned: inform participants once the trial finished\nUnplanned (discouraged): in the event of adverse event"
+  },
+  {
+    "objectID": "study_design/methodnotes_20230601_trialdesign/index.html#outcomes-and-analysis",
+    "href": "study_design/methodnotes_20230601_trialdesign/index.html#outcomes-and-analysis",
+    "title": "Clinical trial design",
+    "section": "Outcomes and analysis",
+    "text": "Outcomes and analysis\nOutcome: endpoint. It is a quantitaive measure.\nObjectives of the trial\n\nefficacy / effectiveness\nsafety\nprocess\ncosts\n\nExample: evaluate treatment for asthma\nOutcomes: exhaled nitrous oxide, lung function (spirometry measures), asthma symptoms (wheezing, night awakenings), …\nExample: evaluate a procedure to reduce perioperative morbidity\nOutcome considerations: time window (what is postoperative), specific events to be considered an outcome, procedures to establish outcomes, …\n\nMetrics for events as outcomes\n\ndichotomous: 1/0 for presence absense, normal abnormal; clinical state or cut-off value\ntime-to-event: in addition to dichotomous, add time dimension; allow for censoring. More powerful than dichotomous.\nrates: 1/0 but allow for repeats, analyze count or rate. Events within a person are usually not independent, need to account for it.\ncontinuous variables: value or change from baseline; standard units (lab values, scores). Need to define an important difference. Distributional assumptions more important.\nordinal scale: ranked categories (e.g. adverse event grading, 1-5). Difference between categories is usually qualitative.\n\nPatients opinions are subjective\n\nhealth status / change in status, e.g. pain relief, quality of life\nmasking is more important\nhawthorne / placebo effect: effect of being studies, usually positive\nquantify with standardized scales\n\n\n\nInfluence of outcomes on design\nEfficacy vs effectiveness:\nIn a vaccine trial, efficacy is the clinical case with lab confirmation; effectivenenss is the clinical case of influenza in a larger population, may or may not be confirmed.\nIn asthma, efficacy is FEV1, effectiveness is the decrease of the hospitalizations/steroid courses.\nConsiderations (3Bs)\n\nbiology: does outcome reflect a clinically relevant fact/change\nbiostatistics: detectable difference between groups is plausible and practical\nbudget: afford total N and can measure it reliably in every participant\n\nExample: HIV trial outcomes\n\nsurvival (deaths; AIDS status)\nimmunologic response\nvirologic response\nchange in patient status (e.g QoL)\nspecified toxicity\nother side effects\n\nChoice of primary outcome depends on the objectives or stage of research\n\nphase 1, emphasis on safety\nphase 2, short-term efficacy\nphase 3, long-term efficacy\nphase 4, long-term effectiveness\n\n\n\nIntention to treat ITT\nCross-overs after rz: some patients might have a treatment (yes or no) beyond what they were assigned to, e.g. refuse surgery or medical treatment\nNon-adherence during followup: some in treatment group refuse of can not tolerate certain treatment; while some in placebo group require medication or take on their own\n\n\nSubgroup analysis\nStratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups\nTest for interaction: use of main effect and interaction.\nIssue of multiple testing when doing a series of analyses\n\ninflate sample size to plan for subgroup analysis\nreport number of subgroup analyses performed\npossibly adjust for multiple comparisons\nreport CI instead of just p-values"
+  },
+  {
+    "objectID": "study_design/methodnotes_20230601_trialdesign/index.html#reporting-results",
+    "href": "study_design/methodnotes_20230601_trialdesign/index.html#reporting-results",
+    "title": "Clinical trial design",
+    "section": "Reporting results",
+    "text": "Reporting results\n\nCONSORT\nConsolidated Standards of Reporting Trials\n25 item checklist. Not a guideline of how to do the trial; but a guideline for writers on how to report clearly.\nTitle\n\nkey design items\ntreatment(s) evaluated\ndisease or population studied\n\nAbstract\n\ndesign, method, results, conclusions\n\nIntroduction\n\nbackgrounds, rationale, establish equipoise (balance), systematic review, objectives / hypothesis\n\nMethod\n\nIRB review and approvals\ntrial design, allocation ratio\neligibility criteria\nsetting and location of the trial\nintervention - detailed enough to allow replication\noutcomes - primary, secondary, how assessed and defined\nsample size - how determined, interim analyses\nimportant changes during trial\nrandomization, allocation concealment, implementation\nmasking - who, how\nstatistical methods - primary and secondary; subgroup analyses\n\nConvenient to use a flow-chart\nBaseline characteristics by treatment group\np-values (common to not report in rct?)\n\n\nEvaluate literature\n\nLegitimacy, is it a fair comparison\nTrustworthy investigators? conflict of interest\nAdequate protections against bias\n\nrandomization\nmasking\nfollow-up design and execution\n\nITT analysis\n\nhave all events (outcomes) observed been counted in the treatment group assigned?\nvariations in denominators explained and consistent with good practice?\n\nappropriate subgroup analysis interpretation\n\nad hoc or post hoc status"
+  },
+  {
+    "objectID": "programming/r_roop.html",
+    "href": "programming/r_roop.html",
+    "title": "OOP in R: S3",
+    "section": "",
+    "text": "Useful references:"
+  },
+  {
+    "objectID": "programming/r_roop.html#terminology",
+    "href": "programming/r_roop.html#terminology",
+    "title": "OOP in R: S3",
+    "section": "Terminology",
+    "text": "Terminology\n\nObject: individual instances of a class\nClass: type of an object, i.e. what an object is\nMethod: a function associated with a particular class, i.e. what the object can do\n\ngeneric method: mean() of a vector of numbers is a number, mean() of a vector of dates is a date\nInherit: a sub-class inherits all the attributes and methods from the super-class. E.g. generalized linear model inherits from a linear model.\nmethod dispatch: the process of finding the correct method given a class\n\n\nEncapsulated OOP:\n\nmethods belong to object or classes\nobject.method(arg1, arg2)\ncommon in most languages\nR6, RC (reference class) are examples of this type\n\nFunctional OOP:\n\nmethods belong to generic functions\ngeneric(object, arg2, arg3)\nS3 is an informal implementation of this type"
+  },
+  {
+    "objectID": "programming/r_roop.html#base-types",
+    "href": "programming/r_roop.html#base-types",
+    "title": "OOP in R: S3",
+    "section": "Base types",
+    "text": "Base types\nCheck whether an object is object-oriented, or base object:\n\nis.object()\nsloop::otype(): returns base or S3/S4\nattr(obj_name, 'class'): OO objects has a class attribute, BO does not.\n\n\nx <- 1:10 # a numeric vector\ny <- factor(c('a', 'b'))  # a factor\n\nc(is.object(x), is.object(y))\n\n[1] FALSE  TRUE\n\nc(sloop::otype(x), sloop::otype(y))\n\n[1] \"base\" \"S3\"  \n\nattr(x, 'class') \n\nNULL\n\nattr(y, 'class')\n\n[1] \"factor\"\n\n\nAll objects have a base type; not all are OO objects.\n\ntypeof(1:10) returns ‘integer’\n25 base types in total\n\nvectors: e.g. NULL, logical, integer, double, complex, character, list, raw\nfunctions: e.g. closure, special, builtin\nenvironments: environment\nS4: S4\nlanguage components, symbol, language, pairlist the rest are less common."
+  },
+  {
+    "objectID": "programming/r_roop.html#generic-or-method",
+    "href": "programming/r_roop.html#generic-or-method",
+    "title": "OOP in R: S3",
+    "section": "Generic or method?",
+    "text": "Generic or method?\n\ngeneric.class(), for example: print.factor()\ndo not call the method directly; use the generic (dispatch) to find it.\ngenerally has the . in the name; however it is not guaranteed * t.test() is a generic like print(), as t.test() can be used on multiple types of inputs\n\nas.factor() is not an OO object, hence not S3\n\n\n\nCheck function type with sloop::ftype()\n\nsloop::ftype(predict) # predict is a generic\n\n[1] \"S3\"      \"generic\"\n\nsloop::ftype(predict.glm)  # glm (class) method for predict() generic\n\n[1] \"S3\"     \"method\"\n\n\n\n\nCheck methods with methods()\nmethods() checks all the methods that either:\n\nbelongs to a generic (the function), such as plot, predict, t.test\nbelongs to a class (the type of input), such as lm, ar\n\n\nmethods('predict')  \n\n [1] predict.ar*                predict.Arima*            \n [3] predict.arima0*            predict.glm               \n [5] predict.HoltWinters*       predict.lm                \n [7] predict.loess*             predict.mlm*              \n [9] predict.nls*               predict.poly*             \n[11] predict.ppr*               predict.prcomp*           \n[13] predict.princomp*          predict.smooth.spline*    \n[15] predict.smooth.spline.fit* predict.StructTS*         \nsee '?methods' for accessing help and source code\n\nmethods(class = 'lm')\n\n [1] add1           alias          anova          case.names     coerce        \n [6] confint        cooks.distance deviance       dfbeta         dfbetas       \n[11] drop1          dummy.coef     effects        extractAIC     family        \n[16] formula        hatvalues      influence      initialize     kappa         \n[21] labels         logLik         model.frame    model.matrix   nobs          \n[26] plot           predict        print          proj           qr            \n[31] residuals      rstandard      rstudent       show           simulate      \n[36] slotsFromS3    summary        variable.names vcov          \nsee '?methods' for accessing help and source code\n\n\nEquivalently, use sloop::s3_methods_*(), as it gives more information in the output.\n\nsloop::s3_methods_generic('predict') \n\n# A tibble: 16 × 4\n   generic class             visible source             \n   <chr>   <chr>             <lgl>   <chr>              \n 1 predict ar                FALSE   registered S3method\n 2 predict Arima             FALSE   registered S3method\n 3 predict arima0            FALSE   registered S3method\n 4 predict glm               TRUE    stats              \n 5 predict HoltWinters       FALSE   registered S3method\n 6 predict lm                TRUE    stats              \n 7 predict loess             FALSE   registered S3method\n 8 predict mlm               FALSE   registered S3method\n 9 predict nls               FALSE   registered S3method\n10 predict poly              FALSE   registered S3method\n11 predict ppr               FALSE   registered S3method\n12 predict prcomp            FALSE   registered S3method\n13 predict princomp          FALSE   registered S3method\n14 predict smooth.spline     FALSE   registered S3method\n15 predict smooth.spline.fit FALSE   registered S3method\n16 predict StructTS          FALSE   registered S3method\n\nsloop::s3_methods_class('lm')\n\n# A tibble: 35 × 4\n   generic        class visible source             \n   <chr>          <chr> <lgl>   <chr>              \n 1 add1           lm    FALSE   registered S3method\n 2 alias          lm    FALSE   registered S3method\n 3 anova          lm    FALSE   registered S3method\n 4 case.names     lm    FALSE   registered S3method\n 5 confint        lm    TRUE    stats              \n 6 cooks.distance lm    FALSE   registered S3method\n 7 deviance       lm    FALSE   registered S3method\n 8 dfbeta         lm    FALSE   registered S3method\n 9 dfbetas        lm    FALSE   registered S3method\n10 drop1          lm    FALSE   registered S3method\n# ℹ 25 more rows"
+  },
+  {
+    "objectID": "programming/r_roop.html#class-assignment",
+    "href": "programming/r_roop.html#class-assignment",
+    "title": "OOP in R: S3",
+    "section": "Class assignment",
+    "text": "Class assignment\nTwo options: structure(), or class(existing_obj)\n\nsimple_number <- structure(1, class = 'simple')\nclass(simple_number)\n\n[1] \"simple\"\n\n\nOr, you can do it for an existing object by giving it a class\n\nsimple_char <- 'your_name'\nclass(simple_char) <- 'simple'\nclass(simple_char)\n\n[1] \"simple\""
+  },
+  {
+    "objectID": "programming/r_roop.html#constructor",
+    "href": "programming/r_roop.html#constructor",
+    "title": "OOP in R: S3",
+    "section": "Constructor",
+    "text": "Constructor\n\nfruit <- function(x){\n  stopifnot(is.character(x))\n  # checks if x is char\n  # better use a named list, easier to call\n  structure(list(fruit_name = x), class = 'fruit') \n}\n\nfruit1 <- fruit('pineapple')\nfruit2 <- fruit('apple')\n\nExamine what comes out\n\nfruit1\n\n$fruit_name\n[1] \"pineapple\"\n\nattr(,\"class\")\n[1] \"fruit\""
+  },
+  {
+    "objectID": "programming/r_roop.html#define-new-generic-and-method",
+    "href": "programming/r_roop.html#define-new-generic-and-method",
+    "title": "OOP in R: S3",
+    "section": "Define new generic and method",
+    "text": "Define new generic and method\n[name of method] <- functionn(x){UseMethod(\"[name of method]\")}\nNow we define one generic function f, and two methods. One for class plus2, and another for class plus10.\n\nf <- function(x){UseMethod('f')} # define generic f\nf.plus2 <- function(x) x+2 # f method for class plus2\nf.plus10 <- function(x) x+10 # f method for class plus10\n\nNow we try to give the function some input. First use a numeric number, 1 (the class for a number is double and numeric).\n\nnumber <- 1\nf(number) # returns error, class of number does not match!\n\nError in UseMethod(\"f\"): no applicable method for 'f' applied to an object of class \"c('double', 'numeric')\"\n\n\nThis returns an error, because the class of number is not defined for function f (plus2, plus10).\n\n# can check what f(number) tried \n# none of these exist \nsloop::s3_dispatch(f(number))\n\n   f.double\n   f.numeric\n   f.default\n\n\nWe need to match it. Assign the number with plus2 class, and evaluate it. You can check which method has been used (dispatched).\n\n# fix: assign a class to number\nclass(number) <- 'plus2'\nf(number) # number+2, f.plus2 method\n\n[1] 3\nattr(,\"class\")\n[1] \"plus2\"\n\nsloop::s3_dispatch(f(number))\n\n=> f.plus2\n   f.default\n\n\nNow we try another number, but let it be plus10 class.\n\nnumberx <- 200\nclass(numberx) <- 'plus10'\nf(numberx)\n\n[1] 210\nattr(,\"class\")\n[1] \"plus10\"\n\nsloop::s3_dispatch(f(numberx))\n\n=> f.plus10\n   f.default"
+  },
+  {
+    "objectID": "programming/r_roop.html#new-method-for-existing-generic-print",
+    "href": "programming/r_roop.html#new-method-for-existing-generic-print",
+    "title": "OOP in R: S3",
+    "section": "New method for existing generic (print())",
+    "text": "New method for existing generic (print())\nWe create the S3 object using the constructor defined above, fruit().\n\npineapple <- fruit('pineapple') # create by the constructor\npineapple\n\n$fruit_name\n[1] \"pineapple\"\n\nattr(,\"class\")\n[1] \"fruit\"\n\n\nThe output does not look very nice, we can modify what prints out. Since print() is an exisiting generic function, we do not need to define a new one (i.e. UseMethod). We define the new method directly: generic.your_class.\n\n# we do not need to define print() as generic, bec it IS already\n# directly define print.fruit\nprint.fruit <- function(x){\n  cat('I used constructor for my fruit:', x$fruit_name)\n}\n\nprint.fruit(pineapple)\n\nI used constructor for my fruit: pineapple"
+  },
+  {
+    "objectID": "study_design/rct_design_overview.html",
+    "href": "study_design/rct_design_overview.html",
+    "title": "Clinical trial design: overview",
+    "section": "",
+    "text": "Coursera course Design and interpretation of clinical trials by Johns Hopkins University"
+  },
+  {
+    "objectID": "study_design/rct_design_overview.html#types-of-trials-designs",
+    "href": "study_design/rct_design_overview.html#types-of-trials-designs",
+    "title": "Clinical trial design: overview",
+    "section": "Types of trials designs",
+    "text": "Types of trials designs\nPhase 1: 10-30, identify tolerable dose, information on drug metabolism, extretion and toxicity. Often not controlled\nPhase 2: 30-100, efficacy, safety and side effects,\nPhase 3: 100+, often randomized\nPhase 4: demonstration\n\nTypes of design\nPopulation have the disease outcome of interest; not healthy voluteers vs diseased.\nRandomisation unit: persons, two eyes of a person, or groups of persons\nComparison structure: parallel, crossover, group allocation\n\nParallel: simultaneous treatment and control groups, subjects randomly assigned to one group.\nCrossover: randomize of order in which treatments are received; TC or CT. Each patient is his/her own control. Washout period: time between two treatments.\n\nVariability reduced because less variability within patient than between patients. Fewer patients needed.\nDisadvantages: only certain treatments can use crossover design, treatment can’t have permanent effects. Carry-over effects from first period; washout needs to be long enough. Dropouts more significant, analysis may be more difficult: correlated outcomes.\nConstant intensity of underlying disease: chronic diseases (e.g. asthma, hypertension, arthritis) + short-term treatment effects (relief of signs or symptoms)\ne.g. morning dose vs evening dose\n\nGroup allocation: a group of subjects (community, school, clinic).\n\nExtensions of the parallel design: factorial, large simple\n\nFactorial: two interventions tested simultaneously. Can be presented in a 2 by 2 table (treatment A +-, treatment B +-); or 3 by 2 etc.\n\nInterested in main effect (if no interaction expected). A vs no A; B vs no B. The other treatment doesn’t matter.\n\nLarge simple: large number of patients, possibly from many study sites.\n\n\nTests other than superiority\n\nEquivalency: intervention response is close to control group response\nNon-inferiority: Treatment A (new) is at least as good as B (established). One-sided test, if A is worse than B, one can be rejected. Does not require as big sample size.\n\n\n\nAdaptive design\nPossible adaptations\n\nrandomization probabilities\nsample size (e.g. group sequential methods)\nvisit schedule: shorten/lengthen follow-up time, change number of timing of visits, treatments (dose/duration, concomitant meds)\nhypothesis tested"
+  },
+  {
+    "objectID": "study_design/rct_design_overview.html#randomisation-and-masking",
+    "href": "study_design/rct_design_overview.html#randomisation-and-masking",
+    "title": "Clinical trial design: overview",
+    "section": "Randomisation and masking",
+    "text": "Randomisation and masking\nRationale:\n\navoid selection bias: prognostic factors related to treatment assignment\ntends to produce comparable treatment groups\n\n\nSchemes\nSimple randomization, restricted randomization, adaptive randomization\n\nSimple rz\nEach assignment is unpredictable, number of patients in each group should be equal in the long run.\nRisks: imbalances in number assigned to treatment groups, or confounding factors (gender, disease severity) -> reduced power\n\n\nRestricted rz\nSchemes with constraints to produce expected assignment ratio\n\nblocking\nstratification\n\nBlocking. Block of size 2 with treatment allocation ratio 1:1: A,B. Size 4: 2As, 2Bs. Need to be permuted: AABB, ABAB, … in total 6 combinations. Then choose one of the permutations.\nStratification. Ensure balance in treatment assignments with subgroups defined before rz. Limit to a few variables (highly related to outcome and/or logistical): e.g. clinic in a multicenter trial, surgeon (skills, procedures), stage of disease, demographic such as gender and age.\nUse these two together.\n\n\nAdaptive rz\nProbability of assignment does not remain constant, but determined by the current balance and composition of the groups.\n\nminimization: choose the design that gives the smallest imbalance.\nplay the winner: change allocation ratio or favor the better treatment based on the primary outcome. Need to evaluate outcomes relatively quickly.\n\n\n\n\nMasking (blinding)\nTreatment assignment is not known after rz.\n\npatient, clinical personnel, evaluators, data processors, …\nsingle (only participant), double (+ investigator), triple (+ data processors, …), quadruple …\n\nPurpose: remove bias related to treatment effects.\nDifferent levels of masking protects to different extent against bias in different aspects\n\ndata reporting\ndata collection / follow-up\ntesting, behaviors\noutcome assessment\n\nDecision to mask treatments\n\nethical?\npossible? can you make the treatment seem identical so the participants do not know?\ntrial design features: more important to mask subjective ones (e.g. alive or dead is the least subjective, hence wouldn’t benefit much; however if participants need to report effects that are not objectively measureable, they might report that treatment is better in contrast to placebo group)\nfeasible? cost-benefit, practicality (adherence)\n\nSometimes investigators in a double blind study might know which treatment is being assigned to participants, if the effect of drug is very obvious (both good or bad).\nUnmasking\n\nPlanned: inform participants once the trial finished\nUnplanned (discouraged): in the event of adverse event"
+  },
+  {
+    "objectID": "study_design/rct_design_overview.html#outcomes-and-analysis",
+    "href": "study_design/rct_design_overview.html#outcomes-and-analysis",
+    "title": "Clinical trial design: overview",
+    "section": "Outcomes and analysis",
+    "text": "Outcomes and analysis\nOutcome: endpoint. It is a quantitaive measure.\nObjectives of the trial\n\nefficacy / effectiveness\nsafety\nprocess\ncosts\n\nExample: evaluate treatment for asthma\nOutcomes: exhaled nitrous oxide, lung function (spirometry measures), asthma symptoms (wheezing, night awakenings), …\nExample: evaluate a procedure to reduce perioperative morbidity\nOutcome considerations: time window (what is postoperative), specific events to be considered an outcome, procedures to establish outcomes, …\n\nMetrics for events as outcomes\n\ndichotomous: 1/0 for presence absense, normal abnormal; clinical state or cut-off value\ntime-to-event: in addition to dichotomous, add time dimension; allow for censoring. More powerful than dichotomous.\nrates: 1/0 but allow for repeats, analyze count or rate. Events within a person are usually not independent, need to account for it.\ncontinuous variables: value or change from baseline; standard units (lab values, scores). Need to define an important difference. Distributional assumptions more important.\nordinal scale: ranked categories (e.g. adverse event grading, 1-5). Difference between categories is usually qualitative.\n\nPatients opinions are subjective\n\nhealth status / change in status, e.g. pain relief, quality of life\nmasking is more important\nhawthorne / placebo effect: effect of being studies, usually positive\nquantify with standardized scales\n\n\n\nInfluence of outcomes on design\nEfficacy vs effectiveness:\nIn a vaccine trial, efficacy is the clinical case with lab confirmation; effectivenenss is the clinical case of influenza in a larger population, may or may not be confirmed.\nIn asthma, efficacy is FEV1, effectiveness is the decrease of the hospitalizations/steroid courses.\nConsiderations (3Bs)\n\nbiology: does outcome reflect a clinically relevant fact/change\nbiostatistics: detectable difference between groups is plausible and practical\nbudget: afford total N and can measure it reliably in every participant\n\nExample: HIV trial outcomes\n\nsurvival (deaths; AIDS status)\nimmunologic response\nvirologic response\nchange in patient status (e.g QoL)\nspecified toxicity\nother side effects\n\nChoice of primary outcome depends on the objectives or stage of research\n\nphase 1, emphasis on safety\nphase 2, short-term efficacy\nphase 3, long-term efficacy\nphase 4, long-term effectiveness\n\n\n\nIntention to treat ITT\nCross-overs after rz: some patients might have a treatment (yes or no) beyond what they were assigned to, e.g. refuse surgery or medical treatment\nNon-adherence during followup: some in treatment group refuse of can not tolerate certain treatment; while some in placebo group require medication or take on their own\n\n\nSubgroup analysis\nStratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups\nTest for interaction: use of main effect and interaction.\nIssue of multiple testing when doing a series of analyses\n\ninflate sample size to plan for subgroup analysis\nreport number of subgroup analyses performed\npossibly adjust for multiple comparisons\nreport CI instead of just p-values"
+  },
+  {
+    "objectID": "study_design/rct_design_overview.html#reporting-results",
+    "href": "study_design/rct_design_overview.html#reporting-results",
+    "title": "Clinical trial design",
+    "section": "Reporting results",
+    "text": "Reporting results\n\nCONSORT\nConsolidated Standards of Reporting Trials\n25 item checklist. Not a guideline of how to do the trial; but a guideline for writers on how to report clearly.\nTitle\n\nkey design items\ntreatment(s) evaluated\ndisease or population studied\n\nAbstract\n\ndesign, method, results, conclusions\n\nIntroduction\n\nbackgrounds, rationale, establish equipoise (balance), systematic review, objectives / hypothesis\n\nMethod\n\nIRB review and approvals\ntrial design, allocation ratio\neligibility criteria\nsetting and location of the trial\nintervention - detailed enough to allow replication\noutcomes - primary, secondary, how assessed and defined\nsample size - how determined, interim analyses\nimportant changes during trial\nrandomization, allocation concealment, implementation\nmasking - who, how\nstatistical methods - primary and secondary; subgroup analyses\n\nConvenient to use a flow-chart\nBaseline characteristics by treatment group\np-values (common to not report in rct?)\n\n\nEvaluate literature\n\nLegitimacy, is it a fair comparison\nTrustworthy investigators? conflict of interest\nAdequate protections against bias\n\nrandomization\nmasking\nfollow-up design and execution\n\nITT analysis\n\nhave all events (outcomes) observed been counted in the treatment group assigned?\nvariations in denominators explained and consistent with good practice?\n\nappropriate subgroup analysis interpretation\n\nad hoc or post hoc status"
+  },
+  {
+    "objectID": "reporting/reporting_overview.html",
+    "href": "reporting/reporting_overview.html",
+    "title": "Clinical trial: reporting results",
+    "section": "",
+    "text": "Coursera course Design and interpretation of clinical trials by Johns Hopkins University"
+  },
+  {
+    "objectID": "reporting/reporting_overview.html#consort",
+    "href": "reporting/reporting_overview.html#consort",
+    "title": "Clinical trial: reporting results",
+    "section": "CONSORT",
+    "text": "CONSORT\nConsolidated Standards of Reporting Trials\n25 item checklist. Not a guideline of how to do the trial; but a guideline for writers on how to report clearly.\nTitle\n\nkey design items\ntreatment(s) evaluated\ndisease or population studied\n\nAbstract\n\ndesign, method, results, conclusions\n\nIntroduction\n\nbackgrounds, rationale, establish equipoise (balance), systematic review, objectives / hypothesis\n\nMethod\n\nIRB review and approvals\ntrial design, allocation ratio\neligibility criteria\nsetting and location of the trial\nintervention - detailed enough to allow replication\noutcomes - primary, secondary, how assessed and defined\nsample size - how determined, interim analyses\nimportant changes during trial\nrandomization, allocation concealment, implementation\nmasking - who, how\nstatistical methods - primary and secondary; subgroup analyses\n\nConvenient to use a flow-chart\nBaseline characteristics by treatment group\np-values (common to not report in rct?)\n\nEvaluate literature\n\nLegitimacy, is it a fair comparison\nTrustworthy investigators? conflict of interest\nAdequate protections against bias\n\nrandomization\nmasking\nfollow-up design and execution\n\nITT analysis\n\nhave all events (outcomes) observed been counted in the treatment group assigned?\nvariations in denominators explained and consistent with good practice?\n\nappropriate subgroup analysis interpretation\n\nad hoc or post hoc status"
   }
 ]

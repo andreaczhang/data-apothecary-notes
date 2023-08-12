@@ -1,5 +1,5 @@
 ---
-title: "Study design"
+title: "Models"
 listing:
   - id: docs
     max-description-length: 500
@@ -15,5 +15,4 @@ listing:
     categories: true
 ---
 
-It is important to document while you go.
-
+Models for repeated measurement, longitudinal data and related matters.

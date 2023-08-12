@@ -8,7 +8,7 @@
   {
     "listing": "/reporting/index.html",
     "items": [
-      "/reporting/understand_data.html"
+      "/reporting/reporting_overview.html"
     ]
   },
   {
@@ -20,13 +20,13 @@
   {
     "listing": "/study_design/index.html",
     "items": [
-      "/study_design/understand_data.html"
+      "/study_design/rct_design_overview.html"
     ]
   },
   {
     "listing": "/programming/index.html",
     "items": [
-      "/programming/understand_data.html"
+      "/programming/r_roop.html"
     ]
   },
   {
