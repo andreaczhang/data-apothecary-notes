@@ -1,5 +1,5 @@
 ---
-title: "Documentation"
+title: "Study design"
 listing:
   - id: docs
     max-description-length: 500

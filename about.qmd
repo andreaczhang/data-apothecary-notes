@@ -6,4 +6,5 @@ about:
   #image-shape: rectangle
 ---
 
-This is the development documentation site for NorEden Project.
+This is the note website for some documentation and demonstration on ...
+

@@ -1,5 +1,5 @@
 ---
-title: "NorEden"
+title: "Data Apothecary's Notes"
 about:
   id: hero-heading
   template: trestles
@@ -12,7 +12,7 @@ about:
 
 ::: {#hero-heading}
 
-Welcome. This is the development documentation website for NorEden Project.
+Welcome. This is the notes.
 
 :::
 

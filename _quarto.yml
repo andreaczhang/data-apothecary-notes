@@ -4,15 +4,27 @@ project:
 
 website:
   page-navigation: true
-  title: "NorEden"
+  title: "Data Apothecary's Notes"
 
   navbar:
     left:
       - href: index.qmd
         text: Home
 
-      - href: documentation/index.qmd
-        text: Documentation
+      - href: study_design/index.qmd
+        text: Study design
+
+      - href: inference/index.qmd
+        text: Inference
+
+      - href: models/index.qmd
+        text: Models
+
+      - href: reporting/index.qmd
+        text: Reporting
+
+      - href: programming/index.qmd
+        text: Programming
 
       - href: about.qmd
         text: About

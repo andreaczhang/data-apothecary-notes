@@ -1,0 +1,19 @@
+---
+title: "Study design"
+listing:
+  - id: docs
+    max-description-length: 500
+    image-height: 150px
+    fields: [title]
+    contents: 
+      - "understand_data.qmd"
+    type: table
+    grid-item-border: false
+    sort-ui: false
+    sort: "date desc"
+    filter-ui: false
+    categories: true
+---
+
+It is important to document while you go.
+

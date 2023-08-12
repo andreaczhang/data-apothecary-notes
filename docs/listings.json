@@ -4,5 +4,35 @@
     "items": [
       "/documentation/understand_data.html"
     ]
+  },
+  {
+    "listing": "/reporting/index.html",
+    "items": [
+      "/reporting/understand_data.html"
+    ]
+  },
+  {
+    "listing": "/models/index.html",
+    "items": [
+      "/models/understand_data.html"
+    ]
+  },
+  {
+    "listing": "/study_design/index.html",
+    "items": [
+      "/study_design/understand_data.html"
+    ]
+  },
+  {
+    "listing": "/programming/index.html",
+    "items": [
+      "/programming/understand_data.html"
+    ]
+  },
+  {
+    "listing": "/inference/index.html",
+    "items": [
+      "/inference/understand_data.html"
+    ]
   }
 ]
