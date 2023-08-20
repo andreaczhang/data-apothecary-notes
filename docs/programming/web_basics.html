@@ -8,9 +8,9 @@
 
 <meta name="author" content="Chi Zhang">
 <meta name="dcterms.date" content="2023-08-20">
-<meta name="description" content="Regression">
+<meta name="description" content="Some basic knowledge to prepare for webscrapping.">
 
-<title>Data Apothecary’s Notes - Sample size (part II)</title>
+<title>Data Apothecary’s Notes - Web basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,69 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -125,7 +62,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -189,9 +125,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#correlation" id="toc-correlation" class="nav-link active" data-scroll-target="#correlation">Correlation</a></li>
-  <li><a href="#linear-regression-f-test" id="toc-linear-regression-f-test" class="nav-link" data-scroll-target="#linear-regression-f-test">Linear regression (F-test)</a></li>
-  <li><a href="#glm" id="toc-glm" class="nav-link" data-scroll-target="#glm">GLM</a></li>
+  <li><a href="#html-tags" id="toc-html-tags" class="nav-link active" data-scroll-target="#html-tags">HTML tags</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a></li>
+  <li><a href="#entities" id="toc-entities" class="nav-link" data-scroll-target="#entities">Entities</a></li>
   </ul>
 </nav>
     </div>
@@ -200,15 +136,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Sample size (part II)</h1>
+<h1 class="title">Web basics</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Sample size</div>
+    <div class="quarto-category">Website</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Regression</p>
+    <p>Some basic knowledge to prepare for webscrapping.</p>
   </div>
 </div>
 
@@ -235,83 +171,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>(This is the part II on sample size calculation)</p>
-<section id="correlation" class="level1">
-<h1>Correlation</h1>
-<p>Correlation coefficient is used for effect size measure. Usse 0.1, 0.3, 0.5 to represent small, medium and large sizes.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation coeff</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.r.test</span>(<span class="at">r =</span> <span class="fl">0.3</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">alternative =</span> <span class="st">'two.sided'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-     approximate correlation power calculation (arctangh transformation) 
+<section id="html-tags" class="level2">
+<h2 class="anchored" data-anchor-id="html-tags">HTML tags</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
 
-              n = 84.07364
-              r = 0.3
-      sig.level = 0.05
-          power = 0.8
-    alternative = two.sided</code></pre>
-</div>
-</div>
-</section>
-<section id="linear-regression-f-test" class="level1">
-<h1>Linear regression (F-test)</h1>
-<p>F-test for linear regression is testinng whether <span class="math inline">\(R^2\)</span> is greater than zero (one-sided). <span class="math inline">\(R^2\)</span> is the explained variance by using the predictors, <span class="math inline">\(R^2 = 0.3\)</span> means that 30% of the variance are explained by the model.</p>
-<p>Cohen’s f2, based on <span class="math inline">\(R^2\)</span>, goodness of fit (<span class="math inline">\(f2 = R^2/(1-R^2)\)</span>). use 0.02, 0.15, 0.35 to represent small, medium and large effect sizes.</p>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;b&gt;Hello World!&lt;/b&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Line 1: declare which version of HTML. For now it is 5</p>
+<p>The rest are different tags.</p>
+<p>Important tags:</p>
 <ul>
-<li>u: number of predictors</li>
-<li>v: n-u-1</li>
-<li>as a result, sample size n = v+u+1</li>
+<li>header, <code>&lt;h1&gt;, &lt;h2&gt;, ..., &lt;h6&gt;</code></li>
+<li>division or span, <code>&lt;div&gt;, &lt;span&gt;</code></li>
+<li>paragraph, <code>&lt;p&gt;</code></li>
+<li>line break, <code>&lt;br&gt;</code>. This does not need to be closed with <code>&lt;/br&gt;</code></li>
+<li>bold, italics <code>&lt;b&gt;, &lt;i&gt;</code></li>
+<li>lists - ordered <code>&lt;ol&gt;</code>, unordered <code>&lt;ul&gt;</code>. Within the tags, use <code>&lt;li&gt;</code></li>
+<li>tables. Lines are defined by <code>&lt;tr&gt;</code> (table row), table header <code>&lt;th&gt;</code> and <code>&lt;td&gt;</code>, table data.</li>
+<li>anchor, <code>&lt;a&gt;</code>, useful for <strong>url links</strong>: but it is different from <code>&lt;link&gt;</code> tag (which links to files such as JS or CSS).</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># effect size f2 = 0.15; use u=3 predictors</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.f2.test</span>(<span class="at">u =</span> <span class="dv">3</span>, <span class="at">f2 =</span> <span class="fl">0.3</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-     Multiple regression power calculation 
-
-              u = 3
-              v = 36.47078
-             f2 = 0.3
-      sig.level = 0.05
-          power = 0.8</code></pre>
-</div>
-</div>
-<p>Here v = 73, sample size is 73+3+1 = 77.</p>
-<p>Alternatively, can use <code>pwrss::pwrss.f.reg()</code>. The parameter is r2 rather than f2 (but can also use f2).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pwrss<span class="sc">::</span><span class="fu">pwrss.f.reg</span>(<span class="at">r2 =</span> <span class="fl">0.3</span>, <span class="at">k =</span> <span class="fl">0.3</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> Linear Regression (F test) 
- R-squared Deviation from 0 (zero) 
- H0: r2 = 0 
- HA: r2 &gt; 0 
- ------------------------------ 
-  Statistical power = 0.8 
-  n = 14 
- ------------------------------ 
- Numerator degrees of freedom = 0.3 
- Denominator degrees of freedom = 12.415 
- Non-centrality parameter = 5.878 
- Type I error rate = 0.05 
- Type II error rate = 0.2 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># should be equivalent to</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pwr::pwr.f2.test(u = 3, f2 = 0.3/0.7, sig.level = 0.05, power = 0.8)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="glm" class="level1">
-<h1>GLM</h1>
-<section id="resources" class="level3">
-<h3 class="anchored" data-anchor-id="resources">Resources</h3>
+<section id="attributes" class="level2">
+<h2 class="anchored" data-anchor-id="attributes">Attributes</h2>
+<p>Basic syntax: <code>&lt;tag attribute="value"&gt;...&lt;/tag&gt;</code>. No space between equal sign and value.</p>
+<section id="web-link" class="level3">
+<h3 class="anchored" data-anchor-id="web-link">Web link</h3>
+<pre><code>&lt;a href="https://jakobtures.github.io/web-scraping/html.html"&gt;This is a link&lt;/a&gt;</code></pre>
+<p>The code above creates an active link. The code below also points to this link, but opens in a new page using <code>target="_blank"</code>.</p>
+<pre><code>&lt;a href="https://jakobtures.github.io/web-scraping/html.html" target="_blank"&gt;This is a link&lt;/a&gt;</code></pre>
+</section>
+<section id="images" class="level3">
+<h3 class="anchored" data-anchor-id="images">Images</h3>
+<p>Two images, one with adjusted size</p>
+<pre><code>&lt;img src="https://jakobtures.github.io/web-scraping/Rlogo.png"&gt;
+&lt;img src="https://jakobtures.github.io/web-scraping/Rlogo.png" width="100" height="100"&gt;</code></pre>
+<p>Can combine image with link, by puttinng the links within the anchor.</p>
+<pre><code>&lt;a href="https://www.r-project.org/" target="_blank"&gt;&lt;img src="https://jakobtures.github.io/web-scraping/Rlogo.png"&gt;&lt;/a&gt; </code></pre>
+</section>
+</section>
+<section id="entities" class="level2">
+<h2 class="anchored" data-anchor-id="entities">Entities</h2>
+<p>Coded representations of certain characters, <code>&amp;..;</code>. For example,</p>
 <ul>
-<li><p>Sample size calculation in clinical trial using R.<br>
-Park et al.&nbsp;2023. https://doi.org/10.7602/jmis.2023.26.1.9</p></li>
-<li><p>Bulus, M (2023) pwrss: Statistical Power and Sample Size Calculation Tools. R package version 0.3.1. https://CRAN.R-project.org/package=pwrss. <a href="https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html">Vignette documentation</a></p></li>
+<li><code>&amp;lt;</code> less than, &lt;</li>
+<li><code>&amp;quot;</code> ”</li>
+<li><code>&amp;amp;</code> &amp;: ampersand</li>
+<li><code>&amp;nbsp;</code> non-breaking space</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
