@@ -4,7 +4,7 @@ description: |
   Notes related to clinical trial design.
 author: "Chi Zhang"
 date: "2023-06-01"
-categories: [Notes]
+categories: [RCT]
 sidebar: false
 format: 
   html:

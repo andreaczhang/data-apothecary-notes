@@ -60,7 +60,7 @@
     "href": "study_design/index.html",
     "title": "Study design",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nClinical trial design: overview\n\n\n\n\n\n\nNo matching items"
+    "text": "Topics (ongoing)\n\nClinical trial design\n\nPhase I, II, III\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison\n\n\n\n\nSample size (part II)\n\n\nRegression\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design.\n\n\n\n\n\n\nNo matching items\n\n\n\nCHECK\nhttps://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models"
   },
   {
     "objectID": "study_design/understand_data.html",
@@ -236,5 +236,110 @@
     "title": "Clinical trial: reporting results",
     "section": "CONSORT",
     "text": "CONSORT\nConsolidated Standards of Reporting Trials\n25 item checklist. Not a guideline of how to do the trial; but a guideline for writers on how to report clearly.\nTitle\n\nkey design items\ntreatment(s) evaluated\ndisease or population studied\n\nAbstract\n\ndesign, method, results, conclusions\n\nIntroduction\n\nbackgrounds, rationale, establish equipoise (balance), systematic review, objectives / hypothesis\n\nMethod\n\nIRB review and approvals\ntrial design, allocation ratio\neligibility criteria\nsetting and location of the trial\nintervention - detailed enough to allow replication\noutcomes - primary, secondary, how assessed and defined\nsample size - how determined, interim analyses\nimportant changes during trial\nrandomization, allocation concealment, implementation\nmasking - who, how\nstatistical methods - primary and secondary; subgroup analyses\n\nConvenient to use a flow-chart\nBaseline characteristics by treatment group\np-values (common to not report in rct?)\n\nEvaluate literature\n\nLegitimacy, is it a fair comparison\nTrustworthy investigators? conflict of interest\nAdequate protections against bias\n\nrandomization\nmasking\nfollow-up design and execution\n\nITT analysis\n\nhave all events (outcomes) observed been counted in the treatment group assigned?\nvariations in denominators explained and consistent with good practice?\n\nappropriate subgroup analysis interpretation\n\nad hoc or post hoc status"
+  },
+  {
+    "objectID": "study_design/sample_size.html",
+    "href": "study_design/sample_size.html",
+    "title": "Sample size",
+    "section": "",
+    "text": "Sample size calculation is to determine the smallest number of subjects required, to detect a clinical meaningful effect. Why not recruiting as many as possible? Too expensive; or unethical (i.e. more people will be having potentially harmful or futile treatments)."
+  },
+  {
+    "objectID": "dev/question_list.html",
+    "href": "dev/question_list.html",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "In phase 2, difference in design (sample size) for single arm and randomizedf\n\n\nUnbiased assignment of treatment. Break the link between prognosis and prescription (allocation). Application of statistical methods based on random sampling\nE.g. avoid giving the same treatment to group A that have significantly worse health condition\n\n\n\n\n\n\nMight not observe an effect in RCT, but effect in OBS studies\n\npossible no effect in RCT: trial too short to see effect; late stage of disease among candidates to see any improvements of treatment; different treatment in OBS and RCT; comparing initiators vs non-initiators (hence shorter trial period)\npossible effect in OBS: residual confounding: social and environmental exposures; some already using treatment before enrolment\nsampling bias, in OBS the asymptomatic subjects might be missed (or under reported) while in RCT you can count every subject\nsurvival bias: survived long enough to be enrolled in OBS, and those dead are not; hence boosting effect to prolong survival\n\n\n\n\nNon-inferiority trials adopt one-sided test\nEquivalence: if the alternative is simpler, cheaper or have fewer side effects. Aim is to determine if difference is between +- delta\n\n\n\nWhy would these type of design reduce type 1 error rate by accounting for correlation?"
+  },
+  {
+    "objectID": "dev/question_list.html#survival-analysis",
+    "href": "dev/question_list.html#survival-analysis",
+    "title": "Data Apothecary's Notes",
+    "section": "Survival analysis",
+    "text": "Survival analysis\nCan you analyse duration data with t-test? Why not?"
+  },
+  {
+    "objectID": "study_design/sample_size.html#relevant-conncepts",
+    "href": "study_design/sample_size.html#relevant-conncepts",
+    "title": "Sample size",
+    "section": "Relevant conncepts",
+    "text": "Relevant conncepts\nStudy design\n\nparallel: group 1 TxA, group 2 TxB\ncrossover: requires fewer ssample than parallel; but requires wash-out period. Group 1 TxA -> TxB; group 2 TxB -> TxA\n\nTests\n\n\\(\\mu_T, \\mu_s\\): mean of new Tx or standard procedure\n\\(\\delta\\): minimum clinically important difference\n\\(\\delta_{NI}\\): non-inferiority margin\n\n\n\n\n\n\n\n\n\nTest for\nH0\nH1\n\n\n\n\nEquality\n\\(\\mu_T - \\mu_s = 0\\)\n\\(\\mu_T - \\mu_s \\neq 0\\)\n\n\nEquivalence\n\\(|\\mu_T - \\mu_s| \\geq 0\\)\n\\(|\\mu_T - \\mu_s| < 0\\)\n\n\nSuperiority\n\\(\\mu_T - \\mu_s \\geq 0\\)\n\\(\\mu_T - \\mu_s < 0\\)\n\n\nNon-inferiority\n\\(\\mu_T - \\mu_s \\leq -\\delta_{NI}\\)\n\\(\\mu_T - \\mu_s \\geq -\\delta_{NI}\\)\n\n\n\nErrors\n\nType I error, significance level \\(\\alpha\\). P(reject H0 |H0). Usually set to 0.05\nType II error \\(\\beta\\). P(not reject H0 |H1).\nPower, \\(1 - \\beta\\). P(reject H0 |H1). Usually set to 80% or 90%\n\nPrimary outcome\n\ncan be categorical or continuous\nMinimal meaningful detecable difference MD: the smallest difference to be considered as clinically meaningful in the primary outcome\n\nDropout rate: need to be adjusted.\nAllocation ratio: unequal sample size.\nEffect size (Cohen’s d, f) should be found in the literature. In general,\n\nvery small, d = 0.01\nsmall, d = 0.2\nmedium, d = 0.5\nlarge, d = 0.8\nvery large, d = 1.2\nhuge, d = 2"
+  },
+  {
+    "objectID": "study_design/sample_size.html#proportions",
+    "href": "study_design/sample_size.html#proportions",
+    "title": "Sample size",
+    "section": "Proportions",
+    "text": "Proportions\nCohen’s h is used as the effect size, \\(h = 2arcsin(\\sqrt{p_1} - 2arcsin(\\sqrt{p_2}))\\). Use 0.2, 0.5, 0.8 for small, medium and large effect sizes.\n\n# one group\npwr::pwr.p.test(h = 0.5, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     proportion power calculation for binomial distribution (arcsine transformation) \n\n              h = 0.5\n              n = 31.39544\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\n# two groups\npwr::pwr.2p.test(h = 0.5, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     Difference of proportion power calculation for binomial distribution (arcsine transformation) \n\n              h = 0.5\n              n = 62.79088\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: same sample sizes"
+  },
+  {
+    "objectID": "study_design/sample_size.html#chi-square-test",
+    "href": "study_design/sample_size.html#chi-square-test",
+    "title": "Sample size",
+    "section": "Chi-square test",
+    "text": "Chi-square test\nCohen’s w. Use \\(l, k\\) to compute degrees of freedom.\n\n# k: number of groups; f: effect ssize\npwr::pwr.chisq.test(w = 0.3, df = (2-1)*(3-1), sig.level = 0.05, power = 0.8)\n\n\n     Chi squared power calculation \n\n              w = 0.3\n              N = 107.0521\n             df = 2\n      sig.level = 0.05\n          power = 0.8\n\nNOTE: N is the number of observations"
+  },
+  {
+    "objectID": "study_design/sample_size.html#exact-test",
+    "href": "study_design/sample_size.html#exact-test",
+    "title": "Sample size",
+    "section": "Exact test",
+    "text": "Exact test\nNeed to specify the proportion in each group (control, treatment). Allocation ratio 1:1\n\nexact2x2::ss2x2(p0 = 0.2, p1 = 0.8, n1.over.n0 = 1, sig.level = 0.05, power = 0.8, \n                approx = F, print.steps = T, paired = F)\n\n[1] \"starting calculation at n0= 11  n1= 11\"\n[1] \"n0=11 n1=11 power=0.734302912043505\"\n[1] \"n0=19 n1=19 power=0.962100966603327\"\n[1] \"n0=15 n1=15 power=0.872315260457242\"\n[1] \"n0=13 n1=13 power=0.868827534112504\"\n[1] \"n0=12 n1=12 power=0.811527612034704\"\n\n\n\n     Power for Fisher's Exact Test \n\n          power = 0.8115276\n             n0 = 12\n             n1 = 12\n             p0 = 0.2\n             p1 = 0.8\n      sig.level = 0.05\n    alternative = two.sided\n  nullOddsRatio = 1\n\nNOTE: errbound= 1e-06"
+  },
+  {
+    "objectID": "study_design/sample_size_2.html",
+    "href": "study_design/sample_size_2.html",
+    "title": "Sample size (part II)",
+    "section": "",
+    "text": "This is the part II on sample size calculation.\n\nCorrelation\nCorrelation coefficient is used for effect size measure. Usse 0.1, 0.3, 0.5 to represent small, medium and large sizes.\n\n# correlation coeff\npwr::pwr.r.test(r = 0.3, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     approximate correlation power calculation (arctangh transformation) \n\n              n = 84.07364\n              r = 0.3\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\n\n\n\nLinear regression (F-test)\nF-test for linear regression is testinng whether \\(R^2\\) is greater than zero (one-sided). \\(R^2\\) is the explained variance by using the predictors, \\(R^2 = 0.3\\) means that 30% of the variance are explained by the model.\nCohen’s f2, based on \\(R^2\\), goodness of fit (\\(f2 = R^2/(1-R^2)\\)). use 0.02, 0.15, 0.35 to represent small, medium and large effect sizes.\n\nu: number of predictors\nv: n-u-1\nas a result, sample size n = v+u+1\n\n\n# effect size f2 = 0.15; use u=3 predictors\npwr::pwr.f2.test(u = 3, f2 = 0.3, sig.level = 0.05, power = 0.8)\n\n\n     Multiple regression power calculation \n\n              u = 3\n              v = 36.47078\n             f2 = 0.3\n      sig.level = 0.05\n          power = 0.8\n\n\nHere v = 73, sample size is 73+3+1 = 77.\nAlternatively, can use pwrss::pwrss.f.reg(). The parameter is r2 rather than f2 (but can also use f2).\n\npwrss::pwrss.f.reg(r2 = 0.3, k = 0.3, power = 0.8, alpha = 0.05)\n\n Linear Regression (F test) \n R-squared Deviation from 0 (zero) \n H0: r2 = 0 \n HA: r2 > 0 \n ------------------------------ \n  Statistical power = 0.8 \n  n = 14 \n ------------------------------ \n Numerator degrees of freedom = 0.3 \n Denominator degrees of freedom = 12.415 \n Non-centrality parameter = 5.878 \n Type I error rate = 0.05 \n Type II error rate = 0.2 \n\n# should be equivalent to\n# pwr::pwr.f2.test(u = 3, f2 = 0.3/0.7, sig.level = 0.05, power = 0.8)\n\n\n\nGLM\n\nResources\n\nSample size calculation in clinical trial using R.\nPark et al. 2023. https://doi.org/10.7602/jmis.2023.26.1.9\nBulus, M (2023) pwrss: Statistical Power and Sample Size Calculation Tools. R package version 0.3.1. https://CRAN.R-project.org/package=pwrss. Vignette documentation"
+  },
+  {
+    "objectID": "study_design/sample_size_1.html",
+    "href": "study_design/sample_size_1.html",
+    "title": "Sample size (part I)",
+    "section": "",
+    "text": "(This is the part I on sample size calculation)\nSample size calculation is to determine the smallest number of subjects required, to detect a clinical meaningful effect. Why not recruiting as many as possible? Too expensive; or unethical (i.e. more people will be having potentially harmful or futile treatments)."
+  },
+  {
+    "objectID": "study_design/sample_size_1.html#relevant-concepts",
+    "href": "study_design/sample_size_1.html#relevant-concepts",
+    "title": "Sample size (part I)",
+    "section": "Relevant concepts",
+    "text": "Relevant concepts\nStudy design\n\nparallel: group 1 TxA, group 2 TxB\ncrossover: requires fewer ssample than parallel; but requires wash-out period. Group 1 TxA -> TxB; group 2 TxB -> TxA\n\nTests\n\n\\(\\mu_T, \\mu_s\\): mean of new Tx or standard procedure\n\\(\\delta\\): minimum clinically important difference\n\\(\\delta_{NI}\\): non-inferiority margin\n\n\n\n\n\n\n\n\n\nTest for\nH0\nH1\n\n\n\n\nEquality\n\\(\\mu_T - \\mu_s = 0\\)\n\\(\\mu_T - \\mu_s \\neq 0\\)\n\n\nEquivalence\n\\(|\\mu_T - \\mu_s| \\geq 0\\)\n\\(|\\mu_T - \\mu_s| < 0\\)\n\n\nSuperiority\n\\(\\mu_T - \\mu_s \\geq 0\\)\n\\(\\mu_T - \\mu_s < 0\\)\n\n\nNon-inferiority\n\\(\\mu_T - \\mu_s \\leq -\\delta_{NI}\\)\n\\(\\mu_T - \\mu_s \\geq -\\delta_{NI}\\)\n\n\n\nErrors\n\nType I error, significance level \\(\\alpha\\). P(reject H0 |H0). Usually set to 0.05\nType II error \\(\\beta\\). P(not reject H0 |H1).\nPower, \\(1 - \\beta\\). P(reject H0 |H1). Usually set to 80% or 90%\n\nPrimary outcome\n\ncan be categorical or continuous\nMinimal meaningful detecable difference MD: the smallest difference to be considered as clinically meaningful in the primary outcome\n\nDropout rate: need to be adjusted.\nAllocation ratio: unequal sample size.\nEffect size (Cohen’s d, f) should be found in the literature. In general,\n\nvery small, d = 0.01\nsmall, d = 0.2\nmedium, d = 0.5\nlarge, d = 0.8\nvery large, d = 1.2\nhuge, d = 2"
+  },
+  {
+    "objectID": "study_design/sample_size_1.html#two-sample-t-test",
+    "href": "study_design/sample_size_1.html#two-sample-t-test",
+    "title": "Sample size (part I)",
+    "section": "Two sample t-test",
+    "text": "Two sample t-test\nNote that this result is for one group: in total it’s times two.\n\n# effect size: 0.5\npwr::pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.8, type = 'two.sample', alternative = 'two.sided')\n\n\n     Two-sample t test power calculation \n\n              n = 63.76561\n              d = 0.5\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group"
+  },
+  {
+    "objectID": "study_design/sample_size_1.html#anova",
+    "href": "study_design/sample_size_1.html#anova",
+    "title": "Sample size (part I)",
+    "section": "ANOVA",
+    "text": "ANOVA\nResult is for each group.\n\n# k: number of groups; f: effect ssize\npwr::pwr.anova.test(k = 3, f = 0.25, sig.level = 0.05, power = 0.8)\n\n\n     Balanced one-way analysis of variance power calculation \n\n              k = 3\n              n = 52.3966\n              f = 0.25\n      sig.level = 0.05\n          power = 0.8\n\nNOTE: n is number in each group"
+  },
+  {
+    "objectID": "study_design/sample_size_1.html#proportions",
+    "href": "study_design/sample_size_1.html#proportions",
+    "title": "Sample size (part I)",
+    "section": "Proportions",
+    "text": "Proportions\nCohen’s h is used as the effect size, \\(h = 2arcsin(\\sqrt{p_1} - 2arcsin(\\sqrt{p_2}))\\). Use 0.2, 0.5, 0.8 for small, medium and large effect sizes.\n\n# one group\npwr::pwr.p.test(h = 0.5, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     proportion power calculation for binomial distribution (arcsine transformation) \n\n              h = 0.5\n              n = 31.39544\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\n# two groups\npwr::pwr.2p.test(h = 0.5, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     Difference of proportion power calculation for binomial distribution (arcsine transformation) \n\n              h = 0.5\n              n = 62.79088\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: same sample sizes"
+  },
+  {
+    "objectID": "study_design/sample_size_1.html#chi-square-test",
+    "href": "study_design/sample_size_1.html#chi-square-test",
+    "title": "Sample size (part I)",
+    "section": "Chi-square test",
+    "text": "Chi-square test\nCohen’s w. Use \\(l, k\\) to compute degrees of freedom.\n\n# k: number of groups; f: effect ssize\npwr::pwr.chisq.test(w = 0.3, df = (2-1)*(3-1), sig.level = 0.05, power = 0.8)\n\n\n     Chi squared power calculation \n\n              w = 0.3\n              N = 107.0521\n             df = 2\n      sig.level = 0.05\n          power = 0.8\n\nNOTE: N is the number of observations"
+  },
+  {
+    "objectID": "study_design/sample_size_1.html#exact-test",
+    "href": "study_design/sample_size_1.html#exact-test",
+    "title": "Sample size (part I)",
+    "section": "Exact test",
+    "text": "Exact test\nNeed to specify the proportion in each group (control, treatment). Allocation ratio 1:1\n\nexact2x2::ss2x2(p0 = 0.2, p1 = 0.8, n1.over.n0 = 1, sig.level = 0.05, power = 0.8, \n                approx = F, print.steps = T, paired = F)\n\n[1] \"starting calculation at n0= 11  n1= 11\"\n[1] \"n0=11 n1=11 power=0.734302912043505\"\n[1] \"n0=19 n1=19 power=0.962100966603327\"\n[1] \"n0=15 n1=15 power=0.872315260457242\"\n[1] \"n0=13 n1=13 power=0.868827534112504\"\n[1] \"n0=12 n1=12 power=0.811527612034704\"\n\n\n\n     Power for Fisher's Exact Test \n\n          power = 0.8115276\n             n0 = 12\n             n1 = 12\n             p0 = 0.2\n             p1 = 0.8\n      sig.level = 0.05\n    alternative = two.sided\n  nullOddsRatio = 1\n\nNOTE: errbound= 1e-06"
   }
 ]

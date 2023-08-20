@@ -4,9 +4,11 @@ listing:
   - id: docs
     max-description-length: 500
     image-height: 150px
-    fields: [title]
+    fields: [title, description]
     contents: 
       - "rct_design_overview.qmd"
+      - "sample_size_1.qmd"
+      - "sample_size_2.qmd"
     type: table
     grid-item-border: false
     sort-ui: false
@@ -15,5 +17,22 @@ listing:
     categories: true
 ---
 
-It is important to document while you go.
+Topics (ongoing)
+
+* Clinical trial design
+  * Phase I, II, III
+* Sample size calculation
+  * comparing a few groups (visualization TBD)
+  * regression (LR, GLM)
+  * more advanced model (e.g. GLMM)
+
+::: {#docs}
+:::
+
+
+# CHECK
+
+https://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models
+
+
 
