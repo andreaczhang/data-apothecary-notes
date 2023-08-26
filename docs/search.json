@@ -60,7 +60,7 @@
     "href": "study_design/index.html",
     "title": "Study design",
     "section": "",
-    "text": "Topics (ongoing)\n\nClinical trial design\n\nPhase I, II, III\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison\n\n\n\n\nSample size (part II)\n\n\nRegression\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design.\n\n\n\n\n\n\nNo matching items\n\n\n\nCHECK\nhttps://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models"
+    "text": "Topics (ongoing)\n\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design\n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison\n\n\n\n\nSample size (part II)\n\n\nRegression\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design.\n\n\n\n\n\n\nNo matching items\n\n\n\nCHECK\nhttps://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models"
   },
   {
     "objectID": "study_design/understand_data.html",
@@ -383,5 +383,12 @@
     "title": "Clinical trial design: overview",
     "section": "Subgroup analysis",
     "text": "Subgroup analysis\nStratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups\nTest for interaction: use of main effect and interaction.\nIssue of multiple testing when doing a series of analyses\n\ninflate sample size to plan for subgroup analysis\nreport number of subgroup analyses performed\npossibly adjust for multiple comparisons\nreport CI instead of just p-values\n\n\nResources\n\nCoursera course Design and interpretation of clinical trials by Johns Hopkins University\nBook Fast Facts: Clinical trialss inn oncology: The fundamentals"
+  },
+  {
+    "objectID": "study_design/adaptive_design.html",
+    "href": "study_design/adaptive_design.html",
+    "title": "Adaptive design: overview",
+    "section": "",
+    "text": "Resources\n\nR package rpact and tutorial\nR package gsDesign and tutorial\n\n\nSequential design\nNumber of patient isn’t set in advance. A good group sequential design can reduce the sample size needed, while keeping the desired statistical power and controlling the overall type I error.\nGSD includes pre-determined number of stages (interim, final). Each stage specified by\n\nsample size\ncritical values\nstopping criterion to support or reject null hypothesis\n\nTBC"
   }
 ]

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2023-08-26">
+<meta name="description" content="Intro to adaptive design">
 
-<title>Data Apothecary’s Notes - Study design</title>
+<title>Data Apothecary’s Notes - Adaptive design: overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,37 +61,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-docs .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-docs'] = new List('listing-docs', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -116,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../study_design/index.html" aria-current="page">
+    <a class="nav-link" href="../study_design/index.html">
  <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
@@ -153,24 +124,44 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#check" id="toc-check" class="nav-link active" data-scroll-target="#check">CHECK</a></li>
+  <ul class="collapse">
+  <li><a href="#sequential-design" id="toc-sequential-design" class="nav-link active" data-scroll-target="#sequential-design">Sequential design</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Design">Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCT">RCT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Sample size">Sample size <span class="quarto-category-count">(2)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Study design</h1>
-</div>
+<h1 class="title">Adaptive design: overview</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Design</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Intro to adaptive design</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 26, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -178,77 +169,21 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Topics (ongoing)</p>
+<p>Resources</p>
 <ul>
-<li>Clinical trial design
-<ul>
-<li>Phase I, II, III</li>
-<li>adaptive design</li>
-</ul></li>
-<li>Sample size calculation
-<ul>
-<li>comparing a few groups (visualization TBD)</li>
-<li>regression (LR, GLM)</li>
-<li>more advanced model (e.g.&nbsp;GLMM)</li>
-</ul></li>
+<li>R package <code>rpact</code> and <a href="https://www.rpact.org/vignettes/getting-started/rpact_step-by-step_tutorial/">tutorial</a></li>
+<li>R package <code>gsDesign</code> and <a href="https://keaven.github.io/gsDesign/articles/gsSurvBasicExamples.html">tutorial</a></li>
 </ul>
-<div id="listing-docs" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Design" data-listing-date-sort="1693000800000" data-listing-file-modified-sort="1693044715127" data-listing-reading-time-sort="0.325" data-listing-title-sort="Adaptive design: overview" data-listing-filename-sort="adaptive_design.qmd">
-<td class="listing-title">
-<a href="../study_design/adaptive_design.html" class="title">Adaptive design: overview</a>
-</td>
-<td class="listing-description">
-Intro to adaptive design
-</td>
-</tr>
-<tr data-index="1" data-categories="Sample size" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1692540797230" data-listing-reading-time-sort="3.065" data-listing-title-sort="Sample size (part I)" data-listing-filename-sort="sample_size_1.qmd">
-<td class="listing-title">
-<a href="../study_design/sample_size_1.html" class="title">Sample size (part I)</a>
-</td>
-<td class="listing-description">
-Overview, mean and proportion comparison
-</td>
-</tr>
-<tr data-index="2" data-categories="Sample size" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1692540805288" data-listing-reading-time-sort="1.185" data-listing-title-sort="Sample size (part II)" data-listing-filename-sort="sample_size_2.qmd">
-<td class="listing-title">
-<a href="../study_design/sample_size_2.html" class="title">Sample size (part II)</a>
-</td>
-<td class="listing-description">
-Regression
-</td>
-</tr>
-<tr data-index="3" data-categories="RCT" data-listing-date-sort="1685570400000" data-listing-file-modified-sort="1693040606757" data-listing-reading-time-sort="6.83" data-listing-title-sort="Clinical trial design: overview" data-listing-filename-sort="rct_design_overview.qmd">
-<td class="listing-title">
-<a href="../study_design/rct_design_overview.html" class="title">Clinical trial design: overview</a>
-</td>
-<td class="listing-description">
-Notes related to clinical trial design.
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<section id="check" class="level1">
-<h1>CHECK</h1>
-<p>https://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models</p>
-
+<section id="sequential-design" class="level1">
+<h1>Sequential design</h1>
+<p>Number of patient isn’t set in advance. A good group sequential design can reduce the sample size needed, while keeping the desired statistical power and controlling the overall type I error.</p>
+<p>GSD includes pre-determined number of stages (interim, final). Each stage specified by</p>
+<ul>
+<li>sample size</li>
+<li>critical values</li>
+<li>stopping criterion to support or reject null hypothesis</li>
+</ul>
+<p>TBC</p>
 
 
 </section>
