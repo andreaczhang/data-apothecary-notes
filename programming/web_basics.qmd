@@ -17,6 +17,11 @@ format:
     code-line-numbers: true
 ---
 
+Resources 
+
+https://jakobtures.github.io/web-scraping/rvest1.html
+
+
 ## HTML tags
 
 ```

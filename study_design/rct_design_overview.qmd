@@ -14,23 +14,38 @@ format:
     code-tools: false
 ---
 
-### Resources 
 
-* Coursera course [Design and interpretation of clinical trials](https://www.coursera.org/learn/clinical-trials/home/) by Johns Hopkins University
-
+Considerations: choice of **comparator and trial outcome measures** (due to the grrowing number of treatmenet options, standard care would change over time), annd definition of **target patient** population (e.g. molecular profiling makes it possible to identify smaller subgroups of patient with defined tumor type).
 
 
-## Types of trials designs
+### Phases
 
-Phase 1: 10-30, identify tolerable dose, information on drug metabolism, extretion and toxicity. Often not controlled
+Typically takes 5-15 years from inception to being recommeded in routine care
 
-Phase 2: 30-100, efficacy, safety and side effects, 
+Phase 1: 10-30, identify tolerable dose, safety, information on drug metabolism, extretion and toxicity. Often not controlled and open-label.
 
-Phase 3: 100+, often randomized 
+Phase 2: 30-100 (per group), efficacy, further assessment of safety and side effects, can be controlled or single arm
 
-Phase 4: demonstration
+Phase 3: 100+, definite evidence, must be randomized
 
-### Types of design 
+Phase 4: 1000+, (postmarketing surveillance) monitor efficacy and safety in the population, may identify uncommon adverse events unseen in 2 and 3. Not usually randomized
+
+
+### Patients
+
+Major criteria for patient recruitment (oncology)
+
+* diagnosis of cancer(s) of interest
+* adequaute fitness to tolerate the treatment, determined by performance status PS (often correlated with overall survival)
+* absense of relevant comobidity
+* no previous exposure to treatment similar to the experiment treatment
+
+
+
+
+
+
+# Types of design 
 
 Population have the disease outcome of interest; not healthy voluteers vs diseased.
 
@@ -72,7 +87,7 @@ Possible adaptations
 
 
 
-## Randomisation and masking 
+# Randomisation and masking 
 
 Rationale: 
 
@@ -142,15 +157,14 @@ Unmasking
 * Unplanned (discouraged): in the event of adverse event
 
 
-## Outcomes and analysis
+# Outcome / Endpoints 
 
 Outcome: endpoint. It is a quantitaive measure.
 
-Objectives of the trial
-
 * efficacy / effectiveness
-* safety
-* process
+* patient reported outcome (QoL)
+* safety (adverse evvennts, toxicity)
+* process, adherence to treatment
 * costs
 
 Example: evaluate treatment for asthma
@@ -169,12 +183,25 @@ Outcome considerations: time window (what is postoperative), specific **events**
 * continuous variables: value or change from baseline; standard units (lab values, scores). Need to define an important difference. Distributional assumptions more important.
 * ordinal scale: ranked categories (e.g. adverse event grading, 1-5). Difference between categories is usually qualitative.
 
-Patients opinions are subjective
+Common **time-to-event** outcomes (in cancer)
+
+| Ouutcome |  Definition of event   | 
+|:--------:|:------:|
+| Overall survival (OS) | Death from any cause| 
+| Disease (relapse-free) survival | First recurrennce / relapse of the cancer; death from any cause |
+| Progression-free survival, duratinon of response, duration of clinical benefit | First sign of cancer progression; death from any cause| 
+| Cancer-specific survival | Death from the cancer of interest |  
+|Time to treatment failure (TTF) | First sign of cancer progression; death from any cause; stopped trial treatment |
+
+
+Patients reported outcomes are subjective
 
 * health status / change in status, e.g. pain relief, quality of life
 * masking is more important
 * hawthorne / placebo effect: effect of being studies, usually positive
 * quantify with standardized scales
+
+
 
 
 ### Influence of outcomes on design
@@ -207,13 +234,18 @@ Choice of primary outcome depends on the objectives or stage of research
 * phase 3, long-term efficacy
 * phase 4, long-term effectiveness
 
-### Intention to treat ITT
+
+
+
+# Statistical analysis
+
+## Intention to treat ITT
 
 Cross-overs after rz: some patients might have a treatment (yes or no) beyond what they were assigned to, e.g. refuse surgery or medical treatment
 
 Non-adherence during followup: some in treatment group refuse of can not tolerate certain treatment; while some in placebo group require medication or take on their own
 
-### Subgroup analysis
+## Subgroup analysis
 
 Stratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups
 
@@ -225,6 +257,17 @@ Issue of multiple testing when doing a series of analyses
 * report number of subgroup analyses performed
 * possibly adjust for multiple comparisons
 * report CI instead of just p-values
+
+
+
+
+
+
+### Resources 
+
+* Coursera course [Design and interpretation of clinical trials](https://www.coursera.org/learn/clinical-trials/home/) by Johns Hopkins University
+
+* Book [Fast Facts: Clinical trialss inn oncology: The fundamentals]()
 
 
 

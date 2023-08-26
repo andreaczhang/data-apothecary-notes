@@ -125,9 +125,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#types-of-trials-designs" id="toc-types-of-trials-designs" class="nav-link active" data-scroll-target="#types-of-trials-designs">Types of trials designs</a></li>
+  <li><a href="#types-of-design" id="toc-types-of-design" class="nav-link active" data-scroll-target="#types-of-design">Types of design</a></li>
   <li><a href="#randomisation-and-masking" id="toc-randomisation-and-masking" class="nav-link" data-scroll-target="#randomisation-and-masking">Randomisation and masking</a></li>
-  <li><a href="#outcomes-and-analysis" id="toc-outcomes-and-analysis" class="nav-link" data-scroll-target="#outcomes-and-analysis">Outcomes and analysis</a></li>
+  <li><a href="#outcome-endpoints" id="toc-outcome-endpoints" class="nav-link" data-scroll-target="#outcome-endpoints">Outcome / Endpoints</a></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis">Statistical analysis</a>
+  <ul class="collapse">
+  <li><a href="#intention-to-treat-itt" id="toc-intention-to-treat-itt" class="nav-link" data-scroll-target="#intention-to-treat-itt">Intention to treat ITT</a></li>
+  <li><a href="#subgroup-analysis" id="toc-subgroup-analysis" class="nav-link" data-scroll-target="#subgroup-analysis">Subgroup analysis</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -171,20 +176,27 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="resources" class="level3">
-<h3 class="anchored" data-anchor-id="resources">Resources</h3>
+<p>Considerations: choice of <strong>comparator and trial outcome measures</strong> (due to the grrowing number of treatmenet options, standard care would change over time), annd definition of <strong>target patient</strong> population (e.g.&nbsp;molecular profiling makes it possible to identify smaller subgroups of patient with defined tumor type).</p>
+<section id="phases" class="level3">
+<h3 class="anchored" data-anchor-id="phases">Phases</h3>
+<p>Typically takes 5-15 years from inception to being recommeded in routine care</p>
+<p>Phase 1: 10-30, identify tolerable dose, safety, information on drug metabolism, extretion and toxicity. Often not controlled and open-label.</p>
+<p>Phase 2: 30-100 (per group), efficacy, further assessment of safety and side effects, can be controlled or single arm</p>
+<p>Phase 3: 100+, definite evidence, must be randomized</p>
+<p>Phase 4: 1000+, (postmarketing surveillance) monitor efficacy and safety in the population, may identify uncommon adverse events unseen in 2 and 3. Not usually randomized</p>
+</section>
+<section id="patients" class="level3">
+<h3 class="anchored" data-anchor-id="patients">Patients</h3>
+<p>Major criteria for patient recruitment (oncology)</p>
 <ul>
-<li>Coursera course <a href="https://www.coursera.org/learn/clinical-trials/home/">Design and interpretation of clinical trials</a> by Johns Hopkins University</li>
+<li>diagnosis of cancer(s) of interest</li>
+<li>adequaute fitness to tolerate the treatment, determined by performance status PS (often correlated with overall survival)</li>
+<li>absense of relevant comobidity</li>
+<li>no previous exposure to treatment similar to the experiment treatment</li>
 </ul>
 </section>
-<section id="types-of-trials-designs" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-trials-designs">Types of trials designs</h2>
-<p>Phase 1: 10-30, identify tolerable dose, information on drug metabolism, extretion and toxicity. Often not controlled</p>
-<p>Phase 2: 30-100, efficacy, safety and side effects,</p>
-<p>Phase 3: 100+, often randomized</p>
-<p>Phase 4: demonstration</p>
-<section id="types-of-design" class="level3">
-<h3 class="anchored" data-anchor-id="types-of-design">Types of design</h3>
+<section id="types-of-design" class="level1">
+<h1>Types of design</h1>
 <p>Population have the disease outcome of interest; not healthy voluteers vs diseased.</p>
 <p>Randomisation unit: persons, two eyes of a person, or groups of persons</p>
 <p><strong>Comparison structure</strong>: parallel, crossover, group allocation</p>
@@ -225,9 +237,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-</section>
-<section id="randomisation-and-masking" class="level2">
-<h2 class="anchored" data-anchor-id="randomisation-and-masking">Randomisation and masking</h2>
+<section id="randomisation-and-masking" class="level1">
+<h1>Randomisation and masking</h1>
 <p>Rationale:</p>
 <ul>
 <li>avoid <strong>selection bias</strong>: prognostic factors related to treatment assignment</li>
@@ -291,14 +302,14 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="outcomes-and-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="outcomes-and-analysis">Outcomes and analysis</h2>
+<section id="outcome-endpoints" class="level1">
+<h1>Outcome / Endpoints</h1>
 <p>Outcome: endpoint. It is a quantitaive measure.</p>
-<p>Objectives of the trial</p>
 <ul>
 <li>efficacy / effectiveness</li>
-<li>safety</li>
-<li>process</li>
+<li>patient reported outcome (QoL)</li>
+<li>safety (adverse evvennts, toxicity)</li>
+<li>process, adherence to treatment</li>
 <li>costs</li>
 </ul>
 <p>Example: evaluate treatment for asthma</p>
@@ -314,7 +325,42 @@ ul.task-list li input[type="checkbox"] {
 <li>continuous variables: value or change from baseline; standard units (lab values, scores). Need to define an important difference. Distributional assumptions more important.</li>
 <li>ordinal scale: ranked categories (e.g.&nbsp;adverse event grading, 1-5). Difference between categories is usually qualitative.</li>
 </ul>
-<p>Patients opinions are subjective</p>
+<p>Common <strong>time-to-event</strong> outcomes (in cancer)</p>
+<table class="table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Ouutcome</th>
+<th style="text-align: center;">Definition of event</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Overall survival (OS)</td>
+<td style="text-align: center;">Death from any cause</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Disease (relapse-free) survival</td>
+<td style="text-align: center;">First recurrennce / relapse of the cancer; death from any cause</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Progression-free survival, duratinon of response, duration of clinical benefit</td>
+<td style="text-align: center;">First sign of cancer progression; death from any cause</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Cancer-specific survival</td>
+<td style="text-align: center;">Death from the cancer of interest</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Time to treatment failure (TTF)</td>
+<td style="text-align: center;">First sign of cancer progression; death from any cause; stopped trial treatment</td>
+</tr>
+</tbody>
+</table>
+<p>Patients reported outcomes are subjective</p>
 <ul>
 <li>health status / change in status, e.g.&nbsp;pain relief, quality of life</li>
 <li>masking is more important</li>
@@ -350,13 +396,16 @@ ul.task-list li input[type="checkbox"] {
 <li>phase 4, long-term effectiveness</li>
 </ul>
 </section>
-<section id="intention-to-treat-itt" class="level3">
-<h3 class="anchored" data-anchor-id="intention-to-treat-itt">Intention to treat ITT</h3>
+</section>
+<section id="statistical-analysis" class="level1">
+<h1>Statistical analysis</h1>
+<section id="intention-to-treat-itt" class="level2">
+<h2 class="anchored" data-anchor-id="intention-to-treat-itt">Intention to treat ITT</h2>
 <p>Cross-overs after rz: some patients might have a treatment (yes or no) beyond what they were assigned to, e.g.&nbsp;refuse surgery or medical treatment</p>
 <p>Non-adherence during followup: some in treatment group refuse of can not tolerate certain treatment; while some in placebo group require medication or take on their own</p>
 </section>
-<section id="subgroup-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="subgroup-analysis">Subgroup analysis</h3>
+<section id="subgroup-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="subgroup-analysis">Subgroup analysis</h2>
 <p>Stratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups</p>
 <p>Test for interaction: use of main effect and interaction.</p>
 <p>Issue of multiple testing when doing a series of analyses</p>
@@ -366,8 +415,15 @@ ul.task-list li input[type="checkbox"] {
 <li>possibly adjust for multiple comparisons</li>
 <li>report CI instead of just p-values</li>
 </ul>
+<section id="resources" class="level3">
+<h3 class="anchored" data-anchor-id="resources">Resources</h3>
+<ul>
+<li><p>Coursera course <a href="https://www.coursera.org/learn/clinical-trials/home/">Design and interpretation of clinical trials</a> by Johns Hopkins University</p></li>
+<li><p>Book <a href="">Fast Facts: Clinical trialss inn oncology: The fundamentals</a></p></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 

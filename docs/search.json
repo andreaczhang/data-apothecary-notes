@@ -193,7 +193,7 @@
     "href": "study_design/rct_design_overview.html",
     "title": "Clinical trial design: overview",
     "section": "",
-    "text": "Coursera course Design and interpretation of clinical trials by Johns Hopkins University"
+    "text": "Considerations: choice of comparator and trial outcome measures (due to the grrowing number of treatmenet options, standard care would change over time), annd definition of target patient population (e.g. molecular profiling makes it possible to identify smaller subgroups of patient with defined tumor type)."
   },
   {
     "objectID": "study_design/rct_design_overview.html#types-of-trials-designs",
@@ -347,7 +347,7 @@
     "href": "programming/web_basics.html",
     "title": "Web basics",
     "section": "",
-    "text": "<!DOCTYPE html>\n\n<html>\n  <head>\n    <title>Hello World!</title>\n  </head>\n  <body>\n    <b>Hello World!</b>\n  </body>\n</html>\nLine 1: declare which version of HTML. For now it is 5\nThe rest are different tags.\nImportant tags:\n\nheader, <h1>, <h2>, ..., <h6>\ndivision or span, <div>, <span>\nparagraph, <p>\nline break, <br>. This does not need to be closed with </br>\nbold, italics <b>, <i>\nlists - ordered <ol>, unordered <ul>. Within the tags, use <li>\ntables. Lines are defined by <tr> (table row), table header <th> and <td>, table data.\nanchor, <a>, useful for url links: but it is different from <link> tag (which links to files such as JS or CSS)."
+    "text": "Resources\nhttps://jakobtures.github.io/web-scraping/rvest1.html"
   },
   {
     "objectID": "programming/web_basics.html#attributes",
@@ -362,5 +362,26 @@
     "title": "Web basics",
     "section": "Entities",
     "text": "Entities\nCoded representations of certain characters, &..;. For example,\n\n&lt; less than, <\n&quot; ”\n&amp; &: ampersand\n&nbsp; non-breaking space"
+  },
+  {
+    "objectID": "programming/web_basics.html#html-tags",
+    "href": "programming/web_basics.html#html-tags",
+    "title": "Web basics",
+    "section": "HTML tags",
+    "text": "HTML tags\n<!DOCTYPE html>\n\n<html>\n  <head>\n    <title>Hello World!</title>\n  </head>\n  <body>\n    <b>Hello World!</b>\n  </body>\n</html>\nLine 1: declare which version of HTML. For now it is 5\nThe rest are different tags.\nImportant tags:\n\nheader, <h1>, <h2>, ..., <h6>\ndivision or span, <div>, <span>\nparagraph, <p>\nline break, <br>. This does not need to be closed with </br>\nbold, italics <b>, <i>\nlists - ordered <ol>, unordered <ul>. Within the tags, use <li>\ntables. Lines are defined by <tr> (table row), table header <th> and <td>, table data.\nanchor, <a>, useful for url links: but it is different from <link> tag (which links to files such as JS or CSS)."
+  },
+  {
+    "objectID": "study_design/rct_design_overview.html#intention-to-treat-itt",
+    "href": "study_design/rct_design_overview.html#intention-to-treat-itt",
+    "title": "Clinical trial design: overview",
+    "section": "Intention to treat ITT",
+    "text": "Intention to treat ITT\nCross-overs after rz: some patients might have a treatment (yes or no) beyond what they were assigned to, e.g. refuse surgery or medical treatment\nNon-adherence during followup: some in treatment group refuse of can not tolerate certain treatment; while some in placebo group require medication or take on their own"
+  },
+  {
+    "objectID": "study_design/rct_design_overview.html#subgroup-analysis",
+    "href": "study_design/rct_design_overview.html#subgroup-analysis",
+    "title": "Clinical trial design: overview",
+    "section": "Subgroup analysis",
+    "text": "Subgroup analysis\nStratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups\nTest for interaction: use of main effect and interaction.\nIssue of multiple testing when doing a series of analyses\n\ninflate sample size to plan for subgroup analysis\nreport number of subgroup analyses performed\npossibly adjust for multiple comparisons\nreport CI instead of just p-values\n\n\nResources\n\nCoursera course Design and interpretation of clinical trials by Johns Hopkins University\nBook Fast Facts: Clinical trialss inn oncology: The fundamentals"
   }
 ]
