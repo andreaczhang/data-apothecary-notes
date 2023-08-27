@@ -1,9 +1,10 @@
 ---
 title: "Data Apothecary's Notes"
+image: misc/logo_dan.png
 about:
   id: hero-heading
   template: trestles
-  # image-shape: rectangle
+  image-shape: rectangle
   links:
     - icon: github
       text: Github
