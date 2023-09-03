@@ -1,0 +1,44 @@
+---
+title: "Estimation"
+description: |
+  g-formula, inverse probability weighting
+author: "Chi Zhang"
+date: "2023-09-03"
+categories: [Clinical trial]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+Introduction
+
+Smoking example
+
+* does smoking cause lung cancer?
+* does lung cancer cause people to smoke?
+* is there a third factor that causes both smoking and lung cancer?
+
+
+Potential outcome framework
+
+$Y_i = Y_i(z)$ if $Z_i = z$, under treatment Z = z
+
+
+Estimand: a precise description of the treatment effect
+
+
+
+
+
+
+
+
+
+

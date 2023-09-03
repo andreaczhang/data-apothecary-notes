@@ -86,9 +86,9 @@
   {
     "objectID": "inference/index.html",
     "href": "inference/index.html",
-    "title": "Inference",
+    "title": "Inference from RCT and RWD",
     "section": "",
-    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\n(Placeholder)\n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting\n\n\n\n\nTarget trial emulation\n\n\nTTE\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -390,5 +390,19 @@
     "title": "Adaptive design: overview",
     "section": "",
     "text": "Resources\n\nR package rpact and tutorial\nR package gsDesign and tutorial\n\n\nSequential design\nNumber of patient isn’t set in advance. A good group sequential design can reduce the sample size needed, while keeping the desired statistical power and controlling the overall type I error.\nGSD includes pre-determined number of stages (interim, final). Each stage specified by\n\nsample size\ncritical values\nstopping criterion to support or reject null hypothesis\n\nTBC"
+  },
+  {
+    "objectID": "inference/overview.html",
+    "href": "inference/overview.html",
+    "title": "Notes: Causal",
+    "section": "",
+    "text": "Introduction\nSmoking example\n\ndoes smoking cause lung cancer?\ndoes lung cancer cause people to smoke?\nis there a third factor that causes both smoking and lung cancer?\n\nPotential outcome framework\n\\(Y_i = Y_i(z)\\) if \\(Z_i = z\\), under treatment Z = z\nEstimand: a precise description of the treatment effect"
+  },
+  {
+    "objectID": "inference/estimation_gcomp_ipw.html",
+    "href": "inference/estimation_gcomp_ipw.html",
+    "title": "Notes: Causal",
+    "section": "",
+    "text": "Introduction\nSmoking example\n\ndoes smoking cause lung cancer?\ndoes lung cancer cause people to smoke?\nis there a third factor that causes both smoking and lung cancer?\n\nPotential outcome framework\n\\(Y_i = Y_i(z)\\) if \\(Z_i = z\\), under treatment Z = z\nEstimand: a precise description of the treatment effect"
   }
 ]
