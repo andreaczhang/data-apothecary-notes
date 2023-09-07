@@ -1,0 +1,26 @@
+---
+title: "Survival"
+format: 
+  html:
+    code-fold: false
+    code-tools: false
+editor: source
+---
+
+Links 
+
+https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html
+
+https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/
+
+https://www.danieldsjoberg.com/ggsurvfit/
+
+https://www.coursera.org/learn/survival-analysis-r-public-health
+
+https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html
+
+https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/
+
+jmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/
+
+

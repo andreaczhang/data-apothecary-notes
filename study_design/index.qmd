@@ -36,5 +36,16 @@ Topics (ongoing)
 
 https://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models
 
+ICH Guidelines (EMA)
+
+https://www.ema.europa.eu/en/ich-e10-choice-control-group-clinical-trials-scientific-guideline#current-effective-version-section
+
+https://www.ema.europa.eu/en/documents/scientific-guideline/ich-e-10-choice-control-group-clinical-trials-step-5_en.pdf
+
+
+https://clinicaltrials.gov
+
+
+
 
 

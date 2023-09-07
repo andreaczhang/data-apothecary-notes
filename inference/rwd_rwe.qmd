@@ -1,0 +1,34 @@
+---
+title: "Real-world Data, Real-world Evidence"
+description: |
+  RWD, RWE
+author: "Chi Zhang"
+date: "2023-09-04"
+categories: [Observational data]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.
+
+(The general benefits and disadvantages of RWD is coherent with EHR data)
+
+Therapheutic areas: oncology, rare diseases, infectious diseases among others
+
+
+
+
+
+
+
+
+
+

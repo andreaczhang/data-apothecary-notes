@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Apothecary’s Notes - Inference from RCT and RWD</title>
+<title>Data Apothecary’s Notes - Survival</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,37 +58,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-docs .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-docs'] = new List('listing-docs', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -120,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../inference/index.html" aria-current="page">
+    <a class="nav-link" href="../inference/index.html">
  <span class="menu-text">Inference</span></a>
   </li>  
   <li class="nav-item">
@@ -151,13 +119,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(3)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Inference from RCT and RWD</h1>
+<h1 class="title">Survival</h1>
 </div>
 
 
@@ -172,64 +140,18 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Notes on causal inference and other related topics.</p>
+<p>Links</p>
+<p>https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</p>
+<p>https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/</p>
+<p>https://www.danieldsjoberg.com/ggsurvfit/</p>
+<p>https://www.coursera.org/learn/survival-analysis-r-public-health</p>
+<p>https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</p>
+<p>https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/</p>
+<p>jmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-docs">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Clinical trial,Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1693820851665" data-listing-reading-time-sort="0.23" data-listing-title-sort="Overview: causal inference" data-listing-filename-sort="overview.qmd">
-<td class="listing-title">
-<a href="../inference/overview.html" class="title">Overview: causal inference</a>
-</td>
-<td class="listing-description">
-Introduction
-</td>
-</tr>
-<tr data-index="1" data-categories="Clinical trial" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1693747922668" data-listing-reading-time-sort="0.23" data-listing-title-sort="Estimation" data-listing-filename-sort="estimation_gcomp_ipw.qmd">
-<td class="listing-title">
-<a href="../inference/estimation_gcomp_ipw.html" class="title">Estimation</a>
-</td>
-<td class="listing-description">
-g-formula, inverse probability weighting
-</td>
-</tr>
-<tr data-index="2" data-categories="Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1693748096085" data-listing-reading-time-sort="0.005" data-listing-title-sort="Target trial emulation" data-listing-filename-sort="target_trial_emulation.qmd">
-<td class="listing-title">
-<a href="../inference/target_trial_emulation.html" class="title">Target trial emulation</a>
-</td>
-<td class="listing-description">
-TTE
-</td>
-</tr>
-<tr data-index="3" data-categories="Observational data" data-listing-date-sort="1693778400000" data-listing-file-modified-sort="1693822742844" data-listing-reading-time-sort="0.18" data-listing-title-sort="Real-world Data, Real-world Evidence" data-listing-filename-sort="rwd_rwe.qmd">
-<td class="listing-title">
-<a href="../inference/rwd_rwe.html" class="title">Real-world Data, Real-world Evidence</a>
-</td>
-<td class="listing-description">
-RWD, RWE
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

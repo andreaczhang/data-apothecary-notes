@@ -14,7 +14,8 @@
   {
     "listing": "/models/index.html",
     "items": [
-      "/models/understand_data.html"
+      "/models/mixed_models.html",
+      "/models/survival.html"
     ]
   },
   {
@@ -38,7 +39,8 @@
     "items": [
       "/inference/overview.html",
       "/inference/estimation_gcomp_ipw.html",
-      "/inference/target_trial_emulation.html"
+      "/inference/target_trial_emulation.html",
+      "/inference/rwd_rwe.html"
     ]
   }
 ]

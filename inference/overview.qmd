@@ -4,7 +4,7 @@ description: |
   
 author: "Chi Zhang"
 date: "2023-09-03"
-categories: [Clinical trial, real-world data]
+categories: [Clinical trial, Observational data]
 sidebar: false
 code-block-bg: true
 code-block-border-left: true

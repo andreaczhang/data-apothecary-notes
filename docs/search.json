@@ -46,7 +46,7 @@
     "href": "models/index.html",
     "title": "Models",
     "section": "",
-    "text": "Models for repeated measurement, longitudinal data and related matters.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMixed models\n\n\n\n\n\n\nNo matching items"
+    "text": "Models for repeated measurement, longitudinal data and related matters.\nOr more precisely: different endpoints\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMixed models\n\n\n\n\nSurvival\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "models/understand_data.html",
@@ -60,7 +60,7 @@
     "href": "study_design/index.html",
     "title": "Study design",
     "section": "",
-    "text": "Topics (ongoing)\n\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design\n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison\n\n\n\n\nSample size (part II)\n\n\nRegression\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design.\n\n\n\n\n\n\nNo matching items\n\n\n\nCHECK\nhttps://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models"
+    "text": "Topics (ongoing)\n\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design\n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison\n\n\n\n\nSample size (part II)\n\n\nRegression\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design.\n\n\n\n\n\n\nNo matching items\n\n\n\nCHECK\nhttps://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models\nICH Guidelines (EMA)\nhttps://www.ema.europa.eu/en/ich-e10-choice-control-group-clinical-trials-scientific-guideline#current-effective-version-section\nhttps://www.ema.europa.eu/en/documents/scientific-guideline/ich-e-10-choice-control-group-clinical-trials-step-5_en.pdf\nhttps://clinicaltrials.gov"
   },
   {
     "objectID": "study_design/understand_data.html",
@@ -88,7 +88,7 @@
     "href": "inference/index.html",
     "title": "Inference from RCT and RWD",
     "section": "",
-    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting\n\n\n\n\nTarget trial emulation\n\n\nTTE\n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting\n\n\n\n\nTarget trial emulation\n\n\nTTE\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -394,15 +394,43 @@
   {
     "objectID": "inference/overview.html",
     "href": "inference/overview.html",
-    "title": "Notes: Causal",
+    "title": "Overview: causal inference",
     "section": "",
     "text": "Introduction\nSmoking example\n\ndoes smoking cause lung cancer?\ndoes lung cancer cause people to smoke?\nis there a third factor that causes both smoking and lung cancer?\n\nPotential outcome framework\n\\(Y_i = Y_i(z)\\) if \\(Z_i = z\\), under treatment Z = z\nEstimand: a precise description of the treatment effect"
   },
   {
     "objectID": "inference/estimation_gcomp_ipw.html",
     "href": "inference/estimation_gcomp_ipw.html",
-    "title": "Notes: Causal",
+    "title": "Estimation",
     "section": "",
     "text": "Introduction\nSmoking example\n\ndoes smoking cause lung cancer?\ndoes lung cancer cause people to smoke?\nis there a third factor that causes both smoking and lung cancer?\n\nPotential outcome framework\n\\(Y_i = Y_i(z)\\) if \\(Z_i = z\\), under treatment Z = z\nEstimand: a precise description of the treatment effect"
+  },
+  {
+    "objectID": "models/survival.html",
+    "href": "models/survival.html",
+    "title": "Survival",
+    "section": "",
+    "text": "Links\nhttps://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html\nhttps://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/\nhttps://www.danieldsjoberg.com/ggsurvfit/\nhttps://www.coursera.org/learn/survival-analysis-r-public-health\nhttps://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html\nhttps://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/\njmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/"
+  },
+  {
+    "objectID": "models/mixed_models.html",
+    "href": "models/mixed_models.html",
+    "title": "Mixed models",
+    "section": "",
+    "text": "Yet to be filled in"
+  },
+  {
+    "objectID": "inference/rwd_rwe.html",
+    "href": "inference/rwd_rwe.html",
+    "title": "Real-world Data, Real-world Evidence",
+    "section": "",
+    "text": "RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.\n(The general benefits and disadvantages of RWD is coherent with EHR data)\nTherapheutic areas: oncology, rare diseases, infectious diseases among others"
+  },
+  {
+    "objectID": "inference/covariate_adjustment.html",
+    "href": "inference/covariate_adjustment.html",
+    "title": "Covariate adjustment",
+    "section": "",
+    "text": "https://jbetz-jhu.github.io/CovariateAdjustmentTutorial/\nBaseline covariates are variables measured prior to randomization, expected to have strong association with outcome. Potential confounding occurs when the distribution of baseline covariates between treatment groups are imbalanced.\nTo address confounding:\n\ndesign stage: stratified randomization to reduce imbalance\nanalysis stage: covariate adjustment\n\nBenefits:\n\nreduce sample size\nimprove precision - smaller CI, higher power\nsome CA do not depend on a correctly specified model\n\nRecent FDA guidance requires distinction between conditional and marginal treatment effects. These two coincide in linear models, but not in non-linear models (e.g. binary, ordinal, count, time-to-event outcomes)."
   }
 ]
