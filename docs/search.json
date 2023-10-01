@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nWebR\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -88,7 +88,7 @@
     "href": "inference/index.html",
     "title": "Inference from RCT and RWD",
     "section": "",
-    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting\n\n\n\n\nTarget trial emulation\n\n\nTTE\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE\n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -432,5 +432,12 @@
     "title": "Covariate adjustment",
     "section": "",
     "text": "https://jbetz-jhu.github.io/CovariateAdjustmentTutorial/\nBaseline covariates are variables measured prior to randomization, expected to have strong association with outcome. Potential confounding occurs when the distribution of baseline covariates between treatment groups are imbalanced.\nTo address confounding:\n\ndesign stage: stratified randomization to reduce imbalance\nanalysis stage: covariate adjustment\n\nBenefits:\n\nreduce sample size\nimprove precision - smaller CI, higher power\nsome CA do not depend on a correctly specified model\n\nRecent FDA guidance requires distinction between conditional and marginal treatment effects. These two coincide in linear models, but not in non-linear models (e.g. binary, ordinal, count, time-to-event outcomes)."
+  },
+  {
+    "objectID": "programming/webr.html",
+    "href": "programming/webr.html",
+    "title": "WebR",
+    "section": "",
+    "text": "Open terminal\nquarto add coatless/quarto-webr\nThis will install the extension in the root of this project.\nLoading\n  webR..."
   }
 ]

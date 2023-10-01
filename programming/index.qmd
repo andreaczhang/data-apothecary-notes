@@ -8,6 +8,7 @@ listing:
     contents: 
       - "r_roop.qmd"
       - "web_basics.qmd"
+      - "webr.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

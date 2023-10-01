@@ -1,0 +1,29 @@
+---
+title: "WebR"
+description: |
+  Test webR.
+author: "Chi Zhang"
+date: "2023-10-01"
+categories: [Website]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+engine: knitr
+format: html
+filters: 
+  - webr
+---
+
+
+Open terminal 
+
+```
+quarto add coatless/quarto-webr
+```
+
+This will install the extension in the root of this project. 
+
+
+```{webr-r}
+1+1
+```
