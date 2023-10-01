@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nWebR\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -436,9 +436,9 @@
   {
     "objectID": "programming/webr.html",
     "href": "programming/webr.html",
-    "title": "WebR",
+    "title": "WebR: Use with an existing quarto website",
     "section": "",
-    "text": "Open terminal\nquarto add coatless/quarto-webr\nThis will install the extension in the root of this project.\nLoading\n  webR..."
+    "text": "When you create a new quarto website, inside _quarto.yml the output-dir isn’t specified. In this case, when you follow the tutorial by James J Balamuta (creator of the extension quarto-webr) you will be able to render a functional webR page. Yet, if you already have an existing quarto website deployed by Github actions (with output-dir: docs), the default solution might not work.\nFortunately, the fix is simple enough. I think this feature will be added to the future versions of quarto-webr extension, because this extension is just great."
   },
   {
     "objectID": "programming/shiny.html",
@@ -446,5 +446,33 @@
     "title": "Shiny",
     "section": "",
     "text": "Number of bins:"
+  },
+  {
+    "objectID": "programming/webr.html#installation",
+    "href": "programming/webr.html#installation",
+    "title": "WebR: Use with an existing quarto website",
+    "section": "Installation",
+    "text": "Installation\nOpen terminal, install the extension in the root of the current quarto project. This is important, as quarto extensions are project-based, i.e. need to be included in each quarto project.\nquarto add coatless/quarto-webr"
+  },
+  {
+    "objectID": "programming/webr.html#configuration",
+    "href": "programming/webr.html#configuration",
+    "title": "WebR: Use with an existing quarto website",
+    "section": "Configuration",
+    "text": "Configuration\nAdd the following lines in the yaml header in the quarto file you want to run webR. For example,\ntitle: \"WebR demo\"\nengine: knitr\nformat: html\nfilters: \n  - webr\nwebr: \n  channel-type: \"post-message\"\nImportant bits:\n\nspecify engine to knitr\nspecify filters to - webr. This could alternatively be specified in the overall _quarto.yml file to apply to every qt document.\nadd channel-type: \"post-message\" under webr. No dash in front."
+  },
+  {
+    "objectID": "programming/webr.html#configuration-1",
+    "href": "programming/webr.html#configuration-1",
+    "title": "WebR",
+    "section": "Configuration",
+    "text": "Configuration\nNow use the curly bracket {webr-r} for your code chunk (which used to be just {r}),\nLoading\n  webR...\n\n\n  \n\n\nA histogram that changes every time you click RUN CODE\nLoading\n  webR..."
+  },
+  {
+    "objectID": "programming/webr.html#execution",
+    "href": "programming/webr.html#execution",
+    "title": "WebR: Use with an existing quarto website",
+    "section": "Execution",
+    "text": "Execution\nNow use the curly bracket {webr-r} for your code chunk (which used to be just {r}),\nLoading\n  webR...\n\n\n  \n\n\nA histogram that changes every time you click RUN CODE. This proves that we are running interactively the R code inside the web browser.\nLoading\n  webR..."
   }
 ]
