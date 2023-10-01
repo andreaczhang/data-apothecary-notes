@@ -439,5 +439,12 @@
     "title": "WebR",
     "section": "",
     "text": "Open terminal\nquarto add coatless/quarto-webr\nThis will install the extension in the root of this project.\nLoading\n  webR..."
+  },
+  {
+    "objectID": "programming/shiny.html",
+    "href": "programming/shiny.html",
+    "title": "Shiny",
+    "section": "",
+    "text": "Number of bins:"
   }
 ]

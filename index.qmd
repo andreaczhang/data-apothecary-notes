@@ -28,4 +28,3 @@ I try to organize the content in a modular way. I think these should cover the i
 Any feedback / mistake corrections are welcome, you can find me [here](https://andreaczhang.github.io). Thank you!
 
 :::
-

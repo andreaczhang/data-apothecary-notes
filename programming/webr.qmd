@@ -12,6 +12,9 @@ engine: knitr
 format: html
 filters: 
   - webr
+webr:
+  #packages: ['ggplot2']
+  channel-type: "post-message"
 ---
 
 
