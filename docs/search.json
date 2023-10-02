@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -474,5 +474,26 @@
     "title": "WebR: Use with an existing quarto website",
     "section": "Execution",
     "text": "Execution\nNow use the curly bracket {webr-r} for your code chunk (which used to be just {r}),\nLoading\n  webR...\n\n\n  \n\n\nA histogram that changes every time you click RUN CODE. This proves that we are running interactively the R code inside the web browser.\nLoading\n  webR..."
+  },
+  {
+    "objectID": "programming/r_pkg_wf.html",
+    "href": "programming/r_pkg_wf.html",
+    "title": "R package Engineering Workflow",
+    "section": "",
+    "text": "Useful references:\nSteps suggested:"
+  },
+  {
+    "objectID": "programming/r_pkg_wf.html#step-2-design-docs",
+    "href": "programming/r_pkg_wf.html#step-2-design-docs",
+    "title": "R package Engineering Workflow",
+    "section": "Step 2: Design docs",
+    "text": "Step 2: Design docs\nPurpose and scope: the package pkg_name shall …\nPackage requirements:\n\nlibrary(gt)\ndf &lt;- data.frame(obligation = c('Duty', 'Desire', 'Intension'), \n                 keyword = c('shall', 'should', 'will'), \n                 description = c('must have', 'nice to have', 'optional'))\n\ngt(df) |&gt; \n  cols_label(obligation = md('**Obligation**'), \n             keyword = md('**Key word**'), \n             description = md('**Description**'))\n\n\n\n\n\n  \n    \n    \n      Obligation\n      Key word\n      Description\n    \n  \n  \n    Duty\nshall\nmust have\n    Desire\nshould\nnice to have\n    Intension\nwill\noptional\n  \n  \n  \n\n\n\n\nUse some documentation tools (md, qmd, or diagram draw.io)"
+  },
+  {
+    "objectID": "programming/r_pkg_wf.html#step-3-packaging",
+    "href": "programming/r_pkg_wf.html#step-3-packaging",
+    "title": "R package Engineering Workflow",
+    "section": "Step 3: packaging",
+    "text": "Step 3: packaging\n\ncreate basic project\nCopy and paste exisint R scripts, refactor if necessary (i.e. give self-explanatory names)\nCreate R generic functions (print, summary)\nDocument\n\n\n\n\n\n\n\nFor me to do\n\n\n\n\nreturn result as a list, with class attribute\nreturn argument"
   }
 ]

@@ -7,6 +7,7 @@ listing:
     fields: [title]
     contents: 
       - "r_roop.qmd"
+      - "r_pkg_wf.qmd"
       - "web_basics.qmd"
       - "webr.qmd"
     type: table
