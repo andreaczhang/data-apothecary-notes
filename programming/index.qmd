@@ -10,6 +10,8 @@ listing:
       - "r_pkg_wf.qmd"
       - "web_basics.qmd"
       - "webr.qmd"
+      - "r_pkg_tests.qmd"
+      - "r_error_handling.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

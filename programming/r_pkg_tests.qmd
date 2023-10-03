@@ -1,0 +1,23 @@
+---
+title: "R package: tests"
+description: |
+  Notes on tests, with the use of `testthat` package
+author: "Chi Zhang"
+date: "2023-10-03"
+categories: [RSE, Rpkg]
+sidebar: false
+code-block-bg: false
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+Useful references: 
+
+* [GSWEP4R: Ensuring Quality](https://openpharma.github.io/workshop-r-swe-sf/slides/04_quality.html#/title-slide) by Matt Secrest
+
+

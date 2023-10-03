@@ -30,6 +30,8 @@
   {
     "listing": "/programming/index.html",
     "items": [
+      "/programming/r_pkg_tests.html",
+      "/programming/r_error_handling.html",
       "/programming/r_pkg_wf.html",
       "/programming/webr.html",
       "/programming/web_basics.html",

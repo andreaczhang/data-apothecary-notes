@@ -67,12 +67,84 @@ Use some documentation tools (md, qmd, or diagram [draw.io](https://app.diagrams
 
 ::: {.callout-note}
 
-## For me to do
+## To do
 
 * return result as a list, with class attribute
 * return argument
 
 :::
+
+
+## Step 4: Qualiy code 
+
+It is important to have clean code, so that it is easier to read and maintain; easier to exntend; and the code runs faster.
+
+* **naming**. Make the function and argument names easy to understand
+* **formatting**. Indentation, spacing, bracketing should be consistent
+* **simplicity**. Avoid unnecesary complexity. Split large source files into smaller chunks, preferably less than 1000 lines.
+* **single responsibility principle (SRP)**. Each function should have ONE single purpose.
+* **don't repeat yourself**. Make a function!
+* **comment**.
+* **error handling**. Include error handling messages. `tryCatch()`
+
+
+::: {.callout-note}
+
+## To do
+
+* Error handling.
+
+:::
+
+
+### Testing
+
+Why do you need **unit tests**? In short, increase reliability and maintainability of the code. 
+
+Other types of tests exist: integration testing, performance testing, snapshot testing. Package `testthat` allows not only unit tests, but also the other types of tests. 
+
+::: {.callout-note}
+
+A more comprehensive guide see my other note: [R package: tests](r_pkg_tests.qmd)
+
+:::
+
+Test coverage: use `covr`. Ideally should cover 100%.
+
+
+
+### Package quality check 
+
+
+R CMD Check
+
+
+### Code style
+
+Use tidyverse style guide.
+
+* `styler`: restyle text, files or entire project.
+* `lintr`: perform automated checks to confirm that our code conform to the style guide.
+* `devtools::spell_check`.
+
+
+
+
+## Step 5. Publication
+
+`pkgdown` website might be the most useful place.
+
+Versioning 
+
+* `x.y.z`
+* `x` is major, breaking changes
+* `y` is minor, new features
+* `z` is patch, bug fixes
+* try `usethis::use_version()`
+
+
+
+
 
 
 

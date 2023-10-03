@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nR package: tests\n\n\n\n\nError handling in R\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -494,6 +494,27 @@
     "href": "programming/r_pkg_wf.html#step-3-packaging",
     "title": "R package Engineering Workflow",
     "section": "Step 3: packaging",
-    "text": "Step 3: packaging\n\ncreate basic project\nCopy and paste exisint R scripts, refactor if necessary (i.e. give self-explanatory names)\nCreate R generic functions (print, summary)\nDocument\n\n\n\n\n\n\n\nFor me to do\n\n\n\n\nreturn result as a list, with class attribute\nreturn argument"
+    "text": "Step 3: packaging\n\ncreate basic project\nCopy and paste exisint R scripts, refactor if necessary (i.e. give self-explanatory names)\nCreate R generic functions (print, summary)\nDocument\n\n\n\n\n\n\n\nTo do\n\n\n\n\nreturn result as a list, with class attribute\nreturn argument"
+  },
+  {
+    "objectID": "programming/r_pkg_wf.html#step-4-qualiy-code",
+    "href": "programming/r_pkg_wf.html#step-4-qualiy-code",
+    "title": "R package Engineering Workflow",
+    "section": "Step 4: Qualiy code",
+    "text": "Step 4: Qualiy code\nIt is important to have clean code, so that it is easier to read and maintain; easier to exntend; and the code runs faster.\n\nnaming. Make the function and argument names easy to understand\nformatting. Indentation, spacing, bracketing should be consistent\nsimplicity. Avoid unnecesary complexity. Split large source files into smaller chunks, preferably less than 1000 lines.\nsingle responsibility principle (SRP). Each function should have ONE single purpose.\ndon’t repeat yourself. Make a function!\ncomment.\nerror handling. Include error handling messages. tryCatch()\n\n\n\n\n\n\n\nTo do\n\n\n\n\nError handling.\n\n\n\n\nTesting\nWhy do you need unit tests? In short, increase reliability and maintainability of the code.\nOther types of tests exist: integration testing, performance testing, snapshot testing. Package testthat allows not only unit tests, but also the other types of tests.\n\n\n\n\n\n\nNote\n\n\n\nA more comprehensive guide see my other note: R package: tests\n\n\nTest coverage: use covr. Ideally should cover 100%.\n\n\nPackage quality check\nR CMD Check\n\n\nCode style\nUse tidyverse style guide.\n\nstyler: restyle text, files or entire project.\nlintr: perform automated checks to confirm that our code conform to the style guide.\ndevtools::spell_check."
+  },
+  {
+    "objectID": "programming/r_pkg_tests.html",
+    "href": "programming/r_pkg_tests.html",
+    "title": "R package: tests",
+    "section": "",
+    "text": "Useful references:\n\nGSWEP4R: Ensuring Quality by Matt Secrest"
+  },
+  {
+    "objectID": "programming/r_pkg_wf.html#step-5.-publication",
+    "href": "programming/r_pkg_wf.html#step-5.-publication",
+    "title": "R package Engineering Workflow",
+    "section": "Step 5. Publication",
+    "text": "Step 5. Publication\npkgdown website might be the most useful place.\nVersioning\n\nx.y.z\nx is major, breaking changes\ny is minor, new features\nz is patch, bug fixes\ntry usethis::use_version()"
   }
 ]
