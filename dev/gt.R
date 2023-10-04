@@ -114,6 +114,92 @@ gt(penguin_counts_wider,
 
 
 
+# add color ----
+# install.packages('gtExtras')
+library(gtExtras)
+
+# color from mpg to disp
+basic_use <- mtcars %>%
+  head(15) %>%
+  gt() %>%
+  gt_color_rows(mpg:disp)
+
+basic_use
+
+# change palette to one that paletteer recognizes
+change_pal <- mtcars %>%
+  head(15) %>%
+  gt() %>%
+  gt_color_rows(mpg:disp, palette = "ggsci::blue_material")
+change_pal
+
+# change palette to raw values
+vector_pal <- mtcars %>%
+  head(15) %>%
+  gt() %>%
+  gt_color_rows(
+    mpg:disp, palette = c("white", "green"))
+vector_pal
+# could also use palette = c("#ffffff", "##00FF00")
+
+# use discrete instead of continuous palette
+discrete_pal <- mtcars %>%
+  head(15) %>%
+  gt() %>%
+  gt_color_rows(
+    cyl, pal_type = "discrete",
+    palette = "ggthemes::colorblind", 
+    domain = range(mtcars$cyl) # from 4 to 8
+  )
+
+
+# use discrete and manually define range
+range_pal <- mtcars %>%
+  dplyr::select(gear, mpg:hp) %>%
+  head(15) %>%
+  gt() %>%
+  gt_color_rows(
+    gear, 
+    pal_type = "discrete", 
+    direction = -1,
+    palette = "colorblindr::OkabeIto_black", 
+    domain = c(3,4,5))
+range_pal
+
+
+# overall theme ----
+
+gt_theme_guardian(range_pal)
+
+opt_stylize(range_pal, style = 6, color = 'pink')
+
+
+# modify specific cells ----
+basic_use
+tab_style_body(basic_use, 
+               fn = function(x) between(x, 100, 200), 
+               style = cell_text(color = 'blue', weight = 'bold'))
+
+# is there a way to only selec one col?
+tab_style(basic_use, 
+          locations = cells_body(columns = hp, 
+                                 rows = hp>100),
+          style = cell_text(color = 'blue', weight = 'bold')) |> 
+  gt_plt_bar(column = hp, keep_column = T, width = 35)
+
+
+
+# plot with gt ----
+# install.packages('svglite')
+
+mtcars %>%
+  dplyr::select(cyl:wt, mpg) %>% 
+  head() %>%
+  gt() %>%
+  gt_plt_bar(column = mpg, keep_column = TRUE, width = 35)
+
+
+
 
 
 
