@@ -12,6 +12,7 @@ listing:
       - "webr.qmd"
       - "r_pkg_tests.qmd"
       - "r_error_handling.qmd"
+      - "revealjs.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

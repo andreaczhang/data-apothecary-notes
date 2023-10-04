@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nR package: tests\n\n\n\n\nError handling in R\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
+    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nR package: tests\n\n\n\n\nError handling in R\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -516,5 +516,26 @@
     "title": "R package Engineering Workflow",
     "section": "Step 5. Publication",
     "text": "Step 5. Publication\npkgdown website might be the most useful place.\nVersioning\n\nx.y.z\nx is major, breaking changes\ny is minor, new features\nz is patch, bug fixes\ntry usethis::use_version()"
+  },
+  {
+    "objectID": "programming/revealjs.html",
+    "href": "programming/revealjs.html",
+    "title": "Make slides with reveal.js",
+    "section": "",
+    "text": "iframe stands for inline frame. It is an HTML element that loads another HTML page within the document."
+  },
+  {
+    "objectID": "programming/test_slides.html#hello-there",
+    "href": "programming/test_slides.html#hello-there",
+    "title": "Quarto Presentations",
+    "section": "Hello, There",
+    "text": "Hello, There\nThis presentation will show you examples of what you can do with Quarto and Reveal.js, including:\n\nPresenting code and LaTeX equations\nIncluding computations in slide output\nImage, video, and iframe backgrounds\nFancy transitions and animations\nPrinting to PDF\n\n\n\nhttps://quarto.org"
+  },
+  {
+    "objectID": "programming/revealjs.html#embed-in-your-own-web-page",
+    "href": "programming/revealjs.html#embed-in-your-own-web-page",
+    "title": "Make slides with reveal.js",
+    "section": "",
+    "text": "iframe stands for inline frame. It is an HTML element that loads another HTML page within the document."
   }
 ]

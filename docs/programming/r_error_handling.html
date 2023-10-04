@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2023-10-03">
+<meta name="description" content="Notes on different ways to handle error">
 
-<title>Data Apothecary’s Notes - Programming</title>
+<title>Data Apothecary’s Notes - Error handling in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,38 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-docs .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-docs'] = new List('listing-docs', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -135,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Reporting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../programming/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../programming/index.html" rel="" target="">
  <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
@@ -155,20 +125,41 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Programming</h1>
-</div>
+<h1 class="title">Error handling in R</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">RSE</div>
+    <div class="quarto-category">Rpkg</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Notes on different ways to handle error</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 3, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -176,64 +167,10 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>It is important to document while you go.</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-docs">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Website,revealjs" data-listing-date-sort="1696370400000" data-listing-file-modified-sort="1696436783324" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Make slides with `reveal.js`" data-listing-filename-sort="revealjs.qmd">
-<td>
-<a href="../programming/revealjs.html" class="title listing-title">Make slides with <code>reveal.js</code></a>
-</td>
-</tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1696326643545" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="R package: tests" data-listing-filename-sort="r_pkg_tests.qmd">
-<td>
-<a href="../programming/r_pkg_tests.html" class="title listing-title">R package: tests</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1696326683022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Error handling in R" data-listing-filename-sort="r_error_handling.qmd">
-<td>
-<a href="../programming/r_error_handling.html" class="title listing-title">Error handling in R</a>
-</td>
-</tr>
-<tr data-index="3" data-categories="RSE,Rpkg" data-listing-date-sort="1696197600000" data-listing-file-modified-sort="1696328060424" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="R package Engineering Workflow" data-listing-filename-sort="r_pkg_wf.qmd">
-<td>
-<a href="../programming/r_pkg_wf.html" class="title listing-title">R package Engineering Workflow</a>
-</td>
-</tr>
-<tr data-index="4" data-categories="Website" data-listing-date-sort="1696111200000" data-listing-file-modified-sort="1696176149134" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="WebR: Use with an existing quarto website" data-listing-filename-sort="webr.qmd">
-<td>
-<a href="../programming/webr.html" class="title listing-title">WebR: Use with an existing quarto website</a>
-</td>
-</tr>
-<tr data-index="5" data-categories="Website" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1692548324696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Web basics" data-listing-filename-sort="web_basics.qmd">
-<td>
-<a href="../programming/web_basics.html" class="title listing-title">Web basics</a>
-</td>
-</tr>
-<tr data-index="6" data-categories="RSE,Rpkg" data-listing-date-sort="1677106800000" data-listing-file-modified-sort="1683208294925" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="OOP in R: S3" data-listing-filename-sort="r_roop.qmd">
-<td>
-<a href="../programming/r_roop.html" class="title listing-title">OOP in R: S3</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
