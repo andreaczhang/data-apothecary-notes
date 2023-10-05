@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "It is important to document while you go.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nR package: tests\n\n\n\n\nError handling in R\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -508,7 +508,7 @@
     "href": "programming/r_pkg_tests.html",
     "title": "R package: tests",
     "section": "",
-    "text": "Useful references:\n\nGSWEP4R: Ensuring Quality by Matt Secrest"
+    "text": "Useful references:\n\nGSWEP4R: Ensuring Quality by Matt Secrest\nR packages (2e) Chapter 13, 14, 15 by Hadley Wickham and Jenny Bryan\n\nUnit test: tests whether your function returns values as expected.\nBenefits:\n\nFewer bugs\nBetter code structure, thhe functions need to be better designed\n\nExample situations:\n\nmissing values in the data;\nzero standard deviation (same values; or one value for the group)\ninfinity"
   },
   {
     "objectID": "programming/r_pkg_wf.html#step-5.-publication",
@@ -537,5 +537,68 @@
     "title": "Make slides with reveal.js",
     "section": "",
     "text": "iframe stands for inline frame. It is an HTML element that loads another HTML page within the document."
+  },
+  {
+    "objectID": "programming/index.html#r-programming",
+    "href": "programming/index.html#r-programming",
+    "title": "Programming",
+    "section": "",
+    "text": "R related topics from basic to advanced.\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nOOP in R: S3\n\n\n\n\nError handling in R\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "programming/index.html#r-package",
+    "href": "programming/index.html#r-package",
+    "title": "Programming",
+    "section": "R package",
+    "text": "R package\nR package development\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nR package: tests\n\n\n\n\nR package Engineering Workflow\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "programming/index.html#web",
+    "href": "programming/index.html#web",
+    "title": "Programming",
+    "section": "Web",
+    "text": "Web\nWeb and quarto topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\nWeb basics\n\n\n\n\nMake slides with reveal.js\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "programming/r_pkg_0_wf.html",
+    "href": "programming/r_pkg_0_wf.html",
+    "title": "R package Engineering Workflow",
+    "section": "",
+    "text": "Useful references:\nSteps suggested:"
+  },
+  {
+    "objectID": "programming/r_pkg_0_wf.html#step-2-design-docs",
+    "href": "programming/r_pkg_0_wf.html#step-2-design-docs",
+    "title": "R package Engineering Workflow",
+    "section": "Step 2: Design docs",
+    "text": "Step 2: Design docs\nPurpose and scope: the package pkg_name shall …\nPackage requirements:\n\nlibrary(gt)\ndf &lt;- data.frame(obligation = c('Duty', 'Desire', 'Intension'), \n                 keyword = c('shall', 'should', 'will'), \n                 description = c('must have', 'nice to have', 'optional'))\n\ngt(df) |&gt; \n  cols_label(obligation = md('**Obligation**'), \n             keyword = md('**Key word**'), \n             description = md('**Description**'))\n\n\n\n\n\n  \n    \n    \n      Obligation\n      Key word\n      Description\n    \n  \n  \n    Duty\nshall\nmust have\n    Desire\nshould\nnice to have\n    Intension\nwill\noptional\n  \n  \n  \n\n\n\n\nUse some documentation tools (md, qmd, or diagram draw.io)"
+  },
+  {
+    "objectID": "programming/r_pkg_0_wf.html#step-3-packaging",
+    "href": "programming/r_pkg_0_wf.html#step-3-packaging",
+    "title": "R package Engineering Workflow",
+    "section": "Step 3: packaging",
+    "text": "Step 3: packaging\n\ncreate basic project\nCopy and paste exisint R scripts, refactor if necessary (i.e. give self-explanatory names)\nCreate R generic functions (print, summary)\nDocument\n\n\n\n\n\n\n\nTo do\n\n\n\n\nreturn result as a list, with class attribute\nreturn argument"
+  },
+  {
+    "objectID": "programming/r_pkg_0_wf.html#step-4-qualiy-code",
+    "href": "programming/r_pkg_0_wf.html#step-4-qualiy-code",
+    "title": "R package Engineering Workflow",
+    "section": "Step 4: Qualiy code",
+    "text": "Step 4: Qualiy code\nIt is important to have clean code, so that it is easier to read and maintain; easier to exntend; and the code runs faster.\n\nnaming. Make the function and argument names easy to understand\nformatting. Indentation, spacing, bracketing should be consistent\nsimplicity. Avoid unnecesary complexity. Split large source files into smaller chunks, preferably less than 1000 lines.\nsingle responsibility principle (SRP). Each function should have ONE single purpose.\ndon’t repeat yourself. Make a function!\ncomment.\nerror handling. Include error handling messages. tryCatch()\n\n\n\n\n\n\n\nTo do\n\n\n\n\nError handling.\n\n\n\n\nTesting\nWhy do you need unit tests? In short, increase reliability and maintainability of the code.\nOther types of tests exist: integration testing, performance testing, snapshot testing. Package testthat allows not only unit tests, but also the other types of tests.\n\n\n\n\n\n\nNote\n\n\n\nA more comprehensive guide see my other note: R package: tests\n\n\nTest coverage: use covr. Ideally should cover 100%.\n\n\nPackage quality check\nR CMD Check\n\n\nCode style\nUse tidyverse style guide.\n\nstyler: restyle text, files or entire project.\nlintr: perform automated checks to confirm that our code conform to the style guide.\ndevtools::spell_check."
+  },
+  {
+    "objectID": "programming/r_pkg_0_wf.html#step-5.-publication",
+    "href": "programming/r_pkg_0_wf.html#step-5.-publication",
+    "title": "R package Engineering Workflow",
+    "section": "Step 5. Publication",
+    "text": "Step 5. Publication\npkgdown website might be the most useful place.\nVersioning\n\nx.y.z\nx is major, breaking changes\ny is minor, new features\nz is patch, bug fixes\ntry usethis::use_version()"
+  },
+  {
+    "objectID": "programming/intv_rdev_topics.html",
+    "href": "programming/intv_rdev_topics.html",
+    "title": "Topic coverage: R developer",
+    "section": "",
+    "text": "This topic list does NOT include\n\n\n\n\nshiny developer\nstatistical programmer (would require more on specific statistical packages)\ndata scientist with a focus on engineering\n\n\n\nResources:\n\nAdvanced R\nR packages (2e)\n\nTypical thought process:\n\nWhat is x\nWhen do you use x\nWhat are the pros and cons of x\n\n\nR Programming\nFoundations\n\nData structures in R\nEnvironments\n\nFunctions and functional programming\n\napply() functions\nEvaluation\nArgument\n\nOOP\n\nS3 generics\n\nDebugging\n\nSomething related to debugging\n\n\n\nData manipulation\n\nTidyverse suite\nText processing\n\n\n\nR package\n\nDevelopment workflow\nR code and functions\nData\nDESCRIPTION\nDependencies and enviroment\nTesting\nDocumentation: code\nDocumentation: vignettes\nDoucmentation: website\nMaintenance"
   }
 ]

@@ -64,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-docs .list');
+    const listingTargetEl = window.document.querySelector('#listing-r-programming .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -77,7 +77,91 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-docs'] = new List('listing-docs', options);
+    window['quarto-listings']['listing-r-programming'] = new List('listing-r-programming', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-r-pkg .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-r-pkg'] = new List('listing-r-pkg', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-web .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-web'] = new List('listing-web', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-misc .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-misc'] = new List('listing-misc', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -154,8 +238,17 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r-programming" id="toc-r-programming" class="nav-link active" data-scroll-target="#r-programming">R programming</a></li>
+  <li><a href="#r-package" id="toc-r-package" class="nav-link" data-scroll-target="#r-package">R package</a></li>
+  <li><a href="#web-and-quarto" id="toc-web-and-quarto" class="nav-link" data-scroll-target="#web-and-quarto">Web and quarto</a></li>
+  <li><a href="#other-topics" id="toc-other-topics" class="nav-link" data-scroll-target="#other-topics">Other topics</a></li>
+  </ul>
+</nav>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Interview">Interview <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -176,12 +269,10 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>It is important to document while you go.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-docs">
+<p>This page hosts study notes on programming, with a strong flavour of R.</p>
+<section id="r-programming" class="level3">
+<h3 class="anchored" data-anchor-id="r-programming">R programming</h3>
+<div id="listing-r-programming" class="quarto-listing quarto-listing-container-table">
 
 <table class="quarto-listing-table table">
 <thead>
@@ -192,37 +283,12 @@ Title
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Website,revealjs" data-listing-date-sort="1696370400000" data-listing-file-modified-sort="1696436783324" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Make slides with `reveal.js`" data-listing-filename-sort="revealjs.qmd">
-<td>
-<a href="../programming/revealjs.html" class="title listing-title">Make slides with <code>reveal.js</code></a>
-</td>
-</tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1696326643545" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="R package: tests" data-listing-filename-sort="r_pkg_tests.qmd">
-<td>
-<a href="../programming/r_pkg_tests.html" class="title listing-title">R package: tests</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1696326683022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Error handling in R" data-listing-filename-sort="r_error_handling.qmd">
+<tr data-index="0" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1696326683022" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Error handling in R" data-listing-filename-sort="r_error_handling.qmd">
 <td>
 <a href="../programming/r_error_handling.html" class="title listing-title">Error handling in R</a>
 </td>
 </tr>
-<tr data-index="3" data-categories="RSE,Rpkg" data-listing-date-sort="1696197600000" data-listing-file-modified-sort="1696328060424" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="R package Engineering Workflow" data-listing-filename-sort="r_pkg_wf.qmd">
-<td>
-<a href="../programming/r_pkg_wf.html" class="title listing-title">R package Engineering Workflow</a>
-</td>
-</tr>
-<tr data-index="4" data-categories="Website" data-listing-date-sort="1696111200000" data-listing-file-modified-sort="1696176149134" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="WebR: Use with an existing quarto website" data-listing-filename-sort="webr.qmd">
-<td>
-<a href="../programming/webr.html" class="title listing-title">WebR: Use with an existing quarto website</a>
-</td>
-</tr>
-<tr data-index="5" data-categories="Website" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1692548324696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Web basics" data-listing-filename-sort="web_basics.qmd">
-<td>
-<a href="../programming/web_basics.html" class="title listing-title">Web basics</a>
-</td>
-</tr>
-<tr data-index="6" data-categories="RSE,Rpkg" data-listing-date-sort="1677106800000" data-listing-file-modified-sort="1683208294925" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="OOP in R: S3" data-listing-filename-sort="r_roop.qmd">
+<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1677106800000" data-listing-file-modified-sort="1683208294925" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="OOP in R: S3" data-listing-filename-sort="r_roop.qmd">
 <td>
 <a href="../programming/r_roop.html" class="title listing-title">OOP in R: S3</a>
 </td>
@@ -233,7 +299,106 @@ Title
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+</section>
+<section id="r-package" class="level3">
+<h3 class="anchored" data-anchor-id="r-package">R package</h3>
+<div id="listing-r-pkg" class="quarto-listing quarto-listing-container-table">
+
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="RSE,Rpkg" data-listing-date-sort="1696197600000" data-listing-file-modified-sort="1696328060424" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="R package Engineering Workflow" data-listing-filename-sort="r_pkg_0_wf.qmd">
+<td>
+<a href="../programming/r_pkg_0_wf.html" class="title listing-title">R package Engineering Workflow</a>
+</td>
+</tr>
+<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1696517675187" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="R package: tests" data-listing-filename-sort="r_pkg_tests.qmd">
+<td>
+<a href="../programming/r_pkg_tests.html" class="title listing-title">R package: tests</a>
+</td>
+</tr>
+</tbody>
+
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="web-and-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="web-and-quarto">Web and quarto</h3>
+<div id="listing-web" class="quarto-listing quarto-listing-container-table">
+
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Website,revealjs" data-listing-date-sort="1696370400000" data-listing-file-modified-sort="1696436873420" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Make slides with `reveal.js`" data-listing-filename-sort="revealjs.qmd">
+<td>
+<a href="../programming/revealjs.html" class="title listing-title">Make slides with <code>reveal.js</code></a>
+</td>
+</tr>
+<tr data-index="1" data-categories="Website" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1692548324696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Web basics" data-listing-filename-sort="web_basics.qmd">
+<td>
+<a href="../programming/web_basics.html" class="title listing-title">Web basics</a>
+</td>
+</tr>
+<tr data-index="2" data-categories="Website" data-listing-date-sort="1696111200000" data-listing-file-modified-sort="1696176149134" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="WebR: Use with an existing quarto website" data-listing-filename-sort="webr.qmd">
+<td>
+<a href="../programming/webr.html" class="title listing-title">WebR: Use with an existing quarto website</a>
+</td>
+</tr>
+</tbody>
+
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="other-topics" class="level3">
+<h3 class="anchored" data-anchor-id="other-topics">Other topics</h3>
+<div id="listing-misc" class="quarto-listing quarto-listing-container-table">
+
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Interview" data-listing-date-sort="1696456800000" data-listing-file-modified-sort="1696517158171" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Topic coverage: R developer" data-listing-filename-sort="intv_rdev_topics.qmd">
+<td>
+<a href="../programming/intv_rdev_topics.html" class="title listing-title">Topic coverage: R developer</a>
+</td>
+</tr>
+</tbody>
+
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

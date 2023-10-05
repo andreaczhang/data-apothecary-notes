@@ -1,25 +1,73 @@
 ---
 title: "Programming"
 listing:
-  - id: docs
-    max-description-length: 500
-    image-height: 150px
+  - id: r-programming
     fields: [title]
     contents: 
       - "r_roop.qmd"
-      - "r_pkg_wf.qmd"
+      - "r_error_handling.qmd"
+    type: table
+    sort: "title"
+    filter-ui: false
+    sort-ui: false
+    categories: true
+    
+  - id: r-pkg
+    fields: [title]
+    contents: 
+      - "r_pkg_0_wf.qmd"
+      - "r_pkg_tests.qmd"
+    type: table
+    sort: "title"
+    filter-ui: false
+    sort-ui: false
+    categories: true
+
+  - id: web
+    fields: [title]
+    contents: 
       - "web_basics.qmd"
       - "webr.qmd"
-      - "r_pkg_tests.qmd"
-      - "r_error_handling.qmd"
       - "revealjs.qmd"
     type: table
-    grid-item-border: false
-    sort-ui: false
-    sort: "date desc"
+    sort: "title"
     filter-ui: false
+    sort-ui: false
+    categories: true
+    
+  - id: misc
+    fields: [title]
+    contents: 
+      - "intv_rdev_topics.qmd"
+    type: table
+    sort: "title"
+    filter-ui: false
+    sort-ui: false
     categories: true
 ---
 
-It is important to document while you go.
+This page hosts study notes on programming, with a strong flavour of R.
+
+### R programming
+
+::: {#r-programming}
+:::
+
+### R package
+
+::: {#r-pkg}
+:::
+
+### Web and quarto
+
+::: {#web}
+:::
+
+### Other topics
+
+::: {#misc}
+:::
+
+
+
 

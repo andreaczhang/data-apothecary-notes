@@ -19,5 +19,21 @@ format:
 Useful references: 
 
 * [GSWEP4R: Ensuring Quality](https://openpharma.github.io/workshop-r-swe-sf/slides/04_quality.html#/title-slide) by Matt Secrest
+* [R packages (2e)](https://r-pkgs.org) Chapter 13, 14, 15 by Hadley Wickham and Jenny Bryan
+
+Unit test: tests whether your function returns values as expected.
+
+Benefits: 
+
+* Fewer bugs
+* Better code structure, thhe functions need to be better designed
+
+
+
+Example situations: 
+
+* missing values in the data; 
+* zero standard deviation (same values; or one value for the group)
+* infinity 
 
 
