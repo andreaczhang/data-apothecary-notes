@@ -4,6 +4,7 @@ listing:
   - id: r-programming
     fields: [title]
     contents: 
+      - "r_functions.qmd"
       - "r_roop.qmd"
       - "r_error_handling.qmd"
     type: table
