@@ -268,12 +268,13 @@ A workflow worked for me
 <li>Create a test file immediately, with clear naming. Inside this test file, can write various tests for the same function.</li>
 </ol>
 <ul>
-<li>have at least a test that expects the correct result (<code>expect_identical()</code> or else)</li>
-<li>have at least a test that expects error, (<code>expect_error()</code>). Inside the original function, error should be thrown by <code>rlang::abort()</code>.</li>
+<li>have at least a test that expects the <strong>correct</strong> result (<code>expect_identical()</code> or else)</li>
+<li>have at least a test that expects <strong>error</strong>, (<code>expect_error()</code>). Inside the original function, error should be thrown by <code>rlang::abort()</code>.</li>
 </ul>
 <ol start="3" type="1">
 <li>Run test</li>
 <li>Run test coverage, <code>covr::package_coverage()</code> or <code>covr::code_coverage()</code></li>
+<li>Check</li>
 </ol>
 </div>
 </div>
