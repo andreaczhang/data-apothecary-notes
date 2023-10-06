@@ -144,9 +144,18 @@ Versioning
 
 
 
+Adding badges
 
+```{r}
+#| label: badges
+#| eval: false
+#| echo: true
 
-
+# lifecycle
+usethis::use_lifecycle_badge(stage = 'experimental')
+# R-CMD-check 
+usethis::use_github_action_check_standard()
+```
 
 
 

@@ -37,3 +37,69 @@ Example situations:
 * infinity 
 
 
+
+## Use `testthat` in a package
+
+### 1. Initialize
+
+Create `tests/testthat/` directory
+
+```{r}
+#| label: init
+#| echo: true
+#| eval: false
+
+usethis::use_testthat(3)
+```
+
+This creates the directory with 
+
+* an empty folder `testthat` where you write your tests
+* an R script `testthat.R` where tests are run when `R CMD check` is run. Do not modify this file.
+
+
+### 2. Create a test
+
+Test files must have names that start with `test`. For example, a function is `R/fn_name.R`, then test is `tests/testthat/test-fn_name.R`.
+
+
+```{r}
+#| label: use_test
+#| echo: true
+#| eval: false
+
+usethis::use_test('testname')
+```
+
+
+### 3. Run a test
+
+* `testthat::test_file('tests/testthat/test-foofy.R')`
+* Run Tests button
+* `devtools::test()` for entire test suite. Cmd + Shift + T
+* `devtools::check()` 
+
+
+
+::: {.callout-tip}
+
+## A workflow worked for me
+
+1. Create a simple function 
+2. Create a test file immediately, with clear naming. Inside this test file, can write various tests for the same function.
+
+* have at least a test that expects the **correct** result (`expect_identical()` or else)
+* have at least a test that expects **error**, (`expect_error()`). Inside the original function, error should be thrown by `rlang::abort()`.
+
+3. Run test
+4. Run test coverage, `covr::package_coverage()` or `covr::code_coverage()`
+5. Check
+
+:::
+
+
+
+
+
+
+

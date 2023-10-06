@@ -508,7 +508,7 @@
     "href": "programming/r_pkg_tests.html",
     "title": "R package: tests",
     "section": "",
-    "text": "Useful references:\n\nGSWEP4R: Ensuring Quality by Matt Secrest\nR packages (2e) Chapter 13, 14, 15 by Hadley Wickham and Jenny Bryan\n\nUnit test: tests whether your function returns values as expected.\nBenefits:\n\nFewer bugs\nBetter code structure, thhe functions need to be better designed\n\nExample situations:\n\nmissing values in the data;\nzero standard deviation (same values; or one value for the group)\ninfinity"
+    "text": "Useful references:\nUnit test: tests whether your function returns values as expected.\nBenefits:\nExample situations:"
   },
   {
     "objectID": "programming/r_pkg_wf.html#step-5.-publication",
@@ -600,5 +600,12 @@
     "title": "Topic coverage: R developer",
     "section": "",
     "text": "This topic list does NOT include\n\n\n\n\nshiny developer\nstatistical programmer (would require more on specific statistical packages)\ndata scientist with a focus on engineering\n\n\n\nResources:\n\nAdvanced R\nR packages (2e)\n\nTypical thought process:\n\nWhat is x\nWhen do you use x\nWhat are the pros and cons of x\n\n\nR Programming\nFoundations\n\nData structures in R\nEnvironments\n\nFunctions and functional programming\n\napply() functions\nEvaluation\nArgument\n\nOOP\n\nS3 generics\n\nDebugging\n\nSomething related to debugging\n\n\n\nData manipulation\n\nTidyverse suite\nText processing\n\n\n\nR package\n\nDevelopment workflow\nR code and functions\nData\nDESCRIPTION\nDependencies and enviroment\nTesting\nDocumentation: code\nDocumentation: vignettes\nDoucmentation: website\nMaintenance"
+  },
+  {
+    "objectID": "programming/r_pkg_tests.html#use-testthat-in-a-package",
+    "href": "programming/r_pkg_tests.html#use-testthat-in-a-package",
+    "title": "R package: tests",
+    "section": "Use testthat in a package",
+    "text": "Use testthat in a package\n\n1. Initialize\nCreate tests/testthat/ directory\n\nusethis::use_testthat(3)\n\nThis creates the directory with\n\nan empty folder testthat where you write your tests\nan R script testthat.R where tests are run when R CMD check is run. Do not modify this file.\n\n\n\n2. Create a test\nTest files must have names that start with test. For example, a function is R/fn_name.R, then test is tests/testthat/test-fn_name.R.\n\nusethis::use_test('testname')\n\n\n\n3. Run a test\n\ntestthat::test_file('tests/testthat/test-foofy.R')\nRun Tests button\ndevtools::test() for entire test suite. Cmd + Shift + T\ndevtools::check()\n\n\n\n\n\n\n\nA workflow worked for me\n\n\n\n\nCreate a simple function\nCreate a test file immediately, with clear naming. Inside this test file, can write various tests for the same function.\n\n\nhave at least a test that expects the correct result (expect_identical() or else)\nhave at least a test that expects error, (expect_error()). Inside the original function, error should be thrown by rlang::abort().\n\n\nRun test\nRun test coverage, covr::package_coverage() or covr::code_coverage()"
   }
 ]
