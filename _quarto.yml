@@ -29,6 +29,10 @@ website:
       - href: about.qmd
         text: About
 
+    right: 
+      - icon: github
+        href: https://github.com/andreaczhang/data-apothecary-notes
+        
 format:
   html:
     theme: sandstone

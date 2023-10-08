@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -621,5 +621,40 @@
     "title": "Functions",
     "section": "",
     "text": "Special argument .... This type of argument is varargs (variable arguments). The function can take any numbers of arguments.\nPrimary uses:\n\nyour function takes a function as an argument, and we want to pass additional arguments\nS3 generic, need to allow methods to take extra arguments\n\nDownsides:\n\nneed to explain where the arguments go to\nmisspelled argument will not raise an error\n\n\n\nThe ... can be something like na.rm = F.\nGiven that the first argument is being averaged upon, if a vector is not specified correctly, only the first element is being averaged; and the other elements are treated as additional arguments that are not necessarily used.\n\n# mean(c(1,2,3)) \nmean(1, 2, 3)\n\n[1] 1\n\nmean(c(1, 2), 3)\n\n[1] 1.5\n\n\n\nfplus &lt;- function(a, ...){\n  list(sum(a), ...)\n}\nfplus(a = c(1,2,3))\n\n[[1]]\n[1] 6\n\nfplus(a = c(1,2,3), 4)\n\n[[1]]\n[1] 6\n\n[[2]]\n[1] 4\n\n\n\nf1 &lt;- function(a, ...){\n  args &lt;- list(...)\n  if('y' %in% names(args)){\n    args$y &lt;- 0.5 + args$y\n    do.call(f2, args) # second arg need to be a list\n  }else{\n    a+1\n  }\n\n}\nf2 &lt;- function(y){return(y)}"
+  },
+  {
+    "objectID": "programming/r_pkg_functions.html",
+    "href": "programming/r_pkg_functions.html",
+    "title": "My workflow in working with functions in a package",
+    "section": "",
+    "text": "Ongoing notes\n\n\n\nSome of the content are being added as I go.\nFunctions make up the whole R package, except for data-only packages. The workflow should help me navigate the process.\nA short example borrowed from GSWEP4R workshop is documented here, function code and test code"
+  },
+  {
+    "objectID": "programming/r_pkg_functions.html#structure",
+    "href": "programming/r_pkg_functions.html#structure",
+    "title": "My workflow in working with functions in a package",
+    "section": "Structure",
+    "text": "Structure"
+  },
+  {
+    "objectID": "programming/r_pkg_functions.html#write",
+    "href": "programming/r_pkg_functions.html#write",
+    "title": "My workflow in working with functions in a package",
+    "section": "Write",
+    "text": "Write\n\nWhat to return?\nPut the arguments in a list named result, then attach other outputs to result.\n\nresult &lt;- list(arg1 = arg1, arg2 = arg2)\n\nAfterwards, set class attribute to something meaningful, for example,\n\nresult &lt;- structure(result, class = 'SimulationResult')\n\nThis allows us to implement generics.\n\n\nGenerics\nCommon generics\n\nprint\nsummary\nplot\n\n\nprint.classname &lt;- function(x, ...){\n  # x is an object of `classname`\n  # it should be a list, and have class attribute `classname`\n}"
+  },
+  {
+    "objectID": "programming/r_pkg_functions.html#test",
+    "href": "programming/r_pkg_functions.html#test",
+    "title": "My workflow in working with functions in a package",
+    "section": "Test",
+    "text": "Test\nTests for functions and generic functions seem to be the same as before. Need to go back to the function and add error messages."
+  },
+  {
+    "objectID": "programming/r_pkg_functions.html#document",
+    "href": "programming/r_pkg_functions.html#document",
+    "title": "My workflow in working with functions in a package",
+    "section": "Document",
+    "text": "Document\nThe way to document generic functions is exactly the same as any other function.\n\n#' Print method\n#'\n#' @description\n#' Generic function to print a `SimulationResult` object\n#'\n#' @param x a \\code{SimulationResult} object to print\n#' @param ... further arguments to pass from other methods\n#'\n#' @return something printed\n#' @export\n#'\n#' @examples\n#' simd &lt;- fsim(n1 = 10, n2 = 10, mean1 = 0, mean2 = 5, sd1 = 1, sd2 = 1)\n#' print(simd)"
   }
 ]
