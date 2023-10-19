@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Apothecary’s Notes - Models</title>
+<title>Data Apothecary's Notes – book_ros_chpt15_glm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,35 +59,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-docs .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-docs'] = new List('listing-docs', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -103,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Data Apothecary’s Notes</span>
     </a>
   </div>
@@ -114,31 +83,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../study_design/index.html" rel="" target="">
+    <a class="nav-link" href="../../../study_design/index.html" rel="" target="">
  <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../inference/index.html" rel="" target="">
+    <a class="nav-link" href="../../../inference/index.html" rel="" target="">
  <span class="menu-text">Inference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../models/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../../models/index.html" rel="" target="">
  <span class="menu-text">Models</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reporting/index.html" rel="" target="">
+    <a class="nav-link" href="../../../reporting/index.html" rel="" target="">
  <span class="menu-text">Reporting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../programming/index.html" rel="" target="">
+    <a class="nav-link" href="../../../programming/index.html" rel="" target="">
  <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -160,62 +129,62 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#glm-components" id="toc-glm-components" class="nav-link active" data-scroll-target="#glm-components">glm components</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">examples</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Models</h1>
-</div>
 
 
+<blockquote class="blockquote">
+<p>glm in the bayesian framework</p>
+</blockquote>
+<section id="glm-components" class="level3">
+<h3 class="anchored" data-anchor-id="glm-components">glm components</h3>
+<ul>
+<li>vector of outcome data y</li>
+<li>matrix of predictors X, vector of coefficients <span class="math inline">\(\beta\)</span> forming a linear predictor vector <span class="math inline">\(X\beta\)</span></li>
+<li>link function <span class="math inline">\(g\)</span>, giving transformed data <span class="math inline">\(\hat{y} = g^{-1}(X\beta)\)</span></li>
+<li>data distribution <span class="math inline">\(y|\hat{y}\)</span></li>
+<li>other parameters</li>
+</ul>
+</section>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">examples</h3>
+<ul>
+<li>Linear regression, <span class="math inline">\(g(u) = u\)</span>, data distribution is normal with sd <span class="math inline">\(\sigma\)</span></li>
+<li>logistic regression, <span class="math inline">\(g^{-1}(u) = logit^{-1}(u)\)</span>
+<ul>
+<li>Logit (log odds) link, <span class="math inline">\(g(p) = ln(p/1-p)\)</span></li>
+<li>Logit(y|x) = xb</li>
+<li>data distribution defined by probability, <span class="math inline">\(p(y=1) = \hat{y}\)</span></li>
+</ul></li>
+<li>Poisson, nb
+<ul>
+<li>log link, log(y|x) = xb</li>
+<li>Log(lambda_i) = b0 + b1x1i + b2x2i + …</li>
+<li><span class="math inline">\(y_i\)</span> ~ <span class="math inline">\(poisson(exp^{x_i\beta})\)</span></li>
+<li>equal mean and variance conditional on x: larger mean, larger variance (more sparse)</li>
+</ul></li>
+<li>logistic-binomial (also a count)
+<ul>
+<li>y is number of successes in n_i trials</li>
+<li>dependent on a limit (total trials)</li>
+<li>use poisson/nb when the limit is much larger (e.g.&nbsp;population)</li>
+</ul></li>
+</ul>
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
+</section>
 
-</header>
-
-<p>Models for repeated measurement, longitudinal data and related matters.</p>
-<p>Or more precisely: different endpoints</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-docs">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1691859091934" data-listing-reading-time-sort="1" data-listing-title-sort="Mixed models" data-listing-filename-sort="mixed_models.qmd">
-<td>
-<a href="../models/mixed_models.html" class="title listing-title">Mixed models</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1694095170078" data-listing-reading-time-sort="1" data-listing-title-sort="Survival" data-listing-filename-sort="survival.qmd">
-<td>
-<a href="../models/survival.html" class="title listing-title">Survival</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

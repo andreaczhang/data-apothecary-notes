@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Apothecary’s Notes - Models</title>
+<title>Data Apothecary's Notes – glm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,35 +59,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-docs .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-docs'] = new List('listing-docs', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -103,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Data Apothecary’s Notes</span>
     </a>
   </div>
@@ -114,31 +83,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../study_design/index.html" rel="" target="">
+    <a class="nav-link" href="../../../study_design/index.html" rel="" target="">
  <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../inference/index.html" rel="" target="">
+    <a class="nav-link" href="../../../inference/index.html" rel="" target="">
  <span class="menu-text">Inference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../models/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../../models/index.html" rel="" target="">
  <span class="menu-text">Models</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reporting/index.html" rel="" target="">
+    <a class="nav-link" href="../../../reporting/index.html" rel="" target="">
  <span class="menu-text">Reporting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../programming/index.html" rel="" target="">
+    <a class="nav-link" href="../../../programming/index.html" rel="" target="">
  <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -160,62 +129,103 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#formulation" id="toc-formulation" class="nav-link active" data-scroll-target="#formulation">Formulation</a>
+  <ul class="collapse">
+  <li><a href="#logistic-vs-binomial-regression" id="toc-logistic-vs-binomial-regression" class="nav-link" data-scroll-target="#logistic-vs-binomial-regression">Logistic vs binomial regression</a></li>
+  <li><a href="#prediction" id="toc-prediction" class="nav-link" data-scroll-target="#prediction">Prediction</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
+  <li><a href="#diagnostics-and-selection" id="toc-diagnostics-and-selection" class="nav-link" data-scroll-target="#diagnostics-and-selection">Diagnostics and selection</a>
+  <ul class="collapse">
+  <li><a href="#deviance-compare-with-saturated-model" id="toc-deviance-compare-with-saturated-model" class="nav-link" data-scroll-target="#deviance-compare-with-saturated-model">Deviance: compare with saturated model</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Models</h1>
+
+
+<section id="formulation" class="level1">
+<h1>Formulation</h1>
+<p><span class="math inline">\(E(Y|X) = \mu = g^{-1} (X\beta)\)</span></p>
+<ul>
+<li><span class="math inline">\(E(Y|X)\)</span> is the expected value of Y conditional on X</li>
+<li><span class="math inline">\(g\)</span> is the <strong>link function</strong>, from exponential family, need to be invertible</li>
+<li><strong>mean function</strong> is for the outcome. e.g.&nbsp;<span class="math inline">\(\mu = g^{-1} =exp(X\beta)\)</span> for poisson regression.</li>
+</ul>
+<p><span class="math inline">\(Var(Y|X) = V(\mu) = V(g^{-1}(X\beta))\)</span></p>
+<p>CAUTION: for poisson example, it’s <strong>NOT</strong> <span class="math inline">\(log(y) = xb + e\)</span>, it is <span class="math inline">\(log(\mu) = xb\)</span></p>
+<p><span style="color:red">where is the error term</span></p>
+<section id="exponential-family" class="level4">
+<h4 class="anchored" data-anchor-id="exponential-family">Exponential family</h4>
+<p><span class="math inline">\(f(x|\theta) = h(x)*exp[\eta(\theta)T(x) - A(\theta)]\)</span></p>
+<ul>
+<li>T(x) is the sufficient statistic</li>
+<li><span class="math inline">\(\eta(x)\)</span> is the <strong>natural parameter</strong></li>
+<li><span class="math inline">\(h(x)\)</span> is the base</li>
+<li><span class="math inline">\(A(\theta)\)</span> is the cumulant generating function</li>
+</ul>
+<p>EF is used for lower variance of unbiased estimator (??)</p>
+<p>A sufficient statistic for the parameter exists</p>
+<p><span class="math inline">\(A(\eta(\theta))\)</span> can be used to derive moments (mean, variance) by taking first and second derivative</p>
+</section>
+<section id="example-of-natural-paramter" class="level4">
+<h4 class="anchored" data-anchor-id="example-of-natural-paramter">Example of natural paramter</h4>
+<ul>
+<li>Logit model (logistic regression):<span class="math inline">\(\eta(\theta) = log(\frac{p}{1-p})\)</span>, it is the natural parameter of bernoulli distribution</li>
+<li>Poisson distribution, <span class="math inline">\(\eta(\theta) = log(\lambda)\)</span></li>
+</ul>
+<p>Note that other distributions can have natural parameters, but do not correspond directly to GLM. such as normal.</p>
+</section>
+<section id="logistic-vs-binomial-regression" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-vs-binomial-regression">Logistic vs binomial regression</h3>
+<p>Logistic reg has logit link <span class="math inline">\(log(\frac{p}{1-p})\)</span>. Only predicts 1 and 0</p>
+<p>Binomial regression has logit link <span class="math inline">\(log(\frac{p}{n-p})\)</span>, predicts number of success in n trials, 0, 1, .. N.</p>
+</section>
+<section id="prediction" class="level2">
+<h2 class="anchored" data-anchor-id="prediction">Prediction</h2>
+<p>Predict the values of the <strong>conditional mean</strong> <span class="math inline">\(E(Y|X) = g^{-1}(X\beta)\)</span> through the linear predictor.</p>
+<ul>
+<li><code>fitted(model)</code> is equivalent to <code>predict(model, type = 'response')</code>, returns <span class="math inline">\(g^{-1}(X\hat\beta)\)</span> , the conditional response</li>
+<li><code>predict(model, type = 'link')</code> returns <span class="math inline">\(X\hat{\beta}\)</span></li>
+</ul>
+<p>CI need to be extracted manually; or use the other function <code>confint</code></p>
+</section>
+<section id="inference" class="level2">
+<h2 class="anchored" data-anchor-id="inference">Inference</h2>
+<p>?? more predictors, larger variance, less power??</p>
+<p>The response is heterskedastic, unlike linear case.</p>
+</section>
+<section id="diagnostics-and-selection" class="level2">
+<h2 class="anchored" data-anchor-id="diagnostics-and-selection">Diagnostics and selection</h2>
+<section id="deviance-compare-with-saturated-model" class="level3">
+<h3 class="anchored" data-anchor-id="deviance-compare-with-saturated-model">Deviance: compare with saturated model</h3>
+<p>difference of log-likelihod between <strong>fitted model and saturated model</strong>. it is a generalisation of residual sum of squares RSS (i.e.&nbsp;sum of squared error SSE)</p>
+<p><strong>Residual deviance</strong>: <span class="math inline">\(D := -2[loglik(\hat\beta) - loglik_s]\phi\)</span></p>
+<p><strong>Null deviance</strong>: <span class="math inline">\(D_0 := -2[loglik(\hat\beta_0) - loglik_s]\phi\)</span>, the intercept model and saturated model. It iis a generalisation of total sum of squares, SST = sum(yi - mean(y)^2)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Users/andrea/Desktop/ScreenShotsForSourcing/deviance.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">deviance</figcaption>
+</figure>
 </div>
+<p>The deviance is approximately chi-square distributed with <span class="math inline">\(n-p\)</span> degrees of freedom.</p>
+<ul>
+<li>Null deviance will be n-1, for the intercept</li>
+</ul>
 
 
+</section>
+</section>
+</section>
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<p>Models for repeated measurement, longitudinal data and related matters.</p>
-<p>Or more precisely: different endpoints</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-docs">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1691859091934" data-listing-reading-time-sort="1" data-listing-title-sort="Mixed models" data-listing-filename-sort="mixed_models.qmd">
-<td>
-<a href="../models/mixed_models.html" class="title listing-title">Mixed models</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1694095170078" data-listing-reading-time-sort="1" data-listing-title-sort="Survival" data-listing-filename-sort="survival.qmd">
-<td>
-<a href="../models/survival.html" class="title listing-title">Survival</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

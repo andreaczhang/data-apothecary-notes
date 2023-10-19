@@ -35,8 +35,8 @@ website:
         
 format:
   html:
-    theme: sandstone
-    css: styles.css
+    theme: styles.scss
+    # css: styles.css
     toc: true
 
 filters: 

@@ -60,7 +60,7 @@
     "href": "study_design/index.html",
     "title": "Study design",
     "section": "",
-    "text": "Topics (ongoing)\n\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design\n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison\n\n\n\n\nSample size (part II)\n\n\nRegression\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design.\n\n\n\n\n\n\nNo matching items\n\n\n\nCHECK\nhttps://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models\nICH Guidelines (EMA)\nhttps://www.ema.europa.eu/en/ich-e10-choice-control-group-clinical-trials-scientific-guideline#current-effective-version-section\nhttps://www.ema.europa.eu/en/documents/scientific-guideline/ich-e-10-choice-control-group-clinical-trials-step-5_en.pdf\nhttps://clinicaltrials.gov"
+    "text": "Topics (ongoing)\n\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design \n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison \n\n\n\n\nSample size (part II)\n\n\nRegression \n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design. \n\n\n\n\n\n\nNo matching items\n\n\n\nCHECK\nhttps://stats.stackexchange.com/questions/48374/sample-size-calculation-for-mixed-models\nICH Guidelines (EMA)\nhttps://www.ema.europa.eu/en/ich-e10-choice-control-group-clinical-trials-scientific-guideline#current-effective-version-section\nhttps://www.ema.europa.eu/en/documents/scientific-guideline/ich-e-10-choice-control-group-clinical-trials-step-5_en.pdf\nhttps://clinicaltrials.gov"
   },
   {
     "objectID": "study_design/understand_data.html",
@@ -88,7 +88,7 @@
     "href": "inference/index.html",
     "title": "Inference from RCT and RWD",
     "section": "",
-    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE\n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting \n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -656,5 +656,467 @@
     "title": "My workflow in working with functions in a package",
     "section": "Document",
     "text": "Document\nThe way to document generic functions is exactly the same as any other function.\n\n#' Print method\n#'\n#' @description\n#' Generic function to print a `SimulationResult` object\n#'\n#' @param x a \\code{SimulationResult} object to print\n#' @param ... further arguments to pass from other methods\n#'\n#' @return something printed\n#' @export\n#'\n#' @examples\n#' simd &lt;- fsim(n1 = 10, n2 = 10, mean1 = 0, mean2 = 5, sd1 = 1, sd2 = 1)\n#' print(simd)"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git_branching.html",
+    "href": "dev/oldnotes_programming/git/Git_branching.html",
+    "title": "Update from origin and update branches",
+    "section": "",
+    "text": "as the same user (main github account)\n\ncloned the repo Paper3, it created a new path /Documents/GitHub/Paper3/"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git_branching.html#branches",
+    "href": "dev/oldnotes_programming/git/Git_branching.html#branches",
+    "title": "Update from origin and update branches",
+    "section": "Branches",
+    "text": "Branches\nType 1 branch: local branches\nType 2 branch: remote-tracking branches\n\n\n\ngit_branching\n\n\n\nCreate and switch to branch\ngit checkout -b my_new_branch\n\n# what it does:: \ngit branch my_new_branch\ngit checkout my_new_branch"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git_branching.html#master-is-ahead-of-branch",
+    "href": "dev/oldnotes_programming/git/Git_branching.html#master-is-ahead-of-branch",
+    "title": "Update from origin and update branches",
+    "section": "master is ahead of branch:",
+    "text": "master is ahead of branch:\nUpdate the branch.\ngit checkout my_new_branch  # go to branch\ngit status # this branch is still up to date with origin/my_new_branch, even though it is behind master\nCan check the difference between these two. Note that the order matter: these two are not the same!\ngit diff my_new_branch master \ngit diff master my_new_branch\nmerge into master (even though branch is behind master!)\ngit merge master  # when on branch\nAt this stage, the branch will be ahead of the remote branch origin/my_new_branch. Now need to push the updates through, to make the remote branch updated too.\n\n\n\ngit_merge_eg2"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git_branching.html#branch-is-ahead-of-master",
+    "href": "dev/oldnotes_programming/git/Git_branching.html#branch-is-ahead-of-master",
+    "title": "Update from origin and update branches",
+    "section": "branch is ahead of master",
+    "text": "branch is ahead of master\n\nOption 1: merge branch into master locally, then push master\nNeed to check difference to make sure everything is correct.\ngit merge my_new_branch  # when on master. \n\n\n\ngit_merge_eg3\n\n\nNote: from network of branches, this merge will NOT appear as the merge is done locally.\n\n\nOption 2: push to remote branch, pull request, and merge into master\nOn branch, NOT master!\n\nIf push to branch (NOT master, WITHOUT merge) at this point, the changes will appear on github under this branch (remote), which requires a pull request.\nIf merge master (on branch), nothing will happen.\n\n\n\n\ngit_merge_eg"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git_branching.html#delete-branch-after-pull-requested-and-merging-from-remote",
+    "href": "dev/oldnotes_programming/git/Git_branching.html#delete-branch-after-pull-requested-and-merging-from-remote",
+    "title": "Update from origin and update branches",
+    "section": "delete branch (after pull requested and merging from remote)",
+    "text": "delete branch (after pull requested and merging from remote)\ngit fetch -p \n\n# check which branch is there\ngit branch\ngit branch --merged # which merged branch we can delete"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html",
+    "href": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html",
+    "title": "Template 1: minimal",
+    "section": "",
+    "text": "_quarto.yml"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#metadata",
+    "href": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#metadata",
+    "title": "Template 1: minimal",
+    "section": "",
+    "text": "_quarto.yml"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#index",
+    "href": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#index",
+    "title": "Template 1: minimal",
+    "section": "index",
+    "text": "index\nindex.qmd"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#about",
+    "href": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#about",
+    "title": "Template 1: minimal",
+    "section": "about",
+    "text": "about\nabout.qmd"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#style-definition",
+    "href": "dev/oldnotes_programming/rstudio_extension/quarto_site_component.html#style-definition",
+    "title": "Template 1: minimal",
+    "section": "style definition",
+    "text": "style definition\nstyle.css\n\n\nTo do\nimport one file from inst"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/unix/BashAndLinux.html",
+    "href": "dev/oldnotes_programming/unix/BashAndLinux.html",
+    "title": "General",
+    "section": "",
+    "text": "it is a standard subdirectory of the root directory / in unix-like OS that contains tthe executables. It contains the most basic programs (ls, rm, …) . Name means binaries, compiled programs. (most important one)\nwhich programName will give where the program is (path). For example, which R will give /usr/local/bin/R and a few other useful programs are under here (psql, brew etc).\n/usr stands for Unix System Resources\n`` is called ‘backticks’.\n\n\n\n\n\n\nvariable\npurpose\nValue\n\n\n\n\nHOME\nhome direcotry\n/Users/andrea\n\n\nPWD\npresent working directory\npwd\n\n\nSHELL\nwhich shell is used\n/bin/bash\n\n\nUSER\nuser’s ID\nandrea\n\n\n\nset | grep HISTFILESIZE # history file size \nsetting\n\n\necho text  # print text\necho USER  # print USER, it is a variable name\necho $USER # print value of the variable, which is andrea \necho $OSTYPE # darwin18, in other places might be linux-gnu\n\n\n\n\nlocal, user defined\nselfdefinedvar=seasonal/winter.csv  # without space! \necho $selfdefinedvar\nhead -n 1 $selfdefinedvar     # note $ is necessary\n\n\n\nlocale  # check local variables \nnano ~/.profile  # write what is necessary \n. ~/.profile  # execute\njust use language “en_US.UTF-8”\nLC_ALL=\"en_US.UTF-8\"\n\n\n\nChiZhangWork:~ andrea$ pwd\n/Users/andrea\n\n\n\nman head   # manual for head\n\n\n\nhead summer.csv  # reports error, wrong directory\ncd seasonal/\n\n!head   # useful! automatically runs \nhistory  # displays history \n!3      # if that is the 3rd command \n\n\n\nread, write, execute.\nls -l [path]\n-rwxr----x    \n\nfirst character is file type: - means normal file, d means directory\nnext 3 characters are permissions for owner. if -, absence of permission.\nnext 3 characters are permissions for the group. Read, write and execute. In this example, no permission apart from read.\nlast 3 are permissions for others.\n\nchmod [permission][path]\n# example \nchmod g+x frog.png\n\nwho change? [ugoa]: user (owner), group, others, all\ngranting or revoking the permission? + or -\nwhich permission are we setting? r, w, x.\n\nPermission 755 is -rwxr-xr-x, which means standard file -, owner has all permission rwx, group and others have the same permission r-x.\nchmod 755 frog.png"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/unix/BashAndLinux.html#view-content",
+    "href": "dev/oldnotes_programming/unix/BashAndLinux.html#view-content",
+    "title": "General",
+    "section": "View content",
+    "text": "View content\n\nselect rows\ncat  # concatenate\nless bashLearning/Bash.md blogdown.md  # view 2, use :n and :p to shift file \nmore \nhead # 10 rows \nhead -n 3 file.txt\ntail \n\n\nList all\nls -R  # R for recursive \nls -F  # F will give a * after all the runable program (i.e. C++)\n\n\nselect columns\n-f for fields to specify columns\n-d for delimiter for separator\ncut -f 2-5, 8, -d , values.csv    # select col 2 to 5 and 8, using comma as separator. \n\n\nselect with search\nselect lines according to what file contains\ngrep keyword file.txt     # returns lines that match keyword \n\n-c # count of matching lines \n-n # line number\n-v # those don't contain\n-h # suppress the file names (default when there's only 1 file)\ngrep -c incisor seasonal/autumn.csv seasonal/winter.csv # count occurence in 2 files \n\n\ncount\nwc -l # line count\nwc -c # characters,bytes\nwc -w # word count\n\n\nsort\nsort -n  # numerically\nsort -r # reverse \nsort -b # ignore leading blanks \nsort -f # fold case\nOften used with unique,\ncut -d , -f 2 seasonal/winter.csv | grep -v Tooth | sort |uniq -c  # give unique and count\n\n\nredirect output\nhead -n 5 seasonal/summer.csv &gt; top.csv # saved to top.csv\nNote: never in the middle of a pipe!\n\n\npipe\nhead -n 5 seasonal/summer.csv | tail -n 3\n\n\nWild cards\n*.csv\n?017.txt     # single character \n201[78].txt. # either 2017 or 2018. ONLY ONE CHARACTER\n{*.txt, *.csv}  # anything inside \n\n\nloop\nfor … variable … in .. list .. ; do .. body.. ; done\nITskills andrea$ for filename in *.md; do echo $filename; done  # this gives the names of md files in ITskills\nIt is convenient to name a bunch of files with one shell variable, then refer to it later on.\nfiles=seasonal/*.csv\nfor f in $files; do echo $f; done    # the $ in the first part is important"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/unix/BashAndLinux.html#edit-files",
+    "href": "dev/oldnotes_programming/unix/BashAndLinux.html#edit-files",
+    "title": "General",
+    "section": "Edit files",
+    "text": "Edit files\ncreate a blank file: touch fileName.\nnano file.txt\nCtrl + K: delete\nCtrl + U: un-delete\nCtrl + O: save file (output)\nCtrl + X: exit editor"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-debugging.html",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-debugging.html",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "The chapter of debugging\n\ntraceback()"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt3-oop.html",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt3-oop.html",
+    "title": "OOP in R",
+    "section": "",
+    "text": "Chapter 3: object oriented programming with R"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt3-oop.html#base-types",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt3-oop.html#base-types",
+    "title": "OOP in R",
+    "section": "Base types",
+    "text": "Base types\nEverything in R is an object, but not object-oriented.\nobject (in R)\n|\n|_base objects\n|_OO objects\nEvery object has a base type.\ntypeof(1:10)  # integer\ntypeof(mtcars)  # list\n\n# object type\notype(1:10)  # base\notype(mtcars)  # s3\n\nvectors\n\nNULL\nlogical, integer, double, character, complex, raw\nlist\n\nFunctions\n\nclosure (regular R functions)\nspecial (internal functions, such as [)\nbuiltin (primitive functions, such as sum)\n\nlanguage components\n\nsymbol, language, pairlist"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/r_regular_expression.html",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/r_regular_expression.html",
+    "title": "Regular expressions",
+    "section": "",
+    "text": "Regular expressions\ncombination of literals (i.e. words) and metacharacters (i.e. grammar)\nmatching literals (exact words) are not enough, we need a way to express\n\nwhitespace\nsets of literals\nBeginning and end of a line\nalternatives (‘war’ or ‘peace’)\n…\n\nuse meta characters!\n\n^: start of a line\n^i think matches\ni think we are ..\ni think this …\n\n\n$: end of a line\nmorning$ matches\nwell they had something this morning\ngood morning\n\n\n[] character classes\n[Bb][Uu][Ss][Hh] matches\nBush\nbush\n^[Ii] am matches I am, i am\n^[0-9][a-zA-Z] matches 7th …, 2nd…, 3am…, …. (line starts with one number and one letter)\n\n\n^ inside []: Not in the class\n[^?.]$ matches characters/sentences that do NOT end with ? or .\ni like basketballs\n6 and 9\nanyway!\n\n\n.: any character\n9.11 matches\n9-11\n9.11\n169.114\n9:11:46AM\n… 8199119725 …\n\n\n\\.: period\n(. in this case is not a meta character, but a literal character)\n\n\n?: optional (outside [])\n[Gg]eorge( [Ww]\\.)? [Bb]ush\ngeorge bush\nGeorge W. Bush\ntwo george bushes\n\n\n|: or\nflood|fire matches firewire …, global flood makes sense,…, floods, horricanes\n^[Gg]ood|[Bb]ad means good/Good needs to be at the beginning, or Bad/bad anywhere\n^([Gg]ood|[Bb]ad) means good/Good and Bad/bad need to be at the beginning\n\n\n*: any number, including none\n(.*) matches\nchat? (24, m, germany)\n()\n\n\n+: at least one of the item\n[0-9]+ (.*)[0-9]+\nmeans a number can be repeated many times\n\n\n{}: inerval\n[Bb]ush( +[^ ]+ +){1, 5} debate\nat least one space, followed by NOT space, followed by a space === a word, repeated between 1 and 5 times\nBush has historically won all major debates he’s done"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt1-basics.html",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt1-basics.html",
+    "title": "Names and values",
+    "section": "",
+    "text": "Notes from book Advanced R (part 1, foundations)"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt1-basics.html#handlers",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt1-basics.html#handlers",
+    "title": "Names and values",
+    "section": "handlers",
+    "text": "handlers\ntryCatch() for error\nfail_with &lt;- function(expr, value = NULL){\n  tryCatch(\n    error = function(cnd) value,  # this function here is necessary\n    expr\n  )\n}\nfail_with(log(10))   # execute normally\nfail_with(log('x'))  # here value is prompted\nfail_with(log('x'), value = NA)   # returns NA\nDifference between try() and tryCatch(): if the former meets an error, it passes onto the next code chunk to execute. The later will modify the behaviour of the exit, for example, give a specific value if an error occurs.\nwithCallingHandlers() for warning and messages"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/survival/notes_survival_intro.html",
+    "href": "dev/oldnotes_stat/survival/notes_survival_intro.html",
+    "title": "KM plot",
+    "section": "",
+    "text": "probability of surviving\nsurvival function"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/survival/notes_survival_intro.html#life-tables",
+    "href": "dev/oldnotes_stat/survival/notes_survival_intro.html#life-tables",
+    "title": "KM plot",
+    "section": "life tables",
+    "text": "life tables\nmeasure p of death at a given age, and life expectancy at varying ages\ncohort/generational life tables, current/period life tables"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/inference/notes_sample_size.html",
+    "href": "dev/oldnotes_stat/inference/notes_sample_size.html",
+    "title": "Sample size calculation",
+    "section": "",
+    "text": "Two types of statistical inference: confidence intervals, hypothesis testing\nTwo approaches\nSource of error\ntruth + systematic error + random error\nsystematic error (bias): faulty design, lack of randomization, blinding\nrandom error can be reduced by increasing the sample size\nThe effect of random error decreases by the square roo of n as samples increases\nSE of the mean: sigma/sqrt(n)\nSE of a proportion: sqrt(p(1-p)/n)"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/inference/notes_sample_size.html#precision-based",
+    "href": "dev/oldnotes_stat/inference/notes_sample_size.html#precision-based",
+    "title": "Sample size calculation",
+    "section": "Precision based",
+    "text": "Precision based\n\nmean\nfor given precision a, standard deviation sigma, number of observation required:\nn = 4 sigma^2 / a^2\n\n\nproportion\nn = 4 p(1-p)/a^2"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/inference/notes_sample_size.html#hypothesis-testing",
+    "href": "dev/oldnotes_stat/inference/notes_sample_size.html#hypothesis-testing",
+    "title": "Sample size calculation",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\nPower = P(reject h0 | ha true), i.e. identifying a difference between groups if there is a difference\n80%"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/inference/notes_sample_size.html#effect-size",
+    "href": "dev/oldnotes_stat/inference/notes_sample_size.html#effect-size",
+    "title": "Sample size calculation",
+    "section": "Effect size",
+    "text": "Effect size\nformula depends on type of analysis\n\ntwo sample t-test\npaired -test\ncompare proportions\n\nEffect size\n\nclinically relevant difference, \\(\\Delta\\)\nstadard deviation in both groups, sigma\neffect size: \\(\\Delta\\)/sigma\n\nExample\n\ncompare two groups, difference set to be \\(\\Delta = 0.5\\), standard deviation \\(\\sigma = 1\\)\nEffect size: \\(0.5/1 = 0.5\\)\nSet significance level alpha = 0.05, power 1-beta = 0.8\n(by nomogram) total sample size is 120, i.e. each group needs 60"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/inference/notes_sample_size.html#formula-two-means-indep-samples",
+    "href": "dev/oldnotes_stat/inference/notes_sample_size.html#formula-two-means-indep-samples",
+    "title": "Sample size calculation",
+    "section": "Formula (two means, indep samples)",
+    "text": "Formula (two means, indep samples)\nn = 2 sigma2/delta2 k\n\nk = (u+v)^2\nu: one sided percentage point of normal distribution corresponding to beta\n\nu = 0.84 for 80% power\n\nv: two-sided percentage point of normal distribution corresponding to alpha\n\nv = 1.96 for 5% significance level\n\n\n(above example)\n\nn = 2/0.5^2 *(1.96+0.84)^2 = 62.72"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/inference/notes_sample_size.html#formula-paired-data",
+    "href": "dev/oldnotes_stat/inference/notes_sample_size.html#formula-paired-data",
+    "title": "Sample size calculation",
+    "section": "Formula: paired data",
+    "text": "Formula: paired data\ncross-over study\neffect size: 2 delta/sigma d\n\nsigma d is the sd of difference between the two measurements"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/inference/notes_sample_size.html#proportions-in-two-groups",
+    "href": "dev/oldnotes_stat/inference/notes_sample_size.html#proportions-in-two-groups",
+    "title": "Sample size calculation",
+    "section": "Proportions in two groups",
+    "text": "Proportions in two groups\n\np1, p2\nrelevant difference: p1-p2\naverage proportion: pbar = (p1+p2)/2\neffect size: (p1-p2)/(sqrt(pbar * (1-pbar)))\n\nExample:\nproportions are 0.1, 0.2\naverage is 0.15\neffect size: (0.2-0.1)/sqrt(0.15*(1-0.15)) = 0.28"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/diagnostics.html",
+    "href": "dev/oldnotes_stat/lm_glm/diagnostics.html",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "(most of them will be negative)\nif increase, indicates better fit"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/diagnostics.html#log-likelihood",
+    "href": "dev/oldnotes_stat/lm_glm/diagnostics.html#log-likelihood",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "(most of them will be negative)\nif increase, indicates better fit"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/count_4_bayes_glm_count.html",
+    "href": "dev/oldnotes_stat/lm_glm/count_4_bayes_glm_count.html",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "count data modeling in the bayesian framework\n\nData: yi | beta ~ pois(lambda_i), log(lambda_i) = bx_i\nPriors: normal priors\n\nBeta ~ N()\n\n\nsetting prior for beta (normal)\n\nmean: assume typical average response is around 7\n\ncan set beta_0 ~ N(2, sigma) (on log scale)\nLog(7) = 1.95\n\nsd\n\nlogged number is around 2 (between 1-3, for instance)\nactual number is between 3 to 20 (exp(1), exp(3))"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/count_2_overdisp.html",
+    "href": "dev/oldnotes_stat/lm_glm/count_2_overdisp.html",
+    "title": "Quasi poisson",
+    "section": "",
+    "text": "Over dispersion\n\nThese are still in the GLM framework. They all have the same log-linear mean function \\(log(\\mu) = X\\beta\\), but the remaining assumptions are different.\nsandwich covariates\nAfter using this, the SE is larger -&gt; more conservative for significant covariates -&gt; fewer significant\n\nQuasi poisson\n\\(\\phi\\) estimated from data, not fixed at 1\n\\(\\beta\\) estimates are the same, but inference is different\nqp is not a full maximum likelihood model, but a quasi-ml model\nless assumption:\n\nlog-linear relationship between e(y|x) and xb\nlinear relationship between variance and expectation\n\nuse robust sandwich standard errors\n\n\nestimated differently, can not use ML. Some tests can not be used\n(doesn’t seem to have a bayesian version)\n\n\nNB regression\n\\(\\phi = 1\\), \\(V(\\mu) = \\mu + \\mu^2/\\theta\\)\nGeometric model (theta = 1)\npositive reciprocal dispersion parameter \\(\\phi\\) included, such that\n\\(sd(y|x) = \\sqrt{E(y|x) + E(y|x)^2 /\\phi}\\)\n\nSmaller \\(\\phi\\), more dispersion (i.e. larger sd(y|x))\n\\(\\phi\\) -&gt; inf, approach poisson (equal mean and var)"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/count_3_zeroinf.html",
+    "href": "dev/oldnotes_stat/lm_glm/count_3_zeroinf.html",
+    "title": "Excess 0",
+    "section": "",
+    "text": "Assumes 0 comes from 2 different process. These are not GLMs. 0’s likelihood is increased\nKey difference between the 2 types of subject:\n\nhurdle: 1. never experience outcome; 2. experience at least once\nzero inflated: 1. never experience outcome; 2. experience, but not always. (Can be zero)\n\n\n\nbinary process.\n\noff with probably \\(\\pi\\), only zero counts possible\non with probablity \\(1-\\pi\\).\n\n\n\n\n\n\nCount need to be at least 1.\nUse zero-truncated PD\n\n\n\nConceptual example: first decide whether buy things: yes or no. If yes, can end up buying (positive counts), can also end up buying nothing (out of stock)\nUse an usual discrete PD for counts, such as Poisson or NB"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/count_3_zeroinf.html#zero-part-same-for-both",
+    "href": "dev/oldnotes_stat/lm_glm/count_3_zeroinf.html#zero-part-same-for-both",
+    "title": "Excess 0",
+    "section": "",
+    "text": "binary process.\n\noff with probably \\(\\pi\\), only zero counts possible\non with probablity \\(1-\\pi\\)."
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/count_3_zeroinf.html#counting-part",
+    "href": "dev/oldnotes_stat/lm_glm/count_3_zeroinf.html#counting-part",
+    "title": "Excess 0",
+    "section": "",
+    "text": "Count need to be at least 1.\nUse zero-truncated PD\n\n\n\nConceptual example: first decide whether buy things: yes or no. If yes, can end up buying (positive counts), can also end up buying nothing (out of stock)\nUse an usual discrete PD for counts, such as Poisson or NB"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/multivariate/Correspondence_analysis.html",
+    "href": "dev/oldnotes_stat/multivariate/Correspondence_analysis.html",
+    "title": "Simple CA",
+    "section": "",
+    "text": "Used for categorical (mostly survey) data, to identify\n\na group of individuals with similar profiles in their answers\nassociation between variable categories\n\n\ncontingency table (counts)\nx_ij: number of individuals with category i of V1, and category j of V2.\nindependence events: P(A and B) = P(A) * P(B)\nindependence qualitative variables: \\(p_{ij} = p_{.i} * p_{.j}\\)\n\njoint probability = product of marginal probabilities\n\nequivalently, \\(\\frac{p_{ij}}{p_{.i}} = p_{.j}\\)\n\nconditional probability = marginal probability\n\nCA works with table of probabilities, but it is not a test. aims to visualise links between variables\nhttp://www.sthda.com/english/articles/22-principal-component-methods/67-correspondence-analysis-course-using-factominer/\nhttps://www.youtube.com/watch?v=Z5Lo1hvZ9fA\nhttp://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/114-mca-multiple-correspondence-analysis-in-r-essentials/\n\n\nSimple CA\n\nstep 0: create contingency table\nThis requires summarising the raw data into counts.\n\n\nstep 1: chi-sq test for independence\nexamine association between row and column\n# Chi-square statistics\nchi2 &lt;- 1944.456\n# Degree of freedom\ndf &lt;- (nrow(housetasks) - 1) * (ncol(housetasks) - 1)\n# P-value\npval &lt;- pchisq(chi2, df = df, lower.tail = FALSE)\npval\n\n\nstep 2: CA, check eigenvalue\nLargest eigenvalue corresponds to the axis that explains the most variance\n\n\n\nMultivariate CA"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/multivariate/Notes_factor_analysis.html",
+    "href": "dev/oldnotes_stat/multivariate/Notes_factor_analysis.html",
+    "title": "Exploratory factor analysis",
+    "section": "",
+    "text": "Exploratory factor analysis\ngoal: identify underrlying relationships between variables"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/multivariate/Notes_multivariate_analysis.html",
+    "href": "dev/oldnotes_stat/multivariate/Notes_multivariate_analysis.html",
+    "title": "covariance, correlation, distance",
+    "section": "",
+    "text": "covariance, correlation, distance\ncovariance: linear dependence of two rv\n\n\nPCA\nexploratory, not inferential\nintuition\n\nPC1: find a straightline to fit your data (maximise the variance in this direction; minimise the error with this line)\nPC2: find a straightline to fit the error from above\n\n\ntechnical details\ndescribe correlated X variables by uncorrelated Z variables, which are linear combinations of the Xs\nPC1 = \\(z_1 = a_{11}x_1 + a_{12} x2 + ... + a_{1q}x_q\\)\nSample variance is greatest among all such linear combinations, under the constraint that \\(a_1^Ta_1 = 1\\)\nSample variance of \\(z_1 = a_1^TSa_1\\) (a1 is the vector)\n\\(a_1\\) that satisfies the solution is the either vector of the sample covariance matrix S correponding to the largest eigenvalue.\n\\(\\sum_{i= 1}^{q} \\lambda_i = s_1^2 + s_2^2 + ... + s_q^2\\), equivalently \\(\\sum_{i= 1}^{q} \\lambda_i = trace(S)\\)\n\n\nExtracted on sample correlation matrix\nPCA is not scale-invariant. to be safe, use correlation matrix"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/book_ros_chpt9_pred_bayesinf.html",
+    "href": "dev/oldnotes_stat/lm_glm/book_ros_chpt9_pred_bayesinf.html",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "Need to understand whether it is necessary to use bayesian prediction.\n\nrstanarm (different from arm)\nsection 1.6, 8.4, 9.5\nrstanarm::stan_glm: bayesian glm with optionnal prior distribution for the coefficients, intercept and auxilliary parameters\nFor a regression, the results are\n\nintercept\nslope\nresidual standard deviation (reported as auxiliary parameters)\n\nmedian, mad_sd (median absolute deviation)\n\nprediction (bayesian)\npoint prediction: \\(\\hat{a} + \\hat{b}x^{new}\\)\n\none point, no uncertainty\ne.g. point prediction is the best estimate of the average blood pressure in the population, conditional on dose \\(x^{new}\\)\n\nLinear predictor with uncertainty: \\(a + bx^{new}\\)\n\nContains inferential uncertainty in a, b\ndistribution of uncertainty of expected or average \\(y\\) for a new observation\nn -&gt; inf, uncertainty -&gt; 0 as a and b are more and more precise\n\npredictive distribution for a new observation: \\(a + bx^{new} + error\\)\n\nuncertainty about new obervation\nblood pressure of a single person drawn at random from this population\nn-&gt;inf, uncertainty -&gt; residual standard deviation sigma\n\n\n\npriors\nweekly informative prior (default)\n\nlinear model:\n\nbk ~N(0, 2.5*sd(y)/sd(xk))\na ~ N(mu_y, 2.5*sd(y))\nsigma ~ exp(1/sd(y))\n\n\ncheck prior: prior_summary()\n\n\nimplementation of arm::sim()\ngetMethod(arm::sim, 'lm') can provide how beta and sigma are simulated\nhttps://stats.stackexchange.com/questions/192996/why-does-the-sim-function-in-gelmans-arm-package-simulate-sigma-from-inverse-ch"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/count_1_poireg.html",
+    "href": "dev/oldnotes_stat/lm_glm/count_1_poireg.html",
+    "title": "Poisson regression",
+    "section": "",
+    "text": "Poisson regression\na very good resource: https://data.princeton.edu/wws509/notes/c4.pdf\nWhen count is large, can also use linear. (as Poisson distribution can be approximated for large \\(\\lambda\\), 20)\n\nhowever the concern is the variance, it is not constant: larger count has larger variance due to \\(\\mu\\)\n\n\nCAUTION: for poisson example, it’s NOT \\(log(y) = xb + e\\), it is \\(log(\\mu) = xb\\). Log in the mean!\n\nLog-linear regression (an inappropriate alternative)\n\n\\(log (y) = x'\\beta + u, u \\sim N(0, \\sigma^2)\\)\nmean function is scaled by \\(exp(0.5*\\sigma^2)\\), the expectation of error term (log linear)\nignores the discrete nature of data (y=0, 1, 2…)\n0 count inadmissible: log(0) not defined\ninference problem: standard error\nbias introduced: parameters estimated away from 0.\n\n\n\nInterpretation: additive on the log scale\n\\(exp(\\beta_1 x_1 + \\beta_2 x_2) = exp(\\beta_1 x_1) * exp(\\beta_2 x_2)\\)\nInterpreted as (the natural logarithm of) ratios\n\nincidence rate ratio\nrelative risk\n\nOne increase in \\(x_i\\) increases the log mean by \\(\\beta\\) units, \\(log(\\mu_i) = x_i \\beta\\)\nOne increase in \\(x_i\\) increases the mean by \\(exp(\\beta)\\) times, \\(mu_i = exp(x_i \\beta)\\)\ndispersion parameter \\(\\phi = 1\\)\n\n\nDeviance\ndifference: model deviance, residual devviance + degree of freedom\n\n\nInference\nUnderestimates the variance in the data, hence need to use more robust measures, such as sandwich covariates\nAnalytical SE\n\n\n\nQuestions\nhow to judge whether the prediction is good, given that the results are counts? with Logistic reg there are classification metrics, with linear reg there are MSE, how about counts?"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/GLM.html",
+    "href": "dev/oldnotes_stat/lm_glm/GLM.html",
+    "title": "Formulation",
+    "section": "",
+    "text": "\\(E(Y|X) = \\mu = g^{-1} (X\\beta)\\)\n\n\\(E(Y|X)\\) is the expected value of Y conditional on X\n\\(g\\) is the link function, from exponential family, need to be invertible\nmean function is for the outcome. e.g. \\(\\mu = g^{-1} =exp(X\\beta)\\) for poisson regression.\n\n\\(Var(Y|X) = V(\\mu) = V(g^{-1}(X\\beta))\\)\nCAUTION: for poisson example, it’s NOT \\(log(y) = xb + e\\), it is \\(log(\\mu) = xb\\)\nwhere is the error term\n\n\n\\(f(x|\\theta) = h(x)*exp[\\eta(\\theta)T(x) - A(\\theta)]\\)\n\nT(x) is the sufficient statistic\n\\(\\eta(x)\\) is the natural parameter\n\\(h(x)\\) is the base\n\\(A(\\theta)\\) is the cumulant generating function\n\nEF is used for lower variance of unbiased estimator (??)\nA sufficient statistic for the parameter exists\n\\(A(\\eta(\\theta))\\) can be used to derive moments (mean, variance) by taking first and second derivative\n\n\n\n\nLogit model (logistic regression):\\(\\eta(\\theta) = log(\\frac{p}{1-p})\\), it is the natural parameter of bernoulli distribution\nPoisson distribution, \\(\\eta(\\theta) = log(\\lambda)\\)\n\nNote that other distributions can have natural parameters, but do not correspond directly to GLM. such as normal.\n\n\n\nLogistic reg has logit link \\(log(\\frac{p}{1-p})\\). Only predicts 1 and 0\nBinomial regression has logit link \\(log(\\frac{p}{n-p})\\), predicts number of success in n trials, 0, 1, .. N.\n\n\n\nPredict the values of the conditional mean \\(E(Y|X) = g^{-1}(X\\beta)\\) through the linear predictor.\n\nfitted(model) is equivalent to predict(model, type = 'response'), returns \\(g^{-1}(X\\hat\\beta)\\) , the conditional response\npredict(model, type = 'link') returns \\(X\\hat{\\beta}\\)\n\nCI need to be extracted manually; or use the other function confint\n\n\n\n?? more predictors, larger variance, less power??\nThe response is heterskedastic, unlike linear case.\n\n\n\n\n\ndifference of log-likelihod between fitted model and saturated model. it is a generalisation of residual sum of squares RSS (i.e. sum of squared error SSE)\nResidual deviance: \\(D := -2[loglik(\\hat\\beta) - loglik_s]\\phi\\)\nNull deviance: \\(D_0 := -2[loglik(\\hat\\beta_0) - loglik_s]\\phi\\), the intercept model and saturated model. It iis a generalisation of total sum of squares, SST = sum(yi - mean(y)^2)\n\n\n\ndeviance\n\n\nThe deviance is approximately chi-square distributed with \\(n-p\\) degrees of freedom.\n\nNull deviance will be n-1, for the intercept"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/GLM.html#prediction",
+    "href": "dev/oldnotes_stat/lm_glm/GLM.html#prediction",
+    "title": "Formulation",
+    "section": "",
+    "text": "Predict the values of the conditional mean \\(E(Y|X) = g^{-1}(X\\beta)\\) through the linear predictor.\n\nfitted(model) is equivalent to predict(model, type = 'response'), returns \\(g^{-1}(X\\hat\\beta)\\) , the conditional response\npredict(model, type = 'link') returns \\(X\\hat{\\beta}\\)\n\nCI need to be extracted manually; or use the other function confint"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/GLM.html#inference",
+    "href": "dev/oldnotes_stat/lm_glm/GLM.html#inference",
+    "title": "Formulation",
+    "section": "",
+    "text": "?? more predictors, larger variance, less power??\nThe response is heterskedastic, unlike linear case."
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/GLM.html#diagnostics-and-selection",
+    "href": "dev/oldnotes_stat/lm_glm/GLM.html#diagnostics-and-selection",
+    "title": "Formulation",
+    "section": "",
+    "text": "difference of log-likelihod between fitted model and saturated model. it is a generalisation of residual sum of squares RSS (i.e. sum of squared error SSE)\nResidual deviance: \\(D := -2[loglik(\\hat\\beta) - loglik_s]\\phi\\)\nNull deviance: \\(D_0 := -2[loglik(\\hat\\beta_0) - loglik_s]\\phi\\), the intercept model and saturated model. It iis a generalisation of total sum of squares, SST = sum(yi - mean(y)^2)\n\n\n\ndeviance\n\n\nThe deviance is approximately chi-square distributed with \\(n-p\\) degrees of freedom.\n\nNull deviance will be n-1, for the intercept"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/lm_glm/book_ros_chpt15_glm.html",
+    "href": "dev/oldnotes_stat/lm_glm/book_ros_chpt15_glm.html",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "glm in the bayesian framework\n\n\nglm components\n\nvector of outcome data y\nmatrix of predictors X, vector of coefficients \\(\\beta\\) forming a linear predictor vector \\(X\\beta\\)\nlink function \\(g\\), giving transformed data \\(\\hat{y} = g^{-1}(X\\beta)\\)\ndata distribution \\(y|\\hat{y}\\)\nother parameters\n\n\n\nexamples\n\nLinear regression, \\(g(u) = u\\), data distribution is normal with sd \\(\\sigma\\)\nlogistic regression, \\(g^{-1}(u) = logit^{-1}(u)\\)\n\nLogit (log odds) link, \\(g(p) = ln(p/1-p)\\)\nLogit(y|x) = xb\ndata distribution defined by probability, \\(p(y=1) = \\hat{y}\\)\n\nPoisson, nb\n\nlog link, log(y|x) = xb\nLog(lambda_i) = b0 + b1x1i + b2x2i + …\n\\(y_i\\) ~ \\(poisson(exp^{x_i\\beta})\\)\nequal mean and variance conditional on x: larger mean, larger variance (more sparse)\n\nlogistic-binomial (also a count)\n\ny is number of successes in n_i trials\ndependent on a limit (total trials)\nuse poisson/nb when the limit is much larger (e.g. population)"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/mixed_effect/Notes_mixed_models.html",
+    "href": "dev/oldnotes_stat/mixed_effect/Notes_mixed_models.html",
+    "title": "Mixed effects models",
+    "section": "",
+    "text": "Mixed effects models\nhow is it different from multilevel modeling\nhow is it different from longitudinal analysis\nhierarchical: e.g. repeated observations nested within students, students nested within schools, schools nested in districts\n\n\nrepeated measurement (e.g. longitudinal)\ngpa example\nModel 1: linear regression\n\ngpa = \\(\\beta_0\\) + \\(\\beta\\) * occasion + \\(\\epsilon\\)\n\nModel 2: random intercept\n\nOne intercept for one student (student effect)\ngpa = \\(\\beta_0\\) + effect_i + \\(\\beta\\) * occasion + \\(\\epsilon\\)\ngpa = \\(\\beta_{0,i}\\) + \\(\\beta\\) * occasion + \\(\\epsilon\\) , where \\(\\beta_{0,i} ~ N(\\beta_0, \\tau)\\)\nrandom intercept is distributed around overall intercept\n\n?? variance output for the randomeffect \n?? correlation with fixed effect? \n\n\ncross effect and nested effect\nnot sure how the former is different"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/database/Database-psql101.html",
+    "href": "dev/oldnotes_programming/database/Database-psql101.html",
+    "title": "Database",
+    "section": "",
+    "text": "Relational database management systems. Relational model shapes whatever information to be stored by defining them as related entities with attributes across tables (i.e. schemas)\n\n\ndisadvantages:\nThe way certain functionality gets handled with MySQL (e.g. references, transactions, auditing etc.) renders it a little-less reliable compared to some other RDBMSs.\nSince MySQL does not [try to] implement the full SQL standard, this tool is not completely SQL compliant. If you might need integration with such RDBMSs, switching from MySQL will not be easy.\n\n\n\nCompared to other RDBMSs, PostgreSQL differs itself with its support for highly required and integral object-oriented and/or relational database functionality, such as the complete support for reliable transactions, i.e. Atomicity, Consistency, Isolation, Durability (ACID)."
+  },
+  {
+    "objectID": "dev/oldnotes_programming/database/Database-psql101.html#installation",
+    "href": "dev/oldnotes_programming/database/Database-psql101.html#installation",
+    "title": "Database",
+    "section": "installation",
+    "text": "installation\nhttps://www.postgresql.org/download/macosx/\n# install homebrew\n\nbrew install postgresql\nbrew services stop postgresql  \nbrew services start postgresql  # necessary\ncheck version\npostgres -V  \n\ninstall a graphical user interface\nI choose postico"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/database/Database-psql101.html#getting-started",
+    "href": "dev/oldnotes_programming/database/Database-psql101.html#getting-started",
+    "title": "Database",
+    "section": "Getting started",
+    "text": "Getting started\nandrea$ psql postgres\n\n1. Create user\ncreate with psql (CREATE ROLE) and give it permission ALTER ROLE.\npostgres=# CREATE ROLE chizhang WITH LOGIN PASSWORD 'mypassword'; (andrea is my password)\npostgres=# ALTER ROLE chizhang CREATEDB;\nboth show some information of the database\npostgres=# \\du\npostgres=&gt; \\list\nto quit\npostgres=# \\q \n\n\n2. connect to a default database\nchange user, then create database. The prompt &gt; indicate now it’s not a super user account (andrea).\nandrea$ psql postgres -U chizhang\nCREATE DATABASE mimicdata;\npostgres=&gt; GRANT ALL PRIVILEGES ON DATABASE mimicdata TO chizhang;\n\n\n-------- updated 12.2\n\nCREATE DATABASE demo;\npostgres=&gt; GRANT ALL PRIVILEGES ON DATABASE demo TO chizhang;\npostgres=&gt; \\connect demo \ndemo=&gt; \\dt \n\n-------- updated 19.1.10\n\n# in postico, let user chizhang connect to database demo. \n\\dt lists the tables in currently connected db\n\n\n3. create and drop table\n\nwith GUI postico - create table\nIn postico,\nCREATE TABLE fav_sports3 (\n\n   name char(20),\n   age integer,\n   sport char(20),\n   gender char(20)\n);\nColumns must be consistent with the csv file.\n\n\nOther operations related to table\nto drop table,\nDROP TABLE tablename\nchange table name,\nALTER TABLE table_name RENAME TO new_name;\n\n\n\n4. import csv (or gz)\n\nIssue with importing csv privilege\nIn postico, I need to be a superuser to COPY data from csv. The database demo is owned by user chizhang, which is not a superuser.\n\nSolution 1: Use command line\npostgres=# \\connect demo\ndemo=# \\copy fav_sports3 FROM '/Users/andrea/Documents/PhdProjects/Project-Paper2/Database/trialdata.csv' DELIMITER ',' CSV HEADER;\nNote the difference \\copy. But my code are all written using COPY as SQL. This method doesn’t work for a lot of files. At least I don’t know a fast way.\n\n\nSolution 2: change user privilege\npostgres=# ALTER USER chizhang WITH SUPERUSER;\n\\du\nNow user chizhang has the superuser privilege so can copy csv files using the ready SQL scripts.\nCOPY fav_sports3 FROM '/Users/andrea/Documents/PhdProjects/Project-Paper2/Database/trialdata.csv' DELIMITER ',' CSV HEADER;\nAfter finished, change back.\npostgres=# ALTER USER chizhang WITH NOSUPERUSER;\n\n\nSolution 3: import via postico\nBut need to create table first.\nthen in Postico, do the usual SQL stuff.\nSELECT * FROM fav_sports;\n\n\n\nimport from gz\nThis is an example on how to import from gzip.\n\\copy ADMISSIONS FROM PROGRAM 'gzip -dc ADMISSIONS.csv.gz' DELIMITER ',' CSV HEADER NULL ''\nCOPY FROM PROGRAM\n\ngzip\na lossless data compression, the result usually has suffix .gz. Usage: gzip [OPTION]... [FILE]...\n-d : decompress\n-c: standard output, keep original files unchanged\n\n\n\n\n5. Data type\nWhen creating a table, it is necessary to specify the data types.\nDROP TABLE IF EXISTS ADMISSIONS CASCADE;  -- and all other objects that depends on it\nCREATE TABLE ADMISSIONS\n(\n  ROW_ID INT NOT NULL,   -- not null constraint enforces a column must not accept NULL values\n  SUBJECT_ID INT NOT NULL,\n  HADM_ID INT NOT NULL,\n  ADMITTIME TIMESTAMP(0) NOT NULL,   -- 0 is precision\n  DISCHTIME TIMESTAMP(0) NOT NULL,\n  DEATHTIME TIMESTAMP(0),\n  ADMISSION_TYPE VARCHAR(50) NOT NULL,    -- character varying = variable-length with limit, stores up to n characters\n  ADMISSION_LOCATION VARCHAR(50) NOT NULL,\n  DISCHARGE_LOCATION VARCHAR(50) NOT NULL,\n  INSURANCE VARCHAR(255) NOT NULL,\n  LANGUAGE VARCHAR(10),\n  RELIGION VARCHAR(50),\n  MARITAL_STATUS VARCHAR(50),\n  ETHNICITY VARCHAR(200) NOT NULL,\n  EDREGTIME TIMESTAMP(0),\n  EDOUTTIME TIMESTAMP(0),\n  DIAGNOSIS VARCHAR(255),\n  HOSPITAL_EXPIRE_FLAG SMALLINT,  -- numeric type, +-32768\n  HAS_CHARTEVENTS_DATA SMALLINT NOT NULL,\n  CONSTRAINT adm_rowid_pk PRIMARY KEY (ROW_ID),  -- == unique not null\n  CONSTRAINT adm_hadm_unique UNIQUE (HADM_ID)  -- unique constraint for all rows\n) ;\nDate and time needs special attention.\nSET datestyle = dmy;\nCOPY ADMISSIONS FROM '/Users/andrea/Desktop/Database/DataDemo/ADMISSIONS.csv' DELIMITER ',' CSV HEADER NULL '';\n\nSELECT * FROM ADMISSIONS;\n‘du’"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-tidyeval.html",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-tidyeval.html",
+    "title": "Data Apothecary's Notes",
+    "section": "",
+    "text": "Tidy evaluation, one of the metaprogramming techniques\n\nA special type of non-standard evaluation (metaprogramming)\nThe dataframe itself becomes a temporary workspace (meaning that can access column using col instead of df$col)\n\ndata masking\nwrite my_variable not df$my_variable\n\n\ntidy selection\nchoose variables easily based on position, name, type, such as start_with('x')\n\n\nvectorisation\na function is vectorised when it returns a vector as long as the input, and when applying the function on a scalar is the same as doing it on the vector.\nfn(x[[i]]) == fn(x)[[i]]"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/R cpp notes.html",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/R cpp notes.html",
+    "title": "R cpp notes",
+    "section": "",
+    "text": "run an argument many times, then print out the summary\n\n\n\ncheck storage mode: storage.mode(x)\nconvert an integer to a double by adding .0 after the number. can also use casting to change data types:\nevalCpp('(double)(40+2)')\n\n\n\nneed to define the type of input and return object\ndouble functionName(double x, double y){\n    \n    double res = sqrt(x*x + y*y); // body of the function\n  return res;\n}\n\n\n\nRprintf() prints formatted output. inside the message, can only use double quotes\n\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\n//[[Rcpp::export]]\nint timesTwo(inx){\n  return 2*x ;\n}\nLoad into R\nlibrary(Rcpp)\nsourceCpp('code.cpp')\n\n# then call it like any other R function \ntimesTwo(21)\n\n\nif(condition){\n//\n}else{\n//\n}\n\n\n\nfor(init; condition; increment){\n    body\n}\ntypically (note i starts from 0)\nfor (init i = 0; i&lt;n; i++){\n\n}"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/R cpp notes.html#scripting",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/R cpp notes.html#scripting",
+    "title": "R cpp notes",
+    "section": "",
+    "text": "#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\n//[[Rcpp::export]]\nint timesTwo(inx){\n  return 2*x ;\n}\nLoad into R\nlibrary(Rcpp)\nsourceCpp('code.cpp')\n\n# then call it like any other R function \ntimesTwo(21)\n\n\nif(condition){\n//\n}else{\n//\n}\n\n\n\nfor(init; condition; increment){\n    body\n}\ntypically (note i starts from 0)\nfor (init i = 0; i&lt;n; i++){\n\n}"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt2-fp.html",
+    "href": "dev/oldnotes_programming/r_advanced_r_book/advanced-R-chpt2-fp.html",
+    "title": "Functional",
+    "section": "",
+    "text": "Functional programming in R\n\nFunctional programming is complementatry to OOP\n\nfunctional language have first-class functions. functions behave like other data structure; assign to variables, store in lists, pass as argument to other functions, create inside functions, return as the result of a function.\nrequires pure functions: same input, same output. This means functions such as runif(), Sys.time() are not pure functions.\n\n\nFunctional\nA function that takes a function as an input, and returns a vector as output.\n\nMap\nI already know how to use it\n\n\nReduce, accumulate\nreduce is like f(f(f(x))).\nlst &lt;- map(1:4, ~ sample(1:10, 15, replace = T))\nlst\n# find the values that occur in every element \nz &lt;- lst[[1]]\nz &lt;- intersect(z, lst[[2]])\nz &lt;- intersect(z, lst[[3]])\nz &lt;- intersect(z, lst[[4]])\nz\n# can use: \nreduce(lst, intersect)\n\n# accumulate shows all the intermediate results \naccumulate(lst, intersect)\n\n\n\nFunction operator\nA function that takes a function as input, and returns a function as output.\nCan be thought of as a wrapper. I think it can provide alternative ways to deal with error, instead of tryCatch().\nUseful way to debug when using map suite: purrr::safely(function) and purrr::transpose(list)\nx &lt;- list(c(0.1, 0.1, 0.2),\n          c(0.3, 0.4, 0.5), \n          c(1, 0.2, 0.2), \n          'error')\n\n# use a FUNCTIONAL\nmap_dbl(x, sum)  # error will prevent any results from printing \n\n# use safely(), a FUNCTION OPERATOR with a functional \n# map(x, safe_sum). alternatively, \nout2 &lt;- map(x, safely(sum))\nmap(out2, pluck(1))   # results\nmap(out2, pluck(2))   # errors\n\n\n# inconvenient way of printing: use purrr::transpose \n# equivalent to transpose(out2)\nout3 &lt;- transpose(map(x, safely(sum)))\nout3$result\nout3$error\nWith purrr::possibly(function), it replaces error into a value\nl &lt;- list('a', 10, 100)\nmap_dbl(l, possibly(log, NA))  # need 'otherwise' argument"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/unix/Bash scripting.html",
+    "href": "dev/oldnotes_programming/unix/Bash scripting.html",
+    "title": "Bash scripting",
+    "section": "",
+    "text": "the content of headers.sh is head -n 1 seasonal/*.csv\nRun by\nbash headers.sh\nwith pipe: cut -d , -f 1 seasonal/*.csv | grep -v Date | sort | uniq is the all-dates.sh\nbash all-dates.sh &gt; dates.out   # save in the output \n\n\n$@ : all the command-line parameters given to the script\neg. sort $@ | uniq is the unique-lines.sh. then the following will process 2 files, replacing $@.\nbash unique-lines.sh seasonal/summer.csv seasonal/autumn.csv\n\n\n\n# Print the first and last data records of each file.\n# no semi colon\n\nfor filename in $@\ndo\n    head -n 2 $filename | tail -n 1\n    tail -n 1 $filename\ndone\n\n\n\nAn example script: script1.sh\n#!/bin/bash\n# a simple bash script \n\necho Hello World! \nLine 1: shebang\nfollowed by path to the interpreter to run. no space, always first line.\nLine 2: comment\nLine 3: command\n\n\nandrea$ ./script1.sh\n-bash: ./script1.sh: Permission denied  # no space in between \n# dot is the current dir, otherwise have to specify $PATH. \n# equivalent to \nandrea$ bash script1.sh\n\nandrea$ ls -l script1.sh\n-rw-r--r--@ 1 andrea  staff  55 Apr 24 13:23 script1.sh\n\n# allow owner to write and modify, everyone to execute\nandrea$ chmod 755 script1.sh    # change access permission\nandrea$ ls -l script1.sh\n-rwxr-xr-x@ 1 andrea  staff  55 Apr 24 13:23 script1.sh\n\n\n\nrefering to / reading a variable: put a $ before variable name\nsetting a variable, no $. For example, andrea$ HOSTNAME will give host name\nSeems like I can only use $1, $2 but not $A, or $arg1. This is because these are the special variables.\n$0 # name of Bash script \n$1-9 # first 9 arguments in Bash script \n$@ # all arguments \n$USER # username \n$HOSTNAME # hostname of the machine the script is running on \nexample see script2.sh\n\n\nsee script3.sh.\n\n\n\nsingle quotes does not allow substition of variables, it treats characters literally: when use a $ it is printed exactly like it is.\nvar1='hello world'\n\nvar2='see $var1' \necho $var2  # will give see $var1\nvar3=\"see $var1\" \necho $var3 # will give see hello world\n\n\n\nvar=$(ls | wc -l)  # count how many elements\necho There are $var entries in this directory  \n\n\n\nsee scripts 4, 4-2.\n\n\n\n\n(script5.sh) use the command read and save the user response into the variable varname\n\n\n\n(script6.sh)\nlet and expr.\n\n\n\n\nif [&lt;some test&gt;]  # if_[_cmd_]  the space matters!\nthen\n    &lt;commands&gt;\nfi\nwhen checking,\ntest 001 = 1  # false, string comparison\necho $?\n\ntest 001 -eq 1  # true, numerical comparison\necho $?\nNote that $? returns the last run process (exit status).\n0 means 0 error (true), other values indicate some unusual condition (e.g. 1 means false in the above situation)\n\n\nif [&lt;some test&gt;]  \nthen\n    &lt;commands&gt;\nelif [&lt;some test&gt;]  \nthen \n    &lt;different commands&gt;\nelse \n    &lt;other commands&gt;\nfi\n\n\n\nwhile [&lt;some test&gt;]  \ndo\n    &lt;commands&gt;\ndone\n\n\n\nvery similar to while.\nuntil [&lt;some test&gt;]  \ndo\n    &lt;commands&gt;\ndone\n\n\n\nfunction_name(){\n    &lt;commands&gt;\n}\n\n# or \n\nfunction function_name {\n    &lt;commands&gt;\n}"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/unix/Bash scripting.html#another-tutorial",
+    "href": "dev/oldnotes_programming/unix/Bash scripting.html#another-tutorial",
+    "title": "Bash scripting",
+    "section": "",
+    "text": "An example script: script1.sh\n#!/bin/bash\n# a simple bash script \n\necho Hello World! \nLine 1: shebang\nfollowed by path to the interpreter to run. no space, always first line.\nLine 2: comment\nLine 3: command\n\n\nandrea$ ./script1.sh\n-bash: ./script1.sh: Permission denied  # no space in between \n# dot is the current dir, otherwise have to specify $PATH. \n# equivalent to \nandrea$ bash script1.sh\n\nandrea$ ls -l script1.sh\n-rw-r--r--@ 1 andrea  staff  55 Apr 24 13:23 script1.sh\n\n# allow owner to write and modify, everyone to execute\nandrea$ chmod 755 script1.sh    # change access permission\nandrea$ ls -l script1.sh\n-rwxr-xr-x@ 1 andrea  staff  55 Apr 24 13:23 script1.sh\n\n\n\nrefering to / reading a variable: put a $ before variable name\nsetting a variable, no $. For example, andrea$ HOSTNAME will give host name\nSeems like I can only use $1, $2 but not $A, or $arg1. This is because these are the special variables.\n$0 # name of Bash script \n$1-9 # first 9 arguments in Bash script \n$@ # all arguments \n$USER # username \n$HOSTNAME # hostname of the machine the script is running on \nexample see script2.sh\n\n\nsee script3.sh.\n\n\n\nsingle quotes does not allow substition of variables, it treats characters literally: when use a $ it is printed exactly like it is.\nvar1='hello world'\n\nvar2='see $var1' \necho $var2  # will give see $var1\nvar3=\"see $var1\" \necho $var3 # will give see hello world\n\n\n\nvar=$(ls | wc -l)  # count how many elements\necho There are $var entries in this directory  \n\n\n\nsee scripts 4, 4-2.\n\n\n\n\n(script5.sh) use the command read and save the user response into the variable varname\n\n\n\n(script6.sh)\nlet and expr."
+  },
+  {
+    "objectID": "dev/oldnotes_programming/unix/Bash scripting.html#if-statements-loops-functions",
+    "href": "dev/oldnotes_programming/unix/Bash scripting.html#if-statements-loops-functions",
+    "title": "Bash scripting",
+    "section": "",
+    "text": "if [&lt;some test&gt;]  # if_[_cmd_]  the space matters!\nthen\n    &lt;commands&gt;\nfi\nwhen checking,\ntest 001 = 1  # false, string comparison\necho $?\n\ntest 001 -eq 1  # true, numerical comparison\necho $?\nNote that $? returns the last run process (exit status).\n0 means 0 error (true), other values indicate some unusual condition (e.g. 1 means false in the above situation)\n\n\nif [&lt;some test&gt;]  \nthen\n    &lt;commands&gt;\nelif [&lt;some test&gt;]  \nthen \n    &lt;different commands&gt;\nelse \n    &lt;other commands&gt;\nfi\n\n\n\nwhile [&lt;some test&gt;]  \ndo\n    &lt;commands&gt;\ndone\n\n\n\nvery similar to while.\nuntil [&lt;some test&gt;]  \ndo\n    &lt;commands&gt;\ndone\n\n\n\nfunction_name(){\n    &lt;commands&gt;\n}\n\n# or \n\nfunction function_name {\n    &lt;commands&gt;\n}"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/project_template.html",
+    "href": "dev/oldnotes_programming/rstudio_extension/project_template.html",
+    "title": "Parts needed",
+    "section": "",
+    "text": "template function\ntemplate metadata\n\n\n\nOnly need one function\n\n\n\nthis file defines what’s shown on the project wizard\n\n\nBinding: which function to generate the project\nTitle: title in thhe project wizard\nOpenFiles:"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/project_template.html#template-function",
+    "href": "dev/oldnotes_programming/rstudio_extension/project_template.html#template-function",
+    "title": "Parts needed",
+    "section": "",
+    "text": "Only need one function"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/rstudio_extension/project_template.html#template-metadata-.dcf",
+    "href": "dev/oldnotes_programming/rstudio_extension/project_template.html#template-metadata-.dcf",
+    "title": "Parts needed",
+    "section": "",
+    "text": "this file defines what’s shown on the project wizard\n\n\nBinding: which function to generate the project\nTitle: title in thhe project wizard\nOpenFiles:"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git for Version Control.html",
+    "href": "dev/oldnotes_programming/git/Git for Version Control.html",
+    "title": "Git for Version Control",
+    "section": "",
+    "text": "workflow http://marklodato.github.io/visual-git-guide/index-en.html\nhttps://swcarpentry.github.io/git-novice/02-setup/index.html\ngit --version check version\nmkdir planets\ncd planets\ngit init\ngit config user.name 'Vlad Dracula' \nls -a  # list all \nls -la # list long format\n\ncat .git/config  # shows name Vlad Dracula\ngit config core.editor 'nano -w'  # set up editor, can also use atom\ngit status # should be nothing there\n\n# -- inside .git folder to change user name etc\ncd .git\ncat config\ngit config user.name 'name1'\n\n\nremember to set the global username and email! otherwise your contributions are not counted.\n$ git config --global user.name 'andrea'\n$ git config --global user.email 'andreachizhang@yahoo.com'\nnano mars.txt # create some content\ncat mars.txt # display \ngit status # check status again\n\ngit add mars.txt\ngit status # check status again\ngit commit -m 'satr notes on Mars as a base'  # message\ngit log  # display log \n\n# change someting in mars, then check status again\n\ngit diff # check difference \n\ngit add mars.txt\ngit commit -m 'add concerns about effects of Mars moon'\n\ngit add mars.txt\ngit diff  # compares working area with staging area, disappears after git add, before commit\ngit diff --staged  # comparing staging area with repositories\ngit diff HEAD # working area vs repositories \nif I have a separate file called mars2.txt, and I do git diff, nothing will happen until I do git add.\nIt’s possible that changes in both files are displayed at the same time, can be seen using git status and git diff, and git add . will update both.\nIf I happen to have deleted something accidently\ngit checkout 8dcecd668a9ae311aae0512ebe97f501595fe16b mars.txt\ngit checkout master\ntouch a.input b.input\nls\nnano .gitignore # and put a.input\ngit status # a.input will be ignored \nssh doesn’t need user name and pass, html needs\npwd  # should be planets repo (local), /Users/andrea/Desktop/planets\ngit remote -v # check if any server is connected\ngit remote add origin https://github.com/yymmhaha/planets.git  # origin is the name for https + blahblah, easier for later so we don't need to type again\ngit push origin master  # sometimes it asks for user and pass \n\ngit log --oneline\ngit diff c7c2eea..f88029b mars2.txt\ncollaborate, clone other’s repo to my desktop but another folder\ngit clone https://github.com/tinavisnovska/planets.git ~/Desktop/tina-planets\ngit remote -v  # now I should see my collaborator's name \n# change something then, add and commit \ngit push origin master\n\n# ------- pull to my own \ncd ~/Desktop/planets\ngit pull origin master\natom --wait mars.txt  # use atom to open \n\n\n\ncd Documents/Programming/R/Project-git\ngit init\ngit remote add origin https://github.com/yymmhaha/Paper.git  # unneeded if already \ngit pull origin master --allow-unrelated-histories\ngit rm \"Worklog - Thoughts and undone's.md\"  # remove something - has to use git before!! \ngit commit -m 'deleted thoughts and undones since unnecessary'\n\n\nProgress andrea$ git add 'Part 4- intervention-practicals.md'\nProgress andrea$ git commit -m 'added AB testing'\nProgress andrea$ git push\nwhen there is a conflict asking me to enter commit message to explain merge:\n# in vim\ni\n# write merge message \nesc\n:wq\n# then enter\nto be more specific, ESC and colon : makes the cursor go to bottom. w is write, q is quit.\n\n\n\nbefore committing, can use .gitignore to specify files unneeded. Do it before add anything. Add these lines in the file to ignore the hidden directories.\n.*\n!/.gitignore\nunstaged, use\n$ git checkout -- &lt;file&gt;\n$ git checkout '*.DS_Store'\nto discard changes in working directory.\nor\n$ git reset HEAD\n\n\n\n$ wget --no-check-certificate --content-disposition https://github.com/MIT-LCP/mimic-code/blob/master/concepts/sepsis/angus.sql\nor\n$ curl -LJO https://github.com/MIT-LCP/mimic-code/blob/master/concepts/sepsis/angus.sql\n\n\n\nWhat is a pull request?\nIt lets you tell others about changes you’ve pushed.\nFork\nEdit\nthen pull request\n\n\n\ngit checkout is switching between branches in a repo you have, for example if you’re on master branch and want to go to develop_branch, git checkout develop_branch.\ngit clone is fetching repo you don’t have\n\n\n\nFor the project, I have re-set up the github account on the pink computer. Then, go to the parent directory (‘Work’) and do\ngit clone ### then add the .git file that appears \nAfter any changes made in the pink computer, push as usual.\nIn this computer, git pull. This will make sure the changes are synced.\n\n\n(on the main computer) first try git pull\nIt will say there are some files that are untracked, and modified locally.\nModified locally: force over write (i.e. ignore all local changes) by\ngit reset --hard\ngit pull\nUntracked:\ngit clean -i\nc # for clean\nIn the end pull again."
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git for Version Control.html#quick-guide-for-me",
+    "href": "dev/oldnotes_programming/git/Git for Version Control.html#quick-guide-for-me",
+    "title": "Git for Version Control",
+    "section": "",
+    "text": "cd Documents/Programming/R/Project-git\ngit init\ngit remote add origin https://github.com/yymmhaha/Paper.git  # unneeded if already \ngit pull origin master --allow-unrelated-histories\ngit rm \"Worklog - Thoughts and undone's.md\"  # remove something - has to use git before!! \ngit commit -m 'deleted thoughts and undones since unnecessary'\n\n\nProgress andrea$ git add 'Part 4- intervention-practicals.md'\nProgress andrea$ git commit -m 'added AB testing'\nProgress andrea$ git push\nwhen there is a conflict asking me to enter commit message to explain merge:\n# in vim\ni\n# write merge message \nesc\n:wq\n# then enter\nto be more specific, ESC and colon : makes the cursor go to bottom. w is write, q is quit."
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git for Version Control.html#ignore",
+    "href": "dev/oldnotes_programming/git/Git for Version Control.html#ignore",
+    "title": "Git for Version Control",
+    "section": "",
+    "text": "before committing, can use .gitignore to specify files unneeded. Do it before add anything. Add these lines in the file to ignore the hidden directories.\n.*\n!/.gitignore\nunstaged, use\n$ git checkout -- &lt;file&gt;\n$ git checkout '*.DS_Store'\nto discard changes in working directory.\nor\n$ git reset HEAD"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git for Version Control.html#download-online-files-from-github",
+    "href": "dev/oldnotes_programming/git/Git for Version Control.html#download-online-files-from-github",
+    "title": "Git for Version Control",
+    "section": "",
+    "text": "$ wget --no-check-certificate --content-disposition https://github.com/MIT-LCP/mimic-code/blob/master/concepts/sepsis/angus.sql\nor\n$ curl -LJO https://github.com/MIT-LCP/mimic-code/blob/master/concepts/sepsis/angus.sql"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git for Version Control.html#fork-and-pull-request",
+    "href": "dev/oldnotes_programming/git/Git for Version Control.html#fork-and-pull-request",
+    "title": "Git for Version Control",
+    "section": "",
+    "text": "What is a pull request?\nIt lets you tell others about changes you’ve pushed.\nFork\nEdit\nthen pull request"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git for Version Control.html#checkout",
+    "href": "dev/oldnotes_programming/git/Git for Version Control.html#checkout",
+    "title": "Git for Version Control",
+    "section": "",
+    "text": "git checkout is switching between branches in a repo you have, for example if you’re on master branch and want to go to develop_branch, git checkout develop_branch.\ngit clone is fetching repo you don’t have"
+  },
+  {
+    "objectID": "dev/oldnotes_programming/git/Git for Version Control.html#using-another-computer",
+    "href": "dev/oldnotes_programming/git/Git for Version Control.html#using-another-computer",
+    "title": "Git for Version Control",
+    "section": "",
+    "text": "For the project, I have re-set up the github account on the pink computer. Then, go to the parent directory (‘Work’) and do\ngit clone ### then add the .git file that appears \nAfter any changes made in the pink computer, push as usual.\nIn this computer, git pull. This will make sure the changes are synced.\n\n\n(on the main computer) first try git pull\nIt will say there are some files that are untracked, and modified locally.\nModified locally: force over write (i.e. ignore all local changes) by\ngit reset --hard\ngit pull\nUntracked:\ngit clean -i\nc # for clean\nIn the end pull again."
   }
 ]

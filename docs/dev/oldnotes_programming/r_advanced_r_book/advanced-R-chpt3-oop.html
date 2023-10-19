@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2023-10-08">
-<meta name="description" content="Structure them, write them, test them, document them.">
 
-<title>Data Apothecary’s Notes - My workflow in working with functions in a package</title>
+<title>Data Apothecary's Notes – advanced-r-chpt3-oop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Data Apothecary’s Notes</span>
     </a>
   </div>
@@ -118,31 +115,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../study_design/index.html" rel="" target="">
+    <a class="nav-link" href="../../../study_design/index.html" rel="" target="">
  <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../inference/index.html" rel="" target="">
+    <a class="nav-link" href="../../../inference/index.html" rel="" target="">
  <span class="menu-text">Inference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../models/index.html" rel="" target="">
+    <a class="nav-link" href="../../../models/index.html" rel="" target="">
  <span class="menu-text">Models</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reporting/index.html" rel="" target="">
+    <a class="nav-link" href="../../../reporting/index.html" rel="" target="">
  <span class="menu-text">Reporting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../programming/index.html" rel="" target="">
+    <a class="nav-link" href="../../../programming/index.html" rel="" target="">
  <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -167,131 +164,177 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#oop-in-r" id="toc-oop-in-r" class="nav-link active" data-scroll-target="#oop-in-r">OOP in R</a>
   <ul class="collapse">
-  <li><a href="#structure" id="toc-structure" class="nav-link active" data-scroll-target="#structure">Structure</a></li>
-  <li><a href="#write" id="toc-write" class="nav-link" data-scroll-target="#write">Write</a></li>
-  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
-  <li><a href="#document" id="toc-document" class="nav-link" data-scroll-target="#document">Document</a></li>
+  <li><a href="#base-types" id="toc-base-types" class="nav-link" data-scroll-target="#base-types">Base types</a></li>
+  </ul></li>
+  <li><a href="#s3" id="toc-s3" class="nav-link" data-scroll-target="#s3">S3</a>
+  <ul class="collapse">
+  <li><a href="#s3-class" id="toc-s3-class" class="nav-link" data-scroll-target="#s3-class">S3 class</a></li>
+  <li><a href="#write-my-own-methods" id="toc-write-my-own-methods" class="nav-link" data-scroll-target="#write-my-own-methods">write my own methods</a></li>
+  </ul></li>
+  <li><a href="#r6" id="toc-r6" class="nav-link" data-scroll-target="#r6">R6</a></li>
+  <li><a href="#s4" id="toc-s4" class="nav-link" data-scroll-target="#s4">S4</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">My workflow in working with functions in a package</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">RSE</div>
-    <div class="quarto-category">Rpkg</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    <p>Structure them, write them, test them, document them.</p>
-  </div>
-</div>
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Chi Zhang </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 8, 2023</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-</header>
-
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Ongoing notes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Some of the content are being added as I go.</p>
-</div>
-</div>
-<p>Functions make up the whole R package, except for data-only packages. The workflow should help me navigate the process.</p>
-<p>A short example borrowed from <a href="https://openpharma.github.io/workshop-r-swe-sf/slides/03_workflow.html#/title-slide">GSWEP4R workshop</a> is documented here, <a href="https://github.com/andreaczhang/data-apothecary-notes/blob/main/dev/script/rpkg_functions_1.R">function code</a> and <a href="https://github.com/andreaczhang/data-apothecary-notes/blob/main/dev/script/rpkg_functions_2_tests.R">test code</a></p>
+<blockquote class="blockquote">
+<p>Chapter 3: object oriented programming with R</p>
+</blockquote>
+<section id="oop-in-r" class="level1">
+<h1>OOP in R</h1>
+<p>class: description of something. defined as <code>methods::setClass()</code></p>
+<p>object: instance of a class. can be created using <code>new()</code></p>
+<p>method: a function that only operates on a certain class of objects</p>
+<p>generic (r function)</p>
 <ul>
-<li>function 1: implement a function with class attribute <code>SimulatedResult</code></li>
-<li>function 2: generic function <code>print.SimulatedResult</code> that prints what f1 produces</li>
-<li>test files for function 1 and 2</li>
+<li>dispatches methods</li>
+<li>generic concept: plot, mean, predict…</li>
+<li>does NOT do any computation itself</li>
 </ul>
-<section id="structure" class="level2">
-<h2 class="anchored" data-anchor-id="structure">Structure</h2>
-</section>
-<section id="write" class="level2">
-<h2 class="anchored" data-anchor-id="write">Write</h2>
-<section id="what-to-return" class="level3">
-<h3 class="anchored" data-anchor-id="what-to-return">What to return?</h3>
-<p>Put the arguments in a list named <code>result</code>, then attach other outputs to <code>result</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">arg1 =</span> arg1, <span class="at">arg2 =</span> arg2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Afterwards, set <strong>class attribute</strong> to something meaningful, for example,</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">structure</span>(result, <span class="at">class =</span> <span class="st">'SimulationResult'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This allows us to implement generics.</p>
-</section>
-<section id="generics" class="level3">
-<h3 class="anchored" data-anchor-id="generics">Generics</h3>
-<p>Common generics</p>
+<p>a method is the implementation of a generic function for an object of a particular class</p>
+<section id="base-types" class="level2">
+<h2 class="anchored" data-anchor-id="base-types">Base types</h2>
+<p>Everything in R is an object, but not object-oriented.</p>
+<pre><code>object (in R)
+|
+|_base objects
+|_OO objects</code></pre>
+<p>Every object has a <strong>base type</strong>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)  <span class="co"># integer</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mtcars)  <span class="co"># list</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># object type</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">otype</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)  <span class="co"># base</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">otype</span>(mtcars)  <span class="co"># s3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>print</li>
+<li>vectors
+<ul>
+<li><code>NULL</code></li>
+<li><code>logical, integer, double, character, complex, raw</code></li>
+<li><code>list</code></li>
+</ul></li>
+<li>Functions
+<ul>
+<li><code>closure</code> (regular R functions)</li>
+<li><code>special</code> (internal functions, such as <code>[</code>)</li>
+<li><code>builtin</code> (primitive functions, such as <code>sum</code>)</li>
+</ul></li>
+<li>language components
+<ul>
+<li><code>symbol, language, pairlist</code></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="s3" class="level1">
+<h1>S3</h1>
+<p>S3 objects: <span style="color:orange">generic + class</span></p>
+<p>underneath many S3 objects are built upon vector or lists. can be checked using <code>unclass(obj)</code></p>
+<p><strong>Generic function </strong>(泛型函数)</p>
+<ul>
+<li>define the interface (arguments) then find the right implementation (<strong>method</strong>) for the task, by using <strong>method dispatch</strong>. In another word, functions sharing the same name can have various implementations depending on the class.</li>
+</ul>
+<p><strong>Method</strong>: implementation for a specific class</p>
+<ul>
+<li><span style="color:orange">method = generic + class</span></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sloop)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">'b'</span>))  <span class="co"># a factor</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">strptime</span>(<span class="fu">c</span>(<span class="st">'2017-01-01'</span>, <span class="st">'2020-05-04 03:21'</span>), <span class="st">'%Y-%m-%d'</span>)  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">3.5</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the otype() of f, time, db should be s3, s3, base.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">s3_dispatch</span>(<span class="fu">print</span>(f))   <span class="co"># print.factor</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">s3_dispatch</span>(<span class="fu">print</span>(db))  <span class="co"># print.default</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">s3_dispatch</span>(<span class="fu">print</span>(time))  <span class="co"># print.POSITlt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>S3 methods usually have names such as <code>generic.class()</code>, such as <code>print.factor()</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- with the . separator ---- # </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftype</span>(t)   <span class="co"># t is a generic</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ftype</span>(t.data.frame)  </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># s3, method: dataframe method for t() (transpose for dataframe)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="st">'t'</span>)   <span class="co"># t.data.frame  t.default     t.gtable*     t.ts*  .... </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ftype</span>(predict) <span class="co"># predict is a generic</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ftype</span>(predict.glm)  <span class="co"># glm (class) method for predict() generic</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ftype</span>(t.test)  <span class="co"># s3, generic: generic function for t test</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="st">'t.test'</span>)  <span class="co"># t.test.default* t.test.formula*</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># check all methods belong to a GENERIC</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="st">'predict'</span>)  <span class="co"># lm, glm, ... </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">s3_methods_generic</span>(<span class="st">'predict'</span>)    <span class="co"># more info</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="st">'plot'</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># check all generics that have a method for a given CLASS</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">'lm'</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">s3_methods_class</span>(<span class="st">'lm'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="s3-class" class="level3">
+<h3 class="anchored" data-anchor-id="s3-class">S3 class</h3>
+<p>simply set <strong>class attribute</strong>.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>constructor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Validator</td>
+</tr>
+<tr class="even">
+<td>helpers</td>
+</tr>
+</tbody>
+</table>
+<p>?? <code>match.arg()</code></p>
+<ul>
+<li>convenient partial matching, but only when the type to query is shorter than the full. Therefore not very useful</li>
+</ul>
+<section id="usemethod" class="level4">
+<h4 class="anchored" data-anchor-id="usemethod"><code>UseMethod()</code></h4>
+<p>It performs <strong>method dispatch</strong>: look for a specific implementation for a class.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mean</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># returns</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># function (x, ...)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># UseMethod('mean')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It checks which class the object is, then dispatches the specific function to match the class, then compute</p>
+</section>
+</section>
+<section id="write-my-own-methods" class="level3">
+<h3 class="anchored" data-anchor-id="write-my-own-methods">write my own methods</h3>
+<p>Possibly only need to write my methods for the following generics</p>
+<ul>
+<li>print/show</li>
 <li>summary</li>
 <li>plot</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>print.classname <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...){</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x is an object of `classname`</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it should be a list, and have class attribute `classname`</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>how to:</p>
+<ul>
+<li>write a method for a new class, using an existing generic function (e.g.&nbsp;print)</li>
+<li>new generic functions, new methods</li>
+</ul>
 </section>
 </section>
-<section id="test" class="level2">
-<h2 class="anchored" data-anchor-id="test">Test</h2>
-<p>Tests for functions and generic functions seem to be the same as before. Need to go back to the function and add error messages.</p>
+<section id="r6" class="level1">
+<h1>R6</h1>
 </section>
-<section id="document" class="level2">
-<h2 class="anchored" data-anchor-id="document">Document</h2>
-<p>The way to document generic functions is exactly the same as any other function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Print method</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' Generic function to print a `SimulationResult` object</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x a \code{SimulationResult} object to print</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param ... further arguments to pass from other methods</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return something printed</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' simd &lt;- fsim(n1 = 10, n2 = 10, mean1 = 0, mean2 = 5, sd1 = 1, sd2 = 1)</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' print(simd)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="s4" class="level1">
+<h1>S4</h1>
 
 
 </section>

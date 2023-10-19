@@ -1,0 +1,131 @@
+/*-- scss:defaults --*/
+
+$theme-black: #4c4c4c;
+$theme-white: white;
+$theme-grey: #e9ecef;
+
+$theme-lightblue: #dae7f6;
+$theme-darkgrey1: #848498;
+$theme-darkgrey0: #8d92a6;
+$theme-darkblue0: #146ca4;
+$theme-darkblue1: #0a2472;
+$theme-darkblue2: #172545;
+
+$theme-redbrown1: #880808;
+$theme-redbrown2: #bb5c54;
+$theme-darkcoffee1: #570e06;
+$theme-darkcoffee2: #78504b;
+$theme-darkcoffee3: #632e0d;
+$theme-milkcoffee3: #cca79f;
+$theme-milkcoffee2: #b98f68;
+$theme-milkcoffee1: #9e736a;
+$theme-mocha1: #7f2606;
+$theme-mocha2: #9a4c28;
+$theme-mocha3: #b46939;
+$theme-pumpkin: #e27f57;
+
+
+
+
+
+$body-bg: $theme-white;
+$body-color: $theme-darkblue2; // text color
+$headings-color: $theme-darkblue1; // applies to all 
+$link-color: $theme-redbrown2;
+
+// code
+$code-color: $theme-darkblue1;
+$code-bg: $theme-lightblue;
+$code-block-bg-alpha: -0.8;
+//$code-block-border-left: TRUE;
+//$code-block-border-left-style: solid;
+
+$background-color: $theme-lightblue;
+
+// navigation
+$navbar-bg: $theme-redbrown2;
+
+
+// callout block
+$callout-color-note: $theme-pumpkin;
+$callout-color-tip: $theme-milkcoffee3;
+
+
+// font
+
+
+@import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code_Pro&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Lato&family=Yanone+Kaffeesatz&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
+$font-family-sans-serif: 'Montserrat', sans-serif;
+$font-family-monospace: 'Source Code Pro', monospace;
+//$font-family: "Atkinson Hyperlegible", sans-serif;
+$font-poppins: 'Poppins', sans-serif; 
+$font-pt: 'PT Serif', sans-serif;
+$font-cabin: 'Cabin', sans-serif;
+$font-montserrat: 'Montserrat', sans-serif;
+$font-prompt: 'Prompt', sans-serif;
+
+//$font-family-sans-serif: 'Yanone Kaffeesatz', Tahoma, sans-serif;
+//$font-family-sans-serif: 'Signika Negative';
+
+$font-size-root: 16px;
+
+/*-- scss:rules --*/
+h1 {
+  color: $theme-darkblue2;
+  font-family: $font-pt;
+  font-size: 40px;
+  //padding: 0.2em;
+}
+
+h2 {
+  color: $theme-darkblue1;
+  font-family: $font-pt;
+  font-size: 30px;
+  //padding: 0.3em;
+}
+
+h3 {
+  color: $theme-darkblue1;
+  font-family: $font-poppins;
+  padding: 0.3em;
+}
+
+
+h4 {
+  color: $theme-darkblue0;
+}
+
+.render-commit-push {
+  padding: 0.5em 0.5em 0em 3em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: #f8f8f8 5px center/3em no-repeat;
+  border-top: 1px solid #5B888C;
+  border-bottom: 1px solid #5B888C;
+  background-size: 2em;
+  background-position: 0.5em 0.5em;
+}
+
+.pull {
+  padding: 0.5em 0.5em 0em 3em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: #f8f8f8 5px center/3em no-repeat;
+  border-top: 1px solid #E0A890;
+  border-bottom: 1px solid #E0A890;
+  background-size: 1em;
+  background-position: 1em 0.5em;
+}

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Apothecary's Notes – git_branching</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Data Apothecary’s Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../study_design/index.html" rel="" target="">
+ <span class="menu-text">Study design</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../inference/index.html" rel="" target="">
+ <span class="menu-text">Inference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../models/index.html" rel="" target="">
+ <span class="menu-text">Models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../reporting/index.html" rel="" target="">
+ <span class="menu-text">Reporting</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../programming/index.html" rel="" target="">
+ <span class="menu-text">Programming</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/andreaczhang/data-apothecary-notes" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#github-desktop" id="toc-github-desktop" class="nav-link active" data-scroll-target="#github-desktop">Github desktop</a></li>
+  <li><a href="#add-collaborator" id="toc-add-collaborator" class="nav-link" data-scroll-target="#add-collaborator">Add collaborator</a></li>
+  <li><a href="#quite-the-vim-editor" id="toc-quite-the-vim-editor" class="nav-link" data-scroll-target="#quite-the-vim-editor">Quite the vim editor</a></li>
+  <li><a href="#update-from-origin-and-update-branches" id="toc-update-from-origin-and-update-branches" class="nav-link" data-scroll-target="#update-from-origin-and-update-branches">Update from origin and update branches</a>
+  <ul class="collapse">
+  <li><a href="#git-pull-fetch-merge" id="toc-git-pull-fetch-merge" class="nav-link" data-scroll-target="#git-pull-fetch-merge">git pull = fetch + merge</a></li>
+  <li><a href="#git-fetch" id="toc-git-fetch" class="nav-link" data-scroll-target="#git-fetch">git fetch</a></li>
+  <li><a href="#rebase" id="toc-rebase" class="nav-link" data-scroll-target="#rebase">Rebase??</a></li>
+  </ul></li>
+  <li><a href="#branching-and-merging" id="toc-branching-and-merging" class="nav-link" data-scroll-target="#branching-and-merging">Branching and merging</a>
+  <ul class="collapse">
+  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches">Branches</a>
+  <ul class="collapse">
+  <li><a href="#create-and-switch-to-branch" id="toc-create-and-switch-to-branch" class="nav-link" data-scroll-target="#create-and-switch-to-branch">Create and switch to branch</a></li>
+  </ul></li>
+  <li><a href="#master-is-ahead-of-branch" id="toc-master-is-ahead-of-branch" class="nav-link" data-scroll-target="#master-is-ahead-of-branch">master is ahead of branch:</a></li>
+  <li><a href="#branch-is-ahead-of-master" id="toc-branch-is-ahead-of-master" class="nav-link" data-scroll-target="#branch-is-ahead-of-master">branch is ahead of master</a>
+  <ul class="collapse">
+  <li><a href="#option-1-merge-branch-into-master-locally-then-push-master" id="toc-option-1-merge-branch-into-master-locally-then-push-master" class="nav-link" data-scroll-target="#option-1-merge-branch-into-master-locally-then-push-master">Option 1: merge branch into master locally, then push master</a></li>
+  <li><a href="#option-2-push-to-remote-branch-pull-request-and-merge-into-master" id="toc-option-2-push-to-remote-branch-pull-request-and-merge-into-master" class="nav-link" data-scroll-target="#option-2-push-to-remote-branch-pull-request-and-merge-into-master">Option 2: push to remote branch, pull request, and merge into master</a></li>
+  </ul></li>
+  <li><a href="#delete-branch-after-pull-requested-and-merging-from-remote" id="toc-delete-branch-after-pull-requested-and-merging-from-remote" class="nav-link" data-scroll-target="#delete-branch-after-pull-requested-and-merging-from-remote">delete branch (after pull requested and merging from remote)</a></li>
+  </ul></li>
+  <li><a href="#stash" id="toc-stash" class="nav-link" data-scroll-target="#stash">Stash</a></li>
+  <li><a href="#fork" id="toc-fork" class="nav-link" data-scroll-target="#fork">Fork</a></li>
+  <li><a href="#issues" id="toc-issues" class="nav-link" data-scroll-target="#issues">Issues</a></li>
+  <li><a href="#resolving-conflicts" id="toc-resolving-conflicts" class="nav-link" data-scroll-target="#resolving-conflicts">Resolving conflicts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="github-desktop" class="level3">
+<h3 class="anchored" data-anchor-id="github-desktop">Github desktop</h3>
+<p>as the same user (main github account)</p>
+<ul>
+<li>cloned the repo <code>Paper3</code>, it created a new path <code>/Documents/GitHub/Paper3/</code></li>
+</ul>
+</section>
+<section id="add-collaborator" class="level3">
+<h3 class="anchored" data-anchor-id="add-collaborator">Add collaborator</h3>
+<p>go to repo</p>
+<p>invite a collaborator with username</p>
+<p>NOTE: after becoming the collaborator, the project also appears in acz’s repo list.</p>
+</section>
+<section id="quite-the-vim-editor" class="level3">
+<h3 class="anchored" data-anchor-id="quite-the-vim-editor">Quite the vim editor</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">:wq</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">:q</span>  <span class="co"># quit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>check commit history: <code>git log -3 master</code>, <code>git log -3 branch_name</code>.</p>
+<p>Drop unstaged changes</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git restore filename.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="update-from-origin-and-update-branches" class="level1">
+<h1>Update from origin and update branches</h1>
+<section id="git-pull-fetch-merge" class="level3">
+<h3 class="anchored" data-anchor-id="git-pull-fetch-merge">git pull = fetch + merge</h3>
+</section>
+<section id="git-fetch" class="level3">
+<h3 class="anchored" data-anchor-id="git-fetch">git fetch</h3>
+<p>update current branch and also other new branches</p>
+</section>
+<section id="rebase" class="level3">
+<h3 class="anchored" data-anchor-id="rebase">Rebase??</h3>
+</section>
+</section>
+<section id="branching-and-merging" class="level1">
+<h1>Branching and merging</h1>
+<p>CAUTION: it is important to know which branch you are, and which to merge (from)!</p>
+<ul>
+<li><p><code>git merge master</code>: update branch from master</p></li>
+<li><p><code>git merge branch</code>: update master from branch</p></li>
+</ul>
+<section id="branches" class="level2">
+<h2 class="anchored" data-anchor-id="branches">Branches</h2>
+<p>Type 1 branch: local branches</p>
+<p>Type 2 branch: remote-tracking branches</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Users/andrea/Desktop/ScreenShotsForSourcing/git_branching.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">git_branching</figcaption>
+</figure>
+</div>
+<section id="create-and-switch-to-branch" class="level3">
+<h3 class="anchored" data-anchor-id="create-and-switch-to-branch">Create and switch to branch</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> my_new_branch</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># what it does:: </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch my_new_branch</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout my_new_branch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="master-is-ahead-of-branch" class="level2">
+<h2 class="anchored" data-anchor-id="master-is-ahead-of-branch">master is ahead of branch:</h2>
+<p>Update the branch.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout my_new_branch  <span class="co"># go to branch</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="co"># this branch is still up to date with origin/my_new_branch, even though it is behind master</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Can check the difference between these two. Note that the order matter: these two are not the same!</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff my_new_branch master </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff master my_new_branch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>merge into master (even though branch is behind master!)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge master  <span class="co"># when on branch</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this stage, the branch will be ahead of the remote branch <code>origin/my_new_branch</code>. Now need to push the updates through, to make the remote branch updated too.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Users/andrea/Desktop/ScreenShotsForSourcing/git_merge_eg2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">git_merge_eg2</figcaption>
+</figure>
+</div>
+</section>
+<section id="branch-is-ahead-of-master" class="level2">
+<h2 class="anchored" data-anchor-id="branch-is-ahead-of-master">branch is ahead of master</h2>
+<section id="option-1-merge-branch-into-master-locally-then-push-master" class="level3">
+<h3 class="anchored" data-anchor-id="option-1-merge-branch-into-master-locally-then-push-master">Option 1: merge branch into master locally, then push master</h3>
+<p>Need to check difference to make sure everything is correct.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge my_new_branch  <span class="co"># when on master. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Users/andrea/Desktop/ScreenShotsForSourcing/git_merge_eg3.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">git_merge_eg3</figcaption>
+</figure>
+</div>
+<p>Note: from network of branches, this merge will NOT appear as the merge is done locally.</p>
+</section>
+<section id="option-2-push-to-remote-branch-pull-request-and-merge-into-master" class="level3">
+<h3 class="anchored" data-anchor-id="option-2-push-to-remote-branch-pull-request-and-merge-into-master">Option 2: push to remote branch, pull request, and merge into master</h3>
+<p>On branch, NOT master!</p>
+<ul>
+<li>If <strong>push</strong> to <strong>branch</strong> (NOT master, WITHOUT merge) at this point, the changes will appear on github under this branch (remote), which requires a <strong>pull request</strong>.</li>
+<li>If <code>merge master</code> (on branch), nothing will happen.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../Users/andrea/Desktop/ScreenShotsForSourcing/git_merge_eg.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">git_merge_eg</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="delete-branch-after-pull-requested-and-merging-from-remote" class="level2">
+<h2 class="anchored" data-anchor-id="delete-branch-after-pull-requested-and-merging-from-remote">delete branch (after pull requested and merging from remote)</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch <span class="at">-p</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check which branch is there</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">--merged</span> <span class="co"># which merged branch we can delete</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="stash" class="level1">
+<h1>Stash</h1>
+<p>When I need to switch to another branch, while the changes in current branch need to be commited but I’m not ready.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieve stash </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash pop STASH-NAME <span class="co"># typically stash@{0, 1, ...}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fork" class="level1">
+<h1>Fork</h1>
+<ul>
+<li>if I’m the owner of the repo, then I need to fork it somewhere else, like <code>fhi</code></li>
+<li>If I’m forking other people’s: as <code>andreaczhang-demo</code> I fork <code>andreaczhang</code>, then it creates the same foler in the former’s repo.</li>
+</ul>
+<section id="forking-other-peoples-repo" class="level4">
+<h4 class="anchored" data-anchor-id="forking-other-peoples-repo">Forking other people’s repo</h4>
+<ul>
+<li>when commit changes, if commit to <code>master</code> branch, it is committed to the forked version.</li>
+</ul>
+<p>(when the owner creates an issue to the original, this one will be informed, but NOT updated automatically)</p>
+</section>
+<section id="pull-request" class="level4">
+<h4 class="anchored" data-anchor-id="pull-request">pull request</h4>
+<ul>
+<li>base repo (the original one, <code>andreaczhang</code>)</li>
+<li>Head repo (forked version, <code>andreaczhang-demo</code>)</li>
+</ul>
+</section>
+<section id="merge-pull-request-as-the-owner" class="level4">
+<h4 class="anchored" data-anchor-id="merge-pull-request-as-the-owner">merge pull request (as the owner)</h4>
+</section>
+<section id="fork-vs-branch" class="level4">
+<h4 class="anchored" data-anchor-id="fork-vs-branch">Fork vs branch</h4>
+<p>A fork allows us to keep branches separated by user, while branches are all in one place.</p>
+</section>
+</section>
+<section id="issues" class="level1">
+<h1>Issues</h1>
+<blockquote class="blockquote">
+<p>Use my other github account to figure out how to do it</p>
+</blockquote>
+<section id="create-issue" class="level4">
+<h4 class="anchored" data-anchor-id="create-issue">create issue</h4>
+<ul>
+<li>go to the page of repo <code>andreaczhang/Paper3</code> , create an issue (green button)
+<ul>
+<li>can be markdown, with figures, links</li>
+</ul></li>
+<li>assignees
+<ul>
+<li>can ssign to myself (self-assign)</li>
+<li>can assign to collaborators</li>
+</ul></li>
+<li>labels</li>
+</ul>
+</section>
+<section id="tackle-the-issue" class="level4">
+<h4 class="anchored" data-anchor-id="tackle-the-issue">tackle the issue</h4>
+<p>cross-linking</p>
+<section id="web-version" class="level5">
+<h5 class="anchored" data-anchor-id="web-version">Web version</h5>
+<ul>
+<li>go to <code>Code</code></li>
+<li>change <code>README.md</code>, add one line</li>
+<li>commit changes
+<ul>
+<li>‘cross linking’, can link the issue number <code>#1</code></li>
+<li><code>fixes #1</code><br>
+</li>
+<li>either commit directly to <code>master</code> branch, or create new branch by <code>pull request</code>. <strong>TRY THIS</strong></li>
+</ul></li>
+<li>close issue
+<ul>
+<li>manually</li>
+<li>add ‘blahblah <code>fixes #1</code>’</li>
+</ul></li>
+</ul>
+<p>copy commit id 27e4af5ab491eca8dc54df47b3164daa67c6f6f0</p>
+<p>go to closed issue</p>
+<p>write ‘message … fixed this in + commit id’, will show what changes I did.</p>
+<p><span style="color:red">What I need is probably fork + pull request + connect to issue</span></p>
+</section>
+</section>
+</section>
+<section id="resolving-conflicts" class="level1">
+<h1>Resolving conflicts</h1>
+<pre><code># Paper3
+The 3rd project for the PhD
+
+Edit from andreaczhang-demo account
+
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; master
+demo version add line on the forked version
+=======
+Added line from branched original project, as acz
+
+Added line from unforked version (as collaborator)
+
+Added line from unforked version (as collaborator), but branch a second time
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+</code></pre>
+<p>Remove the markers &lt;&lt;&lt;&lt;&lt; ==== .&gt;&gt;&gt;, then <code>mark as resolved</code></p>
+<p>Can check by this</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--check</span>  <span class="co"># givevs the script and where conflict marker is</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
