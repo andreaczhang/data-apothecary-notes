@@ -46,7 +46,7 @@
     "href": "models/index.html",
     "title": "Models",
     "section": "",
-    "text": "Models for repeated measurement, longitudinal data and related matters.\nOr more precisely: different endpoints\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMixed models\n\n\n\n\nSurvival\n\n\n\n\n\n\nNo matching items"
+    "text": "Models for repeated measurement, longitudinal data and related matters.\nOr more precisely: different endpoints\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMixed models for repeted measurements\n\n\n\n\nSurvival\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "models/understand_data.html",
@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -415,9 +415,9 @@
   {
     "objectID": "models/mixed_models.html",
     "href": "models/mixed_models.html",
-    "title": "Mixed models",
+    "title": "Mixed models for repeted measurements",
     "section": "",
-    "text": "Yet to be filled in"
+    "text": "Resources:\n\nmmrm package vignette\nMixed models with R\n\nMMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix).\n\nMethodology\nBasic linear mixed-effects model for a single level of grouping\n\\[\ny_i = X_i \\beta + Z_i b_i + \\epsilon_i, i = 1, ..., n\n\\] \\[\nb_i \\sim N(0, \\Psi), \\epsilon \\sim N(0, \\sigma^2 I)\n\\]\n\n\\(\\beta\\) is p-dim vector of fixed effects\n\\(b\\) is q-dim vecor of random patient specific effects\n\\(X_i\\) of size \\(n_i \\times p\\) and \\(Z_i\\) of size \\(n_i \\times q\\) are regressor matrices relating observations to the fixed effects and random effects.\n\\(\\epsilon_i\\) is \\(n_i\\)-dimensional within-subject error"
   },
   {
     "objectID": "inference/rwd_rwe.html",
@@ -1118,5 +1118,26 @@
     "title": "Git for Version Control",
     "section": "",
     "text": "For the project, I have re-set up the github account on the pink computer. Then, go to the parent directory (‘Work’) and do\ngit clone ### then add the .git file that appears \nAfter any changes made in the pink computer, push as usual.\nIn this computer, git pull. This will make sure the changes are synced.\n\n\n(on the main computer) first try git pull\nIt will say there are some files that are untracked, and modified locally.\nModified locally: force over write (i.e. ignore all local changes) by\ngit reset --hard\ngit pull\nUntracked:\ngit clean -i\nc # for clean\nIn the end pull again."
+  },
+  {
+    "objectID": "models/mixed_models.html#overview",
+    "href": "models/mixed_models.html#overview",
+    "title": "Mixed models for repeted measurements",
+    "section": "",
+    "text": "MMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix)."
+  },
+  {
+    "objectID": "programming/misc_software_papers.html",
+    "href": "programming/misc_software_papers.html",
+    "title": "Software papers",
+    "section": "",
+    "text": "Before writing a software paper, one needs to create a worthy software."
+  },
+  {
+    "objectID": "programming/misc_software_papers.html#select-a-journal",
+    "href": "programming/misc_software_papers.html#select-a-journal",
+    "title": "Software papers",
+    "section": "Select a journal",
+    "text": "Select a journal\n\nR journal\nJournal of Open Source Software\n\n\nR journal\nTo create a template, use rjtools::create_article(). This compiles both a pdf and html.\nThe article should have the following folders\n\ndata\nfigures\nscripts\nmotivation-letter\n\n\nTroubleshooting\nWhen the error is related to missing tex package:\n\nin terminal, tlmgr install texpkgname"
   }
 ]

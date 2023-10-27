@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2023-10-27">
+<meta name="description" content="Write and publish a software paper">
 
-<title>Data Apothecary’s Notes - Mixed models for repeted measurements</title>
+<title>Data Apothecary’s Notes - Software papers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -60,8 +97,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -132,8 +167,8 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link active" data-scroll-target="#methodology">Methodology</a></li>
+  <ul class="collapse">
+  <li><a href="#select-a-journal" id="toc-select-a-journal" class="nav-link active" data-scroll-target="#select-a-journal">Select a journal</a></li>
   </ul>
 </nav>
     </div>
@@ -142,14 +177,34 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mixed models for repeted measurements</h1>
-</div>
+<h1 class="title">Software papers</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Publication</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Write and publish a software paper</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 27, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -157,28 +212,84 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Resources:</p>
+<p>Before writing a software paper, one needs to create a worthy software.</p>
+<section id="must" class="level3">
+<h3 class="anchored" data-anchor-id="must">Must</h3>
+<p>The following info are picked from <a href="https://www.carlboettiger.info/2013/06/13/what-I-look-for-in-software-papers.html">What I look for in ‘Software Papers’</a> by Carl Boettiger.</p>
+<section id="pass-cran-checks" class="level4">
+<h4 class="anchored" data-anchor-id="pass-cran-checks">Pass CRAN checks</h4>
+<p>This is the minimal level of sufficiency.</p>
 <ul>
-<li><code>mmrm</code> package <a href="https://openpharma.github.io/mmrm/latest-tag/articles/methodological_introduction.html">vignette</a></li>
-<li><a href="https://m-clark.github.io/mixed-models-with-R/random_intercepts.html">Mixed models with R</a></li>
+<li><a href="https://cran.r-project.org/web/packages/policies.html">CRAN policy</a></li>
 </ul>
-<p>MMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix).</p>
-<section id="methodology" class="level3">
-<h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
-<p>Basic linear mixed-effects model for a single level of grouping</p>
-<p><span class="math display">\[
-y_i = X_i \beta + Z_i b_i + \epsilon_i, i = 1, ..., n
-\]</span> <span class="math display">\[
-b_i \sim N(0, \Psi), \epsilon \sim N(0, \sigma^2 I)
-\]</span></p>
+</section>
+<section id="automatic-tests" class="level4">
+<h4 class="anchored" data-anchor-id="automatic-tests">Automatic tests</h4>
 <ul>
-<li><span class="math inline">\(\beta\)</span> is p-dim vector of fixed effects</li>
-<li><span class="math inline">\(b\)</span> is q-dim vecor of random patient specific effects</li>
-<li><span class="math inline">\(X_i\)</span> of size <span class="math inline">\(n_i \times p\)</span> and <span class="math inline">\(Z_i\)</span> of size <span class="math inline">\(n_i \times q\)</span> are regressor matrices relating observations to the fixed effects and random effects.</li>
-<li><span class="math inline">\(\epsilon_i\)</span> is <span class="math inline">\(n_i\)</span>-dimensional within-subject error</li>
+<li>run by <code>R CMD check</code></li>
+<li>examples in the documentation</li>
+</ul>
+</section>
+<section id="arguments-default-and-optional" class="level4">
+<h4 class="anchored" data-anchor-id="arguments-default-and-optional">Arguments: default and optional</h4>
+<p>For complex existing functions, allow possibility to provide more arguments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">myfunction</span>(f, p, ...){ </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  stuff</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  o <span class="ot">&lt;-</span> <span class="fu">optim</span>(f, p, ...)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  stuff</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For <strong>default</strong> arguments, think carefully whether they should be made default (e.g.&nbsp;numbers of iteration set to 100); or force users to specify it explicitly.</p>
+</section>
+<section id="development-site-on-github" class="level4">
+<h4 class="anchored" data-anchor-id="development-site-on-github">Development site on Github</h4>
+<p>So that users can raise issues.</p>
+</section>
+<section id="citation" class="level4">
+<h4 class="anchored" data-anchor-id="citation">Citation</h4>
+<p>Cite the packages I use as well.</p>
+</section>
+</section>
+<section id="major-revisions" class="level3">
+<h3 class="anchored" data-anchor-id="major-revisions">“Major revisions”</h3>
+<section id="functionalize-the-code" class="level4">
+<h4 class="anchored" data-anchor-id="functionalize-the-code">Functionalize the code</h4>
+<p>Shorter functions</p>
+</section>
+<section id="stable-clean-complete-return-objects" class="level4">
+<h4 class="anchored" data-anchor-id="stable-clean-complete-return-objects">Stable, clean, complete return objects</h4>
+<p>Return the argument (so that the additional arguments also show).</p>
+<p>Use object classes and helper functions.</p>
+<p><a href="https://www.carlboettiger.info/2013/04/23/we-need-more-object-oriented-design-in-comparative-methods.html#comment-878249659">Blogpost: We need more object oriented design in comparative methods</a></p>
+</section>
+</section>
+<section id="select-a-journal" class="level2">
+<h2 class="anchored" data-anchor-id="select-a-journal">Select a journal</h2>
+<ul>
+<li>R journal</li>
+<li>Journal of Open Source Software</li>
+</ul>
+<section id="r-journal" class="level3">
+<h3 class="anchored" data-anchor-id="r-journal">R journal</h3>
+<p>To create a template, use <code>rjtools::create_article()</code>. This compiles both a pdf and html.</p>
+<p>The article should have the following folders</p>
+<ul>
+<li>data</li>
+<li>figures</li>
+<li>scripts</li>
+<li>motivation-letter</li>
+</ul>
+<section id="troubleshooting" class="level4">
+<h4 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h4>
+<p>When the error is related to missing tex package:</p>
+<ul>
+<li>in terminal, <code>tlmgr install texpkgname</code></li>
 </ul>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

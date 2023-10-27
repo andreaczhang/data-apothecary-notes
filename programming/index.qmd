@@ -41,6 +41,7 @@ listing:
     fields: [title]
     contents: 
       - "intv_rdev_topics.qmd"
+      - "misc_software_papers.qmd"
     type: table
     sort: "title"
     filter-ui: false
