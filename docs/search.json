@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -1139,5 +1139,33 @@
     "title": "Software papers",
     "section": "Select a journal",
     "text": "Select a journal\n\nR journal\nJournal of Open Source Software\n\n\nR journal\nTo create a template, use rjtools::create_article(). This compiles both a pdf and html.\nThe article should have the following folders\n\ndata\nfigures\nscripts\nmotivation-letter\n\n\nTroubleshooting\nWhen the error is related to missing tex package:\n\nin terminal, tlmgr install texpkgname"
+  },
+  {
+    "objectID": "programming/r_pkg_dependency.html",
+    "href": "programming/r_pkg_dependency.html",
+    "title": "Dependencies",
+    "section": "",
+    "text": "Resources:"
+  },
+  {
+    "objectID": "programming/r_pkg_dependency.html#overview-namespace-and-import",
+    "href": "programming/r_pkg_dependency.html#overview-namespace-and-import",
+    "title": "Dependencies",
+    "section": "Overview: NAMESPACE and import",
+    "text": "Overview: NAMESPACE and import\n\nError: could not find function xyz\nWhere the function xyz is from a dependency package, such as ggplot2.\n\ncould not find function “ggplot”\n\nThis happens when dependency package such as ggplot2 is not imported. When checking NAMESPACE, you see that this package is not in the import list.\nTo tackle this, locate the function where the error occurs, add the Roxygen2 tags as appropriate:\n\n#' @importFrom aaapkg aaa_fun\n#' @import bbbpkg\n#' @export\nmy_function &lt;- function(x,y){\n  ...\n}\n\nThen document (either devtools::document() or Build -&gt; Document button). Check NAMESPACE again, see if the package is imported."
+  },
+  {
+    "objectID": "programming/r_pkg_dependency.html#packages-in-imports-and-depends",
+    "href": "programming/r_pkg_dependency.html#packages-in-imports-and-depends",
+    "title": "Dependencies",
+    "section": "Packages in Imports and Depends",
+    "text": "Packages in Imports and Depends\nInside DESCRIPTION, there are three categories of dependencies: imports, suggests and depends. For now focus on imports and depends.\nGenerally, three ways to call a function in a dependency:\n\nuse deppkg::function();\nuse Roxygen2 tag @importFrom deppkg function, then call this particular function directly;\nuse Roxygen2 tag @import deppkg and call anything directly.\n\n\nImports\nPackages are required to make functions run, but are NOT loaded when loading your own package.\nWhen a pkg is listed in DESCRIPTION under Imports: recommended to call with deppkg::function() syntax.\n\nmy_function &lt;- function(x,y){\n  z &lt;- dplyr::select(...)\n}\n\nAvoid importing anything with @import tag, so that it is easier to understand what function is not local.\n\n\nDepends\nVery similar to Imports, but loaded when your package is loaded.\nHowever, even after putting pkg (such as ggplot2) under Depends, you still need to call the functions in a correct way (the three options above)."
+  },
+  {
+    "objectID": "programming/r_pkg_dependency.html#common-error-warning-and-notes",
+    "href": "programming/r_pkg_dependency.html#common-error-warning-and-notes",
+    "title": "Dependencies",
+    "section": "Common error, warning and notes",
+    "text": "Common error, warning and notes\n\nError: could not find function xyz\nWhere the function xyz is from a dependency package, such as ggplot2.\n\ncould not find function “ggplot”\n\nThis happens when dependency package such as ggplot2 is not imported. When checking NAMESPACE, you see that this package is not in the import list.\nTo tackle this, locate the function where the error occurs, add the Roxygen2 tags as appropriate:\n\n#' @importFrom aaapkg aaa_fun\n#' @import bbbpkg\n#' @export\nmy_function &lt;- function(x,y){\n  ...\n}\n\nThen document (either devtools::document() or Build -&gt; Document button). Check NAMESPACE again, see if the package is imported.\n\n\nNote: all declared imports should be used\n\nNamespaces in Imports field not imported from: ‘data.table’ ‘gt’ ‘gtExtras’ ‘magrittr’ ‘rlang’ All declared Imports should be used.\n\nThis might happen when these external packages are not used. I can be more explicit when I actually use these packages somewhere. See 11.4.1 of the book for more information."
   }
 ]

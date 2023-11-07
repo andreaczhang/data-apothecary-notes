@@ -19,6 +19,7 @@ listing:
       - "r_pkg_0_wf.qmd"
       - "r_pkg_tests.qmd"
       - "r_pkg_functions.qmd"
+      - "r_pkg_dependency.qmd"
     type: table
     sort: "title"
     filter-ui: false
