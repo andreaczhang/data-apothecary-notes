@@ -86,9 +86,9 @@
   {
     "objectID": "inference/index.html",
     "href": "inference/index.html",
-    "title": "Inference from RCT and RWD",
+    "title": "Inference",
     "section": "",
-    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\n\n\n\n\n\nEstimation\n\n\ng-formula, inverse probability weighting \n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -396,7 +396,7 @@
     "href": "inference/overview.html",
     "title": "Overview: causal inference",
     "section": "",
-    "text": "Introduction\nSmoking example\n\ndoes smoking cause lung cancer?\ndoes lung cancer cause people to smoke?\nis there a third factor that causes both smoking and lung cancer?\n\nPotential outcome framework\n\\(Y_i = Y_i(z)\\) if \\(Z_i = z\\), under treatment Z = z\nEstimand: a precise description of the treatment effect"
+    "text": "Smoking example"
   },
   {
     "objectID": "inference/estimation_gcomp_ipw.html",
@@ -424,7 +424,7 @@
     "href": "inference/rwd_rwe.html",
     "title": "Real-world Data, Real-world Evidence",
     "section": "",
-    "text": "RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.\n(The general benefits and disadvantages of RWD is coherent with EHR data)\nTherapheutic areas: oncology, rare diseases, infectious diseases among others"
+    "text": "RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.\n(The general benefits and disadvantages of RWD is coherent with EHR data)\nTherapheutic areas: oncology, rare diseases, infectious diseases among others\nTraditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.\nFDA: (2016) 21st Century Cures Act, evaluate the use of RWD in support of regulatory approvals and post-approval safety studies.\nEMA (2017): HMA/EMA Joint Big Data Task Force, establish a roadmap for the use of RWD in regulatory assessments\nChallenges of using RCT\nFocus: whether RWD can be trusted to reliably measure treatment effects of new drugs: causally relationship\nRather than using RWD to replace RCT, there are a few ways to improve RCT in smallre populations. See Wieseler 2023"
   },
   {
     "objectID": "inference/covariate_adjustment.html",
@@ -1167,5 +1167,54 @@
     "title": "Dependencies",
     "section": "Common error, warning and notes",
     "text": "Common error, warning and notes\n\nError: could not find function xyz\nWhere the function xyz is from a dependency package, such as ggplot2.\n\ncould not find function “ggplot”\n\nThis happens when dependency package such as ggplot2 is not imported. When checking NAMESPACE, you see that this package is not in the import list.\nTo tackle this, locate the function where the error occurs, add the Roxygen2 tags as appropriate:\n\n#' @importFrom aaapkg aaa_fun\n#' @import bbbpkg\n#' @export\nmy_function &lt;- function(x,y){\n  ...\n}\n\nThen document (either devtools::document() or Build -&gt; Document button). Check NAMESPACE again, see if the package is imported.\n\n\nNote: all declared imports should be used\n\nNamespaces in Imports field not imported from: ‘data.table’ ‘gt’ ‘gtExtras’ ‘magrittr’ ‘rlang’ All declared Imports should be used.\n\nThis might happen when these external packages are not used. I can be more explicit when I actually use these packages somewhere. See 11.4.1 of the book for more information."
+  },
+  {
+    "objectID": "inference/intro_causal.html",
+    "href": "inference/intro_causal.html",
+    "title": "Intro to Causal Effects",
+    "section": "",
+    "text": "Smoking example\n\ndoes smoking cause lung cancer?\ndoes lung cancer cause people to smoke?\nis there a third factor that causes both smoking and lung cancer?\n\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1"
+  },
+  {
+    "objectID": "inference/rwd_rwe.html#use-cases-for-rwd",
+    "href": "inference/rwd_rwe.html#use-cases-for-rwd",
+    "title": "Real-world Data, Real-world Evidence",
+    "section": "Use cases for RWD",
+    "text": "Use cases for RWD\n\ncharacerise health conditions, interventions, care pathways and patient outcomes\npatient-reported outcomes, quality of life\nestimate economic burden\nestimate test aaccuracy or reproducibility of biomarker test results\n\n\nRWD in oncology\nChallenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:\n\ndisease staging\nperformance status\nmutation tests\n…"
+  },
+  {
+    "objectID": "inference/rwd_rwe.html#methods",
+    "href": "inference/rwd_rwe.html#methods",
+    "title": "Real-world Data, Real-world Evidence",
+    "section": "Methods",
+    "text": "Methods\nPropensity score matching (PSM) to reproduce the effects of randomization"
+  },
+  {
+    "objectID": "inference/propensity_score.html",
+    "href": "inference/propensity_score.html",
+    "title": "Propensity score",
+    "section": "",
+    "text": "Propensity score\n(Rosenbaum and Rubin)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are nno unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores"
+  },
+  {
+    "objectID": "inference/overview.html#estimands",
+    "href": "inference/overview.html#estimands",
+    "title": "Overview: causal inference",
+    "section": "Estimands",
+    "text": "Estimands\nGreifer, N., & Stuart, E. A. (2021). Choosing the estimand when matching or weighting in observational studies. arXiv preprint arXiv:2106.10577.\n\n\n\n\n\nATE: average treatment effect in the population\n\\(E[Y(1) - Y(0)]\\)\nATT: average treatment effect among the treated\n\\(E[Y(1) - Y(0) | Z = 1]\\)\nATC: average treatment effect among the controls\n\\(E[Y(1) - Y(0) | Z = 0]\\)\nATM: average treatment effect among the matched"
+  },
+  {
+    "objectID": "inference/overview.html#effects",
+    "href": "inference/overview.html#effects",
+    "title": "Overview: causal inference",
+    "section": "Effects",
+    "text": "Effects\n\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe potential outcomes, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\)."
+  },
+  {
+    "objectID": "inference/overview.html#graphical-reppresentation",
+    "href": "inference/overview.html#graphical-reppresentation",
+    "title": "Overview: causal inference",
+    "section": "Graphical reppresentation",
+    "text": "Graphical reppresentation\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1"
   }
 ]

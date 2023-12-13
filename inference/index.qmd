@@ -1,5 +1,5 @@
 ---
-title: "Inference from RCT and RWD"
+title: "Inference"
 listing:
   - id: docs
     max-description-length: 500
@@ -7,9 +7,10 @@ listing:
     fields: [title, description]
     contents: 
       - "overview.qmd"
-      - "estimation_gcomp_ipw.qmd"
-      - "target_trial_emulation.q §§§md"
       - "rwd_rwe.qmd"
+      - "propensity_score.qmd"
+      - "g_computation.qmd"
+      - "target_trial_emulation.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

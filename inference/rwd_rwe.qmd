@@ -24,6 +24,64 @@ RWD is any data collected outside clinical trial setting. It is most common in P
 Therapheutic areas: oncology, rare diseases, infectious diseases among others
 
 
+Traditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.
+
+FDA: (2016) 21st Century Cures Act, evaluate the use of RWD in support of regulatory approvals and post-approval safety studies.
+
+EMA (2017): HMA/EMA Joint Big Data Task Force, establish a roadmap for the use of RWD in regulatory assessments
+
+
+Challenges of using RCT
+
+* growing number of drugs for rare diseases
+* very small sub-populations
+* individualized treatments
+* patient preferences
+
+
+Focus: whether RWD can be trusted to reliably measure treatment effects of new drugs: causally relationship
+
+Rather than using RWD to replace RCT, there are a few ways to improve RCT in smallre populations. See [Wieseler 2023](doi: 10.1136/bmj-2022-073100
+Protected)
+
+
+
+
+
+## Use cases for RWD
+
+* characerise health conditions, interventions, care pathways and patient outcomes
+* patient-reported outcomes, quality of life
+* estimate economic burden
+* estimate test aaccuracy or reproducibility of biomarker test results
+
+
+
+
+
+
+
+
+### RWD in oncology
+
+Challenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:
+
+* disease staging
+* performance status
+* mutation tests
+* ...
+
+## Methods
+
+Propensity score matching (PSM) to reproduce the effects of randomization 
+
+
+
+
+
+
+
+
 
 
 

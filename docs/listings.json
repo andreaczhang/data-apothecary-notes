@@ -48,8 +48,10 @@
     "listing": "/inference/index.html",
     "items": [
       "/inference/overview.html",
-      "/inference/estimation_gcomp_ipw.html",
-      "/inference/rwd_rwe.html"
+      "/inference/propensity_score.html",
+      "/inference/target_trial_emulation.html",
+      "/inference/rwd_rwe.html",
+      "/inference/g_computation.html"
     ]
   }
 ]

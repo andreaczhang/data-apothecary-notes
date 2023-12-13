@@ -1,0 +1,51 @@
+---
+title: "Propensity score"
+description: |
+  Propensity score
+author: "Chi Zhang"
+date: "2023-09-03"
+categories: [Causal inference]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+Propensity score
+
+(Rosenbaum and Rubin)
+
+* in observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect
+* given that there are no unmeasured confounders
+* every subject has a non-zero probability of receiving exposure
+
+Fit a logistic regression: 
+
+* binary outcome: exposure (1,0)
+* covariates: all but exposure
+
+Predict the values (probability), they are the propensity scores
+
+
+### Matching
+
+ATT, ATC, ATE, ATM
+
+`MatchIt` package
+
+### Weighting
+
+ATE $w_{ATE} = \frac{Z_i}{p_i} + \frac{1-Z_i}{1-p_i}$
+
+ATT $w_{ATT} = \frac{p_i Z_i}{p_i} + \frac{p_i(1-Z_i)}{1-p_i}$
+
+ATC $w_{ATC} = \frac{(1 - p_i) Z_i}{p_i} + \frac{(1 - p_i)(1-Z_i)}{1-p_i}$
+
+
+
