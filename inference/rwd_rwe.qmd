@@ -76,12 +76,19 @@ Challenging to incorporate RWD in regulatory evidence, treatment decisions and e
 Propensity score matching (PSM) to reproduce the effects of randomization 
 
 
+How RWD is used
+
+* combined with non-randomized single-arm trial: as external RWD control
+* target trial emulation from RWD 
 
 
+### Reference
 
+Fang 2019
 
+Sheffield 2020
 
-
+Jemielita2021
 
 
 
