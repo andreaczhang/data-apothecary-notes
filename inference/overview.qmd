@@ -24,7 +24,7 @@ $Y^{a=1}, Y^{a=0}$ are the **potential outcomes** under treatment 1 and 0. They 
 
 For individual $i$, $Y_i^{a=1}, Y_i^{a=0}$ are deterministic. 
 
-In reality we *do not* observe both potential outcomes for an individual, since we only have ONE outcome. We observe $Y$ and $A$. For a population, average treatment effect (ATE) can be estimated.
+In reality we *do not* observe both potential outcomes for an individual, since we only have ONE outcome. We observe $Y$ and $A$. For a population, average treatment effect (ATE) can be estimate
 
 
 

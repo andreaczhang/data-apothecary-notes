@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2023-09-04">
-<meta name="description" content="RWD, RWE">
 
-<title>Data Apothecary’s Notes - Real-world Data, Real-world Evidence</title>
+<title>Data Apothecary’s Notes - Survival</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,48 +127,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#use-cases-for-rwd" id="toc-use-cases-for-rwd" class="nav-link active" data-scroll-target="#use-cases-for-rwd">Use cases for RWD</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Real-world Data, Real-world Evidence</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Observational data</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    <p>RWD, RWE</p>
-  </div>
+<h1 class="title">Survival</h1>
 </div>
+
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Chi Zhang </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 4, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -179,57 +149,16 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.</p>
-<p>(The general benefits and disadvantages of RWD is coherent with EHR data)</p>
-<p>Therapheutic areas: oncology, rare diseases, infectious diseases among others</p>
-<p>Traditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.</p>
-<p>FDA: (2016) 21st Century Cures Act, evaluate the use of RWD in support of regulatory approvals and post-approval safety studies.</p>
-<p>EMA (2017): HMA/EMA Joint Big Data Task Force, establish a roadmap for the use of RWD in regulatory assessments</p>
-<p>Challenges of using RCT</p>
-<ul>
-<li>growing number of drugs for rare diseases</li>
-<li>very small sub-populations</li>
-<li>individualized treatments</li>
-<li>patient preferences</li>
-</ul>
-<p>Focus: whether RWD can be trusted to reliably measure treatment effects of new drugs: causally relationship</p>
-<p>Rather than using RWD to replace RCT, there are a few ways to improve RCT in smallre populations. See <a href="doi:%2010.1136/bmj-2022-073100%20Protected">Wieseler 2023</a></p>
-<section id="use-cases-for-rwd" class="level2">
-<h2 class="anchored" data-anchor-id="use-cases-for-rwd">Use cases for RWD</h2>
-<ul>
-<li>characerise health conditions, interventions, care pathways and patient outcomes</li>
-<li>patient-reported outcomes, quality of life</li>
-<li>estimate economic burden</li>
-<li>estimate test aaccuracy or reproducibility of biomarker test results</li>
-</ul>
-<section id="rwd-in-oncology" class="level3">
-<h3 class="anchored" data-anchor-id="rwd-in-oncology">RWD in oncology</h3>
-<p>Challenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:</p>
-<ul>
-<li>disease staging</li>
-<li>performance status</li>
-<li>mutation tests</li>
-<li>…</li>
-</ul>
-</section>
-</section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>Propensity score matching (PSM) to reproduce the effects of randomization</p>
-<p>How RWD is used</p>
-<ul>
-<li>combined with non-randomized single-arm trial: as external RWD control</li>
-<li>target trial emulation from RWD</li>
-</ul>
-<section id="reference" class="level3">
-<h3 class="anchored" data-anchor-id="reference">Reference</h3>
-<p>Fang 2019</p>
-<p>Sheffield 2020</p>
-<p>Jemielita2021</p>
+<p>Links</p>
+<p>https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</p>
+<p>https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/</p>
+<p>https://www.danieldsjoberg.com/ggsurvfit/</p>
+<p>https://www.coursera.org/learn/survival-analysis-r-public-health</p>
+<p>https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</p>
+<p>https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/</p>
+<p>jmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

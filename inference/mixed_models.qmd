@@ -1,0 +1,36 @@
+---
+title: "Mixed models for repeted measurements"
+format: 
+  html:
+    code-fold: false
+    code-tools: false
+editor: source
+---
+
+Resources: 
+
+* `mmrm` package [vignette](https://openpharma.github.io/mmrm/latest-tag/articles/methodological_introduction.html)
+* [Mixed models with R](https://m-clark.github.io/mixed-models-with-R/random_intercepts.html)
+
+MMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix).
+
+### Methodology 
+
+Basic linear mixed-effects model for a single level of grouping
+
+$$
+y_i = X_i \beta + Z_i b_i + \epsilon_i, i = 1, ..., n
+$$
+$$
+b_i \sim N(0, \Psi), \epsilon \sim N(0, \sigma^2 I)
+$$
+
+* $\beta$ is p-dim vector of fixed effects
+* $b$ is q-dim vecor of random patient specific effects
+* $X_i$ of size $n_i \times p$ and $Z_i$ of size $n_i \times q$ are regressor matrices relating observations to the fixed effects and random effects.
+* $\epsilon_i$ is $n_i$-dimensional within-subject error
+ 
+
+
+
+

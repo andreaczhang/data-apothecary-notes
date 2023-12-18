@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2023-09-04">
-<meta name="description" content="RWD, RWE">
 
-<title>Data Apothecary’s Notes - Real-world Data, Real-world Evidence</title>
+<title>Data Apothecary's Notes – proposal_ab_los</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Data Apothecary’s Notes</span>
     </a>
   </div>
@@ -84,31 +81,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../study_design/index.html" rel="" target="">
+    <a class="nav-link" href="../../study_design/index.html" rel="" target="">
  <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../inference/index.html" rel="" target="">
+    <a class="nav-link" href="../../inference/index.html" rel="" target="">
  <span class="menu-text">Inference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../models/index.qmd" rel="" target="">
+    <a class="nav-link" href="../../models/index.qmd" rel="" target="">
  <span class="menu-text">Models</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reporting/index.html" rel="" target="">
+    <a class="nav-link" href="../../reporting/index.html" rel="" target="">
  <span class="menu-text">Reporting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../programming/index.html" rel="" target="">
+    <a class="nav-link" href="../../programming/index.html" rel="" target="">
  <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -133,99 +130,45 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#analysis-simulation" id="toc-analysis-simulation" class="nav-link active" data-scroll-target="#analysis-simulation">Analysis + Simulation</a>
   <ul class="collapse">
-  <li><a href="#use-cases-for-rwd" id="toc-use-cases-for-rwd" class="nav-link active" data-scroll-target="#use-cases-for-rwd">Use cases for RWD</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#without-causal-can-use-liggetid-data-to-develop" id="toc-without-causal-can-use-liggetid-data-to-develop" class="nav-link" data-scroll-target="#without-causal-can-use-liggetid-data-to-develop">Without causal (can use <code>liggetid</code> data to develop)</a></li>
+  <li><a href="#causal" id="toc-causal" class="nav-link" data-scroll-target="#causal">Causal</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Real-world Data, Real-world Evidence</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Observational data</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    <p>RWD, RWE</p>
-  </div>
-</div>
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Chi Zhang </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 4, 2023</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-</header>
-
-<p>RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.</p>
-<p>(The general benefits and disadvantages of RWD is coherent with EHR data)</p>
-<p>Therapheutic areas: oncology, rare diseases, infectious diseases among others</p>
-<p>Traditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.</p>
-<p>FDA: (2016) 21st Century Cures Act, evaluate the use of RWD in support of regulatory approvals and post-approval safety studies.</p>
-<p>EMA (2017): HMA/EMA Joint Big Data Task Force, establish a roadmap for the use of RWD in regulatory assessments</p>
-<p>Challenges of using RCT</p>
+<p>Investigate <strong>antibiotics</strong> effect on <strong>length of hospital stay</strong></p>
+<p>All AB combined together</p>
+<section id="analysis-simulation" class="level1">
+<h1>Analysis + Simulation</h1>
+<section id="without-causal-can-use-liggetid-data-to-develop" class="level3">
+<h3 class="anchored" data-anchor-id="without-causal-can-use-liggetid-data-to-develop">Without causal (can use <code>liggetid</code> data to develop)</h3>
 <ul>
-<li>growing number of drugs for rare diseases</li>
-<li>very small sub-populations</li>
-<li>individualized treatments</li>
-<li>patient preferences</li>
-</ul>
-<p>Focus: whether RWD can be trusted to reliably measure treatment effects of new drugs: causally relationship</p>
-<p>Rather than using RWD to replace RCT, there are a few ways to improve RCT in smallre populations. See <a href="doi:%2010.1136/bmj-2022-073100%20Protected">Wieseler 2023</a></p>
-<section id="use-cases-for-rwd" class="level2">
-<h2 class="anchored" data-anchor-id="use-cases-for-rwd">Use cases for RWD</h2>
-<ul>
-<li>characerise health conditions, interventions, care pathways and patient outcomes</li>
-<li>patient-reported outcomes, quality of life</li>
-<li>estimate economic burden</li>
-<li>estimate test aaccuracy or reproducibility of biomarker test results</li>
-</ul>
-<section id="rwd-in-oncology" class="level3">
-<h3 class="anchored" data-anchor-id="rwd-in-oncology">RWD in oncology</h3>
-<p>Challenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:</p>
-<ul>
-<li>disease staging</li>
-<li>performance status</li>
-<li>mutation tests</li>
-<li>…</li>
+<li>survival curve comparison</li>
+<li>cox model adjusting age, sex</li>
+<li>mixed model, with department as levels</li>
+<li>missing data imputation</li>
 </ul>
 </section>
-</section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>Propensity score matching (PSM) to reproduce the effects of randomization</p>
-<p>How RWD is used</p>
+<section id="causal" class="level3">
+<h3 class="anchored" data-anchor-id="causal">Causal</h3>
 <ul>
-<li>combined with non-randomized single-arm trial: as external RWD control</li>
-<li>target trial emulation from RWD</li>
+<li>PS matching</li>
+<li>PS weighting</li>
 </ul>
-<section id="reference" class="level3">
-<h3 class="anchored" data-anchor-id="reference">Reference</h3>
-<p>Fang 2019</p>
-<p>Sheffield 2020</p>
-<p>Jemielita2021</p>
+<p>compare different techniques impact on the estimates</p>
+<p>sensitivity analysis</p>
+<p>Literarature</p>
+<p>https://www.fda.gov/drugs/regulatory-science-action/exploiting-real-world-data-optimize-use-antibiotics</p>
+<p>https://www.nature.com/articles/s41598-021-86853-4</p>
+<p>https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-022-02027-w</p>
 
 
 </section>

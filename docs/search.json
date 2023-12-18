@@ -86,9 +86,9 @@
   {
     "objectID": "inference/index.html",
     "href": "inference/index.html",
-    "title": "Inference",
+    "title": "Inference and models",
     "section": "",
-    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\n\n\nNo matching items"
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -396,7 +396,7 @@
     "href": "inference/overview.html",
     "title": "Overview: causal inference",
     "section": "",
-    "text": "Smoking example"
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate"
   },
   {
     "objectID": "inference/estimation_gcomp_ipw.html",
@@ -1187,14 +1187,14 @@
     "href": "inference/rwd_rwe.html#methods",
     "title": "Real-world Data, Real-world Evidence",
     "section": "Methods",
-    "text": "Methods\nPropensity score matching (PSM) to reproduce the effects of randomization"
+    "text": "Methods\nPropensity score matching (PSM) to reproduce the effects of randomization\nHow RWD is used\n\ncombined with non-randomized single-arm trial: as external RWD control\ntarget trial emulation from RWD\n\n\nReference\nFang 2019\nSheffield 2020\nJemielita2021"
   },
   {
     "objectID": "inference/propensity_score.html",
     "href": "inference/propensity_score.html",
     "title": "Propensity score",
     "section": "",
-    "text": "Propensity score\n(Rosenbaum and Rubin)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are nno unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores"
+    "text": "Propensity score\n(Rosenbaum and Rubin, 1983)\nFit a logistic regression:\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc."
   },
   {
     "objectID": "inference/overview.html#estimands",
@@ -1207,8 +1207,8 @@
     "objectID": "inference/overview.html#effects",
     "href": "inference/overview.html#effects",
     "title": "Overview: causal inference",
-    "section": "Effects",
-    "text": "Effects\n\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe potential outcomes, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\)."
+    "section": "",
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate"
   },
   {
     "objectID": "inference/overview.html#graphical-reppresentation",
@@ -1216,5 +1216,96 @@
     "title": "Overview: causal inference",
     "section": "Graphical reppresentation",
     "text": "Graphical reppresentation\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1"
+  },
+  {
+    "objectID": "inference/case_study_liggetid_1.html",
+    "href": "inference/case_study_liggetid_1.html",
+    "title": "Case study: length of hospital stay",
+    "section": "",
+    "text": "The data liggetid was collected at the Geriatric Department at Ullevål Sykehus. This dataset has been used for teaching at University of Oslo, MF9130E. The course material can be accessed here.\nWe will focus on the following variables:\nlos &lt;- readRDS('data/los.rds')\nhead(los, 3)\n\n  admission_year age    sex admission_from stroke los\n1           1987  81 female           home      0  13\n2           1987  96 female           home      0  17\n3           1987  79 female           home      0   6\nSome variables need to be recoded and put into factor to display nicely.\nShow the code\n# library(dplyr)\nlibrary(ggplot2)\n\n# remove NA\nlos &lt;- dplyr::filter(los, !is.na(sex) & !is.na(stroke) & !is.na(admission_from))\n\n# code admission from with text\n# unique(los$admission_from)\nlos$admission_from &lt;- factor(los$admission_from, \n                            levels = c('home', 'div_surgery', \n                                       'div_medicine', 'div_other', \n                                       'other_hospital', 'nursing_home'), \n                            labels = c('home', 'div_surgery', \n                                       'div_medicine', 'div_other', \n                                       'other_hospital', 'nursing_home'))\n\n# code admission year with text\nlos$admission_year &lt;- factor(los$admission_year,\n                            levels = c(1981:1987),\n                            labels = as.character(1981:1987))\n\nlos$stroke &lt;- factor(los$stroke, \n                          levels = c(0, 1), \n                          labels = c('no','yes'))"
+  },
+  {
+    "objectID": "dev/internal_notes/proposal_ab_los.html",
+    "href": "dev/internal_notes/proposal_ab_los.html",
+    "title": "Analysis + Simulation",
+    "section": "",
+    "text": "Investigate antibiotics effect on length of hospital stay\nAll AB combined together\n\nAnalysis + Simulation\n\nWithout causal (can use liggetid data to develop)\n\nsurvival curve comparison\ncox model adjusting age, sex\nmixed model, with department as levels\nmissing data imputation\n\n\n\nCausal\n\nPS matching\nPS weighting\n\ncompare different techniques impact on the estimates\nsensitivity analysis\nLiterarature\nhttps://www.fda.gov/drugs/regulatory-science-action/exploiting-real-world-data-optimize-use-antibiotics\nhttps://www.nature.com/articles/s41598-021-86853-4\nhttps://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-022-02027-w"
+  },
+  {
+    "objectID": "inference/mixed_models.html",
+    "href": "inference/mixed_models.html",
+    "title": "Mixed models for repeted measurements",
+    "section": "",
+    "text": "Resources:\n\nmmrm package vignette\nMixed models with R\n\nMMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix).\n\nMethodology\nBasic linear mixed-effects model for a single level of grouping\n\\[\ny_i = X_i \\beta + Z_i b_i + \\epsilon_i, i = 1, ..., n\n\\] \\[\nb_i \\sim N(0, \\Psi), \\epsilon \\sim N(0, \\sigma^2 I)\n\\]\n\n\\(\\beta\\) is p-dim vector of fixed effects\n\\(b\\) is q-dim vecor of random patient specific effects\n\\(X_i\\) of size \\(n_i \\times p\\) and \\(Z_i\\) of size \\(n_i \\times q\\) are regressor matrices relating observations to the fixed effects and random effects.\n\\(\\epsilon_i\\) is \\(n_i\\)-dimensional within-subject error"
+  },
+  {
+    "objectID": "inference/propensity_score.html#matching",
+    "href": "inference/propensity_score.html#matching",
+    "title": "Propensity score",
+    "section": "Matching",
+    "text": "Matching\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
+  },
+  {
+    "objectID": "inference/propensity_score.html#weighting",
+    "href": "inference/propensity_score.html#weighting",
+    "title": "Propensity score",
+    "section": "Weighting",
+    "text": "Weighting\nUsed in weighting\nATE (population) \\(w_{ATE} = \\frac{Z_i}{p_i} + \\frac{1-Z_i}{1-p_i}\\)\nATT \\(w_{ATT} = \\frac{p_i Z_i}{p_i} + \\frac{p_i(1-Z_i)}{1-p_i}\\)\nATC \\(w_{ATC} = \\frac{(1 - p_i) Z_i}{p_i} + \\frac{(1 - p_i)(1-Z_i)}{1-p_i}\\)"
+  },
+  {
+    "objectID": "inference/survival.html",
+    "href": "inference/survival.html",
+    "title": "Survival",
+    "section": "",
+    "text": "Links\nhttps://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html\nhttps://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/\nhttps://www.danieldsjoberg.com/ggsurvfit/\nhttps://www.coursera.org/learn/survival-analysis-r-public-health\nhttps://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html\nhttps://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/\njmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/"
+  },
+  {
+    "objectID": "inference/overview.html#graphical-representation",
+    "href": "inference/overview.html#graphical-representation",
+    "title": "Overview: causal inference",
+    "section": "Graphical representation",
+    "text": "Graphical representation\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1"
+  },
+  {
+    "objectID": "inference/overview.html#selection-bias",
+    "href": "inference/overview.html#selection-bias",
+    "title": "Overview: causal inference",
+    "section": "Selection bias",
+    "text": "Selection bias\nThis bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.\n\nnon-response, missing data\nself-selection, volunteer bias\nselection affected by treatment before study started\n\nA form of lack of exchangeability between the treated and untreated.\nCorrect for selection bias: IP weighting"
+  },
+  {
+    "objectID": "inference/index.html#inference",
+    "href": "inference/index.html#inference",
+    "title": "Inference and models",
+    "section": "",
+    "text": "Notes on causal inference and other related topics.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "inference/index.html#models",
+    "href": "inference/index.html#models",
+    "title": "Inference and models",
+    "section": "Models",
+    "text": "Models\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nMixed models for repeted measurements\n\n\n\n\n\n\n\nSurvival\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "inference/index.html#case-studies",
+    "href": "inference/index.html#case-studies",
+    "title": "Inference and models",
+    "section": "Case studies",
+    "text": "Case studies\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nCase study: length of hospital stay\n\n\nPart 1: EDA \n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "inference/g_computation.html",
+    "href": "inference/g_computation.html",
+    "title": "G-Computation",
+    "section": "",
+    "text": "G-computation\n\nFit a model for y ~ x + z, where z is all covariates\nCreate a duplicate for each level of x\nSet the value of x to a single value for each cloned dataset: x = 1 for one, x = 0 for the other\npredict\ncalculate estimate, mean(x_1) - mean(x_0)\n\nAdvantages\n\nflexible\nprecise (compared to propensity-score based methods)\nbasis of other important models (e.g. TMLE)"
+  },
+  {
+    "objectID": "inference/case_study_liggetid_1.html#visualization",
+    "href": "inference/case_study_liggetid_1.html#visualization",
+    "title": "Case study: length of hospital stay",
+    "section": "Visualization",
+    "text": "Visualization\n\nLOS vs age and sex\n\n\nShow the code\nplt_scat2 &lt;- ggplot(data = los, \n                    mapping = aes(x = age, y = los, shape = sex, color = sex))\nplt_scat2 &lt;- plt_scat2 + geom_point(size = 2, alpha = 0.7)\n# customize\nplt_scat2 &lt;- plt_scat2 + labs(\n  x = 'Age', \n  y = 'Length of hosptial stay (days)', \n  title = 'Length of stay versus age'\n)\nplt_scat2 &lt;- plt_scat2 + theme_bw() # make white background\n# change text size\nplt_scat2 &lt;- plt_scat2 + theme(\n  axis.text = element_text(size = 12),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15)\n)\n# change color\nplt_scat2 &lt;- plt_scat2 + scale_color_brewer(palette = 'Set1')\nplt_scat2\n\n\n\n\n\n\n\nShow the code\nlibrary(ggridges)\nplt_ridge &lt;- ggplot(data = los, \n                    mapping = aes(x = los, y = admission_year, fill = sex))\nplt_ridge &lt;- plt_ridge + geom_density_ridges(alpha = 0.6) \nplt_ridge &lt;- plt_ridge + theme_ridges()\nplt_ridge &lt;- plt_ridge + labs(\n  x = 'Length of hosptial stay (days)', \n  y = 'Admission year', \n  title = 'Length of stay in each year, for each gender'\n)\n# change color\nplt_ridge &lt;- plt_ridge + scale_fill_brewer(palette = 'Set1')\nplt_ridge\n\n\nPicking joint bandwidth of 32.7\n\n\n\n\n\n\n\nLOS vs year of admission\n\n\nShow the code\nplt_box &lt;- ggplot(data = los, \n                  mapping = aes(x = admission_year, y = los, fill = sex))\nplt_box &lt;- plt_box + geom_boxplot(outlier.size = 1)\n# plt_box &lt;- plt_box + facet_wrap( ~ sex)\nplt_box &lt;- plt_box + coord_flip()\n\n# customize\nplt_box &lt;- plt_box + theme_bw() # make white background\nplt_box &lt;- plt_box + labs(\n  x = 'Admission year', \n  y = 'Length of hosptial stay (days)', \n  title = 'Length of stay in each year, both men and women'\n)\nplt_box &lt;- plt_box + theme(\n  axis.text = element_text(size = 12),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15), \n  strip.text = element_text(size = 12)\n)\n\nplt_box &lt;- plt_box + scale_fill_brewer(palette = 'Set1')\nplt_box \n\n\n\n\n\n\n\nLOS vs types of admission\n\n\nShow the code\nplt_box2 &lt;- ggplot(data = los, \n                   mapping = aes(x = admission_year, y = los, fill = sex))\nplt_box2 &lt;- plt_box2 + geom_boxplot(outlier.size = 0.8)\nplt_box2 &lt;- plt_box2 + facet_wrap( ~ admission_from)\n\n\n# customize\nplt_box2 &lt;- plt_box2 + theme_bw() # make white background\nplt_box2 &lt;- plt_box2 + labs(\n  x = 'Admission year', \n  y = 'Length of hosptial stay (days)', \n  title = 'Length of stay in each year, each type of admission'\n)\nplt_box2 &lt;- plt_box2 + theme(\n  axis.text = element_text(size = 11),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15), \n  strip.text = element_text(size = 12), \n  axis.text.x = element_text(angle = 45) # more readable\n)\n\nplt_box2 &lt;- plt_box2 + scale_fill_brewer(palette = 'Set1')\nplt_box2"
   }
 ]

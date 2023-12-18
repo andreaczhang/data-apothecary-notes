@@ -1,7 +1,7 @@
 ---
 title: "Propensity score"
 description: |
-  Propensity score
+  Propensity score, matching, weighting
 author: "Chi Zhang"
 date: "2023-09-03"
 categories: [Causal inference]
@@ -19,7 +19,7 @@ format:
 
 Propensity score
 
-(Rosenbaum and Rubin)
+(Rosenbaum and Rubin, 1983)
 
 * in observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect
 * given that there are no unmeasured confounders
@@ -30,22 +30,31 @@ Fit a logistic regression:
 * binary outcome: exposure (1,0)
 * covariates: all but exposure
 
-Predict the values (probability), they are the propensity scores
+Predict the values (probability), they are the propensity scores.
+
+PS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc.
 
 
-### Matching
 
-ATT, ATC, ATE, ATM
+
+## Matching
+
 
 `MatchIt` package
 
-### Weighting
+PS matching is ONE of the many matching techniques that uses PS as the difference. 
 
-ATE $w_{ATE} = \frac{Z_i}{p_i} + \frac{1-Z_i}{1-p_i}$
+
+
+## Weighting
+
+
+
+Used in weighting
+
+ATE (population) $w_{ATE} = \frac{Z_i}{p_i} + \frac{1-Z_i}{1-p_i}$
 
 ATT $w_{ATT} = \frac{p_i Z_i}{p_i} + \frac{p_i(1-Z_i)}{1-p_i}$
 
 ATC $w_{ATC} = \frac{(1 - p_i) Z_i}{p_i} + \frac{(1 - p_i)(1-Z_i)}{1-p_i}$
-
-
 

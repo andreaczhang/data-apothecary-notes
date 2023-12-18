@@ -51,7 +51,10 @@
       "/inference/propensity_score.html",
       "/inference/target_trial_emulation.html",
       "/inference/rwd_rwe.html",
-      "/inference/g_computation.html"
+      "/inference/g_computation.html",
+      "/inference/mixed_models.html",
+      "/inference/survival.html",
+      "/inference/case_study_liggetid_1.html"
     ]
   }
 ]

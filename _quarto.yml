@@ -15,10 +15,7 @@ website:
         text: Study design
 
       - href: inference/index.qmd
-        text: Inference
-
-      - href: models/index.qmd
-        text: Models
+        text: Inference and models
 
       - href: reporting/index.qmd
         text: Reporting

@@ -98,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Inference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../models/index.html" rel="" target="">
+    <a class="nav-link" href="../models/index.qmd" rel="" target="">
  <span class="menu-text">Models</span></a>
   </li>  
   <li class="nav-item">
@@ -138,7 +138,8 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#effects" id="toc-effects" class="nav-link active" data-scroll-target="#effects">Effects</a></li>
   <li><a href="#estimands" id="toc-estimands" class="nav-link" data-scroll-target="#estimands">Estimands</a></li>
-  <li><a href="#graphical-reppresentation" id="toc-graphical-reppresentation" class="nav-link" data-scroll-target="#graphical-reppresentation">Graphical reppresentation</a></li>
+  <li><a href="#graphical-representation" id="toc-graphical-representation" class="nav-link" data-scroll-target="#graphical-representation">Graphical representation</a></li>
+  <li><a href="#selection-bias" id="toc-selection-bias" class="nav-link" data-scroll-target="#selection-bias">Selection bias</a></li>
   </ul>
 </nav>
     </div>
@@ -183,17 +184,11 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Smoking example</p>
-<ul>
-<li>does smoking cause lung cancer?</li>
-<li>does lung cancer cause people to smoke?</li>
-<li>is there a third factor that causes both smoking and lung cancer?</li>
-</ul>
 <section id="effects" class="level2">
 <h2 class="anchored" data-anchor-id="effects">Effects</h2>
 <p><span class="math inline">\(Y^{a=1}, Y^{a=0}\)</span> are the <strong>potential outcomes</strong> under treatment 1 and 0. They are random variables. Treatment A has causal effect if <span class="math inline">\(Y^{a=1} \neq Y^{a=0}\)</span>.</p>
 <p>For individual <span class="math inline">\(i\)</span>, <span class="math inline">\(Y_i^{a=1}, Y_i^{a=0}\)</span> are deterministic.</p>
-<p>In reality we do not observe potential outcomes, since we only have ONE outcome. We observe <span class="math inline">\(Y\)</span> and <span class="math inline">\(A\)</span>.</p>
+<p>In reality we <em>do not</em> observe both potential outcomes for an individual, since we only have ONE outcome. We observe <span class="math inline">\(Y\)</span> and <span class="math inline">\(A\)</span>. For a population, average treatment effect (ATE) can be estimate</p>
 </section>
 <section id="estimands" class="level2">
 <h2 class="anchored" data-anchor-id="estimands">Estimands</h2>
@@ -211,8 +206,8 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math inline">\(E[Y(1) - Y(0) | Z = 0]\)</span></p>
 <p>ATM: average treatment effect among the matched</p>
 </section>
-<section id="graphical-reppresentation" class="level2">
-<h2 class="anchored" data-anchor-id="graphical-reppresentation">Graphical reppresentation</h2>
+<section id="graphical-representation" class="level2">
+<h2 class="anchored" data-anchor-id="graphical-representation">Graphical representation</h2>
 <table class="table">
 <colgroup>
 <col style="width: 28%">
@@ -249,6 +244,17 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+</section>
+<section id="selection-bias" class="level2">
+<h2 class="anchored" data-anchor-id="selection-bias">Selection bias</h2>
+<p>This bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.</p>
+<ul>
+<li>non-response, missing data</li>
+<li>self-selection, volunteer bias</li>
+<li>selection affected by treatment before study started</li>
+</ul>
+<p>A form of <strong>lack of exchangeability</strong> between the treated and untreated.</p>
+<p>Correct for selection bias: IP weighting</p>
 
 
 </section>
