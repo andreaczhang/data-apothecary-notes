@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2023-09-03">
+<meta name="description" content="Collider, confounder, mediator and M-bias">
 
-<title>Data Apothecary’s Notes - Mixed models for repeted measurements</title>
+<title>Data Apothecary’s Notes - Overview: causal inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,8 +131,11 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link active" data-scroll-target="#methodology">Methodology</a></li>
+  <ul class="collapse">
+  <li><a href="#effects" id="toc-effects" class="nav-link active" data-scroll-target="#effects">Effects</a></li>
+  <li><a href="#estimands" id="toc-estimands" class="nav-link" data-scroll-target="#estimands">Estimands</a></li>
+  <li><a href="#graphical-representation" id="toc-graphical-representation" class="nav-link" data-scroll-target="#graphical-representation">Graphical representation</a></li>
+  <li><a href="#selection-bias" id="toc-selection-bias" class="nav-link" data-scroll-target="#selection-bias">Selection bias</a></li>
   </ul>
 </nav>
     </div>
@@ -138,14 +144,35 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mixed models for repeted measurements</h1>
-</div>
+<h1 class="title">Overview: causal inference</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Clinical trial</div>
+    <div class="quarto-category">Observational data</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Collider, confounder, mediator and M-bias</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 3, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -153,26 +180,77 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Resources:</p>
+<section id="effects" class="level2">
+<h2 class="anchored" data-anchor-id="effects">Effects</h2>
+<p><span class="math inline">\(Y^{a=1}, Y^{a=0}\)</span> are the <strong>potential outcomes</strong> under treatment 1 and 0. They are random variables. Treatment A has causal effect if <span class="math inline">\(Y^{a=1} \neq Y^{a=0}\)</span>.</p>
+<p>For individual <span class="math inline">\(i\)</span>, <span class="math inline">\(Y_i^{a=1}, Y_i^{a=0}\)</span> are deterministic.</p>
+<p>In reality we <em>do not</em> observe both potential outcomes for an individual, since we only have ONE outcome. We observe <span class="math inline">\(Y\)</span> and <span class="math inline">\(A\)</span>. For a population, average treatment effect (ATE) can be estimate</p>
+</section>
+<section id="estimands" class="level2">
+<h2 class="anchored" data-anchor-id="estimands">Estimands</h2>
+<p>Greifer, N., &amp; Stuart, E. A. (2021). Choosing the estimand when matching or weighting in observational studies. arXiv preprint arXiv:2106.10577.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="estimands.png" class="img-fluid figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+<p>ATE: average treatment effect in the population</p>
+<p><span class="math inline">\(E[Y(1) - Y(0)]\)</span></p>
+<p>ATT: average treatment effect among the treated</p>
+<p><span class="math inline">\(E[Y(1) - Y(0) | Z = 1]\)</span></p>
+<p>ATC: average treatment effect among the controls</p>
+<p><span class="math inline">\(E[Y(1) - Y(0) | Z = 0]\)</span></p>
+<p>ATM: average treatment effect among the matched</p>
+</section>
+<section id="graphical-representation" class="level2">
+<h2 class="anchored" data-anchor-id="graphical-representation">Graphical representation</h2>
+<table class="table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Data generation</th>
+<th style="text-align: center;">Correct causal model</th>
+<th style="text-align: center;">Correct causal effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Collider</td>
+<td style="text-align: center;">Y ~ X</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Confounder</td>
+<td style="text-align: center;">Y ~ X; Z</td>
+<td style="text-align: center;">0.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Mediator</td>
+<td style="text-align: center;">Direct effect: Y ~ X; Z. Total effect: Y ~ X</td>
+<td style="text-align: center;">Direct: 0; total: 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">M-Bias</td>
+<td style="text-align: center;">Y ~ X</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="selection-bias" class="level2">
+<h2 class="anchored" data-anchor-id="selection-bias">Selection bias</h2>
+<p>This bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.</p>
 <ul>
-<li><code>mmrm</code> package <a href="https://openpharma.github.io/mmrm/latest-tag/articles/methodological_introduction.html">vignette</a></li>
-<li><a href="https://m-clark.github.io/mixed-models-with-R/random_intercepts.html">Mixed models with R</a></li>
+<li>non-response, missing data</li>
+<li>self-selection, volunteer bias</li>
+<li>selection affected by treatment before study started</li>
 </ul>
-<p>MMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix).</p>
-<section id="methodology" class="level3">
-<h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
-<p>Basic linear mixed-effects model for a single level of grouping</p>
-<p><span class="math display">\[
-y_i = X_i \beta + Z_i b_i + \epsilon_i, i = 1, ..., n
-\]</span> <span class="math display">\[
-b_i \sim N(0, \Psi), \epsilon \sim N(0, \sigma^2 I)
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\beta\)</span> is p-dim vector of fixed effects</li>
-<li><span class="math inline">\(b\)</span> is q-dim vecor of random patient specific effects</li>
-<li><span class="math inline">\(X_i\)</span> of size <span class="math inline">\(n_i \times p\)</span> and <span class="math inline">\(Z_i\)</span> of size <span class="math inline">\(n_i \times q\)</span> are regressor matrices relating observations to the fixed effects and random effects.</li>
-<li><span class="math inline">\(\epsilon_i\)</span> is <span class="math inline">\(n_i\)</span>-dimensional within-subject error</li>
-</ul>
+<p>A form of <strong>lack of exchangeability</strong> between the treated and untreated.</p>
+<p>Correct for selection bias: IP weighting</p>
 
 
 </section>

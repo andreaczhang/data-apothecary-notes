@@ -1,0 +1,23 @@
+---
+title: "Genomics in Drug Discovery"
+description: |
+  Notes on this topic
+author: "Chi Zhang"
+date: "2024-01-03"
+categories: [Omics data]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+
+
+
+

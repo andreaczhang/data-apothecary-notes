@@ -82,13 +82,20 @@ How RWD is used
 * target trial emulation from RWD 
 
 
-### Reference
+
+
+
+
+### References
 
 Fang 2019
 
 Sheffield 2020
 
-Jemielita2021
+[@Jemielita2021]
+
+::: {#refs}
+:::
 
 
 

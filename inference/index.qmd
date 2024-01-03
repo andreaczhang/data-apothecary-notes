@@ -1,13 +1,26 @@
 ---
 title: "Inference and models"
 listing:
+  - id: settings
+    max-description-length: 500
+    image-height: 150px
+    fields: [title, description]
+    contents: 
+      - "rwd_rwe.qmd"
+      - "genomics.qmd"
+    type: table
+    grid-item-border: false
+    sort-ui: false
+    sort: date
+    filter-ui: false
+    categories: true
+
   - id: inference
     max-description-length: 500
     image-height: 150px
     fields: [title, description]
     contents: 
-      - "overview.qmd"
-      - "rwd_rwe.qmd"
+      - "overview_ci.qmd"
       - "propensity_score.qmd"
       - "g_computation.qmd"
       - "target_trial_emulation.qmd"
@@ -45,6 +58,14 @@ listing:
     filter-ui: false
     categories: true  
 ---
+
+## Settings
+
+Different settings to apply methods.
+
+::: {#settings}
+:::
+
 
 ## Inference
 

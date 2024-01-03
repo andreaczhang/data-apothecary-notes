@@ -23,7 +23,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -93,11 +112,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../inference/index.html" rel="" target="">
- <span class="menu-text">Inference</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../models/index.qmd" rel="" target="">
- <span class="menu-text">Models</span></a>
+ <span class="menu-text">Inference and models</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reporting/index.html" rel="" target="">
@@ -221,11 +236,14 @@ ul.task-list li input[type="checkbox"] {
 <li>combined with non-randomized single-arm trial: as external RWD control</li>
 <li>target trial emulation from RWD</li>
 </ul>
-<section id="reference" class="level3">
-<h3 class="anchored" data-anchor-id="reference">Reference</h3>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
 <p>Fang 2019</p>
 <p>Sheffield 2020</p>
-<p>Jemielita2021</p>
+<p><span class="citation" data-cites="Jemielita2021">[@Jemielita2021]</span></p>
+<div id="refs" role="list">
+
+</div>
 
 
 </section>

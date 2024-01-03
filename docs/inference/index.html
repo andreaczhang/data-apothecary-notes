@@ -64,6 +64,34 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-settings .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-settings'] = new List('listing-settings', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-inference .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
@@ -216,12 +244,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#inference" id="toc-inference" class="nav-link active" data-scroll-target="#inference">Inference</a></li>
+  <li><a href="#settings" id="toc-settings" class="nav-link active" data-scroll-target="#settings">Settings</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
   <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
   <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case studies</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Omics data">Omics data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -242,6 +271,47 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="settings" class="level2">
+<h2 class="anchored" data-anchor-id="settings">Settings</h2>
+<p>Different settings to apply methods.</p>
+<div id="listing-settings" class="quarto-listing quarto-listing-container-table">
+
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Observational data" data-listing-date-sort="1693778400000" data-listing-file-modified-sort="1704299419688" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Real-world Data, Real-world Evidence" data-listing-filename-sort="rwd_rwe.qmd">
+<td>
+<a href="../inference/rwd_rwe.html" class="title listing-title">Real-world Data, Real-world Evidence</a>
+</td>
+<td>
+<span class="listing-description">RWD, RWE </span>
+</td>
+</tr>
+<tr data-index="1" data-categories="Omics data" data-listing-date-sort="1704236400000" data-listing-file-modified-sort="1704299358862" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Genomics in Drug Discovery" data-listing-filename-sort="genomics.qmd">
+<td>
+<a href="../inference/genomics.html" class="title listing-title">Genomics in Drug Discovery</a>
+</td>
+<td>
+<span class="listing-description">Notes on this topic </span>
+</td>
+</tr>
+</tbody>
+
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
 <section id="inference" class="level2">
 <h2 class="anchored" data-anchor-id="inference">Inference</h2>
 <p>Notes on causal inference and other related topics.</p>
@@ -259,9 +329,9 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Clinical trial,Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1702648217700" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Overview: causal inference" data-listing-filename-sort="overview.qmd">
+<tr data-index="0" data-categories="Clinical trial,Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1702648217700" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Overview: causal inference" data-listing-filename-sort="overview_ci.qmd">
 <td>
-<a href="../inference/overview.html" class="title listing-title">Overview: causal inference</a>
+<a href="../inference/overview_ci.html" class="title listing-title">Overview: causal inference</a>
 </td>
 <td>
 <span class="listing-description">Collider, confounder, mediator and M-bias </span>
@@ -283,15 +353,7 @@ Description
 <span class="listing-description">TTE </span>
 </td>
 </tr>
-<tr data-index="3" data-categories="Observational data" data-listing-date-sort="1693778400000" data-listing-file-modified-sort="1702566816161" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Real-world Data, Real-world Evidence" data-listing-filename-sort="rwd_rwe.qmd">
-<td>
-<a href="../inference/rwd_rwe.html" class="title listing-title">Real-world Data, Real-world Evidence</a>
-</td>
-<td>
-<span class="listing-description">RWD, RWE </span>
-</td>
-</tr>
-<tr data-index="4" data-categories="Causal inference" data-listing-date-sort="1702335600000" data-listing-file-modified-sort="1702395709884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="G-Computation" data-listing-filename-sort="g_computation.qmd">
+<tr data-index="3" data-categories="Causal inference" data-listing-date-sort="1702335600000" data-listing-file-modified-sort="1702395709884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="G-Computation" data-listing-filename-sort="g_computation.qmd">
 <td>
 <a href="../inference/g_computation.html" class="title listing-title">G-Computation</a>
 </td>
@@ -323,7 +385,7 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1698328968184" data-listing-reading-time-sort="1" data-listing-title-sort="Mixed models for repeted measurements" data-listing-filename-sort="mixed_models.qmd">
+<tr data-index="0" data-listing-file-modified-sort="1704299386060" data-listing-reading-time-sort="1" data-listing-title-sort="Mixed models for repeted measurements" data-listing-filename-sort="mixed_models.qmd">
 <td>
 <a href="../inference/mixed_models.html" class="title listing-title">Mixed models for repeted measurements</a>
 </td>

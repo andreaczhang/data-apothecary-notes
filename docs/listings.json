@@ -47,10 +47,11 @@
   {
     "listing": "/inference/index.html",
     "items": [
-      "/inference/overview.html",
+      "/inference/rwd_rwe.html",
+      "/inference/genomics.html",
+      "/inference/overview_ci.html",
       "/inference/propensity_score.html",
       "/inference/target_trial_emulation.html",
-      "/inference/rwd_rwe.html",
       "/inference/g_computation.html",
       "/inference/mixed_models.html",
       "/inference/survival.html",
