@@ -8,7 +8,7 @@
 
 <meta name="author" content="Chi Zhang">
 <meta name="dcterms.date" content="2024-01-03">
-<meta name="description" content="Notes on this topic">
+<meta name="description" content="Use of machine learning techniques">
 
 <title>Data Apothecary’s Notes - Genomics in Drug Discovery</title>
 <style>
@@ -23,7 +23,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -126,7 +145,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link active" data-scroll-target="#machine-learning">Machine learning</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -141,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    <p>Notes on this topic</p>
+    <p>Use of machine learning techniques</p>
   </div>
 </div>
 
@@ -168,8 +194,48 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Why do we need <strong>precision medicine</strong>? Late-stage failures cost the most, and small improvements in failure rates at early stage yield largest savings - use <strong>better targets</strong>.</p>
+<p>As of 2016, 10-15% targets have genetic data; increased to 50%, expect 13-15% cost reduction.</p>
+<p>Not all genes are targets, and not all targets are genes.</p>
+<p>FTO (fat mass and obesity gene). Can search FTO in clinical trial gov website.</p>
+<p>Overall nearly 60% are pursued by multiple companies, 26% by more than 5 companies: once a drug is made a target, redundancy is high. But before a target is proven, high diversity and novelty.</p>
+<section id="machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning">Machine learning</h2>
+<p>Genomics data alone are insufficient for therapeutic development. How they interact with other types of data such as <strong>compounds, proteins, EHR, images, texts etc</strong> need to be investigated.</p>
+<p><strong>Target discovery</strong>: identify the molecure that can be targeted by a drug to produce a therapeutic effect, such as inhibition, to block the disease process.</p>
+<p><strong>Therapeutic discovery</strong>: design potent therapeutic agents to modulate the target and block disease pathway. ML can be used to predict drug response in cell lines. Drug combination screening.</p>
+<p>During <strong>clinical studies</strong>, ML can help characterize patient groups and identify eligible patients from gene expression data and EHRs.</p>
+<p>During <strong>post-market studies</strong>, mining EHR and other RWD to provid additional evidence, such as patients’ drug response given different patient characteristics.</p>
+<section id="supervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="supervised-learning">Supervised learning</h3>
+<p>Regression and classification, e.g.&nbsp;</p>
+<ul>
+<li>drug sensitivity prediction</li>
+<li>gene expression signitures that predict clinical trial success</li>
+</ul>
+</section>
+<section id="unsupervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised learning</h3>
+<p>Clustering, e.g.&nbsp;</p>
+<ul>
+<li>feature reduction in single-cell data to identify cell types</li>
+<li>cell types and biomarkers from single-cell RNA data</li>
+</ul>
+<p>Example: drug sensitivity predictive model. Identify biomarkers and build drug sensitivity predictive models using preclinical data, then apply to patients in early-stage clinical trials. Once validated, the model can be used for patient stratification and disease indicaation selection to support clinical development of a drug.</p>
+<p>(Example from <span class="citation" data-cites="Vamathevan2019">(<a href="#ref-Vamathevan2019" role="doc-biblioref">Vamathevan et al. 2019</a>)</span>)</p>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Vamathevan2019" class="csl-entry" role="listitem">
+Vamathevan, Jessica, Dominic Clark, Paul Czodrowski, Ian Dunham, Edgardo Ferran, George Lee, Bin Li, et al. 2019. <span>“<span class="nocase">Applications of machine learning in drug discovery and development</span>.”</span> <em>Nature Reviews of Drug Discovery</em> 18 (6): 463–77. <a href="https://doi.org/10.1038/s41573-019-0024-5">https://doi.org/10.1038/s41573-019-0024-5</a>.
+</div>
+</div>
+<p>https://www.iqvia.com/-/media/iqvia/pdfs/library/white-papers/machine-learning-applications-for-therapeutic-tasks.pdf</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

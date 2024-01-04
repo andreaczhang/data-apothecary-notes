@@ -1,5 +1,6 @@
 ---
 title: "Real-world Data, Real-world Evidence"
+bibliography: biblio.bib
 description: |
   RWD, RWE
 author: "Chi Zhang"

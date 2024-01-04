@@ -88,7 +88,7 @@
     "href": "inference/index.html",
     "title": "Inference and models",
     "section": "",
-    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nNotes on this topic \n\n\n\n\n\n\nNo matching items"
+    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -1187,7 +1187,7 @@
     "href": "inference/rwd_rwe.html#methods",
     "title": "Real-world Data, Real-world Evidence",
     "section": "Methods",
-    "text": "Methods\nPropensity score matching (PSM) to reproduce the effects of randomization\nHow RWD is used\n\ncombined with non-randomized single-arm trial: as external RWD control\ntarget trial emulation from RWD\n\n\nReferences\nFang 2019\nSheffield 2020\n[@Jemielita2021]"
+    "text": "Methods\nPropensity score matching (PSM) to reproduce the effects of randomization\nHow RWD is used\n\ncombined with non-randomized single-arm trial: as external RWD control\ntarget trial emulation from RWD\n\n\nReferences\nFang 2019\nSheffield 2020\n(Jemielita et al. 2021)\n\n\nJemielita, Thomas, Linnea Widman, Claire Fox, Stina Salomonsson, Kai Li Liaw, and Andreas Pettersson. 2021. “Replication of Oncology Randomized Trial Results using Swedish Registry Real World-Data: A Feasibility Study.” Clinical Pharmacology and Therapeutics 110 (6): 1613–21. https://doi.org/10.1002/cpt.2424."
   },
   {
     "objectID": "inference/propensity_score.html",
@@ -1313,7 +1313,7 @@
     "href": "inference/index.html#settings",
     "title": "Inference and models",
     "section": "",
-    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nNotes on this topic \n\n\n\n\n\n\nNo matching items"
+    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/overview_ci.html",
@@ -1349,5 +1349,19 @@
     "title": "Overview: causal inference",
     "section": "Selection bias",
     "text": "Selection bias\nThis bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.\n\nnon-response, missing data\nself-selection, volunteer bias\nselection affected by treatment before study started\n\nA form of lack of exchangeability between the treated and untreated.\nCorrect for selection bias: IP weighting"
+  },
+  {
+    "objectID": "inference/genomics.html",
+    "href": "inference/genomics.html",
+    "title": "Genomics in Drug Discovery",
+    "section": "",
+    "text": "Why do we need precision medicine? Late-stage failures cost the most, and small improvements in failure rates at early stage yield largest savings - use better targets.\nAs of 2016, 10-15% targets have genetic data; increased to 50%, expect 13-15% cost reduction.\nNot all genes are targets, and not all targets are genes.\nFTO (fat mass and obesity gene). Can search FTO in clinical trial gov website.\nOverall nearly 60% are pursued by multiple companies, 26% by more than 5 companies: once a drug is made a target, redundancy is high. But before a target is proven, high diversity and novelty."
+  },
+  {
+    "objectID": "inference/genomics.html#machine-learning",
+    "href": "inference/genomics.html#machine-learning",
+    "title": "Genomics in Drug Discovery",
+    "section": "Machine learning",
+    "text": "Machine learning\nGenomics data alone are insufficient for therapeutic development. How they interact with other types of data such as compounds, proteins, EHR, images, texts etc need to be investigated.\nTarget discovery: identify the molecure that can be targeted by a drug to produce a therapeutic effect, such as inhibition, to block the disease process.\nTherapeutic discovery: design potent therapeutic agents to modulate the target and block disease pathway. ML can be used to predict drug response in cell lines. Drug combination screening.\nDuring clinical studies, ML can help characterize patient groups and identify eligible patients from gene expression data and EHRs.\nDuring post-market studies, mining EHR and other RWD to provid additional evidence, such as patients’ drug response given different patient characteristics.\n\nSupervised learning\nRegression and classification, e.g. \n\ndrug sensitivity prediction\ngene expression signitures that predict clinical trial success\n\n\n\nUnsupervised learning\nClustering, e.g. \n\nfeature reduction in single-cell data to identify cell types\ncell types and biomarkers from single-cell RNA data\n\nExample: drug sensitivity predictive model. Identify biomarkers and build drug sensitivity predictive models using preclinical data, then apply to patients in early-stage clinical trials. Once validated, the model can be used for patient stratification and disease indicaation selection to support clinical development of a drug.\n(Example from (Vamathevan et al. 2019))"
   }
 ]
