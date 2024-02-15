@@ -424,7 +424,7 @@
     "href": "inference/rwd_rwe.html",
     "title": "Real-world Data, Real-world Evidence",
     "section": "",
-    "text": "RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.\n(The general benefits and disadvantages of RWD is coherent with EHR data)\nTherapheutic areas: oncology, rare diseases, infectious diseases among others\nTraditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.\nFDA: (2016) 21st Century Cures Act, evaluate the use of RWD in support of regulatory approvals and post-approval safety studies.\nEMA (2017): HMA/EMA Joint Big Data Task Force, establish a roadmap for the use of RWD in regulatory assessments\nChallenges of using RCT\nFocus: whether RWD can be trusted to reliably measure treatment effects of new drugs: causally relationship\nRather than using RWD to replace RCT, there are a few ways to improve RCT in smallre populations. See Wieseler 2023"
+    "text": "RWD is any data collected outside clinical trial setting, can be combined with clinical trials.\n(The general benefits and disadvantages of RWD is coherent with EHR data)\nTherapheutic areas: oncology, rare diseases, infectious diseases among others\nTraditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.\nFDA: (2016) 21st Century Cures Act, evaluate the use of RWD in support of regulatory approvals and post-approval safety studies.\nEMA (2017): HMA/EMA Joint Big Data Task Force, establish a roadmap for the use of RWD in regulatory assessments\nChallenges of using RCT\nFocus: whether RWD can be trusted to reliably measure treatment effects of new drugs, causal relationship. The main difference between RCT and RWD is the confounding bias."
   },
   {
     "objectID": "inference/covariate_adjustment.html",
@@ -1180,14 +1180,14 @@
     "href": "inference/rwd_rwe.html#use-cases-for-rwd",
     "title": "Real-world Data, Real-world Evidence",
     "section": "Use cases for RWD",
-    "text": "Use cases for RWD\n\ncharacerise health conditions, interventions, care pathways and patient outcomes\npatient-reported outcomes, quality of life\nestimate economic burden\nestimate test aaccuracy or reproducibility of biomarker test results\n\n\nRWD in oncology\nChallenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:\n\ndisease staging\nperformance status\nmutation tests\n…"
+    "text": "Use cases for RWD\nA few examples\n\ncharacerise health conditions, interventions, care pathways and patient outcomes\npatient-reported outcomes, quality of life\nestimate economic burden\nestimate test accuracy or reproducibility of biomarker test results\n\nRather than using RWD to replace RCT, there are a few ways to improve RCT in smaller populations. See Wieseler 2023\n\nRWD in oncology\nChallenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:\n\ndisease staging\nperformance status\nmutation tests\n…"
   },
   {
     "objectID": "inference/rwd_rwe.html#methods",
     "href": "inference/rwd_rwe.html#methods",
     "title": "Real-world Data, Real-world Evidence",
     "section": "Methods",
-    "text": "Methods\nPropensity score matching (PSM) to reproduce the effects of randomization\nHow RWD is used\n\ncombined with non-randomized single-arm trial: as external RWD control\ntarget trial emulation from RWD\n\n\nReferences\nFang 2019\nSheffield 2020\n(Jemielita et al. 2021)\n\n\nJemielita, Thomas, Linnea Widman, Claire Fox, Stina Salomonsson, Kai Li Liaw, and Andreas Pettersson. 2021. “Replication of Oncology Randomized Trial Results using Swedish Registry Real World-Data: A Feasibility Study.” Clinical Pharmacology and Therapeutics 110 (6): 1613–21. https://doi.org/10.1002/cpt.2424."
+    "text": "Methods\nPropensity score matching (PSM) to reproduce the effects of randomization\nHow RWD is used\n\ncombined with non-randomized single-arm trial: as external RWD control\ntarget trial emulation from RWD"
   },
   {
     "objectID": "inference/propensity_score.html",
@@ -1278,7 +1278,7 @@
     "href": "inference/index.html#inference",
     "title": "Inference and models",
     "section": "Inference",
-    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\n\n\nNo matching items"
+    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data\n\n\nMultiple imputation \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/index.html#models",
@@ -1363,5 +1363,47 @@
     "title": "Genomics in Drug Discovery",
     "section": "Machine learning",
     "text": "Machine learning\nGenomics data alone are insufficient for therapeutic development. How they interact with other types of data such as compounds, proteins, EHR, images, texts etc need to be investigated.\nTarget discovery: identify the molecure that can be targeted by a drug to produce a therapeutic effect, such as inhibition, to block the disease process.\nTherapeutic discovery: design potent therapeutic agents to modulate the target and block disease pathway. ML can be used to predict drug response in cell lines. Drug combination screening.\nDuring clinical studies, ML can help characterize patient groups and identify eligible patients from gene expression data and EHRs.\nDuring post-market studies, mining EHR and other RWD to provid additional evidence, such as patients’ drug response given different patient characteristics.\n\nSupervised learning\nRegression and classification, e.g. \n\ndrug sensitivity prediction\ngene expression signitures that predict clinical trial success\n\n\n\nUnsupervised learning\nClustering, e.g. \n\nfeature reduction in single-cell data to identify cell types\ncell types and biomarkers from single-cell RNA data\n\nExample: drug sensitivity predictive model. Identify biomarkers and build drug sensitivity predictive models using preclinical data, then apply to patients in early-stage clinical trials. Once validated, the model can be used for patient stratification and disease indicaation selection to support clinical development of a drug.\n(Example from (Vamathevan et al. 2019))"
+  },
+  {
+    "objectID": "inference/missing_data.html",
+    "href": "inference/missing_data.html",
+    "title": "Missing data",
+    "section": "",
+    "text": "Missing data can occur in various situations:\n\nunit non-response: individuals decline to participate\nitem non-response: some questions or measurements left out by participating individuals\nloss of follow-up: drop outs\n\nFor unit non-response and loss of follow-up, weighting the data could help. Need to know the response rate, charaacteristics of the non-responders and how the respondent differ.\nSolutions (to item non-response)\n\ncomplete case analysis (listwise deletion)\nsingle imputation\n\nmean imputation\nconditional imputation: make a prediction, plus minus some noise\n\nmultiple imputation: repeat single imputation M times, produce M complete datasets, use Rubin’s rules to pool the estimates.\n\n\n\nThree categories of missing mechanism. Example: disease status, level of exposure, age. Exposure is missing for some subjects.\n\nMCAR: any two individuals have the same probability of having missing value for exposure. This is unlikely.\nMAR: any two individuaals with the same disease status and age have the same chance of having the exposure missing\nMNAR: chance of having missing exposure depends on the value of exposure"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/unsupervised.html",
+    "href": "dev/oldnotes_stat/unsupervised.html",
+    "title": "Genomics data (microarray)",
+    "section": "",
+    "text": "A tool to detect expression of thousands of genes at the same time\nGene chip / DNA chip: each spot has a known DNA sequence or gene\nDNA molecules act as probes to detect gene expression (transcriptome) / mRNA transcripts\ncDNA (complementary DNA) from tissue 1 are labeled red, from tissue 2 are green\nred spot means gene is expressed in tissue 1\nyellow means gene is expressed in both tissues\ngene: a region of DNA coding for mRNA encoding the amino acidiee sequence\ngene expression: process by which genetic information in DNA is transcribed into mRNA\n\n\n\nderived from cancerous growths of humans or animals\nImmortalised in lab, proliferate indefinitely within an in vitro environment\nanalysing tumor cell lines allows us to identify targets that are expressed in cancer cells but not in normal cells\n\n\n\ngene x sample (or cell line)\neach entry is the expression level of a gene in a sample.\nexpression level: a gene generate more (or less) transcripts. this is a relative measurement of the number of transcripts\ncommonly taken log. Positive, increased level of expression; negative, decreased.\ncan compare GEM from healthy and cancer patients to find diagnostic biomarkers"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/unsupervised.html#k-means",
+    "href": "dev/oldnotes_stat/unsupervised.html#k-means",
+    "title": "Genomics data (microarray)",
+    "section": "K-means",
+    "text": "K-means\nNeed to pre-specify number of clusters K\nA good clustering achieves within-cluster variation as small as possible\nWCV (Ck), measures how much data within a cluster differ from each other\n\ntypically Euclidean distance\n\nNeed to minimize the TOTAL WCV for all clusters\nalgorithm\n\nrandomly assign a number from 1 to K to each observation, as initial cluster assignment\niterate until assignment stops changing:\n\nfor each of the K clusters: compute cluster centroid\nAssign each observation to the cluster whose centroid is closest (defined by Euclidean distance)"
+  },
+  {
+    "objectID": "dev/oldnotes_stat/unsupervised.html#hierarchical-clustering",
+    "href": "dev/oldnotes_stat/unsupervised.html#hierarchical-clustering",
+    "title": "Genomics data (microarray)",
+    "section": "Hierarchical clustering",
+    "text": "Hierarchical clustering\nDoes not require number of clusters K (still need to choose afterwards)\nBottom-up / agglomerative: build a hierarchy from bottom up, distance-based\nLinkage (dissimilarity between pairs of clusters)\n\ncentroid is common in genomics\nsingle (closest), complete (farthest two points), average\n\nDistance metrics\n\nEuclidean\ncorrelation based\nother distances that make sense in context\n\nPractical issues\n\nScaling of variables is important\nnumber of clusters\nchoice of dissimilarity metrics and linkage\nwhich features to use"
+  },
+  {
+    "objectID": "inference/rwd_rwe.html#training-material",
+    "href": "inference/rwd_rwe.html#training-material",
+    "title": "Real-world Data, Real-world Evidence",
+    "section": "Training material",
+    "text": "Training material\nOnline courses\n\nReal-world evidence 1: Routinely collected data for clinical research by University of Basel\nReal-world evidence 2: Pragmatic trials - study designs for real-world decision making by University of Basel\n\nKeywords\n\nroutinely collected data for randomized trials (RCD-RCT)\nmeta-research\npragmatic trial\ngeneralizability, applicability and external validity of RCT\noptimal study design to support decision-making\nReal-world evidence in Pharmacoepidemiology by LSHTM\n\nKeywords\n\nsources of error, bias and confounding\nquantitative bias analysis (QBA)\nmissing data\nconfounding by indication\n\n\nReferences\nFang 2019\nSheffield 2020\n(Jemielita et al. 2021)\n\n\nJemielita, Thomas, Linnea Widman, Claire Fox, Stina Salomonsson, Kai Li Liaw, and Andreas Pettersson. 2021. “Replication of Oncology Randomized Trial Results using Swedish Registry Real World-Data: A Feasibility Study.” Clinical Pharmacology and Therapeutics 110 (6): 1613–21. https://doi.org/10.1002/cpt.2424."
+  },
+  {
+    "objectID": "inference/missing_data.html#overview",
+    "href": "inference/missing_data.html#overview",
+    "title": "Missing data",
+    "section": "",
+    "text": "Missing data can occur in various situations:\n\nunit non-response: individuals decline to participate\nitem non-response: some questions or measurements left out by participating individuals\nloss of follow-up: drop outs\n\nFor unit non-response and loss of follow-up, weighting the data could help. Need to know the response rate, charaacteristics of the non-responders and how the respondent differ.\nSolutions (to item non-response)\n\ncomplete case analysis (listwise deletion)\nsingle imputation\n\nmean imputation\nconditional imputation: make a prediction, plus minus some noise\n\nmultiple imputation: repeat single imputation M times, produce M complete datasets, use Rubin’s rules to pool the estimates.\n\n\n\nThree categories of missing mechanism. Example: disease status, level of exposure, age. Exposure is missing for some subjects.\n\nMCAR: any two individuals have the same probability of having missing value for exposure. This is unlikely.\nMAR: any two individuaals with the same disease status and age have the same chance of having the exposure missing\nMNAR: chance of having missing exposure depends on the value of exposure"
   }
 ]

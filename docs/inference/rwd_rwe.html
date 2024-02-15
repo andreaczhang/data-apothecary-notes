@@ -82,6 +82,8 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -150,7 +152,8 @@ div.csl-indent {
    
   <ul class="collapse">
   <li><a href="#use-cases-for-rwd" id="toc-use-cases-for-rwd" class="nav-link active" data-scroll-target="#use-cases-for-rwd">Use cases for RWD</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#methods-overview" id="toc-methods-overview" class="nav-link" data-scroll-target="#methods-overview">Methods overview</a></li>
+  <li><a href="#training-material" id="toc-training-material" class="nav-link" data-scroll-target="#training-material">Training material</a></li>
   </ul>
 </nav>
     </div>
@@ -194,7 +197,15 @@ div.csl-indent {
 
 </header>
 
-<p>RWD is any data collected outside clinical trial setting. It is most common in Phase IV trials.</p>
+<p>RWD is any data collected outside clinical trial setting, can be combined with clinical trials.</p>
+<ul>
+<li>pragmatic clinical trials,</li>
+<li>single-arm clinical trials with external control,</li>
+<li>observational studies,</li>
+<li>phase IV trials,</li>
+<li>target trial emulation,</li>
+<li>…</li>
+</ul>
 <p>(The general benefits and disadvantages of RWD is coherent with EHR data)</p>
 <p>Therapheutic areas: oncology, rare diseases, infectious diseases among others</p>
 <p>Traditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.</p>
@@ -203,20 +214,22 @@ div.csl-indent {
 <p>Challenges of using RCT</p>
 <ul>
 <li>growing number of drugs for rare diseases</li>
-<li>very small sub-populations</li>
+<li>very small sub-populations: limited generalizability</li>
 <li>individualized treatments</li>
 <li>patient preferences</li>
+<li>cost, duration</li>
 </ul>
-<p>Focus: whether RWD can be trusted to reliably measure treatment effects of new drugs: causally relationship</p>
-<p>Rather than using RWD to replace RCT, there are a few ways to improve RCT in smallre populations. See <a href="doi:%2010.1136/bmj-2022-073100%20Protected">Wieseler 2023</a></p>
+<p>Focus: whether RWD can be trusted to reliably measure treatment effects of new drugs, causal relationship. The main difference between RCT and RWD is the <strong>confounding bias</strong>.</p>
 <section id="use-cases-for-rwd" class="level2">
 <h2 class="anchored" data-anchor-id="use-cases-for-rwd">Use cases for RWD</h2>
+<p>A few examples</p>
 <ul>
 <li>characerise health conditions, interventions, care pathways and patient outcomes</li>
 <li>patient-reported outcomes, quality of life</li>
 <li>estimate economic burden</li>
-<li>estimate test aaccuracy or reproducibility of biomarker test results</li>
+<li>estimate test accuracy or reproducibility of biomarker test results</li>
 </ul>
+<p>Rather than using RWD to replace RCT, there are a few ways to improve RCT in smaller populations. See <a href="doi:%2010.1136/bmj-2022-073100%20Protected">Wieseler 2023</a></p>
 <section id="rwd-in-oncology" class="level3">
 <h3 class="anchored" data-anchor-id="rwd-in-oncology">RWD in oncology</h3>
 <p>Challenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:</p>
@@ -228,13 +241,82 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>Propensity score matching (PSM) to reproduce the effects of randomization</p>
-<p>How RWD is used</p>
+<section id="methods-overview" class="level1">
+<h1>Methods overview</h1>
+<p>Since the most important difference between RWD and RCT is the presence of confounding bias, how to adjust it is the key to generate robust results.</p>
+<p>Systematic bias in RWD studies</p>
 <ul>
-<li>combined with non-randomized single-arm trial: as external RWD control</li>
-<li>target trial emulation from RWD</li>
+<li>selection bias</li>
+<li>measurement bias</li>
+<li>confounding bias</li>
+</ul>
+<section id="picot-vs-protect" class="level3">
+<h3 class="anchored" data-anchor-id="picot-vs-protect">PICOT vs PROTECT</h3>
+<p>PICOT criteria for RCT: population, intervention, comparison, outcome of interest, follow-up time</p>
+<p>PROTECT criteria for RWD</p>
+<ul>
+<li>P: population (patients)</li>
+<li>R/O: response (outcome)</li>
+<li>T/E: treatment or exposure. Some RWD studies are not interventional</li>
+<li>C: confounders</li>
+<li>T: time</li>
+</ul>
+</section>
+<section id="target-causal-quantity-estimand" class="level3">
+<h3 class="anchored" data-anchor-id="target-causal-quantity-estimand">Target causal quantity, estimand</h3>
+<p>Target causal quantity <span class="math inline">\(\theta = E(Y^1) - E(Y^0)\)</span></p>
+<p>Not estimable since it depends on counterfactual outcomes <span class="math inline">\(Y^1, Y^0\)</span></p>
+<p>Under identifiability conditions, the <strong>statistical estimand</strong> <span class="math inline">\(\theta^* = E\{ E(Y|A=1,X) - E(Y|A=0,X)\}\)</span> is estimable and equivalent to <span class="math inline">\(\theta\)</span>.</p>
+</section>
+<section id="estimator" class="level3">
+<h3 class="anchored" data-anchor-id="estimator">Estimator</h3>
+<p>Stratification methods</p>
+<ul>
+<li>stratification, restriction, matching</li>
+<li>usually based on propensity scores to reproduce the effects of randomization</li>
+<li>model treatment against confounders: <span class="math inline">\(A \sim X\)</span></li>
+<li>may not generalize to complex longitudinal settings when time-varying treatments and confounding exist</li>
+</ul>
+<p>G-methods (generalized)</p>
+<ul>
+<li>can be generalized to time-varying confounding</li>
+<li>g-formula, inverse probability (IP) weighting</li>
+<li>model <span class="math inline">\(Y \sim A + X\)</span> in g-formula</li>
+<li>model <span class="math inline">\(A \sim X\)</span> in IP weighting</li>
+</ul>
+<p>Targeted learning methods</p>
+<ul>
+<li>targeted MLE, based on g-formula</li>
+</ul>
+</section>
+<section id="sensitivity-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-analysis">Sensitivity analysis</h3>
+<p>Evaluate how estimate would change if assumption of <em>no unmeasured confounding</em> were violated.</p>
+<p>(Refer to Greenland in Fang2020)</p>
+</section>
+</section>
+<section id="training-material" class="level1">
+<h1>Training material</h1>
+<p>Online courses</p>
+<ul>
+<li><p><a href="https://dkf.unibas.ch/en/training-and-education/md-phd-clinical-research/courses/real-world-evidence/">Real-world evidence 1: Routinely collected data for clinical research</a> by University of Basel</p></li>
+<li><p><a href="https://dkf.unibas.ch/en/training-and-education/md-phd-clinical-research/courses/real-world-evidence-2/">Real-world evidence 2: Pragmatic trials - study designs for real-world decision making</a> by University of Basel</p></li>
+</ul>
+<p>Keywords</p>
+<ul>
+<li><p>routinely collected data for randomized trials (RCD-RCT)</p></li>
+<li><p>meta-research</p></li>
+<li><p>pragmatic trial</p></li>
+<li><p>generalizability, applicability and external validity of RCT</p></li>
+<li><p>optimal study design to support decision-making</p></li>
+<li><p><a href="https://www.lshtm.ac.uk/study/courses/short-courses/real-world-evidence-in-pharmacoepidemiology#course-details">Real-world evidence in Pharmacoepidemiology</a> by LSHTM</p></li>
+</ul>
+<p>Keywords</p>
+<ul>
+<li>sources of error, bias and confounding</li>
+<li>quantitative bias analysis (QBA)</li>
+<li>missing data</li>
+<li><a href="https://catalogofbias.org/biases/confounding-by-indication/">confounding by indication</a></li>
 </ul>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
