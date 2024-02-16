@@ -1,0 +1,82 @@
+---
+title: "Missing data"
+description: |
+  Multiple imputation
+author: "Chi Zhang"
+date: "2024-02-14"
+categories: [Missing data]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+## Overview 
+
+
+Missing data can occur in various situations: 
+
+* **unit non-response**: individuals decline to participate
+* **item non-response**: some questions or measurements left out by participating individuals
+* **loss of follow-up**: drop outs
+
+For unit non-response and loss of follow-up, weighting the data could help. Need to know the response rate, charaacteristics of the non-responders and how the respondent differ.
+
+Solutions (to item non-response)
+
+* complete case analysis (listwise deletion)
+* single imputation
+  * mean imputation
+  * conditional imputation: make a prediction, plus minus some noise
+* multiple imputation: repeat single imputation M times, produce M complete datasets, use Rubin's rules to pool the estimates.
+
+
+### MCAR, MAR, MNAR
+
+Three categories of missing mechanism. Example: disease status, level of exposure, age. Exposure is missing for some subjects. 
+
+* MCAR: any two individuals have the same probability of having missing value for exposure. This is unlikely.
+* MAR: any two individuaals with the same disease status and age have the same chance of having the exposure missing
+* MNAR: chance of having missing exposure depends on the value of exposure
+
+
+
+# Univariate imputation
+
+Assume only missing in one (continuous) variable.
+
+* **predict** from (linear) regression. No uncertainty
+* **predict + noise**. Assume normality, draw a random value from N(0, sd)
+* **predict + noise + parameter uncertainty**. Bayesian method, bootstrap (resamples observed data, re-estimate parameters)
+* a second predictor (or more)
+* draw from observed data - **predictive mean matching**
+
+
+### Predictive mean matching
+
+Assumption: distribution of missing is the same aas obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.
+
+Robust to transformation, less vulnerable to model misspecification.
+
+Implementation in `MICE`: [mice.impute.midastouch](https://amices.org/mice/reference/mice.impute.midastouch.html)
+
+
+
+
+
+
+
+# Multivariate imputation
+
+Keywords: Sequential imputation (MICE), Joint modeling, Delta adjustment, Reference based methods
+
+
+
+
+
+
