@@ -63,6 +63,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -131,8 +133,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#consideration" id="toc-consideration" class="nav-link" data-scroll-target="#consideration">Consideration</a></li>
   <li><a href="#univariate-imputation" id="toc-univariate-imputation" class="nav-link" data-scroll-target="#univariate-imputation">Univariate imputation</a></li>
   <li><a href="#multivariate-imputation" id="toc-multivariate-imputation" class="nav-link" data-scroll-target="#multivariate-imputation">Multivariate imputation</a></li>
+  <li><a href="#reference-based-methods-rct" id="toc-reference-based-methods-rct" class="nav-link" data-scroll-target="#reference-based-methods-rct">Reference based methods (RCT)</a></li>
   </ul>
 </nav>
     </div>
@@ -184,8 +188,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>item non-response</strong>: some questions or measurements left out by participating individuals</li>
 <li><strong>loss of follow-up</strong>: drop outs</li>
 </ul>
-<p>For unit non-response and loss of follow-up, weighting the data could help. Need to know the response rate, charaacteristics of the non-responders and how the respondent differ.</p>
-<p>Solutions (to item non-response)</p>
+<p>For unit <strong>non-response</strong> and <strong>loss of follow-up</strong>, weighting the data could help. Need to know the response rate, characteristics of the non-responders and how the respondent differ.</p>
+<p>Solutions (to <u>item non-response</u>)</p>
 <ul>
 <li>complete case analysis (listwise deletion)</li>
 <li>single imputation
@@ -203,25 +207,80 @@ ul.task-list li input[type="checkbox"] {
 <li>MAR: any two individuaals with the same disease status and age have the same chance of having the exposure missing</li>
 <li>MNAR: chance of having missing exposure depends on the value of exposure</li>
 </ul>
+<p>Data could also have special missing structures: multi-level, longitudinal and repeated measurements. In RCT a specific technique <em>reference based imputation</em> can be applied.</p>
 </section>
+</section>
+<section id="consideration" class="level2">
+<h2 class="anchored" data-anchor-id="consideration">Consideration</h2>
+<p>Need to account for the missinng data process, preserve the relations in the data and uncertainty in the relations.</p>
+<ul>
+<li>MAR assumption whether plausible. (FCS can handle both MAR anad MNAR)</li>
+<li>form of imputation model: structure and error distribution</li>
+<li>predictors, as many relevant as possible, including interactions</li>
+<li>the order in which to impute</li>
+<li>set up starting imputation and number of iteration</li>
+<li>decide number of imputed datasets</li>
+</ul>
 </section>
 <section id="univariate-imputation" class="level1">
 <h1>Univariate imputation</h1>
 <p>Assume only missing in one (continuous) variable.</p>
 <ul>
-<li>predict from linear regression. No uncertainty</li>
-<li>predict + noise. Assume normality, draw a random value from N(0, sd)</li>
-<li>predict + noise + parameter uncertainty. Bayesian method, bootstrap (resamples observed data, re-estimate parameters)</li>
+<li><strong>predict</strong> from (linear) regression. No uncertainty</li>
+<li><strong>predict + noise</strong>. Assume normality, draw a random value from N(0, sd)</li>
+<li><strong>predict + noise + parameter uncertainty</strong>. Bayesian method, bootstrap (resamples observed data, re-estimate parameters)</li>
 <li>a second predictor (or more)</li>
-<li>draw from observed data - predictive mean matching</li>
+<li>draw from observed data - <strong>predictive mean matching</strong></li>
 </ul>
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<p><code>VIM::regressionImp</code></p>
+</section>
 <section id="predictive-mean-matching" class="level3">
 <h3 class="anchored" data-anchor-id="predictive-mean-matching">Predictive mean matching</h3>
+<p>Assumption: distribution of missing is the same aas obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.</p>
+<p>Robust to transformation, less vulnerable to model misspecification.</p>
+<p>Implementation in <code>MICE</code>: pmm, <a href="https://amices.org/mice/reference/mice.impute.midastouch.html">midastouch</a></p>
 </section>
 </section>
 <section id="multivariate-imputation" class="level1">
 <h1>Multivariate imputation</h1>
-<p>Keywords: Sequential imputation (MICE), Joint modeling, Delta adjustment, Reference based methods</p>
+<p>Keywords: Sequential imputation (MICE), joint modeling, multi-level imputation</p>
+<section id="joint-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="joint-modeling">Joint modeling</h3>
+<p>More information see <a href="https://stefvanbuuren.name/fimd/sec-JM.html">book by van Buuren</a></p>
+<p>Data can be described by a multivariate distribution, imputations are created by draws from the fitted distribution.</p>
+<p>Continuous data: imputation under multivariate normal assumption is robusst to non-normal data, see simulation by <a href="https://www.tandfonline.com/doi/abs/10.1080/10629360600903866">Demirtas et al 2008</a>.</p>
+</section>
+<section id="fully-conditional-specification-mice-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="fully-conditional-specification-mice-algorithm">Fully conditional specification, MICE algorithm</h3>
+<p>More information see <a href="https://stefvanbuuren.name/fimd/sec-FCS.html">book by van Buuren</a></p>
+<p>FCS imputes multivariate data variable-by-variable, specify imputation model for each variable, then impute iteratively.</p>
+<p>One iteration goes through all <span class="math inline">\(Y_j, j = 1, ..., p\)</span>, number of iteration can be low as 5-10.</p>
+<p>Multivariate distribution <span class="math inline">\(P(Y, X, R|\theta)\)</span> is specified through a set of conditional densities <span class="math inline">\(P(Y_j | X, Y_{-j}, R, \phi_j)\)</span></p>
+<p>Other names of this category of approach:</p>
+<ul>
+<li>variable by variable imputation (Brand 1999)</li>
+<li>switching regressions (van Buuren, Boshuizen aand Knook 1999)</li>
+<li>sequential regressions (Raaghunathan 2001)</li>
+<li>partially incompatible MCMC (Rubin 2003)</li>
+<li>iterated univariate imputation (Gelman 2004)</li>
+<li>chained equations (van Buuren, Groothuis-Oudshoorn 2000)</li>
+<li>fully conditional specification FCS (van Buuren 2006)</li>
+</ul>
+<section id="mice-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="mice-algorithm">MICE algorithm</h4>
+<p>Multiple imputation via chained equations, it is a MCMC method. If conditionals are compatible, MICEE is a Gibbs sampler.</p>
+<p>Gibbs sampling (idea): knowledge on the <strong>conditional distribution</strong> is sufficient to determine a <strong>joint distribution</strong>.</p>
+</section>
+</section>
+</section>
+<section id="reference-based-methods-rct" class="level1">
+<h1>Reference based methods (RCT)</h1>
+<p>(This type of imputation is specific to RCT, might deserve a separate post)</p>
+<p>Package: <a href="https://insightsengineering.github.io/rbmi/main/articles/stat_specs.html">rbmi</a></p>
+<p>Keywords: delta adjustment, tipping point analysis, sensitivity analysis, jump to reference,</p>
+<p>https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01261-6</p>
 
 
 </section>

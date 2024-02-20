@@ -25,9 +25,9 @@ Missing data can occur in various situations:
 * **item non-response**: some questions or measurements left out by participating individuals
 * **loss of follow-up**: drop outs
 
-For unit non-response and loss of follow-up, weighting the data could help. Need to know the response rate, charaacteristics of the non-responders and how the respondent differ.
+For unit **non-response** and **loss of follow-up**, weighting the data could help. Need to know the response rate, characteristics of the non-responders and how the respondent differ.
 
-Solutions (to item non-response)
+Solutions (to <u>item non-response</u>)
 
 * complete case analysis (listwise deletion)
 * single imputation
@@ -45,6 +45,23 @@ Three categories of missing mechanism. Example: disease status, level of exposur
 * MNAR: chance of having missing exposure depends on the value of exposure
 
 
+Data could also have special missing structures: multi-level, longitudinal and repeated measurements. In RCT a specific technique *reference based imputation* can be applied.
+
+
+## Consideration
+
+Need to account for the missinng data process, preserve the relations in the data and uncertainty in the relations.
+
+* MAR assumption whether plausible. (FCS can handle both MAR anad MNAR)
+* form of imputation model: structure and error distribution
+* predictors, as many relevant as possible, including interactions
+* the order in which to impute
+* set up starting imputation and number of iteration
+* decide number of imputed datasets
+
+
+
+
 
 # Univariate imputation
 
@@ -57,13 +74,22 @@ Assume only missing in one (continuous) variable.
 * draw from observed data - **predictive mean matching**
 
 
+### Regression
+
+`VIM::regressionImp`
+
+
+
+
+
+
 ### Predictive mean matching
 
 Assumption: distribution of missing is the same aas obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.
 
 Robust to transformation, less vulnerable to model misspecification.
 
-Implementation in `MICE`: [mice.impute.midastouch](https://amices.org/mice/reference/mice.impute.midastouch.html)
+Implementation in `MICE`: pmm,  [midastouch](https://amices.org/mice/reference/mice.impute.midastouch.html)
 
 
 
@@ -73,7 +99,62 @@ Implementation in `MICE`: [mice.impute.midastouch](https://amices.org/mice/refer
 
 # Multivariate imputation
 
-Keywords: Sequential imputation (MICE), Joint modeling, Delta adjustment, Reference based methods
+Keywords: Sequential imputation (MICE), joint modeling, multi-level imputation
+
+
+
+### Joint modeling
+
+More information see [book by van Buuren](https://stefvanbuuren.name/fimd/sec-JM.html)
+
+Data can be described by a multivariate distribution, imputations are created by draws from the fitted distribution.
+
+
+
+Continuous data: imputation under multivariate normal assumption is robusst to non-normal data, see simulation by [Demirtas et al 2008](https://www.tandfonline.com/doi/abs/10.1080/10629360600903866).
+
+
+
+
+
+### Fully conditional specification, MICE algorithm
+
+More information see [book by van Buuren](https://stefvanbuuren.name/fimd/sec-FCS.html)
+
+FCS imputes multivariate data variable-by-variable, specify imputation model for each variable, then impute iteratively.
+
+One iteration goes through all $Y_j, j = 1, ..., p$, number of iteration can be low as 5-10.
+
+Multivariate distribution $P(Y, X, R|\theta)$ is specified through a set of conditional densities $P(Y_j | X, Y_{-j}, R, \phi_j)$
+
+Other names of this category of approach:
+
+* variable by variable imputation (Brand 1999)
+* switching regressions (van Buuren, Boshuizen aand Knook 1999)
+* sequential regressions (Raaghunathan 2001)
+* partially incompatible MCMC (Rubin 2003)
+* iterated univariate imputation (Gelman 2004)
+* chained equations (van Buuren, Groothuis-Oudshoorn 2000)
+* fully conditional specification FCS (van Buuren 2006)
+
+
+#### MICE algorithm
+
+Multiple imputation via chained equations, it is a MCMC method. If conditionals are compatible, MICEE is a Gibbs sampler.
+
+Gibbs sampling (idea): knowledge on the **conditional distribution** is sufficient to determine a **joint distribution**.
+
+
+
+# Reference based methods (RCT)
+
+(This type of imputation is specific to RCT, might deserve a separate post)
+
+Package: [rbmi](https://insightsengineering.github.io/rbmi/main/articles/stat_specs.html)
+
+Keywords: delta adjustment, tipping point analysis, sensitivity analysis, jump to reference, 
+
+https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01261-6
 
 
 
