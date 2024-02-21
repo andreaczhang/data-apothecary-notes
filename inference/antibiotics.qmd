@@ -1,0 +1,54 @@
+---
+title: "Antibiotics"
+bibliography: biblio.bib
+description: |
+  Background of antimicrobial drugs and resistance
+author: "Chi Zhang"
+date: "2024-02-21"
+categories: [Drugs]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+## Economics and production
+
+Drug-resistant diseases kill 700k people (Plackett2020) yearly, however fewer new antibiotic drugs are reaching the market.
+
+Development cost: 1.5 billion USD (for one drug, based on 2017 study) while revenue is 45 million USD.
+
+* not enough demand: physicians prescribe less, treatment cycle is short compared to chronic diseases
+* price is low
+* development is difficult
+
+https://www.nature.com/articles/s41429-023-00629-8
+
+
+
+## Antibiotics stewardship
+
+https://www.coursera.org/learn/antibiotic-stewardship?
+
+
+
+## Research on antibiotics use
+
+(relevant to my research)
+
+https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814214
+
+https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814216
+
+
+https://pubmed.ncbi.nlm.nih.gov/37760690/
+
+
+
+
