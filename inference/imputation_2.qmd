@@ -100,7 +100,7 @@ Regression methods (continuous, normal outcome) are implemented in `mice` with m
 
 
 
-### Example: Regression without parametere uncertainty
+### Example: Regression without parameter uncertainty
 
 We can generate two imputed datasets by setting `m=2`. 
 
@@ -198,8 +198,17 @@ impbt$imp$bmi
 
 ## Predictive Mean Matching PMM
 
+The idea behind PMM is as follow.
 
-Assumption for PMM: distribution of missing is the same aas obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.
+* with complete data, estimate a linear regression of Y (some missing) on Z (no missing), results in coefficients $\beta$. 
+* draw $\beta^*$ from the posterior predictive distribution of $\beta$ (multivariate normal with mean b and covariance matrix of b).
+* generate predicted values for $Y_{hat}$ (complete cases) and $Y_{star}$ (missing)
+* for each $Y_{star}$, identify a few cases (7,12) whose predicted values $Y_{hat}$ are close to the predicted $Y_{star}$ (10 in the illustration below)
+* randomly draw one value from the observed $Y$ from the doner cases (6, 11).
+
+![](figure/mi_pmm.png){width=75% fig-align="center"}
+
+Assumption for PMM: distribution of missing is the same as obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.
 
 PMM is robust to transformation, less vulnerable to model misspecification.
 
