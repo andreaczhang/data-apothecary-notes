@@ -235,12 +235,23 @@ ul.task-list li input[type="checkbox"] {
 <section id="regression" class="level3">
 <h3 class="anchored" data-anchor-id="regression">Regression</h3>
 <p><code>VIM::regressionImp</code></p>
+<ul>
+<li>Linear regression without parameter uncertainty, <a href="https://amices.org/mice/reference/mice.impute.norm.nob.html">mice.impute.norm.nob</a></li>
+<li>Linear regression through prediction, <a href="https://amices.org/mice/reference/mice.impute.norm.predict.html">mice.impute.norm.predict</a></li>
+<li>Bayesian linear regression, <a href="https://amices.org/mice/reference/mice.impute.norm.html">mice.impute.norm</a></li>
+<li>Linear regression bootstrap, <a href="https://amices.org/mice/reference/mice.impute.norm.boot.html">mice.impute.norm.boot</a></li>
+</ul>
 </section>
 <section id="predictive-mean-matching" class="level3">
 <h3 class="anchored" data-anchor-id="predictive-mean-matching">Predictive mean matching</h3>
 <p>Assumption: distribution of missing is the same aas obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.</p>
 <p>Robust to transformation, less vulnerable to model misspecification.</p>
-<p>Implementation in <code>MICE</code>: pmm, <a href="https://amices.org/mice/reference/mice.impute.midastouch.html">midastouch</a></p>
+<p>Implementation in <code>MICE</code>:</p>
+<ul>
+<li><a href="https://amices.org/mice/reference/mice.impute.pmm.html">mice.impute.pmm</a></li>
+<li><a href="https://amices.org/mice/reference/mice.impute.midastouch.html">mice.imppute.midastouch</a></li>
+<li><a href="https://amices.org/mice/reference/mice.impute.mpmm.html">mice.impute.mpmm</a></li>
+</ul>
 </section>
 </section>
 <section id="multivariate-imputation" class="level1">

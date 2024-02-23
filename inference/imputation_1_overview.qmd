@@ -1,7 +1,7 @@
 ---
-title: "Missing data"
+title: "Missing data and imputation"
 description: |
-  Multiple imputation
+  Overview of multiple imputation
 author: "Chi Zhang"
 date: "2024-02-14"
 categories: [Missing data]
@@ -78,8 +78,10 @@ Assume only missing in one (continuous) variable.
 
 `VIM::regressionImp`
 
-
-
+* Linear regression without parameter uncertainty, [mice.impute.norm.nob](https://amices.org/mice/reference/mice.impute.norm.nob.html)
+* Linear regression through prediction, [mice.impute.norm.predict](https://amices.org/mice/reference/mice.impute.norm.predict.html)
+* Bayesian linear regression, [mice.impute.norm](https://amices.org/mice/reference/mice.impute.norm.html)
+* Linear regression bootstrap, [mice.impute.norm.boot](https://amices.org/mice/reference/mice.impute.norm.boot.html)
 
 
 
@@ -89,8 +91,11 @@ Assumption: distribution of missing is the same aas obsereved data of the candid
 
 Robust to transformation, less vulnerable to model misspecification.
 
-Implementation in `MICE`: pmm,  [midastouch](https://amices.org/mice/reference/mice.impute.midastouch.html)
+Implementation in `MICE`:  
 
+* Predictive mean matching, [mice.impute.pmm](https://amices.org/mice/reference/mice.impute.pmm.html)
+* Weighted predictive mean matching, [mice.impute.midastouch](https://amices.org/mice/reference/mice.impute.midastouch.html)
+* Multivariate predictive mean matching, [mice.impute.mpmm](https://amices.org/mice/reference/mice.impute.mpmm.html)
 
 
 
