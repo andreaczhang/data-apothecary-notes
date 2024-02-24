@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2024-02-24">
+<meta name="description" content="Confidence, credible and prediction intervals">
 
-<title>Data Apothecary’s Notes - Inference and models</title>
+<title>Data Apothecary’s Notes - Intervals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,119 +62,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-settings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-settings'] = new List('listing-settings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-inference .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-inference'] = new List('listing-inference', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-models .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-models'] = new List('listing-models', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-casestudy .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-casestudy'] = new List('listing-casestudy', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -206,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../inference/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../inference/index.html" rel="" target="">
  <span class="menu-text">Inference and models</span></a>
   </li>  
   <li class="nav-item">
@@ -244,26 +132,49 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#settings" id="toc-settings" class="nav-link active" data-scroll-target="#settings">Settings</a></li>
-  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
-  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
-  <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case studies</a></li>
+  <li><a href="#confidence-vs-credible-interval" id="toc-confidence-vs-credible-interval" class="nav-link active" data-scroll-target="#confidence-vs-credible-interval">Confidence vs credible interval</a></li>
+  <li><a href="#prediction-intereval" id="toc-prediction-intereval" class="nav-link" data-scroll-target="#prediction-intereval">Prediction intereval</a>
+  <ul class="collapse">
+  <li><a href="#in-simple-linear-regression" id="toc-in-simple-linear-regression" class="nav-link" data-scroll-target="#in-simple-linear-regression">In simple linear regression</a></li>
+  </ul></li>
+  <li><a href="#posterior-predictive-distribution" id="toc-posterior-predictive-distribution" class="nav-link" data-scroll-target="#posterior-predictive-distribution">Posterior predictive distribution</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Drugs">Drugs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Inference">Inference <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Missing data">Missing data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Omics data">Omics data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Inference and models</h1>
-</div>
+<h1 class="title">Intervals</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Inference</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Confidence, credible and prediction intervals</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 24, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -271,208 +182,50 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="settings" class="level2">
-<h2 class="anchored" data-anchor-id="settings">Settings</h2>
-<p>Different settings to apply methods.</p>
-<div id="listing-settings" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Observational data" data-listing-date-sort="1693778400000" data-listing-file-modified-sort="1708015787964" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Real-world Data, Real-world Evidence" data-listing-filename-sort="rwd_rwe.qmd">
-<td>
-<a href="../inference/rwd_rwe.html" class="title listing-title">Real-world Data, Real-world Evidence</a>
-</td>
-<td>
-<span class="listing-description">RWD, RWE </span>
-</td>
-</tr>
-<tr data-index="1" data-categories="Omics data" data-listing-date-sort="1704236400000" data-listing-file-modified-sort="1704383362352" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Genomics in Drug Discovery" data-listing-filename-sort="genomics.qmd">
-<td>
-<a href="../inference/genomics.html" class="title listing-title">Genomics in Drug Discovery</a>
-</td>
-<td>
-<span class="listing-description">Use of machine learning techniques </span>
-</td>
-</tr>
-<tr data-index="2" data-categories="Drugs" data-listing-date-sort="1708470000000" data-listing-file-modified-sort="1708532952938" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Antibiotics" data-listing-filename-sort="antibiotics.qmd">
-<td>
-<a href="../inference/antibiotics.html" class="title listing-title">Antibiotics</a>
-</td>
-<td>
-<span class="listing-description">Background of antimicrobial drugs and resistance </span>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<p>Key difference: confidence and credible intervals: about the (unknown) <strong>parameter</strong>; prediction interval: about individual (unseen) <strong>observations</strong>.</p>
+<section id="confidence-vs-credible-interval" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-vs-credible-interval">Confidence vs credible interval</h2>
+<p>Confidence interval (frequentist), about the unknown but fixed parameter. That means, the parameter is not treated as a random variable so does not have a probability distribution. CI is random because it is based on your sample.</p>
+<p>Credible interval (Bayesian), associated with posterior distribution of the parameter. The parameter is treated as a random variable hence has a probability distribution.</p>
 </section>
-<section id="inference" class="level2">
-<h2 class="anchored" data-anchor-id="inference">Inference</h2>
-<p>Notes on causal inference and other related topics.</p>
-<div id="listing-inference" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Clinical trial,Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1702648217700" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Overview: causal inference" data-listing-filename-sort="overview_ci.qmd">
-<td>
-<a href="../inference/overview_ci.html" class="title listing-title">Overview: causal inference</a>
-</td>
-<td>
-<span class="listing-description">Collider, confounder, mediator and M-bias </span>
-</td>
-</tr>
-<tr data-index="1" data-categories="Causal inference" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1702648830186" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Propensity score" data-listing-filename-sort="propensity_score.qmd">
-<td>
-<a href="../inference/propensity_score.html" class="title listing-title">Propensity score</a>
-</td>
-<td>
-<span class="listing-description">Propensity score, matching, weighting </span>
-</td>
-</tr>
-<tr data-index="2" data-categories="Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1693748096085" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Target trial emulation" data-listing-filename-sort="target_trial_emulation.qmd">
-<td>
-<a href="../inference/target_trial_emulation.html" class="title listing-title">Target trial emulation</a>
-</td>
-<td>
-<span class="listing-description">TTE </span>
-</td>
-</tr>
-<tr data-index="3" data-categories="Causal inference" data-listing-date-sort="1702335600000" data-listing-file-modified-sort="1702395709884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="G-Computation" data-listing-filename-sort="g_computation.qmd">
-<td>
-<a href="../inference/g_computation.html" class="title listing-title">G-Computation</a>
-</td>
-<td>
-<span class="listing-description">G-Computation </span>
-</td>
-</tr>
-<tr data-index="4" data-categories="Missing data" data-listing-date-sort="1707865200000" data-listing-file-modified-sort="1708693228299" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Missing data and imputation" data-listing-filename-sort="imputation_1_overview.qmd">
-<td>
-<a href="../inference/imputation_1_overview.html" class="title listing-title">Missing data and imputation</a>
-</td>
-<td>
-<span class="listing-description">Overview of multiple imputation </span>
-</td>
-</tr>
-<tr data-index="5" data-categories="Missing data" data-listing-date-sort="1708642800000" data-listing-file-modified-sort="1708712665428" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Multiple imputation in R" data-listing-filename-sort="imputation_2.qmd">
-<td>
-<a href="../inference/imputation_2.html" class="title listing-title">Multiple imputation in R</a>
-</td>
-<td>
-<span class="listing-description"><code>MICE</code>, regression, PMM </span>
-</td>
-</tr>
-<tr data-index="6" data-categories="Inference" data-listing-date-sort="1708729200000" data-listing-file-modified-sort="1708777430933" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Intervals" data-listing-filename-sort="intervals.qmd">
-<td>
-<a href="../inference/intervals.html" class="title listing-title">Intervals</a>
-</td>
-<td>
-<span class="listing-description">Confidence, credible and prediction intervals </span>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<section id="prediction-intereval" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-intereval">Prediction intereval</h2>
+<p>In a regression model, you might want to know both confidence and prediction intervals.</p>
+<ul>
+<li>CI for mean value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x =0\)</span>, the <strong>mean</strong> response (e.g.&nbsp;growth of GDP), this is a parameter, an average</li>
+<li>PI for <span class="math inline">\(y\)</span> when <span class="math inline">\(x=0\)</span>, this is an individual observation.</li>
+</ul>
+<section id="in-simple-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="in-simple-linear-regression">In simple linear regression</h3>
+<p>Mean response is an estimate of the mean <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span>, <span class="math inline">\(\hat{y_h} = E(y|x_h)\)</span></p>
+<p>The variance of mean response is</p>
+<p><span class="math inline">\(Var(\hat{\alpha} + \hat{\beta}x_h) = Var(\hat{\alpha}) + Var(\hat{\beta})x_h^2 + 2x_h Cov(\hat{\alpha}, \hat{\beta})\)</span></p>
+<p>Confidence interval</p>
+<p><span class="math inline">\(\hat{y_h} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{MSE (\frac{1}{n} + \frac{(x_h - \bar{x})^2}{\sum(x_i - \bar{x})^2})}\)</span></p>
+<p>Prediction interval (frequentist)</p>
+<p><span class="math inline">\(\hat{y_h} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{MSE (1 + \frac{1}{n} + \frac{(x_h - \bar{x})^2}{\sum(x_i - \bar{x})^2})}\)</span></p>
 </section>
-<section id="models" class="level2">
-<h2 class="anchored" data-anchor-id="models">Models</h2>
-<div id="listing-models" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1704299386060" data-listing-reading-time-sort="1" data-listing-title-sort="Mixed models for repeted measurements" data-listing-filename-sort="mixed_models.qmd">
-<td>
-<a href="../inference/mixed_models.html" class="title listing-title">Mixed models for repeted measurements</a>
-</td>
-<td>
-<span class="listing-description">Resources:</span>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1694095170078" data-listing-reading-time-sort="1" data-listing-title-sort="Survival" data-listing-filename-sort="survival.qmd">
-<td>
-<a href="../inference/survival.html" class="title listing-title">Survival</a>
-</td>
-<td>
-<span class="listing-description">Links</span>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
 </section>
-<section id="case-studies" class="level2">
-<h2 class="anchored" data-anchor-id="case-studies">Case studies</h2>
-<div id="listing-casestudy" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="RWD" data-listing-date-sort="1702854000000" data-listing-file-modified-sort="1702914182102" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-title-sort="Case study: length of hospital stay" data-listing-filename-sort="case_study_liggetid_1.qmd">
-<td>
-<a href="../inference/case_study_liggetid_1.html" class="title listing-title">Case study: length of hospital stay</a>
-</td>
-<td>
-<span class="listing-description">Part 1: EDA </span>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-
+<section id="posterior-predictive-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="posterior-predictive-distribution">Posterior predictive distribution</h2>
+<p>Difference between <strong>posterior distribution</strong> and <strong>posterior predictive distribution</strong> PPD</p>
+<ul>
+<li>posterior dist <span class="math inline">\(p(\theta|x) = c \times p(x|\theta)p(\theta)\)</span>, depends on the parameter <span class="math inline">\(\theta\)</span></li>
+<li>PPD does not depend on <span class="math inline">\(\theta\)</span> as it is integrated out, for unobserved <span class="math inline">\(x^*\)</span>,</li>
+</ul>
+<p><span class="math inline">\(p(x^*|x) = \int_{\Theta} c \times p(x^*, \theta|x) d\theta = \int_{\Theta} c \times p(x^*|\theta)p(\theta|x) d\theta\)</span></p>
+<p>PD is part of PPD formulation.</p>
+<ul>
+<li>PD explains the unknown parameter (treated as a random variable), conditional on the evidence observed (data).</li>
+<li>PPD is the distribution for the future predicted data based on the data you have already seen.</li>
+</ul>
+</section>
+<section id="reference" class="level1">
+<h1>Reference</h1>
+<ul>
+<li>A very good decomposition of prediction interval in linear regression: <a href="https://www.bryanshalloway.com/2021/03/18/intuition-on-uncertainty-of-predictions-introduction-to-prediction-intervals/">Post by Bryan Shalloway</a></li>
+<li>Blog by Professor Rob Hyndman on <a href="https://robjhyndman.com/hyndsight/intervals/">difference between prediction intervals and confidence intervals</a></li>
+</ul>
 
 
 </section>

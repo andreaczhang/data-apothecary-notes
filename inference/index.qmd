@@ -25,6 +25,7 @@ listing:
       - "propensity_score.qmd"
       - "g_computation.qmd"
       - "target_trial_emulation.qmd"
+      - "intervals.qmd"
       - "imputation_1_overview.qmd"
       - "imputation_2.qmd"
     type: table

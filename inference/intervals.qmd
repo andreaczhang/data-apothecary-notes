@@ -1,0 +1,92 @@
+---
+title: "Intervals"
+description: |
+  Confidence, credible and prediction intervals
+author: "Chi Zhang"
+date: "2024-02-24"
+categories: [Inference]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+
+---
+
+Key difference: confidence and credible intervals: about the (unknown) **parameter**; prediction interval: about individual (unseen) **observations**.
+
+
+
+## Confidence vs credible interval
+
+
+Confidence interval (frequentist), about the unknown but fixed parameter. That means, the parameter is not treated as a random variable so does not have a probability distribution. CI is random because it is based on your sample.
+
+Credible interval (Bayesian), associated with posterior distribution of the parameter. The parameter is treated as a random variable hence has a probability distribution.
+
+
+
+
+## Prediction intereval
+
+In a regression model, you might want to know both confidence and prediction intervals.
+
+* CI for mean value of $y$ when $x =0$, the **mean** response (e.g. growth of GDP), this is a parameter, an average
+* PI for $y$ when $x=0$, this is an individual observation.
+
+
+
+### In simple linear regression
+
+Mean response is an estimate of the mean $y$ given $x$, $\hat{y_h} = E(y|x_h)$
+
+The variance of mean response is 
+
+$Var(\hat{\alpha} + \hat{\beta}x_h) = Var(\hat{\alpha}) + Var(\hat{\beta})x_h^2 + 2x_h Cov(\hat{\alpha}, \hat{\beta})$
+
+
+Confidence interval
+
+$\hat{y_h} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{MSE (\frac{1}{n} + \frac{(x_h - \bar{x})^2}{\sum(x_i - \bar{x})^2})}$
+
+
+Prediction interval (frequentist)
+
+$\hat{y_h} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{MSE (1 + \frac{1}{n} + \frac{(x_h - \bar{x})^2}{\sum(x_i - \bar{x})^2})}$
+
+
+
+
+
+
+## Posterior predictive distribution 
+
+Difference between **posterior distribution** and **posterior predictive distribution** PPD
+
+* posterior dist $p(\theta|x) = c \times p(x|\theta)p(\theta)$, depends on the parameter $\theta$
+* PPD does not depend on $\theta$ as it is integrated out, for unobserved $x^*$, 
+
+$p(x^*|x) = \int_{\Theta} c \times p(x^*, \theta|x) d\theta = \int_{\Theta} c \times p(x^*|\theta)p(\theta|x) d\theta$
+
+PD is part of PPD formulation.
+
+* PD explains the unknown parameter (treated as a random variable), conditional on the evidence observed (data).
+* PPD is the distribution for the future predicted data based on the data you have already seen.
+
+
+
+# Reference 
+
+* A very good decomposition of prediction interval in linear regression: [Post by Bryan Shalloway](https://www.bryanshalloway.com/2021/03/18/intuition-on-uncertainty-of-predictions-introduction-to-prediction-intervals/)
+* Blog by Professor Rob Hyndman on [difference between prediction intervals and confidence intervals](https://robjhyndman.com/hyndsight/intervals/)
+
+
+
+
+
+
+
