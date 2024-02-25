@@ -23,6 +23,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -138,6 +172,20 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#in-simple-linear-regression" id="toc-in-simple-linear-regression" class="nav-link" data-scroll-target="#in-simple-linear-regression">In simple linear regression</a></li>
   </ul></li>
   <li><a href="#posterior-predictive-distribution" id="toc-posterior-predictive-distribution" class="nav-link" data-scroll-target="#posterior-predictive-distribution">Posterior predictive distribution</a></li>
+  <li><a href="#example-mortality" id="toc-example-mortality" class="nav-link" data-scroll-target="#example-mortality">Example: Mortality</a>
+  <ul class="collapse">
+  <li><a href="#explore-the-data" id="toc-explore-the-data" class="nav-link" data-scroll-target="#explore-the-data">Explore the data</a></li>
+  <li><a href="#model-mortality-using-2000-2019-data" id="toc-model-mortality-using-2000-2019-data" class="nav-link" data-scroll-target="#model-mortality-using-2000-2019-data">Model mortality using 2000-2019 data</a>
+  <ul class="collapse">
+  <li><a href="#linear-regression-with-lm" id="toc-linear-regression-with-lm" class="nav-link" data-scroll-target="#linear-regression-with-lm">Linear regression with <code>lm</code></a></li>
+  <li><a href="#linear-regression-with-rstanarm" id="toc-linear-regression-with-rstanarm" class="nav-link" data-scroll-target="#linear-regression-with-rstanarm">Linear regression with <code>rstanarm</code></a></li>
+  <li><a href="#point-prediction" id="toc-point-prediction" class="nav-link" data-scroll-target="#point-prediction">Point prediction</a></li>
+  <li><a href="#uncertainty-of-linear-predictor" id="toc-uncertainty-of-linear-predictor" class="nav-link" data-scroll-target="#uncertainty-of-linear-predictor">Uncertainty of linear predictor</a></li>
+  <li><a href="#posterior-predictive-distribution-1" id="toc-posterior-predictive-distribution-1" class="nav-link" data-scroll-target="#posterior-predictive-distribution-1">Posterior predictive distribution</a></li>
+  </ul></li>
+  <li><a href="#prediction-for-2020-2023-mortality" id="toc-prediction-for-2020-2023-mortality" class="nav-link" data-scroll-target="#prediction-for-2020-2023-mortality">Prediction for 2020-2023 mortality</a></li>
+  <li><a href="#visualize-mortality-prediction" id="toc-visualize-mortality-prediction" class="nav-link" data-scroll-target="#visualize-mortality-prediction">Visualize mortality prediction</a></li>
+  </ul></li>
   <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul>
 </nav>
@@ -197,13 +245,14 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="in-simple-linear-regression" class="level3">
 <h3 class="anchored" data-anchor-id="in-simple-linear-regression">In simple linear regression</h3>
-<p>Mean response is an estimate of the mean <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span>, <span class="math inline">\(\hat{y_h} = E(y|x_h)\)</span></p>
-<p>The variance of mean response is</p>
-<p><span class="math inline">\(Var(\hat{\alpha} + \hat{\beta}x_h) = Var(\hat{\alpha}) + Var(\hat{\beta})x_h^2 + 2x_h Cov(\hat{\alpha}, \hat{\beta})\)</span></p>
+<p>Standard deviation for linear predictor <span class="math inline">\(\alpha + \beta x\)</span> is</p>
+<p><span class="math inline">\(\hat{\sigma}_{linpred} = \hat{\sigma} \sqrt{\frac{1}{n} + \frac{(x_{new} - \bar{x})^2}{\sum(x_i - \bar{x})}}\)</span></p>
 <p>Confidence interval</p>
-<p><span class="math inline">\(\hat{y_h} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{MSE (\frac{1}{n} + \frac{(x_h - \bar{x})^2}{\sum(x_i - \bar{x})^2})}\)</span></p>
+<p><span class="math inline">\(\hat{y_{new}} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{\hat{\sigma}^2 (\frac{1}{n} + \frac{(x_{new} - \bar{x})^2}{\sum(x_i - \bar{x})^2})}\)</span></p>
+<p>Standard deviation for the predicted value <span class="math inline">\(\alpha + \beta x + \epsilon\)</span> is</p>
+<p><span class="math inline">\(\hat{\sigma}_{prediction} = \hat{\sigma} \sqrt{1 + \frac{1}{n} + \frac{(x_{new} - \bar{x})^2}{\sum(x_i - \bar{x})}}\)</span></p>
 <p>Prediction interval (frequentist)</p>
-<p><span class="math inline">\(\hat{y_h} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{MSE (1 + \frac{1}{n} + \frac{(x_h - \bar{x})^2}{\sum(x_i - \bar{x})^2})}\)</span></p>
+<p><span class="math inline">\(\hat{y_{new}} \pm t_{1-\frac{\alpha}{2}, n-2} \times \sqrt{\hat{\sigma}^2 (1 + \frac{1}{n} + \frac{(x_{new} - \bar{x})^2}{\sum(x_i - \bar{x})^2})}\)</span></p>
 </section>
 </section>
 <section id="posterior-predictive-distribution" class="level2">
@@ -220,11 +269,468 @@ ul.task-list li input[type="checkbox"] {
 <li>PPD is the distribution for the future predicted data based on the data you have already seen.</li>
 </ul>
 </section>
+<section id="example-mortality" class="level1">
+<h1>Example: Mortality</h1>
+<p>We explore the all-cause mortality counts in Norway between 2000 to 2023. More specifically, we use year 2000-2019 (pre-pandemic years) to fit a simple linear regression model, and predict the expected number of deaths post pandemic (2020-2023). I include both frequentist approach with <code>lm</code>, and Bayesian approach with <code>rstanarm::stan_glm</code>.</p>
+<p>The data of mortality example comes from <a href="https://www.ssb.no/en/befolkning/fodte-og-dode/statistikk/dode">Statistics Norway</a> and is publicly available.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load data </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mortality <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/mortality_2000_2023.rds"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># select only total age group</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> mortality[age <span class="sc">==</span> <span class="st">'000_059'</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    year deaths_n     age pop_jan1_n deaths_vs_pop_per_100k
+ 1: 2000     5427 000_059    3613275              150.19615
+ 2: 2001     5289 000_059    3636329              145.44889
+ 3: 2002     5303 000_059    3656613              145.02492
+ 4: 2003     5144 000_059    3679479              139.80240
+ 5: 2004     5069 000_059    3694134              137.21755
+ 6: 2005     4957 000_059    3705027              133.79120
+ 7: 2006     4773 000_059    3718828              128.34689
+ 8: 2007     4605 000_059    3733477              123.34347
+ 9: 2008     4582 000_059    3766509              121.65111
+10: 2009     4666 000_059    3806779              122.57081
+11: 2010     4557 000_059    3844344              118.53778
+12: 2011     4588 000_059    3885654              118.07536
+13: 2012     4278 000_059    3931709              108.80765
+14: 2013     4380 000_059    3976015              110.16055
+15: 2014     4156 000_059    4011213              103.60956
+16: 2015     3988 000_059    4044006               98.61509
+17: 2016     4004 000_059    4067801               98.43156
+18: 2017     3812 000_059    4086278               93.28783
+19: 2018     3826 000_059    4099015               93.33950
+20: 2019     3749 000_059    4105628               91.31368
+21: 2020     3711 000_059    4118541               90.10472
+22: 2021     3645 000_059    4115975               88.55739
+23: 2022     3910 000_059    4124531               94.79866
+24: 2023     3896 000_059    4161429               93.62169
+    year deaths_n     age pop_jan1_n deaths_vs_pop_per_100k</code></pre>
+</div>
+</div>
+<section id="explore-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-data">Explore the data</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> deaths_n, group))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> q1 <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> q1 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> q1 <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">2019.5</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> q1 <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> q1 <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2023</span>, <span class="dv">2</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> q1 <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">'Year'</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">'Number of deaths'</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">'Number of death in Norway </span><span class="sc">\n</span><span class="st">2000 - 2023'</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> q1 <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># q1</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># per 100k</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> deaths_vs_pop_per_100k))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> q2 <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> q2 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> q2 <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">2019.5</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> q2 <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> q2 <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2023</span>, <span class="dv">2</span>))</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> q2 <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">'Year'</span>, </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">'Number of deaths'</span>, </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">'Number of death in Norway </span><span class="sc">\n</span><span class="st">(per 100k population) 2000 - 2023'</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> q2 <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># plot side by side</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>q1 <span class="sc">+</span> q2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="intervals_files/figure-html/eda-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="model-mortality-using-2000-2019-data" class="level2">
+<h2 class="anchored" data-anchor-id="model-mortality-using-2000-2019-data">Model mortality using 2000-2019 data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take pre 2019 data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> d[year <span class="sc">&lt;=</span> <span class="dv">2019</span>, .(year, deaths_vs_pop_per_100k)]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prediction </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dnew <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2020</span>, <span class="dv">2021</span>, <span class="dv">2022</span>, <span class="dv">2023</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="linear-regression-with-lm" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-with-lm">Linear regression with <code>lm</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m_linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(deaths_vs_pop_per_100k <span class="sc">~</span> year, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> dt)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(m_linear)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># produce two intervals</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pred_freq_pi <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_linear, <span class="at">newdata =</span> dnew, <span class="at">interval =</span> <span class="st">'prediction'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>pred_freq_ci <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_linear, <span class="at">newdata =</span> dnew, <span class="at">interval =</span> <span class="st">'confidence'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="verify-from-formula" class="level4">
+<h4 class="anchored" data-anchor-id="verify-from-formula">Verify from formula</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verify with formula</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dt)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># option 1</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fitted_val <span class="ot">&lt;-</span> m_linear<span class="sc">$</span>fitted.values</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>deaths_vs_pop_per_100k <span class="sc">-</span> fitted_val)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="dv">-2</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>mse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.383279</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># option 2</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((m_linear<span class="sc">$</span>residuals)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="dv">-2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.383279</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># option 3</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_linear)<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.383279</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># option 4</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dvmisc<span class="sc">::</span><span class="fu">get_mse</span>(m_linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.383279</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-val</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tval <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p=</span><span class="fl">0.975</span>, <span class="at">df=</span>n<span class="dv">-2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> <span class="fu">mean</span>(dt<span class="sc">$</span>year)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># sum(xi - xbar)^2</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ssx <span class="ot">&lt;-</span> <span class="fu">sum</span>((dt<span class="sc">$</span>year <span class="sc">-</span> mean_x)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>sd_confint <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(mse <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">20</span><span class="sc">+</span> ((dnew<span class="sc">$</span>year <span class="sc">-</span> mean_x)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>ssx))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>sd_predint <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(mse <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">20</span><span class="sc">+</span> ((dnew<span class="sc">$</span>year <span class="sc">-</span> mean_x)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>ssx))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># point prediction</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_linear)[<span class="dv">1</span>]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_linear)[<span class="dv">2</span>]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>prednew <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b<span class="sc">*</span>dnew<span class="sc">$</span>year</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>prednew</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 85.68773 82.50765 79.32757 76.14749</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prediction interval</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>predint_linear <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fit =</span> prednew, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">lwr =</span> prednew <span class="sc">-</span> tval<span class="sc">*</span>sd_predint, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">upr =</span> prednew <span class="sc">+</span> tval<span class="sc">*</span>sd_predint)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>predint_linear</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 85.68773 80.83777 90.53770
+2 82.50765 77.59214 87.42316
+3 79.32757 74.34154 84.31360
+4 76.14749 71.08617 81.20880</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pred_freq_pi <span class="co"># compare with result from lm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 85.68773 80.83777 90.53770
+2 82.50765 77.59214 87.42316
+3 79.32757 74.34154 84.31360
+4 76.14749 71.08617 81.20880</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># confidence interval</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>confint_linear <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fit =</span> prednew, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">lwr =</span> prednew <span class="sc">-</span> tval<span class="sc">*</span>sd_confint, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">upr =</span> prednew <span class="sc">+</span> tval<span class="sc">*</span>sd_confint)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>confint_linear</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 85.68773 83.64447 87.73100
+2 82.50765 80.31334 84.70196
+3 79.32757 76.97954 81.67560
+4 76.14749 73.64355 78.65142</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pred_freq_ci <span class="co"># compare with result from lm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 85.68773 83.64447 87.73100
+2 82.50765 80.31334 84.70196
+3 79.32757 76.97954 81.67560
+4 76.14749 73.64355 78.65142</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="linear-regression-with-rstanarm" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-with-rstanarm">Linear regression with <code>rstanarm</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>m_bayes <span class="ot">&lt;-</span> rstanarm<span class="sc">::</span><span class="fu">stan_glm</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  deaths_vs_pop_per_100k <span class="sc">~</span> year, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dt, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter =</span> <span class="dv">2000</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains =</span> <span class="dv">8</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>m_bayes </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>stan_glm
+ family:       gaussian [identity]
+ formula:      deaths_vs_pop_per_100k ~ year
+ observations: 20
+ predictors:   2
+------
+            Median MAD_SD
+(Intercept) 6510.3  168.9
+year          -3.2    0.1
+
+Auxiliary parameter(s):
+      Median MAD_SD
+sigma 2.2    0.4   
+
+------
+* For help interpreting the printed output see ?print.stanreg
+* For info on the priors used see ?prior_summary.stanreg</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m_bayes)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>median <span class="ot">&lt;-</span> <span class="fu">apply</span>(sims, <span class="dv">2</span>, median)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>median</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>mad_sd <span class="ot">&lt;-</span> <span class="fu">apply</span>(sims, <span class="dv">2</span>, mad) </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># median absolute deviation (similar to sd)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>mad_sd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="credible-interval" class="level4">
+<h4 class="anchored" data-anchor-id="credible-interval">Credible interval</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># credible interval about the fit</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>cred <span class="ot">&lt;-</span> rstanarm<span class="sc">::</span><span class="fu">posterior_interval</span>(m_bayes, <span class="at">prob =</span> <span class="fl">0.95</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>cred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   2.5%       97.5%
+(Intercept) 6161.826532 6853.973023
+year          -3.351476   -3.006901
+sigma          1.615058    3.180611</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalent to</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m_bayes)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(sims, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       parameters
+        (Intercept)      year    sigma
+  2.5%     6161.827 -3.351476 1.615058
+  50%      6510.262 -3.180436 2.194197
+  97.5%    6853.973 -3.006901 3.180611</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="point-prediction" class="level3">
+<h3 class="anchored" data-anchor-id="point-prediction">Point prediction</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># point predict</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># uses median from the posterior sim</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>y_point_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_bayes, <span class="at">newdata =</span> dnew)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>y_point_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3        4 
+85.69236 82.51225 79.33214 76.15202 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a_hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_bayes)[<span class="dv">1</span>] <span class="co"># median</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>b_hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_bayes)[<span class="dv">2</span>] <span class="co"># median</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a_hat <span class="sc">+</span> b_hat<span class="sc">*</span>dnew<span class="sc">$</span>year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 85.78038 82.59994 79.41950 76.23907</code></pre>
+</div>
+</div>
+</section>
+<section id="uncertainty-of-linear-predictor" class="level3">
+<h3 class="anchored" data-anchor-id="uncertainty-of-linear-predictor">Uncertainty of linear predictor</h3>
+<p>The uncertainty of linear predictor, <span class="math inline">\(a + bx\)</span> is propagated through the uncertainty in <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, respectively. For now the error term is not included.</p>
+<p><code>rstanarm::posterior_linpred</code> is equivalent to using each pairs of <span class="math inline">\(a, b\)</span> from the posterior distribution to compute the point predictions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># linear predictor with uncertainty via a's and b's</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>y_linpred <span class="ot">&lt;-</span> rstanarm<span class="sc">::</span><span class="fu">posterior_linpred</span>(m_bayes, <span class="at">newdata =</span> dnew)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_linpred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          
+iterations        1        2        3        4
+      [1,] 86.24876 83.02817 79.80759 76.58701
+      [2,] 85.85043 82.64377 79.43711 76.23045
+      [3,] 85.47799 82.32353 79.16907 76.01460
+      [4,] 85.61647 82.39910 79.18172 75.96435
+      [5,] 85.90507 82.78214 79.65921 76.53628
+      [6,] 85.70187 82.48450 79.26713 76.04976</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># focus on one year: 2023</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y_linpred[, <span class="dv">4</span>], <span class="at">main =</span> <span class="st">'Predictions for 2023'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="intervals_files/figure-html/linpred-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_linpred[, <span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 76.58701 76.23045 76.01460 75.96435 76.53628 76.04976</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>y_linpred_byhand <span class="ot">&lt;-</span> sims[,<span class="dv">1</span>] <span class="sc">+</span> dnew<span class="sc">$</span>year[<span class="dv">4</span>] <span class="sc">*</span> sims[,<span class="dv">2</span>]</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>y_linpred_byhand[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 76.58701 76.23045 76.01460 75.96435 76.53628 76.04976</code></pre>
+</div>
+</div>
+</section>
+<section id="posterior-predictive-distribution-1" class="level3">
+<h3 class="anchored" data-anchor-id="posterior-predictive-distribution-1">Posterior predictive distribution</h3>
+<p>With PPD, include the additional uncertainty in <span class="math inline">\(\sigma\)</span>. This is equivalent to using the linear predictor from above, plus a random draw from <code>rnorm(1, 0, sigma)</code>.</p>
+<p>Due to randomness in the error, we can not get the exact same results. But they should be close enough.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># posterior predictive dist (with sigma)</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>y_postpred <span class="ot">&lt;-</span> rstanarm<span class="sc">::</span><span class="fu">posterior_predict</span>(m_bayes, <span class="at">newdata =</span> dnew)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_postpred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            1        2        3        4
+[1,] 83.13200 84.28166 79.80840 78.88850
+[2,] 82.83623 81.50274 78.76234 78.76516
+[3,] 83.09803 81.40174 78.00997 74.05771
+[4,] 86.00507 84.60695 83.99160 75.80041
+[5,] 85.92258 81.39472 81.48057 77.42691
+[6,] 86.01546 80.65809 77.49130 76.90942</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># by hand</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># focus on one year: 2023</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>n_sim <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sims)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>y_postpred_byhand <span class="ot">&lt;-</span> y_linpred_byhand <span class="sc">+</span> <span class="fu">rnorm</span>(n_sim, <span class="dv">0</span>, sims[,<span class="dv">3</span>])</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y_postpred_byhand, <span class="at">main =</span> <span class="st">'PPD for 2023 (linpred + error)'</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y_postpred[,<span class="dv">4</span>], <span class="at">main =</span> <span class="st">'PPD for 2023 (post_predict)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="intervals_files/figure-html/ppd-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>y_postpred[,<span class="dv">4</span>] <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  63.32   74.54   76.21   76.16   77.84   86.68 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>y_postpred_byhand <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  65.28   74.46   76.17   76.16   77.88   88.70 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="prediction-for-2020-2023-mortality" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-for-2020-2023-mortality">Prediction for 2020-2023 mortality</h2>
+<p>Here we choose to use <code>rstanarm::posterior_predict()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>pred_all <span class="ot">&lt;-</span> rstanarm<span class="sc">::</span><span class="fu">posterior_predict</span>(m_bayes, d)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>pred_all_quantile <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_all, <span class="dv">2</span>, quantile, </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.5</span>, <span class="fl">0.975</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>()  <span class="sc">|&gt;</span> </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>pred_all_quantile[<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       2.5%      50%    97.5%
+21 80.77857 85.69292 90.48133
+22 77.59678 82.49654 87.48140
+23 74.11972 79.29474 84.56972
+24 70.96448 76.16613 81.35969</code></pre>
+</div>
+</div>
+<p>We can compare with the frequentist prediction interval, and we see that they are very close.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>predint_linear</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 85.68773 80.83777 90.53770
+2 82.50765 77.59214 87.42316
+3 79.32757 74.34154 84.31360
+4 76.14749 71.08617 81.20880</code></pre>
+</div>
+</div>
+</section>
+<section id="visualize-mortality-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-mortality-prediction">Visualize mortality prediction</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">copy</span>(d)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># head(pd)</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pd, pred_all_quantile)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(pd, <span class="at">old =</span> <span class="st">'2.5%'</span>, <span class="at">new =</span> <span class="st">'exp_death_per100k_025'</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(pd, <span class="at">old =</span> <span class="st">'50%'</span>, <span class="at">new =</span> <span class="st">'exp_death_per100k_50'</span>)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(pd, <span class="at">old =</span> <span class="st">'97.5%'</span>, <span class="at">new =</span> <span class="st">'exp_death_per100k_975'</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="co"># also compute the expected death overall</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>pd[, exp_death_025 <span class="sc">:</span><span class="er">=</span> exp_death_per100k_025 <span class="sc">*</span> pop_jan1_n<span class="sc">/</span><span class="dv">100000</span>]</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>pd[, exp_death_50 <span class="sc">:</span><span class="er">=</span> exp_death_per100k_50 <span class="sc">*</span> pop_jan1_n<span class="sc">/</span><span class="dv">100000</span>]</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>pd[, exp_death_975 <span class="sc">:</span><span class="er">=</span> exp_death_per100k_975 <span class="sc">*</span> pop_jan1_n<span class="sc">/</span><span class="dv">100000</span>]</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>pd[, alert <span class="sc">:</span><span class="er">=</span> <span class="fu">fcase</span>(</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>  deaths_vs_pop_per_100k <span class="sc">&gt;</span> exp_death_per100k_975, <span class="st">"Higher than expected"</span>,</span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">default =</span> <span class="st">"Expected"</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>)]</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>pd[, type <span class="sc">:</span><span class="er">=</span> <span class="fu">fcase</span>(</span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  year <span class="sc">&lt;=</span> <span class="dv">2019</span>, <span class="fu">paste0</span>(<span class="st">"Baseline (2000-2019)"</span>),</span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">default =</span> <span class="st">"Pandemic years (2020-2023)"</span></span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>)]</span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a><span class="co"># make plot</span></span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pd, <span class="fu">aes</span>(<span class="at">x =</span> year))</span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">geom_ribbon</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">ymin =</span> exp_death_per100k_025, </span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">ymax =</span> exp_death_per100k_975), </span>
+<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">alpha =</span> <span class="fl">0.3</span>)</span>
+<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> exp_death_per100k_50, <span class="at">lty =</span> type), <span class="at">linewidth =</span> <span class="dv">1</span>)</span>
+<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> deaths_vs_pop_per_100k, <span class="at">color =</span> alert), <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">2019.5</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">expand_limits</span>(<span class="at">y=</span><span class="dv">0</span>)</span>
+<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="st">"Number of death per 100k"</span>, <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>)))</span>
+<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="st">"Year"</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2023</span>, <span class="dv">2</span>))</span>
+<span id="cb53-37"><a href="#cb53-37" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">scale_linetype_discrete</span>(<span class="cn">NULL</span>)</span>
+<span id="cb53-38"><a href="#cb53-38" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">scale_color_brewer</span>(<span class="cn">NULL</span>, <span class="at">palette =</span> <span class="st">"Set1"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb53-39"><a href="#cb53-39" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
+<span id="cb53-40"><a href="#cb53-40" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb53-41"><a href="#cb53-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb53-42"><a href="#cb53-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
+<span id="cb53-43"><a href="#cb53-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), </span>
+<span id="cb53-44"><a href="#cb53-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>) </span>
+<span id="cb53-45"><a href="#cb53-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-46"><a href="#cb53-46" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">legend.direction =</span> <span class="st">"horizontal"</span>)</span>
+<span id="cb53-47"><a href="#cb53-47" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> q <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.box =</span> <span class="st">"horizontal"</span>, <span class="at">legend.margin =</span> <span class="fu">margin</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb53-48"><a href="#cb53-48" aria-hidden="true" tabindex="-1"></a>q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="intervals_files/figure-html/final-prediction-plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
 <section id="reference" class="level1">
 <h1>Reference</h1>
 <ul>
 <li>A very good decomposition of prediction interval in linear regression: <a href="https://www.bryanshalloway.com/2021/03/18/intuition-on-uncertainty-of-predictions-introduction-to-prediction-intervals/">Post by Bryan Shalloway</a></li>
 <li>Blog by Professor Rob Hyndman on <a href="https://robjhyndman.com/hyndsight/intervals/">difference between prediction intervals and confidence intervals</a></li>
+<li>The data of mortality example comes from <a href="https://www.ssb.no/en/befolkning/fodte-og-dode/statistikk/dode">Statistics Norway</a> and is publicly available.</li>
 </ul>
 
 
