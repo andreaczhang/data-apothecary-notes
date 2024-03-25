@@ -88,7 +88,7 @@
     "href": "inference/index.html",
     "title": "Inference and models",
     "section": "",
-    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\n\n\nNo matching items"
+    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -1313,7 +1313,7 @@
     "href": "inference/index.html#settings",
     "title": "Inference and models",
     "section": "",
-    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\n\n\nNo matching items"
+    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/overview_ci.html",
@@ -1566,5 +1566,33 @@
     "title": "Intervals",
     "section": "Visualize mortality prediction",
     "text": "Visualize mortality prediction\n\n\nShow the code\npd &lt;- copy(d)\n# head(pd)\npd &lt;- cbind(pd, pred_all_quantile)\n\nsetnames(pd, old = '2.5%', new = 'exp_death_per100k_025')\nsetnames(pd, old = '50%', new = 'exp_death_per100k_50')\nsetnames(pd, old = '97.5%', new = 'exp_death_per100k_975')\n\n# also compute the expected death overall\n\npd[, exp_death_025 := exp_death_per100k_025 * pop_jan1_n/100000]\npd[, exp_death_50 := exp_death_per100k_50 * pop_jan1_n/100000]\npd[, exp_death_975 := exp_death_per100k_975 * pop_jan1_n/100000]\n\npd[, alert := fcase(\n  deaths_vs_pop_per_100k &gt; exp_death_per100k_975, \"Higher than expected\",\n  default = \"Expected\"\n)]\n\npd[, type := fcase(\n  year &lt;= 2019, paste0(\"Baseline (2000-2019)\"),\n  default = \"Pandemic years (2020-2023)\"\n)]\n\n\n# make plot\nq &lt;- ggplot(pd, aes(x = year))\nq &lt;- q + geom_ribbon(mapping = aes(ymin = exp_death_per100k_025, \n                                   ymax = exp_death_per100k_975), \n                     alpha = 0.3)\nq &lt;- q + geom_line(mapping = aes(y = exp_death_per100k_50, lty = type), linewidth = 1)\nq &lt;- q + geom_point(mapping = aes(y = deaths_vs_pop_per_100k, color = alert), size = 3)\nq &lt;- q + geom_vline(xintercept = 2019.5, color = \"red\", lty = 2)\nq &lt;- q + expand_limits(y=0)\nq &lt;- q + scale_y_continuous(\"Number of death per 100k\", expand = expansion(mult = c(0, 0.1)))\nq &lt;- q + scale_x_continuous(\"Year\", breaks = seq(2000, 2023, 2))\nq &lt;- q + scale_linetype_discrete(NULL)\nq &lt;- q + scale_color_brewer(NULL, palette = \"Set1\", direction = -1)\nq &lt;- q + theme_bw()\nq &lt;- q + theme(\n  axis.text = element_text(size = 11),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15), \n  axis.text.x = element_text(angle = 45, vjust = 0.5) \n)\nq &lt;- q + theme(legend.position = \"bottom\", legend.direction = \"horizontal\")\nq &lt;- q + theme(legend.box = \"horizontal\", legend.margin = margin(2, 2, 2, 2))\nq"
+  },
+  {
+    "objectID": "inference/rwd_vendor_engagement.html",
+    "href": "inference/rwd_vendor_engagement.html",
+    "title": "RWD EHR Vendor Engagement",
+    "section": "",
+    "text": "Vendor engagement (VE) in the context of Real-world data and Electronic Health Records (EHR/EMR) is the collaboration between various healthcare organizations (such as hospitals, clinics and medical practices) and vendors that provide EHR systems. VE is essential for successful EHR implementation and ongoing use in healthcare organizations. This partnership ensures that EHR systems meet the needs of healthcare providers and improves patient care.\nA few EHR vendors:\n\nEpicCare\nathenahealth\neClinicalWorks"
+  },
+  {
+    "objectID": "inference/rwd_vendor_engagement.html#what-is-vendor-engagement",
+    "href": "inference/rwd_vendor_engagement.html#what-is-vendor-engagement",
+    "title": "RWD EHR Vendor Engagement",
+    "section": "",
+    "text": "Vendor engagement (VE) in the context of Real-world data and Electronic Health Records (EHR/EMR) is the collaboration between various healthcare organizations (such as hospitals, clinics and medical practices) and vendors that provide EHR systems. VE is essential for successful EHR implementation and ongoing use in healthcare organizations. This partnership ensures that EHR systems meet the needs of healthcare providers and improves patient care.\nA few EHR vendors:\n\nEpicCare\nathenahealth\neClinicalWorks"
+  },
+  {
+    "objectID": "inference/rwd_vendor_engagement.html#who-is-involed",
+    "href": "inference/rwd_vendor_engagement.html#who-is-involed",
+    "title": "RWD EHR Vendor Engagement",
+    "section": "Who is involed",
+    "text": "Who is involed"
+  },
+  {
+    "objectID": "inference/rwd_vendor_engagement.html#how-is-it-implemented",
+    "href": "inference/rwd_vendor_engagement.html#how-is-it-implemented",
+    "title": "RWD EHR Vendor Engagement",
+    "section": "How is it implemented",
+    "text": "How is it implemented\n\nSelection process\nHealthcare orgaisations engage with EHR vendors to select EHR systems that best fits their needs. This involves evaluating the products, features, pricing and support services.\n\n\nImplementation\nThis process innvolves data migration, software installation, customization to meet specific workflow requirements, and staff training. The customization could be to support specialized clinical workflows, integrate with other softwaree solutions or implementing additional features and modules.\n\n\nAfter implementation\nVE continues after the EHR system is implemented. Healthcare organizations rely on vendors for ongoing technical support, software updates and maintenance to ensure that the systems function smoothly and remains compliant with regulatory requirements.\nFeedback and collaboration between healthcare organizations and the vendor is crucial. Feedbacks on usability, functionality and performance of the EHR system can inform future updates and improvements for the vendor.\n\n\nRegulation and compliance\nRegulatory compliance in the context of electronic health records (EHRs) typically includes adherence to laws and regulations aimed at protecting patient privacy, ensuring data security, and promoting the interoperability of health information. Some of the key regulations that healthcare organizations and EHR vendors need to comply with include:\nHealth Insurance Portability and Accountability Act (HIPAA): HIPAA sets the standard for protecting sensitive patient data. It includes the Privacy Rule, which governs the use and disclosure of protected health information (PHI), and the Security Rule, which outlines security standards for protecting electronic PHI (ePHI). HIPAA also includes the Breach Notification Rule, which requires covered entities to notify individuals affected by breaches of their PHI.\nHITECH Act: The Health Information Technology for Economic and Clinical Health (HITECH) Act promotes the adoption and meaningful use of health information technology, including EHRs. It introduced incentives for healthcare providers to adopt EHRs and strengthened HIPAA’s privacy and security requirements, including increased penalties for non-compliance.\nMeaningful Use (now Promoting Interoperability) Program: The Centers for Medicare & Medicaid Services (CMS) previously administered the Meaningful Use program, which incentivized eligible healthcare providers to adopt and demonstrate meaningful use of certified EHR technology. This program has transitioned to the Promoting Interoperability program, which focuses on promoting the exchange of health information and improving interoperability.\nFDA Regulations: The U.S. Food and Drug Administration (FDA) regulates certain types of EHR software that meet the definition of a medical device. EHR vendors must comply with FDA regulations, particularly if their software includes features that are considered medical devices."
   }
 ]
