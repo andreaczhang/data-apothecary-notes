@@ -8,9 +8,9 @@
 
 <meta name="author" content="Chi Zhang">
 <meta name="dcterms.date" content="2024-03-25">
-<meta name="description" content="Overview of vendor engagement">
+<meta name="description" content="Data challenge R/Medicine 2024">
 
-<title>Data Apothecary’s Notes - RWD EHR Vendor Engagement</title>
+<title>Data Apothecary’s Notes - Case study: CTN</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -130,8 +164,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#what-is-vendor-engagement" id="toc-what-is-vendor-engagement" class="nav-link active" data-scroll-target="#what-is-vendor-engagement">What is vendor engagement</a></li>
-  <li><a href="#implemention" id="toc-implemention" class="nav-link" data-scroll-target="#implemention">Implemention</a></li>
+  <li><a href="#ctn-data" id="toc-ctn-data" class="nav-link active" data-scroll-target="#ctn-data">CTN data</a></li>
   </ul>
 </nav>
     </div>
@@ -140,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">RWD EHR Vendor Engagement</h1>
+<h1 class="title">Case study: CTN</h1>
   <div class="quarto-categories">
     <div class="quarto-category">RWD</div>
   </div>
@@ -148,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    <p>Overview of vendor engagement</p>
+    <p>Data challenge R/Medicine 2024</p>
   </div>
 </div>
 
@@ -175,42 +208,151 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="what-is-vendor-engagement" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-vendor-engagement">What is vendor engagement</h2>
-<p>Vendor engagement (VE) in the context of Real-world data and Electronic Health Records (EHR/EMR) is the collaboration between various healthcare organizations (such as hospitals, clinics and medical practices) and vendors that provide EHR systems. VE is essential for successful EHR implementation and ongoing use in healthcare organizations. This partnership ensures that EHR systems meet the needs of healthcare providers and improves patient care.</p>
-<p>A few EHR vendors:</p>
+<p>Task overview see <a href="https://rconsortium.github.io/RMedicine_website/Competition.html">here</a></p>
 <ul>
-<li><a href="https://www.epic.com">EpicCare</a></li>
-<li><a href="https://www.oracle.com/health/clinical-suite/electronic-health-record/">Oracle Health EHR</a></li>
-<li><a href="https://www.athenahealth.com">athenahealth</a></li>
-<li><a href="https://www.eclinicalworks.com">eClinicalWorks</a></li>
+<li>factors that may contribute to treatment success or failure</li>
+<li>drop-out, relapse</li>
+<li>treatments: MOUD - methadone, buprenorphine, extended-release depot naltrexone</li>
 </ul>
+<p>Questions of interest (examples)</p>
+<ul>
+<li>Which demographic characteristics are most associated with drop-out / relapse rates?</li>
+<li>Are there any drugs/substances more associated with higher or lower drop-out / relapse rates?</li>
+</ul>
+<p>Article describing the process: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10490938/">Odom 2023</a></p>
+<section id="background-information" class="level3">
+<h3 class="anchored" data-anchor-id="background-information">Background information</h3>
+<p>SUD: substance use disorders; UDS: urine drug screening</p>
+<p>Multiple categories for UDS variable</p>
+<ul>
+<li><code>+</code>: positive for substance</li>
+<li><code>-</code>: negative for substance</li>
+<li><code>o</code>: no sample</li>
+<li><code>*</code>: inconclusive or mixed results</li>
+<li><code>_</code>: no specimeen required per study design (weekend, holidays, pre-randomization)</li>
+</ul>
+<p>TLFB: time-line followback: patient self-report with a standard schema</p>
+<p>Interpret: <code>+++++---+-----------o-</code></p>
+<ul>
+<li>Positive at baseline (+)</li>
+<li>challenging first month (++++)</li>
+<li>second month only one relapse (—+)</li>
+<li>remained abstinent from opioids for the reminder of the trial, with one single missing (o-)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CTNote)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>usePattern_char <span class="ot">&lt;-</span> <span class="st">"__++++*o-------+--+-o-o-o+o+oooooo"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">measure_retention</span>(usePattern_char)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28</code></pre>
+</div>
+</div>
 </section>
-<section id="implemention" class="level2">
-<h2 class="anchored" data-anchor-id="implemention">Implemention</h2>
-<section id="selection-process" class="level3">
-<h3 class="anchored" data-anchor-id="selection-process">Selection process</h3>
-<p>Healthcare organisations engage with EHR vendors to select EHR systems that best fits their needs. This involves evaluating the products, features, pricing and support services.</p>
-</section>
-<section id="implementation" class="level3">
-<h3 class="anchored" data-anchor-id="implementation">Implementation</h3>
-<p>This process involves data migration, software installation, customization to meet specific workflow requirements, and staff training. The customization could be to support specialized clinical workflows, integrate with other software solutions or implementing additional features and modules.</p>
-</section>
-<section id="after-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="after-implementation">After implementation</h3>
-<p>VE continues after the EHR system is implemented. Healthcare organizations rely on vendors for ongoing technical support, software updates and maintenance to ensure that the systems function smoothly and remains compliant with regulatory requirements.</p>
-<p>Feedback and collaboration between healthcare organizations and the vendor is crucial. Feedbacks on usability, functionality and performance of the EHR system can inform future updates and improvements for the vendor.</p>
-</section>
-<section id="regulation-and-compliance" class="level3">
-<h3 class="anchored" data-anchor-id="regulation-and-compliance">Regulation and compliance</h3>
-<p>Regulatory compliance in the context of electronic health records (EHRs) typically includes adherence to laws and regulations aimed at protecting patient privacy, ensuring data security, and promoting the interoperability of health information. Some of the key regulations that healthcare organizations and EHR vendors need to comply with include:</p>
-<p><a href="https://www.hhs.gov/hipaa/index.html">Health Insurance Portability and Accountability Act</a> (HIPAA): HIPAA sets the standard for protecting sensitive patient data. It includes the Privacy Rule, which governs the use and disclosure of protected health information (PHI), and the Security Rule, which outlines security standards for protecting electronic PHI (ePHI). HIPAA also includes the Breach Notification Rule, which requires covered entities to notify individuals affected by breaches of their PHI.</p>
-<p><a href="https://www.hipaajournal.com/what-is-the-hitech-act/">HITECH Act</a>: The Health Information Technology for Economic and Clinical Health (HITECH) Act promotes the adoption and meaningful use of health information technology, including EHRs. It introduced incentives for healthcare providers to adopt EHRs and strengthened HIPAA’s privacy and security requirements, including increased penalties for non-compliance.</p>
-<p><a href="https://www.cms.gov/medicare/regulations-guidance/promoting-interoperability-programs">Meaningful Use (now Promoting Interoperability) Program</a>: The Centers for Medicare &amp; Medicaid Services (CMS) previously administered the Meaningful Use program, which incentivized eligible healthcare providers to adopt and demonstrate meaningful use of certified EHR technology. This program has transitioned to the Promoting Interoperability program, which focuses on promoting the exchange of health information and improving interoperability.</p>
-<p><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/use-electronic-health-record-data-clinical-investigations-guidance-industry">FDA Regulations</a>: The U.S. Food and Drug Administration (FDA) regulates certain types of EHR software that meet the definition of a medical device. EHR vendors must comply with FDA regulations, particularly if their software includes features that are considered medical devices.</p>
+<section id="ctn-data" class="level2">
+<h2 class="anchored" data-anchor-id="ctn-data">CTN data</h2>
+<p>Data information</p>
+<ul>
+<li><a href="https://ctn-0094.github.io/public.ctn0094data/">ctn0094data</a></li>
+<li><a href="https://ctn-0094.github.io/public.ctn0094extra/">ctn0094extra</a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094data)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094extra)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>induct_delay <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_inductDelay</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>visit_imp <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_visitImputed</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>eth <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_raceEthnicity</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>pattern_o <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyOpioidPattern</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>pattern_t <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyTLFBPattern</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>induct_delay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,492 × 3
+     who treatment            inductDelay
+   &lt;int&gt; &lt;fct&gt;                      &lt;dbl&gt;
+ 1     2 Outpatient BUP + EMM           0
+ 2     3 Inpatient BUP                 NA
+ 3     4 Inpatient NR-NTX               0
+ 4     6 Outpatient BUP + SMM           0
+ 5     7 Inpatient NR-NTX               1
+ 6     9 Inpatient NR-NTX              NA
+ 7    10 Outpatient BUP                 0
+ 8    11 Methadone                      0
+ 9    12 Outpatient BUP                 0
+10    13 Outpatient BUP                 0
+# ℹ 2,482 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>visit_imp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87,891 × 3
+     who  when visitImputed
+   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       
+ 1     1     0 Missing     
+ 2     1     7 Missing     
+ 3     1    14 Missing     
+ 4     1    21 Missing     
+ 5     1    28 Missing     
+ 6     1    35 Missing     
+ 7     1    42 Missing     
+ 8     1    49 Missing     
+ 9     1    56 Missing     
+10     1    63 Missing     
+# ℹ 87,881 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,560 × 4
+     who race  is_hispanic race_ethnicity    
+   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;       &lt;fct&gt;             
+ 1     1 White No          Non-Hispanic White
+ 2     2 White No          Non-Hispanic White
+ 3     3 Black No          Non-Hispanic Black
+ 4     4 White No          Non-Hispanic White
+ 5     5 White No          Non-Hispanic White
+ 6     6 White No          Non-Hispanic White
+ 7     7 White No          Non-Hispanic White
+ 8     8 White No          Non-Hispanic White
+ 9     9 Black Yes         Hispanic          
+10    10 Other No          Other             
+# ℹ 3,550 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pattern_o</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,560 × 8
+     who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2
+   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;  
+ 1     1        -4        NA        NA      15 _____    ooooooooooooooo  ""     
+ 2     2        -5         0        NA      14 ____++   ----oo-o-o-o+o   ""     
+ 3     3        -6         0        NA      23 _______  o-ooo-ooooooooo… ""     
+ 4     4        -4         0        NA      24 ____-    ---------------… ""     
+ 5     5        -4        NA        NA      15 _____    ooooooooooooooo  ""     
+ 6     6        -6         0        NA      14 ____+_+  -ooooooooooooo   ""     
+ 7     7        -5         0        NA      24 _____+   ----ooooooooooo… ""     
+ 8     8        -4        NA        NA      25 _____    ooooooooooooooo… ""     
+ 9     9        -6         0        NA      22 ____+__  ooooooooooooooo… ""     
+10    10        -7         0        NA      22 _____+_- --o--*++o-+++++… ""     
+# ℹ 3,550 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pattern_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,560 × 8
+     who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2
+   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;  
+ 1     1        -4        NA        NA      14 _____    oooooooooooooo   ""     
+ 2     2        -5         0        NA      14 ++++++   -----------*+-   ""     
+ 3     3        -6         0        NA      23 ++++*--  ----*----------… ""     
+ 4     4        -4         0        NA      24 +++--    -------------*-… ""     
+ 5     5        -4        NA        NA      14 _____    oooooooooooooo   ""     
+ 6     6        -6         0        NA      14 +++++++  --------------   ""     
+ 7     7        -5         0        NA      24 _+++--   ---------------… ""     
+ 8     8        -4        NA        NA      24 _____    ooooooooooooooo… ""     
+ 9     9        -6         0        NA      22 +++**--  ---------------… ""     
+10    10        -7         0        NA      22 --*+++++ ---------++-+-*… ""     
+# ℹ 3,550 more rows</code></pre>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

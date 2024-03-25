@@ -1,0 +1,101 @@
+---
+title: "Case study: CTN"
+description: |
+  Data challenge R/Medicine 2024
+author: "Chi Zhang"
+date: "2024-03-25"
+categories: [RWD]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+Task overview see [here](https://rconsortium.github.io/RMedicine_website/Competition.html)
+
+* factors that may contribute to treatment success or failure
+* drop-out, relapse
+* treatments: MOUD - methadone, buprenorphine, extended-release depot naltrexone
+
+Questions of interest (examples)
+
+* Which demographic characteristics are most associated with drop-out / relapse rates?
+* Are there any drugs/substances more associated with higher or lower drop-out / relapse rates?
+
+Article describing the process: [Odom 2023](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10490938/)
+
+
+
+
+### Background information
+
+SUD: substance use disorders; UDS: urine drug screening
+
+Multiple categories for UDS variable
+
+* `+`: positive for substance
+* `-`: negative for substance
+* `o`: no sample
+* `*`: inconclusive or mixed results
+* `_`: no specimeen required per study design (weekend, holidays, pre-randomization)
+
+TLFB: time-line followback: patient self-report with a standard schema
+
+Interpret: `+++++---+-----------o-`
+
+* Positive at baseline (+)
+* challenging first month (++++)
+* second month only one relapse (---+)
+* remained abstinent from opioids for the reminder of the trial, with one single missing (o-)
+
+
+
+```{r}
+library(CTNote)
+usePattern_char <- "__++++*o-------+--+-o-o-o+o+oooooo"
+measure_retention(usePattern_char)
+```
+
+
+
+## CTN data
+
+
+Data information
+
+* [ctn0094data](https://ctn-0094.github.io/public.ctn0094data/)
+* [ctn0094extra](https://ctn-0094.github.io/public.ctn0094extra/)
+
+
+```{r}
+#| label: eda1
+#| echo: true
+#| eval: true
+
+library(public.ctn0094data)
+library(public.ctn0094extra)
+
+induct_delay <- public.ctn0094extra::derived_inductDelay
+visit_imp <- public.ctn0094extra::derived_visitImputed
+eth <- public.ctn0094extra::derived_raceEthnicity
+pattern_o <- public.ctn0094extra::derived_weeklyOpioidPattern
+pattern_t <- public.ctn0094extra::derived_weeklyTLFBPattern
+
+induct_delay
+visit_imp
+eth
+pattern_o
+pattern_t
+```
+
+
+
+
+
+
+

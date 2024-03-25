@@ -56,6 +56,7 @@ listing:
     fields: [title, description]
     contents: 
       - "case_study_liggetid_1.qmd"
+      - "case_study_ctn.qmd"
     type: table
     grid-item-border: false
     sort-ui: false
