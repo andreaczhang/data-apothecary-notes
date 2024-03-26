@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-03-25">
-<meta name="description" content="Data challenge R/Medicine 2024">
+<meta name="dcterms.date" content="2024-03-26">
+<meta name="description" content="Not compiled">
 
-<title>Data Apothecary’s Notes - Case study: CTN</title>
+<title>Data Apothecary’s Notes - Case study CTN (internal notes)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -164,7 +130,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#ctn-data" id="toc-ctn-data" class="nav-link active" data-scroll-target="#ctn-data">CTN data</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a></li>
+  <li><a href="#log" id="toc-log" class="nav-link" data-scroll-target="#log">Log</a></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Case study: CTN</h1>
+<h1 class="title">Case study CTN (internal notes)</h1>
   <div class="quarto-categories">
     <div class="quarto-category">RCT</div>
   </div>
@@ -181,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    <p>Data challenge R/Medicine 2024</p>
+    <p>Not compiled</p>
   </div>
 </div>
 
@@ -198,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 25, 2024</p>
+      <p class="date">March 26, 2024</p>
     </div>
   </div>
   
@@ -208,161 +176,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Task overview see <a href="https://rconsortium.github.io/RMedicine_website/Competition.html">here</a></p>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>What do I wish to get out of this analysis</p>
 <ul>
-<li>factors that may contribute to treatment success or failure</li>
-<li>drop-out, relapse</li>
-<li>treatments: MOUD - methadone, buprenorphine, extended-release depot naltrexone</li>
+<li>a new dataset that is complex enough to test out methodology, potentially causal inference, since this is a RCT dataset</li>
+<li>learn more about the novel ways to present data</li>
+<li>try out AI for generating ideas</li>
+<li>write about it in at least 2 blogposts</li>
 </ul>
-<p>Questions of interest (examples)</p>
-<ul>
-<li>Which demographic characteristics are most associated with drop-out / relapse rates?</li>
-<li>Are there any drugs/substances more associated with higher or lower drop-out / relapse rates?</li>
-</ul>
-<p>Article describing the process: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10490938/">Odom 2023</a></p>
-<section id="background-information" class="level3">
-<h3 class="anchored" data-anchor-id="background-information">Background information</h3>
-<p>SUD: substance use disorders; UDS: urine drug screening</p>
-<p>Multiple categories for UDS variable</p>
-<ul>
-<li><code>+</code>: positive for substance</li>
-<li><code>-</code>: negative for substance</li>
-<li><code>o</code>: no sample</li>
-<li><code>*</code>: inconclusive or mixed results</li>
-<li><code>_</code>: no specimeen required per study design (weekend, holidays, pre-randomization)</li>
-</ul>
-<p>TLFB: time-line followback: patient self-report with a standard schema</p>
-<p>Interpret: <code>+++++---+-----------o-</code></p>
-<ul>
-<li>Positive at baseline (+)</li>
-<li>challenging first month (++++)</li>
-<li>second month only one relapse (—+)</li>
-<li>remained abstinent from opioids for the reminder of the trial, with one single missing (o-)</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CTNote)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>usePattern_char <span class="ot">&lt;-</span> <span class="st">"__++++*o-------+--+-o-o-o+o+oooooo"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">measure_retention</span>(usePattern_char)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 28</code></pre>
-</div>
-</div>
+<p>My practical aim is to do <strong>ONE analysis only</strong>, and <strong>present the result</strong> in an innovative way.</p>
+<section id="angle" class="level3">
+<h3 class="anchored" data-anchor-id="angle">Angle</h3>
+<p><strong>Visualization</strong> would be my priority, and presenting non-standard data is a key. This suggests that adding <strong>interactivity</strong> would be relevant here.</p>
+<p>Limited relevant knowledge means that my analysis wouldn’t standout.</p>
 </section>
-<section id="ctn-data" class="level2">
-<h2 class="anchored" data-anchor-id="ctn-data">CTN data</h2>
-<section id="study-protocol" class="level3">
-<h3 class="anchored" data-anchor-id="study-protocol">Study protocol</h3>
-<p>Three studies</p>
-<ul>
-<li><a href="https://ctnlibrary.org/protocol/ctn0030/">CTN 30</a>(<a href="https://ctnlibrary.org/protocols/0030.pdf">Protocol</a>): prescription opiate abuse treatment study. Randomized, outpatient study, whether adding additional drug counseling improves outcome. Two phases.
-<ul>
-<li>Tx0: Bup/Nx (buprenorphine/naloxone) + SMM (standard medical management)</li>
-<li>Tx1: Bup/Nx + EMM (enhanced medical management)</li>
-<li>phase 1 n=653, phase 2 n=360</li>
-<li>primary finding: patients are likely to reduce opioid use during Bup/Nx treatment, however unsuccessful outcome is highly likely even after 12 weeks if tapering off treatment.</li>
-</ul></li>
-<li><a href="https://ctnlibrary.org/protocol/ctn0027/">CTN 27</a>(<a href="https://ctnlibrary.org/protocols/0027.pdf">Protocol</a>, <a href="https://ctnlibrary.org/dbtw-wpd/exec/dbtwpub.dll?BU=http%3A//ctndisseminationlibrary.org/ctnsearch.htm&amp;QY=find%20AutoNumber%20/%20Status%20ct%20%28%28901%29%26finished%29&amp;TN=ctnlibrary&amp;DF=Full&amp;RF=Full&amp;AC=QBE_QUERY&amp;CS=0&amp;MF=searchbutton.ini">Saxon 2013</a>): Bup/Nx vs MET (methadone) on liver function. Randomized, open-label, multi-center, phase 4 study.</li>
-<li><a href="https://ctnlibrary.org/protocol/ctn0051/">CTN 51</a> (<a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32812-X/abstract">Lee 2018</a>): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570
-<ul>
-<li>XR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)</li>
-<li>for those inducted successfully, relapse rate is similar</li>
-<li>relapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.</li>
-</ul></li>
-</ul>
-<p><em>If want to know which subject belongs to which study, use <code>CreateProtocolHistory()</code> or <code>everybody</code> data to have project ID</em>.</p>
-<p>Opioids: Oxymorphone, Opium, Fentanyl, Hydromorphone, Codeine, Suboxone, Tramadol, Morphine, Buprenorphine, Hydrocodone, Opioid, Methadone, Oxycodone, Heroin</p>
-<p>Times</p>
-<ul>
-<li>day 0: consent signed</li>
-<li>day of randomization (dr)</li>
-<li>day of receiving first dose of study drug (dd)</li>
-<li>induction delay: dr - dd (in terms of days, not weeks)</li>
-<li>any day before dd is <strong>pre-treatment</strong>, even if participants are assigned to a treatment arm
-<ul>
-<li>pre-tx (baseline) / treatment period is defined by the first non-zero dose for the patient.</li>
-</ul></li>
-</ul>
 </section>
-<section id="data-details" class="level3">
-<h3 class="anchored" data-anchor-id="data-details">Data details</h3>
+<section id="plan" class="level2">
+<h2 class="anchored" data-anchor-id="plan">Plan</h2>
+<p>The deadline for completion is 2024.5.1, however I can only spare 7 full days to work on it.</p>
+<section id="research-stage-narrow-down-the-scope" class="level4">
+<h4 class="anchored" data-anchor-id="research-stage-narrow-down-the-scope">Research stage: narrow down the scope</h4>
+</section>
+<section id="analysis-stage-do-one-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="analysis-stage-do-one-analysis">Analysis stage: do one analysis</h4>
+</section>
+<section id="visualization-interactivity" class="level4">
+<h4 class="anchored" data-anchor-id="visualization-interactivity">Visualization: interactivity</h4>
+</section>
+</section>
+<section id="log" class="level2">
+<h2 class="anchored" data-anchor-id="log">Log</h2>
 <ul>
-<li><a href="https://ctn-0094.github.io/public.ctn0094data/">ctn0094data</a></li>
-<li><a href="https://ctn-0094.github.io/public.ctn0094extra/">ctn0094extra</a></li>
+<li>3.25 Initialize project, understand symbolic drug use data</li>
+<li>3.26 Read through vignette for the data derivation. Read data description for 3 data sources, try to understand the data generating process.</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094data)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094extra)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>visit_imp <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_visitImputed</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>eth <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_raceEthnicity</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#visit_imp</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#eth</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>induct_delay <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_inductDelay</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>induct_delay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,492 × 3
-     who treatment            inductDelay
-   &lt;int&gt; &lt;fct&gt;                      &lt;dbl&gt;
- 1     2 Outpatient BUP + EMM           0
- 2     3 Inpatient BUP                 NA
- 3     4 Inpatient NR-NTX               0
- 4     6 Outpatient BUP + SMM           0
- 5     7 Inpatient NR-NTX               1
- 6     9 Inpatient NR-NTX              NA
- 7    10 Outpatient BUP                 0
- 8    11 Methadone                      0
- 9    12 Outpatient BUP                 0
-10    13 Outpatient BUP                 0
-# ℹ 2,482 more rows</code></pre>
-</div>
-</div>
-<p><strong>Weekly pattern data</strong>. Week 1 starts the day after randomisation or signed consent, depending whether patients are randomized or not. Negative time stamps suggest prior randomization (or consent).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pattern_o <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyOpioidPattern</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pattern_o</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3,560 × 8
-     who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2
-   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;  
- 1     1        -4        NA        NA      15 _____    ooooooooooooooo  ""     
- 2     2        -5         0        NA      14 ____++   ----oo-o-o-o+o   ""     
- 3     3        -6         0        NA      23 _______  o-ooo-ooooooooo… ""     
- 4     4        -4         0        NA      24 ____-    ---------------… ""     
- 5     5        -4        NA        NA      15 _____    ooooooooooooooo  ""     
- 6     6        -6         0        NA      14 ____+_+  -ooooooooooooo   ""     
- 7     7        -5         0        NA      24 _____+   ----ooooooooooo… ""     
- 8     8        -4        NA        NA      25 _____    ooooooooooooooo… ""     
- 9     9        -6         0        NA      22 ____+__  ooooooooooooooo… ""     
-10    10        -7         0        NA      22 _____+_- --o--*++o-+++++… ""     
-# ℹ 3,550 more rows</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pattern_t <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyTLFBPattern</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pattern_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3,560 × 8
-     who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2
-   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;  
- 1     1        -4        NA        NA      14 _____    oooooooooooooo   ""     
- 2     2        -5         0        NA      14 ++++++   -----------*+-   ""     
- 3     3        -6         0        NA      23 ++++*--  ----*----------… ""     
- 4     4        -4         0        NA      24 +++--    -------------*-… ""     
- 5     5        -4        NA        NA      14 _____    oooooooooooooo   ""     
- 6     6        -6         0        NA      14 +++++++  --------------   ""     
- 7     7        -5         0        NA      24 _+++--   ---------------… ""     
- 8     8        -4        NA        NA      24 _____    ooooooooooooooo… ""     
- 9     9        -6         0        NA      22 +++**--  ---------------… ""     
-10    10        -7         0        NA      22 --*+++++ ---------++-+-*… ""     
-# ℹ 3,550 more rows</code></pre>
-</div>
-</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

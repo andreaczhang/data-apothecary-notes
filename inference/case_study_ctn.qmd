@@ -4,7 +4,7 @@ description: |
   Data challenge R/Medicine 2024
 author: "Chi Zhang"
 date: "2024-03-25"
-categories: [RWD]
+categories: [RCT]
 sidebar: false
 code-block-bg: true
 code-block-border-left: true
@@ -83,23 +83,35 @@ Three studies
   * for those inducted successfully, relapse rate is similar
   * relapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.
   
-
+  
+*If want to know which subject belongs to which study, use `CreateProtocolHistory()` or `everybody` data to have project ID*.  
+ 
 Opioids: Oxymorphone, Opium, Fentanyl, Hydromorphone, Codeine, Suboxone, Tramadol, Morphine, Buprenorphine, Hydrocodone, Opioid, Methadone, Oxycodone, Heroin
 
 
-Randomization?
 
-Times
+### Times
 
 * day 0: consent signed
 * day of randomization (dr)
 * day of receiving first dose of study drug (dd)
 * induction delay: dr - dd (in terms of days, not weeks)
 * any day before dd is **pre-treatment**, even if participants are assigned to a treatment arm
+  * pre-tx (baseline) / treatment period is defined by the first non-zero dose for the patient. 
 
 
+### Endpoints (CTNote)
+
+As of CTNote, there are three types of outcomes
+
+* [abstinence](https://ctn-0094.github.io/CTNote/articles/library_abstinence_20220711.html#ctn-0094-abstinence)
+* [use reduction](https://ctn-0094.github.io/CTNote/articles/library_reduction_20220630.html)
+* [relapse](https://ctn-0094.github.io/CTNote/articles/library_relapse_20220711.html)
 
 
+### Risk factors 
+
+[datasets info](https://ctn-0094.github.io/public.ctn0094data/articles/harmonization.html)
 
 
 ### Data details

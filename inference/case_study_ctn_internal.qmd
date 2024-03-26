@@ -1,0 +1,70 @@
+---
+title: "Case study CTN (internal notes)"
+bibliography: biblio.bib
+description: |
+  Not compiled
+author: "Chi Zhang"
+date: "2024-03-26"
+categories: [RCT]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+## Motivation
+
+What do I wish to get out of this analysis
+
+* a new dataset that is complex enough to test out methodology, potentially causal inference, since this is a RCT dataset
+* learn more about the novel ways to present data
+* try out AI for generating ideas
+* write about it in at least 2 blogposts
+
+My practical aim is to do **ONE analysis only**, and **present the result** in an innovative way. 
+
+### Angle
+
+**Visualization** would be my priority, and presenting non-standard data is a key. This suggests that adding **interactivity** would be relevant here.
+
+Limited relevant knowledge means that my analysis wouldn't standout.
+
+
+## Plan
+
+The deadline for completion is 2024.5.1, however I can only spare 7 full days to work on it. 
+
+#### Research stage: narrow down the scope
+
+Outcome: abstinence, use reduction, relapse
+
+
+
+
+Risk factors 
+
+
+
+
+#### Analysis stage: do one analysis
+
+ 
+
+
+#### Visualization: interactivity
+
+Possibly not standard visualization (KM plot)
+
+
+
+## Log 
+
+* 3.25 Initialize project, understand symbolic drug use data
+* 3.26 Read through vignette for the data derivation. Read data description for 3 data sources, try to understand the data generating process.
+
+
