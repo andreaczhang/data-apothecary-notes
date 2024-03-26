@@ -63,10 +63,46 @@ measure_retention(usePattern_char)
 
 
 
+
+
 ## CTN data
 
 
-Data information
+### Study protocol
+
+Three studies 
+
+* [CTN 30](https://ctnlibrary.org/protocol/ctn0030/)([Protocol](https://ctnlibrary.org/protocols/0030.pdf)): prescription opiate abuse treatment study. Randomized, outpatient study, whether adding additional drug counseling improves outcome. Two phases. 
+  * Tx0: Bup/Nx (buprenorphine/naloxone) + SMM (standard medical management)
+  * Tx1: Bup/Nx + EMM (enhanced medical management)
+  * phase 1 n=653, phase 2 n=360
+  * primary finding: patients are likely to reduce opioid use during Bup/Nx treatment, however unsuccessful outcome is highly likely even after 12 weeks if tapering off treatment.
+* [CTN 27](https://ctnlibrary.org/protocol/ctn0027/)([Protocol](https://ctnlibrary.org/protocols/0027.pdf), [Saxon 2013](https://ctnlibrary.org/dbtw-wpd/exec/dbtwpub.dll?BU=http%3A//ctndisseminationlibrary.org/ctnsearch.htm&QY=find%20AutoNumber%20/%20Status%20ct%20%28%28901%29%26finished%29&TN=ctnlibrary&DF=Full&RF=Full&AC=QBE_QUERY&CS=0&MF=searchbutton.ini)): Bup/Nx vs MET (methadone) on liver function. Randomized, open-label, multi-center, phase 4 study.
+* [CTN 51](https://ctnlibrary.org/protocol/ctn0051/) ([Lee 2018](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32812-X/abstract)): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570
+  * XR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)
+  * for those inducted successfully, relapse rate is similar
+  * relapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.
+  
+
+Opioids: Oxymorphone, Opium, Fentanyl, Hydromorphone, Codeine, Suboxone, Tramadol, Morphine, Buprenorphine, Hydrocodone, Opioid, Methadone, Oxycodone, Heroin
+
+
+Randomization?
+
+Times
+
+* day 0: consent signed
+* day of randomization (dr)
+* day of receiving first dose of study drug (dd)
+* induction delay: dr - dd (in terms of days, not weeks)
+* any day before dd is **pre-treatment**, even if participants are assigned to a treatment arm
+
+
+
+
+
+
+### Data details
 
 * [ctn0094data](https://ctn-0094.github.io/public.ctn0094data/)
 * [ctn0094extra](https://ctn-0094.github.io/public.ctn0094extra/)
@@ -80,22 +116,31 @@ Data information
 library(public.ctn0094data)
 library(public.ctn0094extra)
 
-induct_delay <- public.ctn0094extra::derived_inductDelay
 visit_imp <- public.ctn0094extra::derived_visitImputed
 eth <- public.ctn0094extra::derived_raceEthnicity
-pattern_o <- public.ctn0094extra::derived_weeklyOpioidPattern
-pattern_t <- public.ctn0094extra::derived_weeklyTLFBPattern
 
+#visit_imp
+#eth
+```
+
+
+```{r}
+induct_delay <- public.ctn0094extra::derived_inductDelay
 induct_delay
-visit_imp
-eth
+```
+
+
+**Weekly pattern data**. Week 1 starts the day after randomisation or signed consent, depending whether patients are randomized or not. Negative time stamps suggest prior randomization (or consent).
+
+```{r}
+pattern_o <- public.ctn0094extra::derived_weeklyOpioidPattern
 pattern_o
-pattern_t
 ```
 
 
 
-
-
-
+```{r}
+pattern_t <- public.ctn0094extra::derived_weeklyTLFBPattern
+pattern_t
+```
 

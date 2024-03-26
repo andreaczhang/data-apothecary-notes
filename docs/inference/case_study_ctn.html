@@ -250,7 +250,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ctn-data" class="level2">
 <h2 class="anchored" data-anchor-id="ctn-data">CTN data</h2>
-<p>Data information</p>
+<section id="study-protocol" class="level3">
+<h3 class="anchored" data-anchor-id="study-protocol">Study protocol</h3>
+<p>Three studies</p>
+<ul>
+<li><a href="https://ctnlibrary.org/protocol/ctn0030/">CTN 30</a>(<a href="https://ctnlibrary.org/protocols/0030.pdf">Protocol</a>): prescription opiate abuse treatment study. Randomized, outpatient study, whether adding additional drug counseling improves outcome. Two phases.
+<ul>
+<li>Tx0: Bup/Nx (buprenorphine/naloxone) + SMM (standard medical management)</li>
+<li>Tx1: Bup/Nx + EMM (enhanced medical management)</li>
+<li>phase 1 n=653, phase 2 n=360</li>
+<li>primary finding: patients are likely to reduce opioid use during Bup/Nx treatment, however unsuccessful outcome is highly likely even after 12 weeks if tapering off treatment.</li>
+</ul></li>
+<li><a href="https://ctnlibrary.org/protocol/ctn0027/">CTN 27</a>(<a href="https://ctnlibrary.org/protocols/0027.pdf">Protocol</a>, <a href="https://ctnlibrary.org/dbtw-wpd/exec/dbtwpub.dll?BU=http%3A//ctndisseminationlibrary.org/ctnsearch.htm&amp;QY=find%20AutoNumber%20/%20Status%20ct%20%28%28901%29%26finished%29&amp;TN=ctnlibrary&amp;DF=Full&amp;RF=Full&amp;AC=QBE_QUERY&amp;CS=0&amp;MF=searchbutton.ini">Saxon 2013</a>): Bup/Nx vs MET (methadone) on liver function. Randomized, open-label, multi-center, phase 4 study.</li>
+<li><a href="https://ctnlibrary.org/protocol/ctn0051/">CTN 51</a> (<a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32812-X/abstract">Lee 2018</a>): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570
+<ul>
+<li>XR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)</li>
+<li>for those inducted successfully, relapse rate is similar</li>
+<li>relapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.</li>
+</ul></li>
+</ul>
+<p>Opioids: Oxymorphone, Opium, Fentanyl, Hydromorphone, Codeine, Suboxone, Tramadol, Morphine, Buprenorphine, Hydrocodone, Opioid, Methadone, Oxycodone, Heroin</p>
+<p>Randomization?</p>
+<p>Times</p>
+<ul>
+<li>day 0: consent signed</li>
+<li>day of randomization (dr)</li>
+<li>day of receiving first dose of study drug (dd)</li>
+<li>induction delay: dr - dd (in terms of days, not weeks)</li>
+<li>any day before dd is <strong>pre-treatment</strong>, even if participants are assigned to a treatment arm</li>
+</ul>
+</section>
+<section id="data-details" class="level3">
+<h3 class="anchored" data-anchor-id="data-details">Data details</h3>
 <ul>
 <li><a href="https://ctn-0094.github.io/public.ctn0094data/">ctn0094data</a></li>
 <li><a href="https://ctn-0094.github.io/public.ctn0094extra/">ctn0094extra</a></li>
@@ -259,13 +290,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094data)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094extra)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>induct_delay <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_inductDelay</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>visit_imp <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_visitImputed</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>eth <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_raceEthnicity</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>pattern_o <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyOpioidPattern</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>pattern_t <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyTLFBPattern</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>induct_delay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>visit_imp <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_visitImputed</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>eth <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_raceEthnicity</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#visit_imp</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#eth</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>induct_delay <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_inductDelay</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>induct_delay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,492 × 3
      who treatment            inductDelay
@@ -282,41 +315,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 10    13 Outpatient BUP                 0
 # ℹ 2,482 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>visit_imp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 87,891 × 3
-     who  when visitImputed
-   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       
- 1     1     0 Missing     
- 2     1     7 Missing     
- 3     1    14 Missing     
- 4     1    21 Missing     
- 5     1    28 Missing     
- 6     1    35 Missing     
- 7     1    42 Missing     
- 8     1    49 Missing     
- 9     1    56 Missing     
-10     1    63 Missing     
-# ℹ 87,881 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3,560 × 4
-     who race  is_hispanic race_ethnicity    
-   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;       &lt;fct&gt;             
- 1     1 White No          Non-Hispanic White
- 2     2 White No          Non-Hispanic White
- 3     3 Black No          Non-Hispanic Black
- 4     4 White No          Non-Hispanic White
- 5     5 White No          Non-Hispanic White
- 6     6 White No          Non-Hispanic White
- 7     7 White No          Non-Hispanic White
- 8     8 White No          Non-Hispanic White
- 9     9 Black Yes         Hispanic          
-10    10 Other No          Other             
-# ℹ 3,550 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pattern_o</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Weekly pattern data</strong>. Week 1 starts the day after randomisation or signed consent, depending whether patients are randomized or not. Negative time stamps suggest prior randomization (or consent).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pattern_o <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyOpioidPattern</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pattern_o</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,560 × 8
      who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2
@@ -333,7 +336,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 10    10        -7         0        NA      22 _____+_- --o--*++o-+++++… ""     
 # ℹ 3,550 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pattern_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pattern_t <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_weeklyTLFBPattern</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pattern_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3,560 × 8
      who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2
@@ -353,6 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
