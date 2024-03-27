@@ -8,7 +8,7 @@
 
 <meta name="author" content="Chi Zhang">
 <meta name="dcterms.date" content="2024-03-26">
-<meta name="description" content="Not compiled">
+<meta name="description" content="Not compiled into the website">
 
 <title>Data Apothecary’s Notes - Case study CTN (internal notes)</title>
 <style>
@@ -133,6 +133,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a></li>
   <li><a href="#log" id="toc-log" class="nav-link" data-scroll-target="#log">Log</a></li>
+  <li><a href="#background-information" id="toc-background-information" class="nav-link" data-scroll-target="#background-information">Background information</a></li>
+  <li><a href="#analysis-proposal" id="toc-analysis-proposal" class="nav-link" data-scroll-target="#analysis-proposal">Analysis proposal</a></li>
   </ul>
 </nav>
     </div>
@@ -149,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    <p>Not compiled</p>
+    <p>Not compiled into the website</p>
   </div>
 </div>
 
@@ -197,19 +199,82 @@ ul.task-list li input[type="checkbox"] {
 <p>The deadline for completion is 2024.5.1, however I can only spare 7 full days to work on it.</p>
 <section id="research-stage-narrow-down-the-scope" class="level4">
 <h4 class="anchored" data-anchor-id="research-stage-narrow-down-the-scope">Research stage: narrow down the scope</h4>
+<p>Outcome: abstinence, use reduction, relapse</p>
+<p>Risk factors</p>
 </section>
 <section id="analysis-stage-do-one-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="analysis-stage-do-one-analysis">Analysis stage: do one analysis</h4>
+<p>Possibly focus on <strong>CTN51</strong> study, examine endpoints including relapse (since it is also documented in a paper).</p>
 </section>
 <section id="visualization-interactivity" class="level4">
 <h4 class="anchored" data-anchor-id="visualization-interactivity">Visualization: interactivity</h4>
+<p>Possibly not standard visualization (KM plot)</p>
 </section>
 </section>
 <section id="log" class="level2">
 <h2 class="anchored" data-anchor-id="log">Log</h2>
+<p>Stage I</p>
 <ul>
 <li>3.25 Initialize project, understand symbolic drug use data</li>
 <li>3.26 Read through vignette for the data derivation. Read data description for 3 data sources, try to understand the data generating process.</li>
+<li>3.27 Ask chatgpt for some background information on opioid use disorder. Merge datasets into wide format, then ask chatgpt to give some analysis suggestion. Stage II</li>
+</ul>
+</section>
+<section id="background-information" class="level2">
+<h2 class="anchored" data-anchor-id="background-information">Background information</h2>
+<p>Opioid epidemic in the US: driven by overprescription of opioid pain medications, proliferation of illicit opioids such as heroin, and emergence of highly potent synthetic opioids (e.g.&nbsp;fentanyl)</p>
+<p>Treatment for OUD involves a combination of pharmacotherapy (e.g.&nbsp;methadone, buprenorphine), behavioral therapies, support services. <strong>Medication-assisted treatment (MAT)</strong> is effective.</p>
+<p>Challenges: limited availability of treatment providers and resources, socialeconomic factors</p>
+<p>Risk factors for <strong>relapse</strong></p>
+<ul>
+<li>biological
+<ul>
+<li>predisposition, family history of substance abuse</li>
+<li>co-occuring mental health disorders: depression, anxiety, post-traumatic stress disorder PTSD</li>
+<li>physical health issues: chronic pain or other</li>
+</ul></li>
+<li>psycological
+<ul>
+<li>craving and withdrawl symptoms during detoxification</li>
+<li>poor coping skills, inability to deal with stress, negative emotions</li>
+<li>low self-esteem</li>
+</ul></li>
+<li>social
+<ul>
+<li>peer pressure, acquaintances who use opioid</li>
+<li>family dynamics, dysfunctional family relationships, lack of support</li>
+<li>social isolation</li>
+</ul></li>
+<li>environmental
+<ul>
+<li>availability of opioids (prescription or illicit)</li>
+<li>stressful environments, poverty</li>
+</ul></li>
+<li>treatment related
+<ul>
+<li>inadequate treatment, lack of comprehensive care</li>
+<li>premature discontinuation</li>
+<li>lack of engagement</li>
+</ul></li>
+</ul>
+<p>Risk factors for <strong>drop-out</strong></p>
+<ul>
+<li>severity of addiction</li>
+<li>psychological</li>
+<li>social supoort (lack of)</li>
+<li>stigma and shame</li>
+<li>treatment accessibility and affordability</li>
+</ul>
+</section>
+<section id="analysis-proposal" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-proposal">Analysis proposal</h2>
+<p>Chatgpt has suggested a few ideas for analysis:</p>
+<ul>
+<li>regression</li>
+<li>survival analysis</li>
+<li>propensity score matching</li>
+<li>machine learning (rf, svm, gb), combined with feature importance analysis</li>
+<li>clustering (k-means, hierarchical)</li>
 </ul>
 
 

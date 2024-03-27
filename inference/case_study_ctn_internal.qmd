@@ -2,7 +2,7 @@
 title: "Case study CTN (internal notes)"
 bibliography: biblio.bib
 description: |
-  Not compiled
+  Not compiled into the website
 author: "Chi Zhang"
 date: "2024-03-26"
 categories: [RCT]
@@ -53,6 +53,8 @@ Risk factors
 
 #### Analysis stage: do one analysis
 
+Possibly focus on **CTN51** study, examine endpoints including relapse (since it is also documented in a paper). 
+
  
 
 
@@ -64,7 +66,67 @@ Possibly not standard visualization (KM plot)
 
 ## Log 
 
+Stage I
+
 * 3.25 Initialize project, understand symbolic drug use data
 * 3.26 Read through vignette for the data derivation. Read data description for 3 data sources, try to understand the data generating process.
+* 3.27 Ask chatgpt for some background information on opioid use disorder. Merge datasets into wide format, then ask chatgpt to give some analysis suggestion. 
+Stage II
+
+
+
+## Background information 
+
+Opioid epidemic in the US: driven by overprescription of opioid pain medications, proliferation of illicit opioids such as heroin, and emergence of highly potent synthetic opioids (e.g. fentanyl)
+
+Treatment for OUD involves a combination of pharmacotherapy (e.g. methadone, buprenorphine), behavioral therapies, support services. **Medication-assisted treatment (MAT)** is effective.
+
+Challenges: limited availability of treatment providers and resources, socialeconomic factors
+
+Risk factors for **relapse**
+
+* biological 
+  * predisposition, family history of substance abuse
+  * co-occuring mental health disorders: depression, anxiety, post-traumatic stress disorder PTSD
+  * physical health issues: chronic pain or other
+* psycological
+  * craving and withdrawl symptoms during detoxification
+  * poor coping skills, inability to deal with stress, negative emotions
+  * low self-esteem
+* social
+  * peer pressure, acquaintances who use opioid
+  * family dynamics, dysfunctional family relationships, lack of support
+  * social isolation
+* environmental
+  * availability of opioids (prescription or illicit)
+  * stressful environments, poverty
+* treatment related
+  * inadequate treatment, lack of comprehensive care
+  * premature discontinuation
+  * lack of engagement
+
+
+
+Risk factors for **drop-out**
+
+* severity of addiction
+* psychological
+* social supoort (lack of)
+* stigma and shame
+* treatment accessibility and affordability
+
+
+## Analysis proposal
+
+Chatgpt has suggested a few ideas for analysis:
+
+* regression
+* survival analysis
+* propensity score matching
+* machine learning (rf, svm, gb), combined with feature importance analysis
+* clustering (k-means, hierarchical)
+
+
+
 
 

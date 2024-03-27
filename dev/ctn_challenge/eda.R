@@ -231,10 +231,16 @@ pattern_t$randWeek1 |> table()
 
 
 
-# outcome as per CTNote ----
+# TO DO: outcome as per CTNote ----
+library(magrittr)
+library(dplyr)
+library(CTNote)
+
 udsOutcomes_df <- 
   CTNote::outcomesCTN0094 %>% 
   select(who, usePatternUDS)
+
+?CTNote::outcomesCTN0094
 
 # Make a copy
 outcomesAbs_df <- udsOutcomes_df
@@ -244,6 +250,7 @@ outcomesAbs_df <- udsOutcomes_df
 examplePeople_int <- c(1, 163, 210, 242, 4, 17, 13, 1103, 233, 2089)
 outcomesAbs_df %>% 
   filter(who %in% examplePeople_int)
+
 outcomesAbs_df <- 
   outcomesAbs_df %>%
   rowwise() %>% 
@@ -267,18 +274,74 @@ outcomesAbs_df <-
   select(who, Ab_ctnNinetyFour_2023) %>% 
   left_join(outcomesAbs_df, ., by = "who")
 
+
+
+
 outcomesAbs_df %>% 
   filter(who %in% examplePeople_int) %>% 
   select(who, usePatternUDS, Ab_ctnNinetyFour_2023)
 
+outcomesAbs_df$Ab_ctnNinetyFour_2023 |> table()
 
 
-# risk factors ----
+# compare 
+out <- CTNote::outcomesCTN0094
+out$ctn0094_relapse_event |> table() # relapse
+
+
+udsOutcomes_df <- 
+  CTNote::outcomesCTN0094 %>% 
+  select(who, usePatternUDS)
+
+outcomesRel_df <- udsOutcomes_df
+
+outcomesRel_df <- 
+  outcomesRel_df %>%
+  rowwise() %>% 
+  mutate(
+    udsPattern = recode_missing_visits(
+      use_pattern = usePatternUDS
+    )
+  ) %>%
+  mutate(
+    udsPattern = recode_missing_visits(
+      use_pattern = udsPattern,
+      missing_is = "*"
+    )
+  ) %>% 
+  mutate(
+    ctn0094_relapse = detect_in_window(
+      use_pattern = udsPattern,
+      window_width = 4L,
+      threshold = 4L
+    )
+  ) %>% 
+  unnest(cols = "ctn0094_relapse", names_sep = "_") %>% 
+  select(who, starts_with("ctn0094_relapse")) %>% 
+  rename(
+    RsT_ctnNinetyFour_2023 = ctn0094_relapse_time,
+    RsE_ctnNinetyFour_2023 = ctn0094_relapse_event
+  ) %>% 
+  left_join(outcomesRel_df, ., by = "who")
+
+
+outcomesRel_df %>% 
+  filter(who %in% examplePeople_int) %>% 
+  select(who, usePatternUDS, RsT_ctnNinetyFour_2023, RsE_ctnNinetyFour_2023)
+
+outcomesRel_df$RsE_ctnNinetyFour_2023 |> table()
+
+
+# TO DO: risk factors ----
+
+# select the relevant ones, merge into a big risk factor df
+
+public.ctn0094data::everybody # project ID
+
 
 public.ctn0094data::demographics
 # age, race, job, stable living, educaton, marital, sex
 
-public.ctn0094data::everybody # project ID
 
 public.ctn0094data::all_drugs # drug records 
 public.ctn0094data::all_drugs$source |> table()

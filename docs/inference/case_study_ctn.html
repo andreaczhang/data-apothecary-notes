@@ -256,13 +256,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><a href="https://ctnlibrary.org/protocol/ctn0030/">CTN 30</a>(<a href="https://ctnlibrary.org/protocols/0030.pdf">Protocol</a>): prescription opiate abuse treatment study. Randomized, outpatient study, whether adding additional drug counseling improves outcome. Two phases.
 <ul>
-<li>Tx0: Bup/Nx (buprenorphine/naloxone) + SMM (standard medical management)</li>
-<li>Tx1: Bup/Nx + EMM (enhanced medical management)</li>
+<li>Tx0: <strong>Bup/Nx</strong> (buprenorphine/naloxone) + SMM (standard medical management)</li>
+<li>Tx1: <strong>Bup/Nx + EMM</strong> (enhanced medical management)</li>
 <li>phase 1 n=653, phase 2 n=360</li>
 <li>primary finding: patients are likely to reduce opioid use during Bup/Nx treatment, however unsuccessful outcome is highly likely even after 12 weeks if tapering off treatment.</li>
 </ul></li>
-<li><a href="https://ctnlibrary.org/protocol/ctn0027/">CTN 27</a>(<a href="https://ctnlibrary.org/protocols/0027.pdf">Protocol</a>, <a href="https://ctnlibrary.org/dbtw-wpd/exec/dbtwpub.dll?BU=http%3A//ctndisseminationlibrary.org/ctnsearch.htm&amp;QY=find%20AutoNumber%20/%20Status%20ct%20%28%28901%29%26finished%29&amp;TN=ctnlibrary&amp;DF=Full&amp;RF=Full&amp;AC=QBE_QUERY&amp;CS=0&amp;MF=searchbutton.ini">Saxon 2013</a>): Bup/Nx vs MET (methadone) on liver function. Randomized, open-label, multi-center, phase 4 study.</li>
-<li><a href="https://ctnlibrary.org/protocol/ctn0051/">CTN 51</a> (<a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32812-X/abstract">Lee 2018</a>): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570
+<li><a href="https://ctnlibrary.org/protocol/ctn0027/">CTN 27</a>(<a href="https://ctnlibrary.org/protocols/0027.pdf">Protocol</a>, <a href="https://ctnlibrary.org/dbtw-wpd/exec/dbtwpub.dll?BU=http%3A//ctndisseminationlibrary.org/ctnsearch.htm&amp;QY=find%20AutoNumber%20/%20Status%20ct%20%28%28901%29%26finished%29&amp;TN=ctnlibrary&amp;DF=Full&amp;RF=Full&amp;AC=QBE_QUERY&amp;CS=0&amp;MF=searchbutton.ini">Saxon 2013</a>): <strong>Bup/Nx vs MET (methadone)</strong> on liver function. Randomized, open-label, multi-center, phase 4 study.</li>
+<li><a href="https://ctnlibrary.org/protocol/ctn0051/">CTN 51</a> (<a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32812-X/abstract">Lee 2018</a>): <strong>Bup/Nx vs XR-NTX</strong> naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570
 <ul>
 <li>XR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)</li>
 <li>for those inducted successfully, relapse rate is similar</li>
@@ -271,7 +271,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><em>If want to know which subject belongs to which study, use <code>CreateProtocolHistory()</code> or <code>everybody</code> data to have project ID</em>.</p>
 <p>Opioids: Oxymorphone, Opium, Fentanyl, Hydromorphone, Codeine, Suboxone, Tramadol, Morphine, Buprenorphine, Hydrocodone, Opioid, Methadone, Oxycodone, Heroin</p>
-<p>Times</p>
+</section>
+<section id="times" class="level3">
+<h3 class="anchored" data-anchor-id="times">Times</h3>
 <ul>
 <li>day 0: consent signed</li>
 <li>day of randomization (dr)</li>
@@ -283,6 +285,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
+<section id="endpoints-ctnote" class="level3">
+<h3 class="anchored" data-anchor-id="endpoints-ctnote">Endpoints (CTNote)</h3>
+<p>As of CTNote, there are three types of outcomes</p>
+<ul>
+<li><a href="https://ctn-0094.github.io/CTNote/articles/library_abstinence_20220711.html#ctn-0094-abstinence">abstinence</a></li>
+<li><a href="https://ctn-0094.github.io/CTNote/articles/library_reduction_20220630.html">use reduction</a></li>
+<li><a href="https://ctn-0094.github.io/CTNote/articles/library_relapse_20220711.html">relapse</a></li>
+</ul>
+</section>
+<section id="risk-factors" class="level3">
+<h3 class="anchored" data-anchor-id="risk-factors">Risk factors</h3>
+<p><a href="https://ctn-0094.github.io/public.ctn0094data/articles/harmonization.html">datasets info</a></p>
+</section>
 <section id="data-details" class="level3">
 <h3 class="anchored" data-anchor-id="data-details">Data details</h3>
 <ul>
@@ -293,8 +308,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094data)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094extra)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>visit_imp <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_visitImputed</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>eth <span class="ot">&lt;-</span> public.ctn0094extra<span class="sc">::</span>derived_raceEthnicity</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># visit_imp &lt;- public.ctn0094extra::derived_visitImputed</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># eth &lt;- public.ctn0094extra::derived_raceEthnicity</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#visit_imp</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#eth</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -358,6 +373,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  9     9        -6         0        NA      22 +++**--  ---------------… ""     
 10    10        -7         0        NA      22 --*+++++ ---------++-+-*… ""     
 # ℹ 3,550 more rows</code></pre>
+</div>
+</div>
+<p>Outcomes (relapse)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> CTNote<span class="sc">::</span>outcomesCTN0094</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>ctn0094_relapse_event <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="co"># relapse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   0    1 
+ 619 2941 </code></pre>
 </div>
 </div>
 
