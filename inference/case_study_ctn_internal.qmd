@@ -71,7 +71,13 @@ Stage I
 * 3.25 Initialize project, understand symbolic drug use data
 * 3.26 Read through vignette for the data derivation. Read data description for 3 data sources, try to understand the data generating process.
 * 3.27 Ask chatgpt for some background information on opioid use disorder. Merge datasets into wide format, then ask chatgpt to give some analysis suggestion. 
+
 Stage II
+
+* 3.28 Narrowed down scope, decide to create a visual tool for summarizing ICE in RCT. Read papers, identify important types of ICE and find relevant information. 
+  * Decide to use **lollipop plot** for **individual patient** vis, possibly enhanced by augmented text, add interactivity to the plot using `ggiraph`
+  * add some kind of grouping to multiple patients 
+
 
 
 

@@ -1292,7 +1292,7 @@
     "href": "inference/index.html#case-studies",
     "title": "Inference and models",
     "section": "Case studies",
-    "text": "Case studies\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nCase study: length of hospital stay\n\n\nPart 1: EDA \n\n\n\n\nCase study: CTN\n\n\nData challenge R/Medicine 2024 \n\n\n\n\n\n\nNo matching items"
+    "text": "Case studies\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nCase study: length of hospital stay\n\n\nPart 1: EDA \n\n\n\n\nCase study: CTN\n\n\nData challenge R/Medicine 2024 \n\n\n\n\nCase study: CTN-51\n\n\nFocusing on CTN 51 data \n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/g_computation.html",
@@ -1649,7 +1649,7 @@
     "href": "inference/case_study_ctn_internal.html#log",
     "title": "Case study CTN (internal notes)",
     "section": "Log",
-    "text": "Log\nStage I\n\n3.25 Initialize project, understand symbolic drug use data\n3.26 Read through vignette for the data derivation. Read data description for 3 data sources, try to understand the data generating process.\n3.27 Ask chatgpt for some background information on opioid use disorder. Merge datasets into wide format, then ask chatgpt to give some analysis suggestion. Stage II"
+    "text": "Log\nStage I\n\n3.25 Initialize project, understand symbolic drug use data\n3.26 Read through vignette for the data derivation. Read data description for 3 data sources, try to understand the data generating process.\n3.27 Ask chatgpt for some background information on opioid use disorder. Merge datasets into wide format, then ask chatgpt to give some analysis suggestion.\n\nStage II\n\n3.28 Narrowed down scope, decide to create a visual tool for summarizing ICE in RCT. Read papers, identify important types of ICE and find relevant information.\n\nDecide to use lollipop plot for individual patient vis, possibly enhanced by augmented text, add interactivity to the plot using ggiraph\nadd some kind of grouping to multiple patients"
   },
   {
     "objectID": "inference/case_study_ctn_internal.html#background-information",
@@ -1664,5 +1664,33 @@
     "title": "Case study CTN (internal notes)",
     "section": "Analysis proposal",
     "text": "Analysis proposal\nChatgpt has suggested a few ideas for analysis:\n\nregression\nsurvival analysis\npropensity score matching\nmachine learning (rf, svm, gb), combined with feature importance analysis\nclustering (k-means, hierarchical)"
+  },
+  {
+    "objectID": "inference/estimands_ice.html",
+    "href": "inference/estimands_ice.html",
+    "title": "Estimands, intercurrent events",
+    "section": "",
+    "text": "Key question: how to present the data visually?\nWhat are considered as important, what are not?\nITT (intention to treat): include the data after rescue medicine. Includes dropouts\nPP (Per-protocol): exclude patients taking rescue medicine, only analyse the complete cases\nTrial estimands: trial treatment effect depends on how events occur after treatment initiation.\nTreatment effect for a given outcome.\nFive core attributes\n\npopulation\ntreatment conditions\nendpoint\nsummary measure\nstrategies to handle each type of intercurrent event\n\n\nIntercurrent event\nPost-baseline events (post randomisation in RCT) that affects the interpretation of outcome.\nTwo categories:\n\ntreatment-modifying events, affects the receipt of assigned treatment. E.g. early discontinuation, use of rescue, wrong dose, wrong type (placebo for example).\ntruncating events, e.g. death, amputation of limb when the limb is relevant for the research question.\n\nStrategies (multiple can be used for different ICE in the same study)\n\ntreatment policy strategy: treat as it is, ignore ICE\ncomposite strategy: modifies the endpoint value, defined by the investigator\nwhile-on-treatment (while alive): before intercurrent event data is used.\nhypothetical strategy\nprincipal stratum strategy: redefine the population"
+  },
+  {
+    "objectID": "inference/case_study_ctn51.html",
+    "href": "inference/case_study_ctn51.html",
+    "title": "Case study: CTN-51",
+    "section": "",
+    "text": "CTN 51 (Lee 2018): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570\n\nXR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)\nfor those inducted successfully, relapse rate is similar\nrelapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.\n\nReproduce some of the results, try to understand the events involved after initiation\nKey numbers\n\nrelapse is 4 consecutive weeks of non-study opioid use or 7 days of self-reported use\nITT (n=570), 24 weeks relapse greater for NTX\npre-protocol (n=474), similar relapse\nrelapse rate is between 57% to 65%\n\nThings to understand\n\ninitiation hurdle"
+  },
+  {
+    "objectID": "inference/case_study_ctn51.html#study-information",
+    "href": "inference/case_study_ctn51.html#study-information",
+    "title": "Case study: CTN-51",
+    "section": "",
+    "text": "CTN 51 (Lee 2018): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570\n\nXR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)\nfor those inducted successfully, relapse rate is similar\nrelapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.\n\nReproduce some of the results, try to understand the events involved after initiation\nKey numbers\n\nrelapse is 4 consecutive weeks of non-study opioid use or 7 days of self-reported use\nITT (n=570), 24 weeks relapse greater for NTX\npre-protocol (n=474), similar relapse\nrelapse rate is between 57% to 65%\n\nThings to understand\n\ninitiation hurdle"
+  },
+  {
+    "objectID": "inference/case_study_ctn51.html#datasets-used",
+    "href": "inference/case_study_ctn51.html#datasets-used",
+    "title": "Case study: CTN-51",
+    "section": "Datasets used",
+    "text": "Datasets used\n\nlibrary(public.ctn0094data)\nlibrary(public.ctn0094extra)\nlibrary(CTNote)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(purrr)\nlibrary(tibble)\nlibrary(tidyr)\nlibrary(stringr)\n\nout &lt;- CTNote::outcomesCTN0094\n\n# take c51 \n\neverybody$project |&gt; table() # this includes all eligible\n\n\n  27   30   51 \n1920  868  772 \n\nout_c51 &lt;- left_join(everybody, out) |&gt; \n  filter(project == 51)\n\nJoining with `by = join_by(who)`\n\nout_c51 |&gt; head()\n\n# A tibble: 6 × 64\n    who project usePatternUDS             fiellin2006_abs kosten1993_isAbs\n  &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;                               &lt;dbl&gt; &lt;lgl&gt;           \n1     3 51      o-ooo-ooooooooooooooooo                 2 FALSE           \n2     4 51      -------------------o-o-o               21 TRUE            \n3     7 51      ----oooooooooooooooooooo                4 TRUE            \n4     9 51      oooooooooooooooooooooo                  0 FALSE           \n5    18 51      ooooooooooooooooooooooooo               0 FALSE           \n6    20 51      ooooooooooooooooooooooooo               0 FALSE           \n# ℹ 59 more variables: krupitsky2011A_isAbs &lt;lgl&gt;, krupitsky2011B_abs &lt;dbl&gt;,\n#   ling1998_isAbs &lt;lgl&gt;, lofwall2018_isAbs &lt;lgl&gt;, mokri2016_abs_time &lt;dbl&gt;,\n#   mokri2016_abs_event &lt;dbl&gt;, schottenfeld2005_abs &lt;dbl&gt;,\n#   schottenfeld2008A_abs_time &lt;dbl&gt;, schottenfeld2008A_abs_event &lt;dbl&gt;,\n#   schottenfeld2008B_abs &lt;dbl&gt;, shufman1994_absN_time &lt;dbl&gt;,\n#   shufman1994_absN_event &lt;dbl&gt;, weissLingCTN0030_isAbs &lt;lgl&gt;,\n#   comer2006_red &lt;dbl&gt;, eissenberg1997_isAbs &lt;lgl&gt;, fiellin2006_red &lt;dbl&gt;, …\n\n\n\nTreatment and outcome related\nOutcome includes pattern and class\nRandomization\ntreatment: time is study day, amount is dose or 1 (injection)"
   }
 ]

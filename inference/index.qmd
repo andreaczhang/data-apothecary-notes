@@ -57,6 +57,7 @@ listing:
     contents: 
       - "case_study_liggetid_1.qmd"
       - "case_study_ctn.qmd"
+      - "case_study_ctn51.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

@@ -161,3 +161,9 @@ Outcomes (relapse)
 out <- CTNote::outcomesCTN0094
 out$ctn0094_relapse_event |> table() # relapse
 ```
+
+
+
+
+
+
