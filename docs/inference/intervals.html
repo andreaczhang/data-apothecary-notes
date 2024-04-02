@@ -284,32 +284,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> mortality[age <span class="sc">==</span> <span class="st">'000_059'</span>]</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    year deaths_n     age pop_jan1_n deaths_vs_pop_per_100k
- 1: 2000     5427 000_059    3613275              150.19615
- 2: 2001     5289 000_059    3636329              145.44889
- 3: 2002     5303 000_059    3656613              145.02492
- 4: 2003     5144 000_059    3679479              139.80240
- 5: 2004     5069 000_059    3694134              137.21755
- 6: 2005     4957 000_059    3705027              133.79120
- 7: 2006     4773 000_059    3718828              128.34689
- 8: 2007     4605 000_059    3733477              123.34347
- 9: 2008     4582 000_059    3766509              121.65111
-10: 2009     4666 000_059    3806779              122.57081
-11: 2010     4557 000_059    3844344              118.53778
-12: 2011     4588 000_059    3885654              118.07536
-13: 2012     4278 000_059    3931709              108.80765
-14: 2013     4380 000_059    3976015              110.16055
-15: 2014     4156 000_059    4011213              103.60956
-16: 2015     3988 000_059    4044006               98.61509
-17: 2016     4004 000_059    4067801               98.43156
-18: 2017     3812 000_059    4086278               93.28783
-19: 2018     3826 000_059    4099015               93.33950
-20: 2019     3749 000_059    4105628               91.31368
-21: 2020     3711 000_059    4118541               90.10472
-22: 2021     3645 000_059    4115975               88.55739
-23: 2022     3910 000_059    4124531               94.79866
-24: 2023     3896 000_059    4161429               93.62169
-    year deaths_n     age pop_jan1_n deaths_vs_pop_per_100k</code></pre>
+<pre><code>     year deaths_n     age pop_jan1_n deaths_vs_pop_per_100k
+    &lt;num&gt;    &lt;num&gt;  &lt;char&gt;      &lt;num&gt;                  &lt;num&gt;
+ 1:  2000     5427 000_059    3613275              150.19615
+ 2:  2001     5289 000_059    3636329              145.44889
+ 3:  2002     5303 000_059    3656613              145.02492
+ 4:  2003     5144 000_059    3679479              139.80240
+ 5:  2004     5069 000_059    3694134              137.21755
+ 6:  2005     4957 000_059    3705027              133.79120
+ 7:  2006     4773 000_059    3718828              128.34689
+ 8:  2007     4605 000_059    3733477              123.34347
+ 9:  2008     4582 000_059    3766509              121.65111
+10:  2009     4666 000_059    3806779              122.57081
+11:  2010     4557 000_059    3844344              118.53778
+12:  2011     4588 000_059    3885654              118.07536
+13:  2012     4278 000_059    3931709              108.80765
+14:  2013     4380 000_059    3976015              110.16055
+15:  2014     4156 000_059    4011213              103.60956
+16:  2015     3988 000_059    4044006               98.61509
+17:  2016     4004 000_059    4067801               98.43156
+18:  2017     3812 000_059    4086278               93.28783
+19:  2018     3826 000_059    4099015               93.33950
+20:  2019     3749 000_059    4105628               91.31368
+21:  2020     3711 000_059    4118541               90.10472
+22:  2021     3645 000_059    4115975               88.55739
+23:  2022     3910 000_059    4124531               94.79866
+24:  2023     3896 000_059    4161429               93.62169
+     year deaths_n     age pop_jan1_n deaths_vs_pop_per_100k</code></pre>
 </div>
 </div>
 <section id="explore-the-data" class="level2">
@@ -496,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  predictors:   2
 ------
             Median MAD_SD
-(Intercept) 6510.3  168.9
+(Intercept) 6508.9  172.7
 year          -3.2    0.1
 
 Auxiliary parameter(s):
@@ -524,9 +525,9 @@ sigma 2.2    0.4
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>cred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   2.5%       97.5%
-(Intercept) 6161.826532 6853.973023
-year          -3.351476   -3.006901
-sigma          1.615058    3.180611</code></pre>
+(Intercept) 6153.323126 6860.258942
+year          -3.354388   -3.002706
+sigma          1.613893    3.158212</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalent to</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(m_bayes)</span>
@@ -534,9 +535,9 @@ sigma          1.615058    3.180611</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>       parameters
         (Intercept)      year    sigma
-  2.5%     6161.827 -3.351476 1.615058
-  50%      6510.262 -3.180436 2.194197
-  97.5%    6853.973 -3.006901 3.180611</code></pre>
+  2.5%     6153.323 -3.354388 1.613893
+  50%      6508.878 -3.179785 2.188470
+  97.5%    6860.259 -3.002706 3.158212</code></pre>
 </div>
 </div>
 </section>
@@ -550,13 +551,13 @@ sigma          1.615058    3.180611</code></pre>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>y_point_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       1        2        3        4 
-85.69236 82.51225 79.33214 76.15202 </code></pre>
+85.70512 82.52602 79.34693 76.16784 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a_hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_bayes)[<span class="dv">1</span>] <span class="co"># median</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>b_hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_bayes)[<span class="dv">2</span>] <span class="co"># median</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a_hat <span class="sc">+</span> b_hat<span class="sc">*</span>dnew<span class="sc">$</span>year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 85.78038 82.59994 79.41950 76.23907</code></pre>
+<pre><code>[1] 85.71262 82.53284 79.35305 76.17327</code></pre>
 </div>
 </div>
 </section>
@@ -571,12 +572,12 @@ sigma          1.615058    3.180611</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>          
 iterations        1        2        3        4
-      [1,] 86.24876 83.02817 79.80759 76.58701
-      [2,] 85.85043 82.64377 79.43711 76.23045
-      [3,] 85.47799 82.32353 79.16907 76.01460
-      [4,] 85.61647 82.39910 79.18172 75.96435
-      [5,] 85.90507 82.78214 79.65921 76.53628
-      [6,] 85.70187 82.48450 79.26713 76.04976</code></pre>
+      [1,] 86.10024 82.97463 79.84903 76.72343
+      [2,] 85.85748 82.68492 79.51237 76.33981
+      [3,] 87.29901 84.20899 81.11897 78.02895
+      [4,] 85.20206 82.03283 78.86360 75.69437
+      [5,] 86.48901 83.35877 80.22852 77.09827
+      [6,] 85.20891 82.05604 78.90316 75.75029</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># focus on one year: 2023</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y_linpred[, <span class="dv">4</span>], <span class="at">main =</span> <span class="st">'Predictions for 2023'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -585,12 +586,12 @@ iterations        1        2        3        4
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_linpred[, <span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 76.58701 76.23045 76.01460 75.96435 76.53628 76.04976</code></pre>
+<pre><code>[1] 76.72343 76.33981 78.02895 75.69437 77.09827 75.75029</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>y_linpred_byhand <span class="ot">&lt;-</span> sims[,<span class="dv">1</span>] <span class="sc">+</span> dnew<span class="sc">$</span>year[<span class="dv">4</span>] <span class="sc">*</span> sims[,<span class="dv">2</span>]</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>y_linpred_byhand[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 76.58701 76.23045 76.01460 75.96435 76.53628 76.04976</code></pre>
+<pre><code>[1] 76.72343 76.33981 78.02895 75.69437 77.09827 75.75029</code></pre>
 </div>
 </div>
 </section>
@@ -604,12 +605,12 @@ iterations        1        2        3        4
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_postpred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            1        2        3        4
-[1,] 83.13200 84.28166 79.80840 78.88850
-[2,] 82.83623 81.50274 78.76234 78.76516
-[3,] 83.09803 81.40174 78.00997 74.05771
-[4,] 86.00507 84.60695 83.99160 75.80041
-[5,] 85.92258 81.39472 81.48057 77.42691
-[6,] 86.01546 80.65809 77.49130 76.90942</code></pre>
+[1,] 82.30809 84.05500 76.23373 78.77213
+[2,] 85.84017 78.86926 77.96173 75.38247
+[3,] 83.78987 82.10932 79.26550 76.41729
+[4,] 86.70298 80.65775 79.67767 74.15331
+[5,] 89.86595 84.23036 81.20953 79.50464
+[6,] 87.14309 81.49540 81.26873 75.59455</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># by hand</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># focus on one year: 2023</span></span>
@@ -624,12 +625,12 @@ iterations        1        2        3        4
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>y_postpred[,<span class="dv">4</span>] <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  63.32   74.54   76.21   76.16   77.84   86.68 </code></pre>
+  65.09   74.44   76.14   76.18   77.88   86.07 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>y_postpred_byhand <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  65.28   74.46   76.17   76.16   77.88   88.70 </code></pre>
+  65.34   74.41   76.13   76.12   77.79   86.95 </code></pre>
 </div>
 </div>
 </section>
@@ -647,10 +648,10 @@ iterations        1        2        3        4
 <span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>pred_all_quantile[<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       2.5%      50%    97.5%
-21 80.77857 85.69292 90.48133
-22 77.59678 82.49654 87.48140
-23 74.11972 79.29474 84.56972
-24 70.96448 76.16613 81.35969</code></pre>
+21 80.68303 85.69161 90.67399
+22 77.49556 82.49978 87.68754
+23 74.24687 79.34818 84.52341
+24 70.94134 76.16837 81.46279</code></pre>
 </div>
 </div>
 <p>We can compare with the frequentist prediction interval, and we see that they are very close.</p>
