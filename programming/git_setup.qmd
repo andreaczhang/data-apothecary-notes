@@ -1,0 +1,134 @@
+---
+title: "Set up version control"
+description: |
+  Setting up a new laptop with Git
+author: "Chi Zhang"
+date: "2024-04-02"
+categories: [Git]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+Recently I have switched to a new MacBook M2 machine. The most important task is to set up version control, and synchronize important GitHub repositories. 
+
+
+### Install Git
+
+Check if you have git
+
+```
+which git
+git --version
+git config
+```
+
+I had to install git. I decided to do it with **Homebrew**.
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+After a few minutes, configure homebrew.
+
+```
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/chizhang/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew help
+```
+
+If the last line runs, it suggests that homebrew is correctly installed. Now try to install git with homebrew.
+
+```
+brew install git
+```
+
+### Configure git
+
+After download, try to run the configuration again.
+
+```
+git config
+git --version
+```
+
+Since this is a new computer, need to configure the user name and email again. I made the names exactly the same as my old computer. To get the configuration from *the other computer*, I used `git config --list`.
+
+```
+git config --global user.name 'MYNAME'
+git config --global user.name 'MYEMAIL'
+git config --global credential.helper osxkeychain
+```
+
+### New SSH key
+
+I followed the following steps:  [Checking for existing SSH keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys)
+
+
+First check whether I have existing ssh keys.
+
+```
+ls -al ~/.ssh
+```
+
+None returned, then I need to create a new one.
+
+
+[Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+```
+ssh-keygen -t ed25519 -C "MYEMAIL"
+```
+
+Need to enter passphrase.
+
+[Add SSH key to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent)
+
+
+```
+eval "$(ssh-agent -s)"
+open ~/.ssh/config
+```
+
+If it does not exist, create a new one.
+
+```
+touch ~/.ssh/config
+nano ~/.ssh/config
+```
+
+Write the following in the `config` file. Pay attention to typos!
+
+```
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+```
+
+Add the private key to the ssh-agent.
+
+```
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+### Add SSH key to GitHub Account
+
+Copy the public SSH key to my clipboard.
+
+```
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+Go on GitHub, go to **Settings** -> **SSH and GPG keys** -> **New SSH Key**
+
+Paste the public key. 
+
+
+

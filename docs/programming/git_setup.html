@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2024-04-02">
+<meta name="description" content="Setting up a new laptop with Git">
 
-<title>Data Apothecary’s Notes - Programming</title>
+<title>Data Apothecary’s Notes - Set up version control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,122 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-r-programming .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-r-programming'] = new List('listing-r-programming', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-r-pkg .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-r-pkg'] = new List('listing-r-pkg', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-web .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-web'] = new List('listing-web', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-misc .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-misc'] = new List('listing-misc', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -214,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Reporting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../programming/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../programming/index.html" rel="" target="">
  <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
@@ -240,30 +126,41 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#r-programming" id="toc-r-programming" class="nav-link active" data-scroll-target="#r-programming">R programming</a></li>
-  <li><a href="#r-package" id="toc-r-package" class="nav-link" data-scroll-target="#r-package">R package</a></li>
-  <li><a href="#web-and-quarto" id="toc-web-and-quarto" class="nav-link" data-scroll-target="#web-and-quarto">Web and quarto</a></li>
-  <li><a href="#other-topics" id="toc-other-topics" class="nav-link" data-scroll-target="#other-topics">Other topics</a></li>
-  </ul>
-</nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Git">Git <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Interview">Interview <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Publication">Publication <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Programming</h1>
-</div>
+<h1 class="title">Set up version control</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Git</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Setting up a new laptop with Git</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 2, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -271,156 +168,61 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This page hosts study notes on programming, with a strong flavour of R.</p>
-<section id="r-programming" class="level3">
-<h3 class="anchored" data-anchor-id="r-programming">R programming</h3>
-<div id="listing-r-programming" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Error handling in R" data-listing-filename-sort="r_error_handling.qmd">
-<td>
-<a href="../programming/r_error_handling.html" class="title listing-title">Error handling in R</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696543200000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Functions" data-listing-filename-sort="r_functions.qmd">
-<td>
-<a href="../programming/r_functions.html" class="title listing-title">Functions</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1677106800000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="OOP in R: S3" data-listing-filename-sort="r_roop.qmd">
-<td>
-<a href="../programming/r_roop.html" class="title listing-title">OOP in R: S3</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<p>Recently I have switched to a new MacBook M2 machine. The most important task is to set up version control, and synchronize important GitHub repositories.</p>
+<section id="install-git" class="level3">
+<h3 class="anchored" data-anchor-id="install-git">Install Git</h3>
+<p>Check if you have git</p>
+<pre><code>which git
+git --version
+git config</code></pre>
+<p>I had to install git. I decided to do it with <strong>Homebrew</strong>.</p>
+<pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+<p>After a few minutes, configure homebrew.</p>
+<pre><code>(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') &gt;&gt; /Users/chizhang/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew help</code></pre>
+<p>If the last line runs, it suggests that homebrew is correctly installed. Now try to install git with homebrew.</p>
+<pre><code>brew install git</code></pre>
 </section>
-<section id="r-package" class="level3">
-<h3 class="anchored" data-anchor-id="r-package">R package</h3>
-<div id="listing-r-pkg" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="RSE,Rpkg" data-listing-date-sort="1699311600000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Dependencies" data-listing-filename-sort="r_pkg_dependency.qmd">
-<td>
-<a href="../programming/r_pkg_dependency.html" class="title listing-title">Dependencies</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696716000000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="My workflow in working with functions in a package" data-listing-filename-sort="r_pkg_functions.qmd">
-<td>
-<a href="../programming/r_pkg_functions.html" class="title listing-title">My workflow in working with functions in a package</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1696197600000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="R package Engineering Workflow" data-listing-filename-sort="r_pkg_0_wf.qmd">
-<td>
-<a href="../programming/r_pkg_0_wf.html" class="title listing-title">R package Engineering Workflow</a>
-</td>
-</tr>
-<tr data-index="3" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="R package: tests" data-listing-filename-sort="r_pkg_tests.qmd">
-<td>
-<a href="../programming/r_pkg_tests.html" class="title listing-title">R package: tests</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<section id="configure-git" class="level3">
+<h3 class="anchored" data-anchor-id="configure-git">Configure git</h3>
+<p>After download, try to run the configuration again.</p>
+<pre><code>git config
+git --version</code></pre>
+<p>Since this is a new computer, need to configure the user name and email again. I made the names exactly the same as my old computer. To get the configuration from <em>the other computer</em>, I used <code>git config --list</code>.</p>
+<pre><code>git config --global user.name 'MYNAME'
+git config --global user.name 'MYEMAIL'
+git config --global credential.helper osxkeychain</code></pre>
 </section>
-<section id="web-and-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="web-and-quarto">Web and quarto</h3>
-<div id="listing-web" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Website,revealjs" data-listing-date-sort="1696370400000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Make slides with `reveal.js`" data-listing-filename-sort="revealjs.qmd">
-<td>
-<a href="../programming/revealjs.html" class="title listing-title">Make slides with <code>reveal.js</code></a>
-</td>
-</tr>
-<tr data-index="1" data-categories="Website" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Web basics" data-listing-filename-sort="web_basics.qmd">
-<td>
-<a href="../programming/web_basics.html" class="title listing-title">Web basics</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="Website" data-listing-date-sort="1696111200000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="WebR: Use with an existing quarto website" data-listing-filename-sort="webr.qmd">
-<td>
-<a href="../programming/webr.html" class="title listing-title">WebR: Use with an existing quarto website</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<section id="new-ssh-key" class="level3">
+<h3 class="anchored" data-anchor-id="new-ssh-key">New SSH key</h3>
+<p>I followed the following steps: <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys">Checking for existing SSH keys</a></p>
+<p>First check whether I have existing ssh keys.</p>
+<pre><code>ls -al ~/.ssh</code></pre>
+<p>None returned, then I need to create a new one.</p>
+<p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generating a new SSH key</a></p>
+<pre><code>ssh-keygen -t ed25519 -C "MYEMAIL"</code></pre>
+<p>Need to enter passphrase.</p>
+<p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent">Add SSH key to the ssh-agent</a></p>
+<pre><code>eval "$(ssh-agent -s)"
+open ~/.ssh/config</code></pre>
+<p>If it does not exist, create a new one.</p>
+<pre><code>touch ~/.ssh/config
+nano ~/.ssh/config</code></pre>
+<p>Write the following in the <code>config</code> file. Pay attention to typos!</p>
+<pre><code>Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519</code></pre>
+<p>Add the private key to the ssh-agent.</p>
+<pre><code>ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code></pre>
 </section>
-<section id="other-topics" class="level3">
-<h3 class="anchored" data-anchor-id="other-topics">Other topics</h3>
-<div id="listing-misc" class="quarto-listing quarto-listing-container-table">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Git" data-listing-date-sort="1712008800000" data-listing-file-modified-sort="1712051821929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Set up version control" data-listing-filename-sort="git_setup.qmd">
-<td>
-<a href="../programming/git_setup.html" class="title listing-title">Set up version control</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="Publication" data-listing-date-sort="1698357600000" data-listing-file-modified-sort="1712048836441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Software papers" data-listing-filename-sort="misc_software_papers.qmd">
-<td>
-<a href="../programming/misc_software_papers.html" class="title listing-title">Software papers</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="Interview" data-listing-date-sort="1696456800000" data-listing-file-modified-sort="1712048836440" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Topic coverage: R developer" data-listing-filename-sort="intv_rdev_topics.qmd">
-<td>
-<a href="../programming/intv_rdev_topics.html" class="title listing-title">Topic coverage: R developer</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-
+<section id="add-ssh-key-to-github-account" class="level3">
+<h3 class="anchored" data-anchor-id="add-ssh-key-to-github-account">Add SSH key to GitHub Account</h3>
+<p>Copy the public SSH key to my clipboard.</p>
+<pre><code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code></pre>
+<p>Go on GitHub, go to <strong>Settings</strong> -&gt; <strong>SSH and GPG keys</strong> -&gt; <strong>New SSH Key</strong></p>
+<p>Paste the public key.</p>
 
 
 </section>
