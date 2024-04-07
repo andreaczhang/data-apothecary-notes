@@ -88,7 +88,7 @@
     "href": "inference/index.html",
     "title": "Inference and models",
     "section": "",
-    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\n\nNo matching items"
+    "text": "Different settings to apply methods.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/understand_data.html",
@@ -1278,21 +1278,21 @@
     "href": "inference/index.html#inference",
     "title": "Inference and models",
     "section": "Inference",
-    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\n\n\nNo matching items"
+    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\nRWD statistical considerations\n\n\nChapter for PHUSE Whitepaper \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/index.html#models",
     "href": "inference/index.html#models",
     "title": "Inference and models",
     "section": "Models",
-    "text": "Models\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nMixed models for repeted measurements\n\n\n\n\n\n\n\nSurvival\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Models\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nMixed models for repeted measurements\n\n\n\n\n\n\n\nSurvival\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/index.html#case-studies",
     "href": "inference/index.html#case-studies",
     "title": "Inference and models",
     "section": "Case studies",
-    "text": "Case studies\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nCase study: length of hospital stay\n\n\nPart 1: EDA \n\n\n\n\nCase study: CTN\n\n\nData challenge R/Medicine 2024 \n\n\n\n\nCase study: CTN-51\n\n\nFocusing on CTN 51 data \n\n\n\n\n\n\nNo matching items"
+    "text": "Case studies\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nCase study: length of hospital stay\n\n\nPart 1: EDA \n\n\n\n\nCase study: CTN\n\n\nData challenge R/Medicine 2024 \n\n\n\n\nCase study: CTN-51\n\n\nFocusing on CTN 51 data \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/g_computation.html",
@@ -1313,7 +1313,7 @@
     "href": "inference/index.html#settings",
     "title": "Inference and models",
     "section": "",
-    "text": "Different settings to apply methods.\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\n\nNo matching items"
+    "text": "Different settings to apply methods.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/overview_ci.html",
@@ -1699,5 +1699,26 @@
     "title": "Set up version control",
     "section": "",
     "text": "Recently I have switched to a new MacBook M2 machine. The most important task is to set up version control, and synchronize important GitHub repositories.\n\nInstall Git\nCheck if you have git\nwhich git\ngit --version\ngit config\nI had to install git. I decided to do it with Homebrew.\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nAfter a few minutes, configure homebrew.\n(echo; echo 'eval \"$(/opt/homebrew/bin/brew shellenv)\"') &gt;&gt; /Users/chizhang/.zprofile\neval \"$(/opt/homebrew/bin/brew shellenv)\"\nbrew help\nIf the last line runs, it suggests that homebrew is correctly installed. Now try to install git with homebrew.\nbrew install git\n\n\nConfigure git\nAfter download, try to run the configuration again.\ngit config\ngit --version\nSince this is a new computer, need to configure the user name and email again. I made the names exactly the same as my old computer. To get the configuration from the other computer, I used git config --list.\ngit config --global user.name 'MYNAME'\ngit config --global user.name 'MYEMAIL'\ngit config --global credential.helper osxkeychain\n\n\nNew SSH key\nI followed the following steps: Checking for existing SSH keys\nFirst check whether I have existing ssh keys.\nls -al ~/.ssh\nNone returned, then I need to create a new one.\nGenerating a new SSH key\nssh-keygen -t ed25519 -C \"MYEMAIL\"\nNeed to enter passphrase.\nAdd SSH key to the ssh-agent\neval \"$(ssh-agent -s)\"\nopen ~/.ssh/config\nIf it does not exist, create a new one.\ntouch ~/.ssh/config\nnano ~/.ssh/config\nWrite the following in the config file. Pay attention to typos!\nHost github.com\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile ~/.ssh/id_ed25519\nAdd the private key to the ssh-agent.\nssh-add --apple-use-keychain ~/.ssh/id_ed25519\n\n\nAdd SSH key to GitHub Account\nCopy the public SSH key to my clipboard.\npbcopy &lt; ~/.ssh/id_ed25519.pub\nGo on GitHub, go to Settings -&gt; SSH and GPG keys -&gt; New SSH Key\nPaste the public key."
+  },
+  {
+    "objectID": "inference/rwd_statistics_overview.html",
+    "href": "inference/rwd_statistics_overview.html",
+    "title": "RWD statistical considerations",
+    "section": "",
+    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)"
+  },
+  {
+    "objectID": "inference/rwd_statistics_overview.html#motivation-why-rwd-requires-special-treatment",
+    "href": "inference/rwd_statistics_overview.html#motivation-why-rwd-requires-special-treatment",
+    "title": "RWD statistical considerations",
+    "section": "",
+    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)"
+  },
+  {
+    "objectID": "inference/rwd_statistics_overview.html#methods",
+    "href": "inference/rwd_statistics_overview.html#methods",
+    "title": "RWD statistical considerations",
+    "section": "Methods",
+    "text": "Methods\n\nStratification methods\nmatching, propensity score (p71)\n\n\nSensitivity analysis\np72\n\n\nMissing data\nOthers: G-methods (generalized)"
   }
 ]
