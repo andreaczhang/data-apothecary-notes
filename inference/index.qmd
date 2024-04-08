@@ -23,7 +23,7 @@ listing:
     fields: [title, description]
     contents: 
       - "overview_ci.qmd"
-      - "rwd_statistics_overview.qmd"
+      # - "rwd_statistics_overview.qmd"
       - "propensity_score.qmd"
       - "g_computation.qmd"
       - "target_trial_emulation.qmd"

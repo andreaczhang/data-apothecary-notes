@@ -1278,7 +1278,7 @@
     "href": "inference/index.html#inference",
     "title": "Inference and models",
     "section": "Inference",
-    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\nRWD statistical considerations\n\n\nChapter for PHUSE Whitepaper \n\n\n\n\n\nNo matching items"
+    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/index.html#models",
@@ -1705,14 +1705,14 @@
     "href": "inference/rwd_statistics_overview.html",
     "title": "RWD statistical considerations",
     "section": "",
-    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)"
+    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)\nExamples of confounders\nAspects to consider: PROTECT framework (Fang 2019)"
   },
   {
     "objectID": "inference/rwd_statistics_overview.html#motivation-why-rwd-requires-special-treatment",
     "href": "inference/rwd_statistics_overview.html#motivation-why-rwd-requires-special-treatment",
     "title": "RWD statistical considerations",
     "section": "",
-    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)"
+    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)\nExamples of confounders\nAspects to consider: PROTECT framework (Fang 2019)"
   },
   {
     "objectID": "inference/rwd_statistics_overview.html#methods",
