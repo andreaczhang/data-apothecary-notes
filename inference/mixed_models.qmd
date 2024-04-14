@@ -12,8 +12,39 @@ Resources:
 
 * `mmrm` package [vignette](https://openpharma.github.io/mmrm/latest-tag/articles/methodological_introduction.html)
 * [Mixed models with R](https://m-clark.github.io/mixed-models-with-R/random_intercepts.html)
+* [GLMM FAQ](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html)
 
 
+### Mixed modeling in R
+
+* Linear mixed models: `nlme::lme`, `lme4::mner`, `brms::brm`
+* generalized linear mixed models (GLMM): `lme4::glmer`, `glmmTMB`; `brms::brm` for Bayesian
+* nonlinear mixed models: `nlme::nlme`, `lme4::nlmer`; `brms::brm`
+
+
+|equation|formula |meaning |
+|:---:|:---: |:---:|
+|$B_0 + B_1X_i + e_i$ | | no random effect|
+|$(B_0+b_{g,0} + B_1X_i + e_i)$| `x+(1|group)`| random group intercept |
+|| `(x|group)`| random slopt of `x` within group, with correlated intercept|
+|| `(1+x|group)`| |
+|| `(0+x | group)`|random slop of `x` within group, no variation in intercept |
+|| `(-1+x | group)`| |
+|| `(1| group) + (0+x|group)`|uncorrelated random intercept and random slopt within group |
+
+
+
+
+### Random intercept 
+
+Each group has different intercelpt, but the slope is the same
+
+$$gpa = (b_0 + effect_{student} + b_{occasion} * occasion + e)$$
+
+
+
+
+# MMRM
 
 MMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix).
 
