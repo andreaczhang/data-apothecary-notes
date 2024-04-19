@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -1727,5 +1727,26 @@
     "title": "Quarto Presentations",
     "section": "",
     "text": "This presentation will show you examples of what you can do with Quarto and Reveal.js, including:\n\nPresenting code and LaTeX equations\nIncluding computations in slide output\nImage, video, and iframe backgrounds\nFancy transitions and animations\nPrinting to PDF"
+  },
+  {
+    "objectID": "programming/text.html",
+    "href": "programming/text.html",
+    "title": "Processing text and characters",
+    "section": "",
+    "text": "# split by space, put in columns\nstringr::str_split_fixed('Metronidazol Injection', '\\\\s+',2)\n\n     [,1]           [,2]       \n[1,] \"Metronidazol\" \"Injection\"\n\n# a vector\nv &lt;- c('Metronidazol Injection', 'Gentamicin Injection')\nstringr::str_split_fixed(v, '\\\\s+',2)\n\n     [,1]           [,2]       \n[1,] \"Metronidazol\" \"Injection\"\n[2,] \"Gentamicin\"   \"Injection\""
+  },
+  {
+    "objectID": "programming/text.html#patterns",
+    "href": "programming/text.html#patterns",
+    "title": "Processing text and characters",
+    "section": "",
+    "text": "# split by space, put in columns\nstringr::str_split_fixed('Metronidazol Injection', '\\\\s+',2)\n\n     [,1]           [,2]       \n[1,] \"Metronidazol\" \"Injection\"\n\n# a vector\nv &lt;- c('Metronidazol Injection', 'Gentamicin Injection')\nstringr::str_split_fixed(v, '\\\\s+',2)\n\n     [,1]           [,2]       \n[1,] \"Metronidazol\" \"Injection\"\n[2,] \"Gentamicin\"   \"Injection\""
+  },
+  {
+    "objectID": "programming/text.html#special-characters",
+    "href": "programming/text.html#special-characters",
+    "title": "Processing text and characters",
+    "section": "Special characters",
+    "text": "Special characters\n\nc('\\u00E6', '\\u00F8', '\\u00E5')\n\n[1] \"æ\" \"ø\" \"å\"\n\nc('\\u00C6', '\\u00D8', '\\u00C5')\n\n[1] \"Æ\" \"Ø\" \"Å\"\n\n# combine with other characters\n'Injeksjons\\u00E6ske'\n\n[1] \"Injeksjonsæske\""
   }
 ]
