@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -1748,5 +1748,19 @@
     "title": "Processing text and characters",
     "section": "Special characters",
     "text": "Special characters\n\nc('\\u00E6', '\\u00F8', '\\u00E5')\n\n[1] \"æ\" \"ø\" \"å\"\n\nc('\\u00C6', '\\u00D8', '\\u00C5')\n\n[1] \"Æ\" \"Ø\" \"Å\"\n\n# combine with other characters\n'Injeksjons\\u00E6ske'\n\n[1] \"Injeksjonsæske\""
+  },
+  {
+    "objectID": "programming/df_manipulation.html",
+    "href": "programming/df_manipulation.html",
+    "title": "Data manipulation with data.table",
+    "section": "",
+    "text": "Code\n# make some fake data\nid &lt;- c(\n  rep(1, 3), \n  rep(2, 2), \n  rep(3, 6), \n  rep(4, 1)\n)\n\nab_types &lt;- c(\n  'ampicillin', 'gentamicin', 'cefalotin', 'metronidazol'\n)\nab &lt;- sample(ab_types, size = length(id), replace = T)\n\ndt &lt;- data.table::data.table(\n  id = id, ab = ab\n)\ndt\n\n\n       id           ab\n    &lt;num&gt;       &lt;char&gt;\n 1:     1    cefalotin\n 2:     1   ampicillin\n 3:     1 metronidazol\n 4:     2    cefalotin\n 5:     2   gentamicin\n 6:     3    cefalotin\n 7:     3 metronidazol\n 8:     3    cefalotin\n 9:     3   ampicillin\n10:     3   ampicillin\n11:     3   gentamicin\n12:     4   ampicillin\n\n\n\n\nGet number of records per person\n\ndt[, .N, by = id]\n\n      id     N\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     6\n4:     4     1\n\n\nNumber of unique records\n\n# if use lapply, the results will be a list in the column\ndt[, .(n_uab = sapply(.SD, function(x){length(unique(x))})), \n   .SDcols = 'ab', \n   by = id]\n\n      id n_uab\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     4\n4:     4     1"
+  },
+  {
+    "objectID": "programming/df_manipulation.html#data.table-manipulation",
+    "href": "programming/df_manipulation.html#data.table-manipulation",
+    "title": "Data manipulation with data.table",
+    "section": "",
+    "text": "Code\n# make some fake data\nid &lt;- c(\n  rep(1, 3), \n  rep(2, 2), \n  rep(3, 6), \n  rep(4, 1)\n)\n\nab_types &lt;- c(\n  'ampicillin', 'gentamicin', 'cefalotin', 'metronidazol'\n)\nab &lt;- sample(ab_types, size = length(id), replace = T)\n\ndt &lt;- data.table::data.table(\n  id = id, ab = ab\n)\ndt\n\n\n       id           ab\n    &lt;num&gt;       &lt;char&gt;\n 1:     1    cefalotin\n 2:     1   ampicillin\n 3:     1 metronidazol\n 4:     2    cefalotin\n 5:     2   gentamicin\n 6:     3    cefalotin\n 7:     3 metronidazol\n 8:     3    cefalotin\n 9:     3   ampicillin\n10:     3   ampicillin\n11:     3   gentamicin\n12:     4   ampicillin\n\n\n\n\nGet number of records per person\n\ndt[, .N, by = id]\n\n      id     N\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     6\n4:     4     1\n\n\nNumber of unique records\n\n# if use lapply, the results will be a list in the column\ndt[, .(n_uab = sapply(.SD, function(x){length(unique(x))})), \n   .SDcols = 'ab', \n   by = id]\n\n      id n_uab\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     4\n4:     4     1"
   }
 ]

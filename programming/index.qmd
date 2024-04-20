@@ -8,6 +8,7 @@ listing:
       - "r_roop.qmd"
       - "r_error_handling.qmd"
       - "text.qmd"
+      - "df_manipulation.qmd"
     type: table
     sort: "title"
     filter-ui: false

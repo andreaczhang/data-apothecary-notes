@@ -30,6 +30,7 @@
   {
     "listing": "/programming/index.html",
     "items": [
+      "/programming/df_manipulation.html",
       "/programming/r_error_handling.html",
       "/programming/r_functions.html",
       "/programming/r_roop.html",
