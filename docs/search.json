@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Data Apothecary’s Notes",
     "section": "",
-    "text": "Github\n  \n\n  \n  \nHello, welcome!\nThis is the note repository for modern data science skills with a focus on drug development and clinical trials. Content will be gradually added while I learn the topics. Therefore, it is by no means a complete guide by the time you read it!\nI try to organize the content in a modular way. I think these should cover the important aspects in which a data scientist / modern statistician should know.\n\nstudy design\ninference\nmodels\nreporting\nprogramming\n\nAny feedback / mistake corrections are welcome, you can find me here. Thank you!"
+    "text": "Github\n  \n\n  \n  \nHello, welcome!\nThis is the note repository for modern data science skills with a focus on real-world data (observational studies) and clinical trials.\nContent will be gradually added while I learn the topics, and mostly for personal use. Therefore, it is by no means a complete guide by the time you read it!\nI try to organize the content in a modular way: these should cover the important aspects in which a data scientist / modern statistician should know.\n\nstudy design\ninference\nmodels\nreporting\nprogramming\n\nAny feedback / mistake corrections are welcome, you can find me here. Thank you!"
   },
   {
     "objectID": "documentation/understand_data.html",
@@ -1192,9 +1192,9 @@
   {
     "objectID": "inference/propensity_score.html",
     "href": "inference/propensity_score.html",
-    "title": "Propensity score",
+    "title": "Weighting",
     "section": "",
-    "text": "Propensity score\n(Rosenbaum and Rubin, 1983)\nFit a logistic regression:\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc."
+    "text": "MatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
   },
   {
     "objectID": "inference/overview.html#estimands",
@@ -1241,16 +1241,16 @@
   {
     "objectID": "inference/propensity_score.html#matching",
     "href": "inference/propensity_score.html#matching",
-    "title": "Propensity score",
-    "section": "Matching",
-    "text": "Matching\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
+    "title": "Weighting",
+    "section": "",
+    "text": "MatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
   },
   {
     "objectID": "inference/propensity_score.html#weighting",
     "href": "inference/propensity_score.html#weighting",
-    "title": "Propensity score",
+    "title": "Weighting",
     "section": "Weighting",
-    "text": "Weighting\nUsed in weighting\nATE (population) \\(w_{ATE} = \\frac{Z_i}{p_i} + \\frac{1-Z_i}{1-p_i}\\)\nATT \\(w_{ATT} = \\frac{p_i Z_i}{p_i} + \\frac{p_i(1-Z_i)}{1-p_i}\\)\nATC \\(w_{ATC} = \\frac{(1 - p_i) Z_i}{p_i} + \\frac{(1 - p_i)(1-Z_i)}{1-p_i}\\)"
+    "text": "Weighting\nUsed in weighting\nATE (population) \\(w_{ATE} = \\frac{Z_i}{p_i} + \\frac{1-Z_i}{1-p_i}\\)\nATT \\(w_{ATT} = \\frac{p_i Z_i}{p_i} + \\frac{p_i(1-Z_i)}{1-p_i}\\)\nATC \\(w_{ATC} = \\frac{(1 - p_i) Z_i}{p_i} + \\frac{(1 - p_i)(1-Z_i)}{1-p_i}\\)\nPropensity score\n(Rosenbaum and Rubin, 1983)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are no unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc."
   },
   {
     "objectID": "inference/survival.html",
@@ -1278,7 +1278,7 @@
     "href": "inference/index.html#inference",
     "title": "Inference and models",
     "section": "Inference",
-    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nPropensity score\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\n\nNo matching items"
+    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nWeighting\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inference/index.html#models",
@@ -1754,13 +1754,545 @@
     "href": "programming/df_manipulation.html",
     "title": "Data manipulation with data.table",
     "section": "",
-    "text": "Code\n# make some fake data\nid &lt;- c(\n  rep(1, 3), \n  rep(2, 2), \n  rep(3, 6), \n  rep(4, 1)\n)\n\nab_types &lt;- c(\n  'ampicillin', 'gentamicin', 'cefalotin', 'metronidazol'\n)\nab &lt;- sample(ab_types, size = length(id), replace = T)\n\ndt &lt;- data.table::data.table(\n  id = id, ab = ab\n)\ndt\n\n\n       id           ab\n    &lt;num&gt;       &lt;char&gt;\n 1:     1    cefalotin\n 2:     1   ampicillin\n 3:     1 metronidazol\n 4:     2    cefalotin\n 5:     2   gentamicin\n 6:     3    cefalotin\n 7:     3 metronidazol\n 8:     3    cefalotin\n 9:     3   ampicillin\n10:     3   ampicillin\n11:     3   gentamicin\n12:     4   ampicillin\n\n\n\n\nGet number of records per person\n\ndt[, .N, by = id]\n\n      id     N\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     6\n4:     4     1\n\n\nNumber of unique records\n\n# if use lapply, the results will be a list in the column\ndt[, .(n_uab = sapply(.SD, function(x){length(unique(x))})), \n   .SDcols = 'ab', \n   by = id]\n\n      id n_uab\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     4\n4:     4     1"
+    "text": "Code\n# make some fake data\nid &lt;- c(\n  rep(1, 3), \n  rep(2, 2), \n  rep(3, 6), \n  rep(4, 1)\n)\n\nab_types &lt;- c(\n  'ampicillin', 'gentamicin', 'cefalotin', 'metronidazol'\n)\nab &lt;- sample(ab_types, size = length(id), replace = T)\n\ndt &lt;- data.table::data.table(\n  id = id, ab = ab\n)\ndt\n\n\n       id           ab\n    &lt;num&gt;       &lt;char&gt;\n 1:     1    cefalotin\n 2:     1 metronidazol\n 3:     1   gentamicin\n 4:     2    cefalotin\n 5:     2 metronidazol\n 6:     3 metronidazol\n 7:     3   ampicillin\n 8:     3    cefalotin\n 9:     3   gentamicin\n10:     3 metronidazol\n11:     3   ampicillin\n12:     4   ampicillin\n\n\n\n\nRemove a column temporarily\n\ndt[, !c('id')]\n\n              ab\n          &lt;char&gt;\n 1:    cefalotin\n 2: metronidazol\n 3:   gentamicin\n 4:    cefalotin\n 5: metronidazol\n 6: metronidazol\n 7:   ampicillin\n 8:    cefalotin\n 9:   gentamicin\n10: metronidazol\n11:   ampicillin\n12:   ampicillin\n\n\n\n\n\nGet number of records per person\n\ndt[, .N, by = id]\n\n      id     N\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     6\n4:     4     1\n\n\nNumber of unique records\n\n# if use lapply, the results will be a list in the column\ndt[, .(n_uab = sapply(.SD, function(x){length(unique(x))})), \n   .SDcols = 'ab', \n   by = id]\n\n      id n_uab\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     4\n4:     4     1"
   },
   {
     "objectID": "programming/df_manipulation.html#data.table-manipulation",
     "href": "programming/df_manipulation.html#data.table-manipulation",
     "title": "Data manipulation with data.table",
     "section": "",
-    "text": "Code\n# make some fake data\nid &lt;- c(\n  rep(1, 3), \n  rep(2, 2), \n  rep(3, 6), \n  rep(4, 1)\n)\n\nab_types &lt;- c(\n  'ampicillin', 'gentamicin', 'cefalotin', 'metronidazol'\n)\nab &lt;- sample(ab_types, size = length(id), replace = T)\n\ndt &lt;- data.table::data.table(\n  id = id, ab = ab\n)\ndt\n\n\n       id           ab\n    &lt;num&gt;       &lt;char&gt;\n 1:     1    cefalotin\n 2:     1   ampicillin\n 3:     1 metronidazol\n 4:     2    cefalotin\n 5:     2   gentamicin\n 6:     3    cefalotin\n 7:     3 metronidazol\n 8:     3    cefalotin\n 9:     3   ampicillin\n10:     3   ampicillin\n11:     3   gentamicin\n12:     4   ampicillin\n\n\n\n\nGet number of records per person\n\ndt[, .N, by = id]\n\n      id     N\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     6\n4:     4     1\n\n\nNumber of unique records\n\n# if use lapply, the results will be a list in the column\ndt[, .(n_uab = sapply(.SD, function(x){length(unique(x))})), \n   .SDcols = 'ab', \n   by = id]\n\n      id n_uab\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     4\n4:     4     1"
+    "text": "Code\n# make some fake data\nid &lt;- c(\n  rep(1, 3), \n  rep(2, 2), \n  rep(3, 6), \n  rep(4, 1)\n)\n\nab_types &lt;- c(\n  'ampicillin', 'gentamicin', 'cefalotin', 'metronidazol'\n)\nab &lt;- sample(ab_types, size = length(id), replace = T)\n\ndt &lt;- data.table::data.table(\n  id = id, ab = ab\n)\ndt\n\n\n       id           ab\n    &lt;num&gt;       &lt;char&gt;\n 1:     1    cefalotin\n 2:     1 metronidazol\n 3:     1   gentamicin\n 4:     2    cefalotin\n 5:     2 metronidazol\n 6:     3 metronidazol\n 7:     3   ampicillin\n 8:     3    cefalotin\n 9:     3   gentamicin\n10:     3 metronidazol\n11:     3   ampicillin\n12:     4   ampicillin\n\n\n\n\nRemove a column temporarily\n\ndt[, !c('id')]\n\n              ab\n          &lt;char&gt;\n 1:    cefalotin\n 2: metronidazol\n 3:   gentamicin\n 4:    cefalotin\n 5: metronidazol\n 6: metronidazol\n 7:   ampicillin\n 8:    cefalotin\n 9:   gentamicin\n10: metronidazol\n11:   ampicillin\n12:   ampicillin\n\n\n\n\n\nGet number of records per person\n\ndt[, .N, by = id]\n\n      id     N\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     6\n4:     4     1\n\n\nNumber of unique records\n\n# if use lapply, the results will be a list in the column\ndt[, .(n_uab = sapply(.SD, function(x){length(unique(x))})), \n   .SDcols = 'ab', \n   by = id]\n\n      id n_uab\n   &lt;num&gt; &lt;int&gt;\n1:     1     3\n2:     2     2\n3:     3     4\n4:     4     1"
+  },
+  {
+    "objectID": "inference/weighting.html",
+    "href": "inference/weighting.html",
+    "title": "Weighting",
+    "section": "",
+    "text": "Exact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
+  },
+  {
+    "objectID": "inference/weighting.html#matching",
+    "href": "inference/weighting.html#matching",
+    "title": "Weighting",
+    "section": "",
+    "text": "Exact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
+  },
+  {
+    "objectID": "inference/weighting.html#weighting",
+    "href": "inference/weighting.html#weighting",
+    "title": "Weighting",
+    "section": "Weighting",
+    "text": "Weighting\nWeighting can be viewed as a generalization of matching\nUsed in weighting\nATE (population) \\(w_{ATE} = \\frac{Z_i}{p_i} + \\frac{1-Z_i}{1-p_i}\\)\nATT \\(w_{ATT} = \\frac{p_i Z_i}{p_i} + \\frac{p_i(1-Z_i)}{1-p_i}\\)\nATC \\(w_{ATC} = \\frac{(1 - p_i) Z_i}{p_i} + \\frac{(1 - p_i)(1-Z_i)}{1-p_i}\\)\n\nInverse probability weighting IPW\n(In my use case it is for survey sampling, rather than causal inference. My project does not have treatment group, and do not care about treatment effects. )"
+  },
+  {
+    "objectID": "inference/weighting.html#propensity-score",
+    "href": "inference/weighting.html#propensity-score",
+    "title": "Weighting",
+    "section": "Propensity score",
+    "text": "Propensity score\n(Rosenbaum and Rubin, 1983)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are no unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc."
+  },
+  {
+    "objectID": "method/index.html",
+    "href": "method/index.html",
+    "title": "Inference and models",
+    "section": "",
+    "text": "Different settings to apply methods.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/index.html#settings",
+    "href": "method/index.html#settings",
+    "title": "Inference and models",
+    "section": "",
+    "text": "Different settings to apply methods.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nReal-world Data, Real-world Evidence\n\n\nRWD, RWE \n\n\n\n\nGenomics in Drug Discovery\n\n\nUse of machine learning techniques \n\n\n\n\nAntibiotics\n\n\nBackground of antimicrobial drugs and resistance \n\n\n\n\nRWD EHR Vendor Engagement\n\n\nOverview of vendor engagement \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/index.html#study-design",
+    "href": "method/index.html#study-design",
+    "title": "Inference and models",
+    "section": "Study design",
+    "text": "Study design\n\nSurvey\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design. \n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison \n\n\n\n\nSample size (part II)\n\n\nRegression \n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design \n\n\n\n\nSurvey sampling\n\n\nSurvey sampling \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/index.html#inference",
+    "href": "method/index.html#inference",
+    "title": "Inference and models",
+    "section": "Inference",
+    "text": "Inference\nNotes on causal inference and other related topics.\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nWeighting\n\n\nPropensity score, matching, weighting \n\n\n\n\nTarget trial emulation\n\n\nTTE \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/index.html#models",
+    "href": "method/index.html#models",
+    "title": "Inference and models",
+    "section": "Models",
+    "text": "Models\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nMixed models for repeted measurements\n\n\n\n\n\n\n\nSurvival\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/index.html#case-studies",
+    "href": "method/index.html#case-studies",
+    "title": "Inference and models",
+    "section": "Case studies",
+    "text": "Case studies\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nCase study: length of hospital stay\n\n\nPart 1: EDA \n\n\n\n\nCase study: CTN\n\n\nData challenge R/Medicine 2024 \n\n\n\n\nCase study: CTN-51\n\n\nFocusing on CTN 51 data \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/rwd_rwe.html",
+    "href": "method/rwd_rwe.html",
+    "title": "Real-world Data, Real-world Evidence",
+    "section": "",
+    "text": "RWD is any data collected outside clinical trial setting, can be combined with clinical trials.\n(The general benefits and disadvantages of RWD is coherent with EHR data)\nTherapheutic areas: oncology, rare diseases, infectious diseases among others\nTraditionally regarded as inferior evidence: lack of randomization, limited information on potential relevant prognostic factors.\nFDA: (2016) 21st Century Cures Act, evaluate the use of RWD in support of regulatory approvals and post-approval safety studies.\nEMA (2017): HMA/EMA Joint Big Data Task Force, establish a roadmap for the use of RWD in regulatory assessments\nChallenges of using RCT\nFocus: whether RWD can be trusted to reliably measure treatment effects of new drugs, causal relationship. The main difference between RCT and RWD is the confounding bias."
+  },
+  {
+    "objectID": "method/rwd_rwe.html#use-cases-for-rwd",
+    "href": "method/rwd_rwe.html#use-cases-for-rwd",
+    "title": "Real-world Data, Real-world Evidence",
+    "section": "Use cases for RWD",
+    "text": "Use cases for RWD\nA few examples\n\ncharacerise health conditions, interventions, care pathways and patient outcomes\npatient-reported outcomes, quality of life\nestimate economic burden\nestimate test accuracy or reproducibility of biomarker test results\n\nRather than using RWD to replace RCT, there are a few ways to improve RCT in smaller populations. See Wieseler 2023\n\nRWD in oncology\nChallenging to incorporate RWD in regulatory evidence, treatment decisions and efficacy results are dependent on clinical characteristics that are not normally observed in RWD sources:\n\ndisease staging\nperformance status\nmutation tests\n…"
+  },
+  {
+    "objectID": "method/genomics.html",
+    "href": "method/genomics.html",
+    "title": "Genomics in Drug Discovery",
+    "section": "",
+    "text": "Why do we need precision medicine? Late-stage failures cost the most, and small improvements in failure rates at early stage yield largest savings - use better targets.\nAs of 2016, 10-15% targets have genetic data; increased to 50%, expect 13-15% cost reduction.\nNot all genes are targets, and not all targets are genes.\nFTO (fat mass and obesity gene). Can search FTO in clinical trial gov website.\nOverall nearly 60% are pursued by multiple companies, 26% by more than 5 companies: once a drug is made a target, redundancy is high. But before a target is proven, high diversity and novelty."
+  },
+  {
+    "objectID": "method/genomics.html#machine-learning",
+    "href": "method/genomics.html#machine-learning",
+    "title": "Genomics in Drug Discovery",
+    "section": "Machine learning",
+    "text": "Machine learning\nGenomics data alone are insufficient for therapeutic development. How they interact with other types of data such as compounds, proteins, EHR, images, texts etc need to be investigated.\nTarget discovery: identify the molecure that can be targeted by a drug to produce a therapeutic effect, such as inhibition, to block the disease process.\nTherapeutic discovery: design potent therapeutic agents to modulate the target and block disease pathway. ML can be used to predict drug response in cell lines. Drug combination screening.\nDuring clinical studies, ML can help characterize patient groups and identify eligible patients from gene expression data and EHRs.\nDuring post-market studies, mining EHR and other RWD to provid additional evidence, such as patients’ drug response given different patient characteristics.\n\nSupervised learning\nRegression and classification, e.g. \n\ndrug sensitivity prediction\ngene expression signitures that predict clinical trial success\n\n\n\nUnsupervised learning\nClustering, e.g. \n\nfeature reduction in single-cell data to identify cell types\ncell types and biomarkers from single-cell RNA data\n\nExample: drug sensitivity predictive model. Identify biomarkers and build drug sensitivity predictive models using preclinical data, then apply to patients in early-stage clinical trials. Once validated, the model can be used for patient stratification and disease indicaation selection to support clinical development of a drug.\n(Example from (Vamathevan et al. 2019))"
+  },
+  {
+    "objectID": "method/g_computation.html",
+    "href": "method/g_computation.html",
+    "title": "G-Computation",
+    "section": "",
+    "text": "G-computation\n\nFit a model for y ~ x + z, where z is all covariates\nCreate a duplicate for each level of x\nSet the value of x to a single value for each cloned dataset: x = 1 for one, x = 0 for the other\npredict\ncalculate estimate, mean(x_1) - mean(x_0)\n\nAdvantages\n\nflexible\nprecise (compared to propensity-score based methods)\nbasis of other important models (e.g. TMLE)"
+  },
+  {
+    "objectID": "method/sample_size_2.html",
+    "href": "method/sample_size_2.html",
+    "title": "Sample size (part II)",
+    "section": "",
+    "text": "(This is the part II on sample size calculation)\n\nCorrelation\nCorrelation coefficient is used for effect size measure. Usse 0.1, 0.3, 0.5 to represent small, medium and large sizes.\n\n# correlation coeff\npwr::pwr.r.test(r = 0.3, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     approximate correlation power calculation (arctangh transformation) \n\n              n = 84.07364\n              r = 0.3\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\n\n\n\nLinear regression (F-test)\nF-test for linear regression is testinng whether \\(R^2\\) is greater than zero (one-sided). \\(R^2\\) is the explained variance by using the predictors, \\(R^2 = 0.3\\) means that 30% of the variance are explained by the model.\nCohen’s f2, based on \\(R^2\\), goodness of fit (\\(f2 = R^2/(1-R^2)\\)). use 0.02, 0.15, 0.35 to represent small, medium and large effect sizes.\n\nu: number of predictors\nv: n-u-1\nas a result, sample size n = v+u+1\n\n\n# effect size f2 = 0.15; use u=3 predictors\npwr::pwr.f2.test(u = 3, f2 = 0.3, sig.level = 0.05, power = 0.8)\n\n\n     Multiple regression power calculation \n\n              u = 3\n              v = 36.47078\n             f2 = 0.3\n      sig.level = 0.05\n          power = 0.8\n\n\nHere v = 73, sample size is 73+3+1 = 77.\nAlternatively, can use pwrss::pwrss.f.reg(). The parameter is r2 rather than f2 (but can also use f2).\n\npwrss::pwrss.f.reg(r2 = 0.3, k = 0.3, power = 0.8, alpha = 0.05)\n\n Linear Regression (F test) \n R-squared Deviation from 0 (zero) \n H0: r2 = 0 \n HA: r2 &gt; 0 \n ------------------------------ \n  Statistical power = 0.8 \n  n = 14 \n ------------------------------ \n Numerator degrees of freedom = 0.3 \n Denominator degrees of freedom = 12.415 \n Non-centrality parameter = 5.878 \n Type I error rate = 0.05 \n Type II error rate = 0.2 \n\n# should be equivalent to\n# pwr::pwr.f2.test(u = 3, f2 = 0.3/0.7, sig.level = 0.05, power = 0.8)\n\n\n\nGLM\n\nResources\n\nSample size calculation in clinical trial using R.\nPark et al. 2023. https://doi.org/10.7602/jmis.2023.26.1.9\nBulus, M (2023) pwrss: Statistical Power and Sample Size Calculation Tools. R package version 0.3.1. https://CRAN.R-project.org/package=pwrss. Vignette documentation"
+  },
+  {
+    "objectID": "method/adaptive_design.html",
+    "href": "method/adaptive_design.html",
+    "title": "Adaptive design: overview",
+    "section": "",
+    "text": "Resources\n\nR package rpact and tutorial\nR package gsDesign and tutorial\n\n\nSequential design\nNumber of patient isn’t set in advance. A good group sequential design can reduce the sample size needed, while keeping the desired statistical power and controlling the overall type I error.\nGSD includes pre-determined number of stages (interim, final). Each stage specified by\n\nsample size\ncritical values\nstopping criterion to support or reject null hypothesis\n\nTBC"
+  },
+  {
+    "objectID": "method/intervals.html",
+    "href": "method/intervals.html",
+    "title": "Intervals",
+    "section": "",
+    "text": "Key difference: confidence and credible intervals: about the (unknown) parameter; prediction interval: about individual (unseen) observations."
+  },
+  {
+    "objectID": "method/intervals.html#confidence-vs-credible-interval",
+    "href": "method/intervals.html#confidence-vs-credible-interval",
+    "title": "Intervals",
+    "section": "Confidence vs credible interval",
+    "text": "Confidence vs credible interval\nConfidence interval (frequentist), about the unknown but fixed parameter. That means, the parameter is not treated as a random variable so does not have a probability distribution. CI is random because it is based on your sample.\nCredible interval (Bayesian), associated with posterior distribution of the parameter. The parameter is treated as a random variable hence has a probability distribution."
+  },
+  {
+    "objectID": "method/intervals.html#prediction-intereval",
+    "href": "method/intervals.html#prediction-intereval",
+    "title": "Intervals",
+    "section": "Prediction intereval",
+    "text": "Prediction intereval\nIn a regression model, you might want to know both confidence and prediction intervals.\n\nCI for mean value of \\(y\\) when \\(x =0\\), the mean response (e.g. growth of GDP), this is a parameter, an average\nPI for \\(y\\) when \\(x=0\\), this is an individual observation.\n\n\nIn simple linear regression\nStandard deviation for linear predictor \\(\\alpha + \\beta x\\) is\n\\(\\hat{\\sigma}_{linpred} = \\hat{\\sigma} \\sqrt{\\frac{1}{n} + \\frac{(x_{new} - \\bar{x})^2}{\\sum(x_i - \\bar{x})}}\\)\nConfidence interval\n\\(\\hat{y_{new}} \\pm t_{1-\\frac{\\alpha}{2}, n-2} \\times \\sqrt{\\hat{\\sigma}^2 (\\frac{1}{n} + \\frac{(x_{new} - \\bar{x})^2}{\\sum(x_i - \\bar{x})^2})}\\)\nStandard deviation for the predicted value \\(\\alpha + \\beta x + \\epsilon\\) is\n\\(\\hat{\\sigma}_{prediction} = \\hat{\\sigma} \\sqrt{1 + \\frac{1}{n} + \\frac{(x_{new} - \\bar{x})^2}{\\sum(x_i - \\bar{x})}}\\)\nPrediction interval (frequentist)\n\\(\\hat{y_{new}} \\pm t_{1-\\frac{\\alpha}{2}, n-2} \\times \\sqrt{\\hat{\\sigma}^2 (1 + \\frac{1}{n} + \\frac{(x_{new} - \\bar{x})^2}{\\sum(x_i - \\bar{x})^2})}\\)"
+  },
+  {
+    "objectID": "method/intervals.html#posterior-predictive-distribution",
+    "href": "method/intervals.html#posterior-predictive-distribution",
+    "title": "Intervals",
+    "section": "Posterior predictive distribution",
+    "text": "Posterior predictive distribution\nDifference between posterior distribution and posterior predictive distribution PPD\n\nposterior dist \\(p(\\theta|x) = c \\times p(x|\\theta)p(\\theta)\\), depends on the parameter \\(\\theta\\)\nPPD does not depend on \\(\\theta\\) as it is integrated out, for unobserved \\(x^*\\),\n\n\\(p(x^*|x) = \\int_{\\Theta} c \\times p(x^*, \\theta|x) d\\theta = \\int_{\\Theta} c \\times p(x^*|\\theta)p(\\theta|x) d\\theta\\)\nPD is part of PPD formulation.\n\nPD explains the unknown parameter (treated as a random variable), conditional on the evidence observed (data).\nPPD is the distribution for the future predicted data based on the data you have already seen."
+  },
+  {
+    "objectID": "method/intervals.html#explore-the-data",
+    "href": "method/intervals.html#explore-the-data",
+    "title": "Intervals",
+    "section": "Explore the data",
+    "text": "Explore the data\n\n\nShow the code\nq1 &lt;- ggplot(d, aes(x = year, y = deaths_n, group))\nq1 &lt;- q1 + geom_line()\nq1 &lt;- q1 + geom_point(size = 2)\nq1 &lt;- q1 + geom_vline(xintercept = 2019.5, color = \"red\", lty = 2)\nq1 &lt;- q1 + theme_bw()\nq1 &lt;- q1 + scale_x_continuous(breaks = seq(2000, 2023, 2))\nq1 &lt;- q1 + labs(\n  x = 'Year', \n  y = 'Number of deaths', \n  title = 'Number of death in Norway \\n2000 - 2023'\n)\nq1 &lt;- q1 + theme(\n  axis.text = element_text(size = 11),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 12), \n  axis.text.x = element_text(angle = 45, vjust = 0.5) \n)\n# q1\n\n# per 100k\nq2 &lt;- ggplot(d, aes(x = year, y = deaths_vs_pop_per_100k))\nq2 &lt;- q2 + geom_line()\nq2 &lt;- q2 + geom_point(size = 2)\nq2 &lt;- q2 + geom_vline(xintercept = 2019.5, color = \"red\", lty = 2)\nq2 &lt;- q2 + theme_bw()\nq2 &lt;- q2 + scale_x_continuous(breaks = seq(2000, 2023, 2))\nq2 &lt;- q2 + labs(\n  x = 'Year', \n  y = 'Number of deaths', \n  title = 'Number of death in Norway \\n(per 100k population) 2000 - 2023'\n)\nq2 &lt;- q2 + theme(\n  axis.text = element_text(size = 11),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 12), \n  axis.text.x = element_text(angle = 45, vjust = 0.5) \n)\n# plot side by side\nq1 + q2"
+  },
+  {
+    "objectID": "method/intervals.html#model-mortality-using-2000-2019-data",
+    "href": "method/intervals.html#model-mortality-using-2000-2019-data",
+    "title": "Intervals",
+    "section": "Model mortality using 2000-2019 data",
+    "text": "Model mortality using 2000-2019 data\n\n# take pre 2019 data\ndt &lt;- d[year &lt;= 2019, .(year, deaths_vs_pop_per_100k)]\n\n# prediction \ndnew &lt;- data.frame(year = c(2020, 2021, 2022, 2023))\n\n\nLinear regression with lm\n\nm_linear &lt;- lm(deaths_vs_pop_per_100k ~ year, \n               data = dt)\n\n# summary(m_linear)\n\n# produce two intervals\npred_freq_pi &lt;- predict(m_linear, newdata = dnew, interval = 'prediction')\npred_freq_ci &lt;- predict(m_linear, newdata = dnew, interval = 'confidence')\n\n\nVerify from formula\n\n# verify with formula\nn &lt;- nrow(dt)\n\n# option 1\nfitted_val &lt;- m_linear$fitted.values\nmse &lt;- sum((dt$deaths_vs_pop_per_100k - fitted_val)^2)/(n-2)\nmse\n\n[1] 4.383279\n\n# option 2\nsum((m_linear$residuals)^2)/(n-2)\n\n[1] 4.383279\n\n# option 3\nsummary(m_linear)$sigma^2\n\n[1] 4.383279\n\n# option 4\ndvmisc::get_mse(m_linear)\n\n[1] 4.383279\n\n# t-val\ntval &lt;- qt(p=0.975, df=n-2)\nmean_x &lt;- mean(dt$year)\n\n# sum(xi - xbar)^2\nssx &lt;- sum((dt$year - mean_x)^2)\n\nsd_confint &lt;- sqrt(mse * (1/20+ ((dnew$year - mean_x)^2)/ssx))\nsd_predint &lt;- sqrt(mse * (1 + 1/20+ ((dnew$year - mean_x)^2)/ssx))\n\n\n# point prediction\nb0 &lt;- coef(m_linear)[1]\nb &lt;- coef(m_linear)[2]\nprednew &lt;- b0 + b*dnew$year\nprednew\n\n[1] 85.68773 82.50765 79.32757 76.14749\n\n# prediction interval\npredint_linear &lt;- data.frame(fit = prednew, \n                             lwr = prednew - tval*sd_predint, \n                             upr = prednew + tval*sd_predint)\n\npredint_linear\n\n       fit      lwr      upr\n1 85.68773 80.83777 90.53770\n2 82.50765 77.59214 87.42316\n3 79.32757 74.34154 84.31360\n4 76.14749 71.08617 81.20880\n\npred_freq_pi # compare with result from lm\n\n       fit      lwr      upr\n1 85.68773 80.83777 90.53770\n2 82.50765 77.59214 87.42316\n3 79.32757 74.34154 84.31360\n4 76.14749 71.08617 81.20880\n\n# confidence interval\nconfint_linear &lt;- data.frame(fit = prednew, \n                             lwr = prednew - tval*sd_confint, \n                             upr = prednew + tval*sd_confint)\n\nconfint_linear\n\n       fit      lwr      upr\n1 85.68773 83.64447 87.73100\n2 82.50765 80.31334 84.70196\n3 79.32757 76.97954 81.67560\n4 76.14749 73.64355 78.65142\n\npred_freq_ci # compare with result from lm\n\n       fit      lwr      upr\n1 85.68773 83.64447 87.73100\n2 82.50765 80.31334 84.70196\n3 79.32757 76.97954 81.67560\n4 76.14749 73.64355 78.65142\n\n\n\n\n\nLinear regression with rstanarm\n\nm_bayes &lt;- rstanarm::stan_glm(\n  deaths_vs_pop_per_100k ~ year, \n  data = dt, \n  family = gaussian,\n  iter = 2000,\n  chains = 8,\n  refresh = 0\n)\n\nm_bayes \n\nstan_glm\n family:       gaussian [identity]\n formula:      deaths_vs_pop_per_100k ~ year\n observations: 20\n predictors:   2\n------\n            Median MAD_SD\n(Intercept) 6510.2  164.3\nyear          -3.2    0.1\n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 2.2    0.4   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\n\nsims &lt;- as.matrix(m_bayes)\nmedian &lt;- apply(sims, 2, median)\nmedian\nmad_sd &lt;- apply(sims, 2, mad) \n# median absolute deviation (similar to sd)\nmad_sd\n\n\nCredible interval\n\n# credible interval about the fit\ncred &lt;- rstanarm::posterior_interval(m_bayes, prob = 0.95)\ncred\n\n                   2.5%       97.5%\n(Intercept) 6150.268265 6856.275580\nyear          -3.352702   -3.001280\nsigma          1.618884    3.204802\n\n# equivalent to\nsims &lt;- as.matrix(m_bayes)\napply(sims, 2, quantile, probs = c(0.025, 0.5, 0.975))\n\n       parameters\n        (Intercept)      year    sigma\n  2.5%     6150.268 -3.352702 1.618884\n  50%      6510.156 -3.180501 2.191324\n  97.5%    6856.276 -3.001280 3.204802\n\n\n\n\n\nPoint prediction\n\n# point predict\n# uses median from the posterior sim\ny_point_pred &lt;- predict(m_bayes, newdata = dnew)\ny_point_pred\n\n       1        2        3        4 \n85.68812 82.50853 79.32894 76.14936 \n\na_hat &lt;- coef(m_bayes)[1] # median\nb_hat &lt;- coef(m_bayes)[2] # median\na_hat + b_hat*dnew$year\n\n[1] 85.5449 82.3644 79.1839 76.0034\n\n\n\n\nUncertainty of linear predictor\nThe uncertainty of linear predictor, \\(a + bx\\) is propagated through the uncertainty in \\(a\\) and \\(b\\), respectively. For now the error term is not included.\nrstanarm::posterior_linpred is equivalent to using each pairs of \\(a, b\\) from the posterior distribution to compute the point predictions.\n\n# linear predictor with uncertainty via a's and b's\ny_linpred &lt;- rstanarm::posterior_linpred(m_bayes, newdata = dnew)\nhead(y_linpred)\n\n          \niterations        1        2        3        4\n      [1,] 85.62550 82.43075 79.23600 76.04125\n      [2,] 84.61548 81.30348 77.99149 74.67949\n      [3,] 86.04317 82.84212 79.64108 76.44004\n      [4,] 86.44035 83.32712 80.21388 77.10065\n      [5,] 86.76571 83.67927 80.59283 77.50639\n      [6,] 84.50811 81.22552 77.94292 74.66033\n\n# focus on one year: 2023\nhist(y_linpred[, 4], main = 'Predictions for 2023')\n\n\n\n\n\n\n\nhead(y_linpred[, 4])\n\n[1] 76.04125 74.67949 76.44004 77.10065 77.50639 74.66033\n\ny_linpred_byhand &lt;- sims[,1] + dnew$year[4] * sims[,2]\ny_linpred_byhand[1:6]\n\n[1] 76.04125 74.67949 76.44004 77.10065 77.50639 74.66033\n\n\n\n\nPosterior predictive distribution\nWith PPD, include the additional uncertainty in \\(\\sigma\\). This is equivalent to using the linear predictor from above, plus a random draw from rnorm(1, 0, sigma).\nDue to randomness in the error, we can not get the exact same results. But they should be close enough.\n\n# posterior predictive dist (with sigma)\ny_postpred &lt;- rstanarm::posterior_predict(m_bayes, newdata = dnew)\nhead(y_postpred)\n\n            1        2        3        4\n[1,] 88.41858 84.78954 76.95068 78.02747\n[2,] 85.12834 77.97064 78.59530 76.28800\n[3,] 89.37966 83.29759 80.74936 77.26655\n[4,] 84.08476 80.31791 78.68230 82.60028\n[5,] 85.33956 84.10050 78.01238 79.37299\n[6,] 86.85800 77.55464 77.54367 72.66941\n\n# by hand\n# focus on one year: 2023\nn_sim &lt;- nrow(sims)\ny_postpred_byhand &lt;- y_linpred_byhand + rnorm(n_sim, 0, sims[,3])\npar(mfrow = c(1,2))\nhist(y_postpred_byhand, main = 'PPD for 2023 (linpred + error)')\nhist(y_postpred[,4], main = 'PPD for 2023 (post_predict)')\n\n\n\n\n\n\n\ny_postpred[,4] |&gt; summary()\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  65.74   74.44   76.11   76.14   77.83   87.68 \n\ny_postpred_byhand |&gt; summary()\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  66.57   74.45   76.12   76.14   77.86   86.27"
+  },
+  {
+    "objectID": "method/intervals.html#prediction-for-2020-2023-mortality",
+    "href": "method/intervals.html#prediction-for-2020-2023-mortality",
+    "title": "Intervals",
+    "section": "Prediction for 2020-2023 mortality",
+    "text": "Prediction for 2020-2023 mortality\nHere we choose to use rstanarm::posterior_predict().\n\npred_all &lt;- rstanarm::posterior_predict(m_bayes, d)\n\npred_all_quantile &lt;- apply(pred_all, 2, quantile, \n                    probs = c(0.025, 0.5, 0.975)) |&gt; \n  t()  |&gt; \n  as.data.frame()\npred_all_quantile[21:24,]\n\n       2.5%      50%    97.5%\n21 80.65036 85.68474 90.65783\n22 77.33989 82.43464 87.41621\n23 74.22532 79.36985 84.39894\n24 70.88991 76.14560 81.31778\n\n\nWe can compare with the frequentist prediction interval, and we see that they are very close.\n\npredint_linear\n\n       fit      lwr      upr\n1 85.68773 80.83777 90.53770\n2 82.50765 77.59214 87.42316\n3 79.32757 74.34154 84.31360\n4 76.14749 71.08617 81.20880"
+  },
+  {
+    "objectID": "method/intervals.html#visualize-mortality-prediction",
+    "href": "method/intervals.html#visualize-mortality-prediction",
+    "title": "Intervals",
+    "section": "Visualize mortality prediction",
+    "text": "Visualize mortality prediction\n\n\nShow the code\npd &lt;- copy(d)\n# head(pd)\npd &lt;- cbind(pd, pred_all_quantile)\n\nsetnames(pd, old = '2.5%', new = 'exp_death_per100k_025')\nsetnames(pd, old = '50%', new = 'exp_death_per100k_50')\nsetnames(pd, old = '97.5%', new = 'exp_death_per100k_975')\n\n# also compute the expected death overall\n\npd[, exp_death_025 := exp_death_per100k_025 * pop_jan1_n/100000]\npd[, exp_death_50 := exp_death_per100k_50 * pop_jan1_n/100000]\npd[, exp_death_975 := exp_death_per100k_975 * pop_jan1_n/100000]\n\npd[, alert := fcase(\n  deaths_vs_pop_per_100k &gt; exp_death_per100k_975, \"Higher than expected\",\n  default = \"Expected\"\n)]\n\npd[, type := fcase(\n  year &lt;= 2019, paste0(\"Baseline (2000-2019)\"),\n  default = \"Pandemic years (2020-2023)\"\n)]\n\n\n# make plot\nq &lt;- ggplot(pd, aes(x = year))\nq &lt;- q + geom_ribbon(mapping = aes(ymin = exp_death_per100k_025, \n                                   ymax = exp_death_per100k_975), \n                     alpha = 0.3)\nq &lt;- q + geom_line(mapping = aes(y = exp_death_per100k_50, lty = type), linewidth = 1)\nq &lt;- q + geom_point(mapping = aes(y = deaths_vs_pop_per_100k, color = alert), size = 3)\nq &lt;- q + geom_vline(xintercept = 2019.5, color = \"red\", lty = 2)\nq &lt;- q + expand_limits(y=0)\nq &lt;- q + scale_y_continuous(\"Number of death per 100k\", expand = expansion(mult = c(0, 0.1)))\nq &lt;- q + scale_x_continuous(\"Year\", breaks = seq(2000, 2023, 2))\nq &lt;- q + scale_linetype_discrete(NULL)\nq &lt;- q + scale_color_brewer(NULL, palette = \"Set1\", direction = -1)\nq &lt;- q + theme_bw()\nq &lt;- q + theme(\n  axis.text = element_text(size = 11),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15), \n  axis.text.x = element_text(angle = 45, vjust = 0.5) \n)\nq &lt;- q + theme(legend.position = \"bottom\", legend.direction = \"horizontal\")\nq &lt;- q + theme(legend.box = \"horizontal\", legend.margin = margin(2, 2, 2, 2))\nq"
+  },
+  {
+    "objectID": "method/rwd_vendor_engagement.html",
+    "href": "method/rwd_vendor_engagement.html",
+    "title": "RWD EHR Vendor Engagement",
+    "section": "",
+    "text": "Vendor engagement (VE) in the context of Real-world data and Electronic Health Records (EHR/EMR) is the collaboration between various healthcare organizations (such as hospitals, clinics and medical practices) and vendors that provide EHR systems. VE is essential for successful EHR implementation and ongoing use in healthcare organizations. This partnership ensures that EHR systems meet the needs of healthcare providers and improves patient care.\nA few EHR vendors:\n\nEpicCare\nOracle Health EHR\nathenahealth\neClinicalWorks"
+  },
+  {
+    "objectID": "method/rwd_vendor_engagement.html#what-is-vendor-engagement",
+    "href": "method/rwd_vendor_engagement.html#what-is-vendor-engagement",
+    "title": "RWD EHR Vendor Engagement",
+    "section": "",
+    "text": "Vendor engagement (VE) in the context of Real-world data and Electronic Health Records (EHR/EMR) is the collaboration between various healthcare organizations (such as hospitals, clinics and medical practices) and vendors that provide EHR systems. VE is essential for successful EHR implementation and ongoing use in healthcare organizations. This partnership ensures that EHR systems meet the needs of healthcare providers and improves patient care.\nA few EHR vendors:\n\nEpicCare\nOracle Health EHR\nathenahealth\neClinicalWorks"
+  },
+  {
+    "objectID": "method/rwd_vendor_engagement.html#implemention",
+    "href": "method/rwd_vendor_engagement.html#implemention",
+    "title": "RWD EHR Vendor Engagement",
+    "section": "Implemention",
+    "text": "Implemention\n\nSelection process\nHealthcare organisations engage with EHR vendors to select EHR systems that best fits their needs. This involves evaluating the products, features, pricing and support services.\n\n\nImplementation\nThis process involves data migration, software installation, customization to meet specific workflow requirements, and staff training. The customization could be to support specialized clinical workflows, integrate with other software solutions or implementing additional features and modules.\n\n\nAfter implementation\nVE continues after the EHR system is implemented. Healthcare organizations rely on vendors for ongoing technical support, software updates and maintenance to ensure that the systems function smoothly and remains compliant with regulatory requirements.\nFeedback and collaboration between healthcare organizations and the vendor is crucial. Feedbacks on usability, functionality and performance of the EHR system can inform future updates and improvements for the vendor.\n\n\nRegulation and compliance\nRegulatory compliance in the context of electronic health records (EHRs) typically includes adherence to laws and regulations aimed at protecting patient privacy, ensuring data security, and promoting the interoperability of health information. Some of the key regulations that healthcare organizations and EHR vendors need to comply with include:\nHealth Insurance Portability and Accountability Act (HIPAA): HIPAA sets the standard for protecting sensitive patient data. It includes the Privacy Rule, which governs the use and disclosure of protected health information (PHI), and the Security Rule, which outlines security standards for protecting electronic PHI (ePHI). HIPAA also includes the Breach Notification Rule, which requires covered entities to notify individuals affected by breaches of their PHI.\nHITECH Act: The Health Information Technology for Economic and Clinical Health (HITECH) Act promotes the adoption and meaningful use of health information technology, including EHRs. It introduced incentives for healthcare providers to adopt EHRs and strengthened HIPAA’s privacy and security requirements, including increased penalties for non-compliance.\nMeaningful Use (now Promoting Interoperability) Program: The Centers for Medicare & Medicaid Services (CMS) previously administered the Meaningful Use program, which incentivized eligible healthcare providers to adopt and demonstrate meaningful use of certified EHR technology. This program has transitioned to the Promoting Interoperability program, which focuses on promoting the exchange of health information and improving interoperability.\nFDA Regulations: The U.S. Food and Drug Administration (FDA) regulates certain types of EHR software that meet the definition of a medical device. EHR vendors must comply with FDA regulations, particularly if their software includes features that are considered medical devices."
+  },
+  {
+    "objectID": "method/rct_design_overview.html",
+    "href": "method/rct_design_overview.html",
+    "title": "Clinical trial design: overview",
+    "section": "",
+    "text": "Considerations: choice of comparator and trial outcome measures (due to the grrowing number of treatmenet options, standard care would change over time), annd definition of target patient population (e.g. molecular profiling makes it possible to identify smaller subgroups of patient with defined tumor type)."
+  },
+  {
+    "objectID": "method/rct_design_overview.html#intention-to-treat-itt",
+    "href": "method/rct_design_overview.html#intention-to-treat-itt",
+    "title": "Clinical trial design: overview",
+    "section": "Intention to treat ITT",
+    "text": "Intention to treat ITT\nCross-overs after rz: some patients might have a treatment (yes or no) beyond what they were assigned to, e.g. refuse surgery or medical treatment\nNon-adherence during followup: some in treatment group refuse of can not tolerate certain treatment; while some in placebo group require medication or take on their own"
+  },
+  {
+    "objectID": "method/rct_design_overview.html#subgroup-analysis",
+    "href": "method/rct_design_overview.html#subgroup-analysis",
+    "title": "Clinical trial design: overview",
+    "section": "Subgroup analysis",
+    "text": "Subgroup analysis\nStratified analysis: estimate treatment effect separately in subgroups. Does not tell difference across different subgroups\nTest for interaction: use of main effect and interaction.\nIssue of multiple testing when doing a series of analyses\n\ninflate sample size to plan for subgroup analysis\nreport number of subgroup analyses performed\npossibly adjust for multiple comparisons\nreport CI instead of just p-values\n\n\nResources\n\nCoursera course Design and interpretation of clinical trials by Johns Hopkins University\nBook Fast Facts: Clinical trialss inn oncology: The fundamentals"
+  },
+  {
+    "objectID": "method/survival.html",
+    "href": "method/survival.html",
+    "title": "Survival",
+    "section": "",
+    "text": "Links\nhttps://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html\nhttps://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/\nhttps://www.danieldsjoberg.com/ggsurvfit/\nhttps://www.coursera.org/learn/survival-analysis-r-public-health\nhttps://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html\nhttps://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/\njmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/"
+  },
+  {
+    "objectID": "method/weighting.html",
+    "href": "method/weighting.html",
+    "title": "Weighting",
+    "section": "",
+    "text": "Exact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
+  },
+  {
+    "objectID": "method/weighting.html#matching",
+    "href": "method/weighting.html#matching",
+    "title": "Weighting",
+    "section": "",
+    "text": "Exact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
+  },
+  {
+    "objectID": "method/weighting.html#weighting",
+    "href": "method/weighting.html#weighting",
+    "title": "Weighting",
+    "section": "Weighting",
+    "text": "Weighting\nWeighting can be viewed as a generalization of matching\nUsed in weighting\nATE (population) \\(w_{ATE} = \\frac{Z_i}{p_i} + \\frac{1-Z_i}{1-p_i}\\)\nATT \\(w_{ATT} = \\frac{p_i Z_i}{p_i} + \\frac{p_i(1-Z_i)}{1-p_i}\\)\nATC \\(w_{ATC} = \\frac{(1 - p_i) Z_i}{p_i} + \\frac{(1 - p_i)(1-Z_i)}{1-p_i}\\)\n\nInverse probability weighting IPW\n(In my use case it is for survey sampling, rather than causal inference. My project does not have treatment group, and do not care about treatment effects. )"
+  },
+  {
+    "objectID": "method/weighting.html#propensity-score",
+    "href": "method/weighting.html#propensity-score",
+    "title": "Weighting",
+    "section": "Propensity score",
+    "text": "Propensity score\n(Rosenbaum and Rubin, 1983)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are no unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc."
+  },
+  {
+    "objectID": "method/covariate_adjustment.html",
+    "href": "method/covariate_adjustment.html",
+    "title": "Covariate adjustment",
+    "section": "",
+    "text": "https://jbetz-jhu.github.io/CovariateAdjustmentTutorial/\nBaseline covariates are variables measured prior to randomization, expected to have strong association with outcome. Potential confounding occurs when the distribution of baseline covariates between treatment groups are imbalanced.\nTo address confounding:\n\ndesign stage: stratified randomization to reduce imbalance\nanalysis stage: covariate adjustment\n\nBenefits:\n\nreduce sample size\nimprove precision - smaller CI, higher power\nsome CA do not depend on a correctly specified model\n\nRecent FDA guidance requires distinction between conditional and marginal treatment effects. These two coincide in linear models, but not in non-linear models (e.g. binary, ordinal, count, time-to-event outcomes)."
+  },
+  {
+    "objectID": "method/case_study_ctn51.html",
+    "href": "method/case_study_ctn51.html",
+    "title": "Case study: CTN-51",
+    "section": "",
+    "text": "CTN 51 (Lee 2018): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570\n\nXR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)\nfor those inducted successfully, relapse rate is similar\nrelapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.\n\nReproduce some of the results, try to understand the events involved after initiation\nKey numbers\n\nrelapse is 4 consecutive weeks of non-study opioid use or 7 days of self-reported use\nITT (n=570), 24 weeks relapse greater for NTX\npre-protocol (n=474), similar relapse\nrelapse rate is between 57% to 65%\n\nThings to understand\n\ninitiation hurdle"
+  },
+  {
+    "objectID": "method/case_study_ctn51.html#study-information",
+    "href": "method/case_study_ctn51.html#study-information",
+    "title": "Case study: CTN-51",
+    "section": "",
+    "text": "CTN 51 (Lee 2018): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570\n\nXR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)\nfor those inducted successfully, relapse rate is similar\nrelapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.\n\nReproduce some of the results, try to understand the events involved after initiation\nKey numbers\n\nrelapse is 4 consecutive weeks of non-study opioid use or 7 days of self-reported use\nITT (n=570), 24 weeks relapse greater for NTX\npre-protocol (n=474), similar relapse\nrelapse rate is between 57% to 65%\n\nThings to understand\n\ninitiation hurdle"
+  },
+  {
+    "objectID": "method/case_study_ctn51.html#datasets-used",
+    "href": "method/case_study_ctn51.html#datasets-used",
+    "title": "Case study: CTN-51",
+    "section": "Datasets used",
+    "text": "Datasets used\n\nlibrary(public.ctn0094data)\nlibrary(public.ctn0094extra)\nlibrary(CTNote)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(purrr)\nlibrary(tibble)\nlibrary(tidyr)\nlibrary(stringr)\n\nout &lt;- CTNote::outcomesCTN0094\n\n# take c51 \n\neverybody$project |&gt; table() # this includes all eligible\n\n\n  27   30   51 \n1920  868  772 \n\nout_c51 &lt;- left_join(everybody, out) |&gt; \n  filter(project == 51)\n\nJoining with `by = join_by(who)`\n\nout_c51 |&gt; head()\n\n# A tibble: 6 × 64\n    who project usePatternUDS             fiellin2006_abs kosten1993_isAbs\n  &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;                               &lt;dbl&gt; &lt;lgl&gt;           \n1     3 51      o-ooo-ooooooooooooooooo                 2 FALSE           \n2     4 51      -------------------o-o-o               21 TRUE            \n3     7 51      ----oooooooooooooooooooo                4 TRUE            \n4     9 51      oooooooooooooooooooooo                  0 FALSE           \n5    18 51      ooooooooooooooooooooooooo               0 FALSE           \n6    20 51      ooooooooooooooooooooooooo               0 FALSE           \n# ℹ 59 more variables: krupitsky2011A_isAbs &lt;lgl&gt;, krupitsky2011B_abs &lt;dbl&gt;,\n#   ling1998_isAbs &lt;lgl&gt;, lofwall2018_isAbs &lt;lgl&gt;, mokri2016_abs_time &lt;dbl&gt;,\n#   mokri2016_abs_event &lt;dbl&gt;, schottenfeld2005_abs &lt;dbl&gt;,\n#   schottenfeld2008A_abs_time &lt;dbl&gt;, schottenfeld2008A_abs_event &lt;dbl&gt;,\n#   schottenfeld2008B_abs &lt;dbl&gt;, shufman1994_absN_time &lt;dbl&gt;,\n#   shufman1994_absN_event &lt;dbl&gt;, weissLingCTN0030_isAbs &lt;lgl&gt;,\n#   comer2006_red &lt;dbl&gt;, eissenberg1997_isAbs &lt;lgl&gt;, fiellin2006_red &lt;dbl&gt;, …\n\n\n\nTreatment and outcome related\nOutcome includes pattern and class\nRandomization\ntreatment: time is study day, amount is dose or 1 (injection)"
+  },
+  {
+    "objectID": "method/imputation_1_overview.html",
+    "href": "method/imputation_1_overview.html",
+    "title": "Missing data and imputation",
+    "section": "",
+    "text": "Missing data can occur in various situations:\n\nunit non-response: individuals decline to participate\nitem non-response: some questions or measurements left out by participating individuals\nloss of follow-up: drop outs\n\nFor unit non-response and loss of follow-up, weighting the data could help. Need to know the response rate, characteristics of the non-responders and how the respondent differ.\nSolutions (to item non-response)\n\ncomplete case analysis (listwise deletion)\nsingle imputation\n\nmean imputation\nconditional imputation: make a prediction, plus minus some noise\n\nmultiple imputation: repeat single imputation M times, produce M complete datasets, use Rubin’s rules to pool the estimates.\n\n\n\nThree categories of missing mechanism. Example: disease status, level of exposure, age. Exposure is missing for some subjects.\n\nMCAR: any two individuals have the same probability of having missing value for exposure. This is unlikely.\nMAR: any two individuaals with the same disease status and age have the same chance of having the exposure missing\nMNAR: chance of having missing exposure depends on the value of exposure\n\nData could also have special missing structures: multi-level, longitudinal and repeated measurements. In RCT a specific technique reference based imputation can be applied."
+  },
+  {
+    "objectID": "method/imputation_1_overview.html#overview",
+    "href": "method/imputation_1_overview.html#overview",
+    "title": "Missing data and imputation",
+    "section": "",
+    "text": "Missing data can occur in various situations:\n\nunit non-response: individuals decline to participate\nitem non-response: some questions or measurements left out by participating individuals\nloss of follow-up: drop outs\n\nFor unit non-response and loss of follow-up, weighting the data could help. Need to know the response rate, characteristics of the non-responders and how the respondent differ.\nSolutions (to item non-response)\n\ncomplete case analysis (listwise deletion)\nsingle imputation\n\nmean imputation\nconditional imputation: make a prediction, plus minus some noise\n\nmultiple imputation: repeat single imputation M times, produce M complete datasets, use Rubin’s rules to pool the estimates.\n\n\n\nThree categories of missing mechanism. Example: disease status, level of exposure, age. Exposure is missing for some subjects.\n\nMCAR: any two individuals have the same probability of having missing value for exposure. This is unlikely.\nMAR: any two individuaals with the same disease status and age have the same chance of having the exposure missing\nMNAR: chance of having missing exposure depends on the value of exposure\n\nData could also have special missing structures: multi-level, longitudinal and repeated measurements. In RCT a specific technique reference based imputation can be applied."
+  },
+  {
+    "objectID": "method/imputation_1_overview.html#consideration",
+    "href": "method/imputation_1_overview.html#consideration",
+    "title": "Missing data and imputation",
+    "section": "Consideration",
+    "text": "Consideration\nNeed to account for the missinng data process, preserve the relations in the data and uncertainty in the relations.\n\nMAR assumption whether plausible. (FCS can handle both MAR anad MNAR)\nform of imputation model: structure and error distribution\npredictors, as many relevant as possible, including interactions\nthe order in which to impute\nset up starting imputation and number of iteration\ndecide number of imputed datasets"
+  },
+  {
+    "objectID": "method/survey.html",
+    "href": "method/survey.html",
+    "title": "Survey sampling",
+    "section": "",
+    "text": "Survey sampling is a bit different from RCT"
+  },
+  {
+    "objectID": "method/survey.html#terms",
+    "href": "method/survey.html#terms",
+    "title": "Survey sampling",
+    "section": "Terms",
+    "text": "Terms\n\nWeights\nProbability weight: inverse of probability of being included.\n\nN/n\nN: number of elements in the population; n: in the sample\nif population has 10 and 3 sampled at random, probability weight is 10/3 = 3.33\n\nSampling weight: a probability weight that could have other corrections (e.g. unit non-response, calibration, trimming etc)\n\n\nStrata\nStratification breaks up the population into groups. Each element in the population must belong to only one strata.\nTypically you need two or more PSU in each stratum.\nPurpose of stratification: reduce standard error of the estimates\nPSU: Primary sampling unit"
+  },
+  {
+    "objectID": "method/survey.html#horvitz-thompson-estimator",
+    "href": "method/survey.html#horvitz-thompson-estimator",
+    "title": "Survey sampling",
+    "section": "Horvitz-Thompson estimator",
+    "text": "Horvitz-Thompson estimator\nA method to estimate mean of population in a stratified sample, by applying IPW to account for the difference in sampling distribution between the collected data and target population."
+  },
+  {
+    "objectID": "method/survey.html#inverse-probability-weighting",
+    "href": "method/survey.html#inverse-probability-weighting",
+    "title": "Survey sampling",
+    "section": "Inverse probability weighting",
+    "text": "Inverse probability weighting\nCrude example of how it would affect the mean estimate\n\ndf &lt;- data.frame(\n  v = c(100, 100, 200), # values\n  w = c(1, 1, 1), \n  popw = c(0.35, 0.5, 0.15), # assume population proportion\n  invw = c(1/0.35, 1/0.5, 1/0.15), \n  w2 = c(0.3, 0.2, 0.5), # observed prop \n  invw2 = c(0.3/0.35, 0.2/0.5, 0.5/0.15) # use obs/pop\n)\n\ndf\n\n    v w popw     invw  w2     invw2\n1 100 1 0.35 2.857143 0.3 0.8571429\n2 100 1 0.50 2.000000 0.2 0.4000000\n3 200 1 0.15 6.666667 0.5 3.3333333\n\ncrude_mean &lt;- mean(df$v)\ncrude_mean\n\n[1] 133.3333\n\nweighted.mean(df$v, w = df$w)\n\n[1] 133.3333\n\n# use inverse probability\nweighted.mean(df$v, w = df$invw)\n\n[1] 157.8512\n\n(sum(df$v * 1/df$popw))/(sum(1/df$popw))\n\n[1] 157.8512\n\n# mean 2, need to use weight\nweighted.mean(df$v, w = df$w2)\n\n[1] 150\n\n# different obs prop\nweighted.mean(df$v, w = df$invw2)\n\n[1] 172.6141"
+  },
+  {
+    "objectID": "method/estimands_ice.html",
+    "href": "method/estimands_ice.html",
+    "title": "Estimands, intercurrent events",
+    "section": "",
+    "text": "Key question: how to present the data visually?\nWhat are considered as important, what are not?\nITT (intention to treat): include the data after rescue medicine. Includes dropouts\nPP (Per-protocol): exclude patients taking rescue medicine, only analyse the complete cases\nTrial estimands: trial treatment effect depends on how events occur after treatment initiation.\nTreatment effect for a given outcome.\nFive core attributes\n\npopulation\ntreatment conditions\nendpoint\nsummary measure\nstrategies to handle each type of intercurrent event\n\n\nIntercurrent event\nPost-baseline events (post randomisation in RCT) that affects the interpretation of outcome.\nTwo categories:\n\ntreatment-modifying events, affects the receipt of assigned treatment. E.g. early discontinuation, use of rescue, wrong dose, wrong type (placebo for example).\ntruncating events, e.g. death, amputation of limb when the limb is relevant for the research question.\n\nStrategies (multiple can be used for different ICE in the same study)\n\ntreatment policy strategy: treat as it is, ignore ICE\ncomposite strategy: modifies the endpoint value, defined by the investigator\nwhile-on-treatment (while alive): before intercurrent event data is used.\nhypothetical strategy\nprincipal stratum strategy: redefine the population"
+  },
+  {
+    "objectID": "method/imputation_2.html",
+    "href": "method/imputation_2.html",
+    "title": "Multiple imputation in R",
+    "section": "",
+    "text": "Here I use the small dataset nhanes included in mice package. It has 25 rows, and three out of four variables have missings.\nThe original NHANES data is a large national level survey, some are publicly available via R package nhanes.\nlibrary(mice)\n\n\nAttaching package: 'mice'\n\n\nThe following object is masked from 'package:stats':\n\n    filter\n\n\nThe following objects are masked from 'package:base':\n\n    cbind, rbind\n\n# load example dataset from mice\nhead(nhanes)\n\n  age  bmi hyp chl\n1   1   NA  NA  NA\n2   2 22.7   1 187\n3   1   NA   1 187\n4   3   NA  NA  NA\n5   1 20.4   1 113\n6   3   NA  NA 184\n\nsummary(nhanes)\n\n      age            bmi             hyp             chl       \n Min.   :1.00   Min.   :20.40   Min.   :1.000   Min.   :113.0  \n 1st Qu.:1.00   1st Qu.:22.65   1st Qu.:1.000   1st Qu.:185.0  \n Median :2.00   Median :26.75   Median :1.000   Median :187.0  \n Mean   :1.76   Mean   :26.56   Mean   :1.235   Mean   :191.4  \n 3rd Qu.:2.00   3rd Qu.:28.93   3rd Qu.:1.000   3rd Qu.:212.0  \n Max.   :3.00   Max.   :35.30   Max.   :2.000   Max.   :284.0  \n                NA's   :9       NA's   :8       NA's   :10\nExamine missing pattern with md.pattern(data).\n# 27 missing in total\n# by col: 8 for hyp, 9 for bmi, 10 for chl\n# by row: n missing numbers\n\nmd.pattern(nhanes)\n\n\n\n\n\n\n\n\n   age hyp bmi chl   \n13   1   1   1   1  0\n3    1   1   1   0  1\n1    1   1   0   1  1\n1    1   0   0   1  2\n7    1   0   0   0  3\n     0   8   9  10 27"
+  },
+  {
+    "objectID": "method/imputation_2.html#imputation-without-model",
+    "href": "method/imputation_2.html#imputation-without-model",
+    "title": "Multiple imputation in R",
+    "section": "Imputation without model",
+    "text": "Imputation without model\n\nImpute with mean\n\n# only run once, since it's just the mean\nimp &lt;- mice(data = nhanes, \n            method = 'mean', \n            m = 1, \n            maxit = 1)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n\nimp # this is not the imputed value\n\nClass: mids\nNumber of multiple imputations:  1 \nImputation methods:\n   age    bmi    hyp    chl \n    \"\" \"mean\" \"mean\" \"mean\" \nPredictorMatrix:\n    age bmi hyp chl\nage   0   1   1   1\nbmi   1   0   1   1\nhyp   1   1   0   1\nchl   1   1   1   0\n\n# check imputed values for bmi: same as mean(nhanes$bmi, na.rm=T)\nimp$imp$bmi\n\n         1\n1  26.5625\n3  26.5625\n4  26.5625\n6  26.5625\n10 26.5625\n11 26.5625\n12 26.5625\n16 26.5625\n21 26.5625\n\n# impute the dataset\nnhanes_imp &lt;- complete(imp)\nnhanes_imp\n\n   age     bmi      hyp   chl\n1    1 26.5625 1.235294 191.4\n2    2 22.7000 1.000000 187.0\n3    1 26.5625 1.000000 187.0\n4    3 26.5625 1.235294 191.4\n5    1 20.4000 1.000000 113.0\n6    3 26.5625 1.235294 184.0\n7    1 22.5000 1.000000 118.0\n8    1 30.1000 1.000000 187.0\n9    2 22.0000 1.000000 238.0\n10   2 26.5625 1.235294 191.4\n11   1 26.5625 1.235294 191.4\n12   2 26.5625 1.235294 191.4\n13   3 21.7000 1.000000 206.0\n14   2 28.7000 2.000000 204.0\n15   1 29.6000 1.000000 191.4\n16   1 26.5625 1.235294 191.4\n17   3 27.2000 2.000000 284.0\n18   2 26.3000 2.000000 199.0\n19   1 35.3000 1.000000 218.0\n20   3 25.5000 2.000000 191.4\n21   1 26.5625 1.235294 191.4\n22   1 33.2000 1.000000 229.0\n23   1 27.5000 1.000000 131.0\n24   3 24.9000 1.000000 191.4\n25   2 27.4000 1.000000 186.0\n\n\n\n\nImpute by sampling\n\nimps &lt;- mice(data = nhanes, \n            method = 'sample', \n            m = 1, \n            maxit = 1)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n\nimps$imp$bmi\n\n      1\n1  27.4\n3  22.0\n4  27.5\n6  27.2\n10 22.0\n11 25.5\n12 27.2\n16 24.9\n21 22.0"
+  },
+  {
+    "objectID": "method/imputation_2.html#imputation-with-regression",
+    "href": "method/imputation_2.html#imputation-with-regression",
+    "title": "Multiple imputation in R",
+    "section": "Imputation with regression",
+    "text": "Imputation with regression\nRegression methods (continuous, normal outcome) are implemented in mice with methods starting with norm.\n\nLinear regression without parameter uncertainty, mice.impute.norm.nob\nLinear regression through prediction, mice.impute.norm.predict\nBayesian linear regression, mice.impute.norm\nLinear regression bootstrap, mice.impute.norm.boot\n\n\nExample: Regression without parameter uncertainty\nWe can generate two imputed datasets by setting m=2.\nThere is a certain level of randomness, so would be a good idea to set seed.\n\nset.seed(1)\nimpr0 &lt;- mice(nhanes, method = 'norm.nob', m=2, maxit = 1)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n  1   2  bmi  hyp  chl\n\nimpr0\n\nClass: mids\nNumber of multiple imputations:  2 \nImputation methods:\n       age        bmi        hyp        chl \n        \"\" \"norm.nob\" \"norm.nob\" \"norm.nob\" \nPredictorMatrix:\n    age bmi hyp chl\nage   0   1   1   1\nbmi   1   0   1   1\nhyp   1   1   0   1\nchl   1   1   1   0\n\nnhanes_impr0 &lt;- complete(impr0) # by default, returns the first imputation\nnhanes_impr0\n\n   age      bmi       hyp      chl\n1    1 35.53430 1.2503841 256.6153\n2    2 22.70000 1.0000000 187.0000\n3    1 27.31412 1.0000000 187.0000\n4    3 25.31243 2.3880837 267.1435\n5    1 20.40000 1.0000000 113.0000\n6    3 17.94547 1.5855064 184.0000\n7    1 22.50000 1.0000000 118.0000\n8    1 30.10000 1.0000000 187.0000\n9    2 22.00000 1.0000000 238.0000\n10   2 26.99782 1.0810473 206.9927\n11   1 32.71511 0.7819353 213.7222\n12   2 27.65399 0.7904680 209.6716\n13   3 21.70000 1.0000000 206.0000\n14   2 28.70000 2.0000000 204.0000\n15   1 29.60000 1.0000000 252.1596\n16   1 27.47980 0.6071353 145.9557\n17   3 27.20000 2.0000000 284.0000\n18   2 26.30000 2.0000000 199.0000\n19   1 35.30000 1.0000000 218.0000\n20   3 25.50000 2.0000000 245.7884\n21   1 35.12809 0.5807116 232.4652\n22   1 33.20000 1.0000000 229.0000\n23   1 27.50000 1.0000000 131.0000\n24   3 24.90000 1.0000000 268.3929\n25   2 27.40000 1.0000000 186.0000\n\n\nWhen we have two imputed datasets, we can check the values for each of the variables. For example, extract bmi variable from the imputed data imp,\n\n# two imputed datasets (m=2)\nimpr0$imp$bmi\n\n          1        2\n1  35.53430 32.26078\n3  27.31412 22.55473\n4  25.31243 14.90410\n6  17.94547 22.59196\n10 26.99782 25.08534\n11 32.71511 27.71485\n12 27.65399 25.76286\n16 27.47980 30.34985\n21 35.12809 29.89142\n\n\nWe can also specify which imputed dataset to use as our complete data. Set index to 0 (action = 0) returns the original dataset with missing values.\nHere we check which of the imputed data is being used as the completed dataset. First take a note of the row IDs (based on bmi, for example). Then we generate completed dataset.\n\nif no action argument is set, then it returns the first imputation by default\naction=0 corresponds to the original data with missing values\n\n\n# check which imputed data is used for the final result, take note of row id\nid_missing &lt;- which(is.na(nhanes$bmi))\nid_missing\n\n[1]  1  3  4  6 10 11 12 16 21\n\nnhanes_impr0_action0 &lt;- complete(impr0, action = 0) \nnhanes_impr0_action0[id_missing, ] # original data with missing bmi\n\n   age bmi hyp chl\n1    1  NA  NA  NA\n3    1  NA   1 187\n4    3  NA  NA  NA\n6    3  NA  NA 184\n10   2  NA  NA  NA\n11   1  NA  NA  NA\n12   2  NA  NA  NA\n16   1  NA  NA  NA\n21   1  NA  NA  NA\n\nnhanes_impr0_action1 &lt;- complete(impr0, action = 1) \nnhanes_impr0_action1[id_missing, ] # using first imputation\n\n   age      bmi       hyp      chl\n1    1 35.53430 1.2503841 256.6153\n3    1 27.31412 1.0000000 187.0000\n4    3 25.31243 2.3880837 267.1435\n6    3 17.94547 1.5855064 184.0000\n10   2 26.99782 1.0810473 206.9927\n11   1 32.71511 0.7819353 213.7222\n12   2 27.65399 0.7904680 209.6716\n16   1 27.47980 0.6071353 145.9557\n21   1 35.12809 0.5807116 232.4652\n\nnhanes_impr0_action2 &lt;- complete(impr0, action = 2) \nnhanes_impr0_action2[id_missing, ] # using second imputation\n\n   age      bmi       hyp      chl\n1    1 32.26078 0.4616324 228.0022\n3    1 22.55473 1.0000000 187.0000\n4    3 14.90410 1.4558818 212.7958\n6    3 22.59196 1.7664882 184.0000\n10   2 25.08534 1.2940549 201.5872\n11   1 27.71485 0.9410698 169.2427\n12   2 25.76286 1.3570093 168.5961\n16   1 30.34985 0.6878971 163.7262\n21   1 29.89142 1.0452062 212.9144\n\n\n\n\nOther imputation by linear regression\nOther various of imputaton via linear regression can be implemented simply by changing the method argument.\n\nLinear regression through prediction, mice.impute.norm.predict\nBayesian linear regression, mice.impute.norm\nLinear regression bootstrap, mice.impute.norm.boot\n\n\nimpr &lt;- mice(nhanes, method = 'norm.predict', m=1, maxit=1)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n\nimpr$imp$bmi\n\n          1\n1  28.33396\n3  28.33396\n4  22.75613\n6  21.17519\n10 27.19573\n11 29.12443\n12 26.26576\n16 30.28688\n21 28.33396\n\n\nBayesian linear regression\n\nimpb &lt;- mice(nhanes, method = 'norm', m=1, maxit=1)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n\nimpb$imp$bmi\n\n          1\n1  33.82959\n3  28.98754\n4  20.88810\n6  19.11391\n10 27.32990\n11 29.44117\n12 22.68062\n16 32.13267\n21 22.03164\n\n# nhanes_impb &lt;- complete(impb)\n\nBootstrap\n\nimpbt &lt;- mice(nhanes, method = 'norm.boot', m=1, maxit=1)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n\nimpbt$imp$bmi\n\n          1\n1  24.19248\n3  28.77464\n4  22.42321\n6  23.47542\n10 21.95529\n11 23.12703\n12 25.84230\n16 27.68216\n21 26.43770"
+  },
+  {
+    "objectID": "method/imputation_2.html#predictive-mean-matching-pmm",
+    "href": "method/imputation_2.html#predictive-mean-matching-pmm",
+    "title": "Multiple imputation in R",
+    "section": "Predictive Mean Matching PMM",
+    "text": "Predictive Mean Matching PMM\nThe idea behind PMM is as follow.\n\nwith complete data, estimate a linear regression of Y (some missing) on Z (no missing), results in coefficients \\(\\beta\\).\ndraw \\(\\beta^*\\) from the posterior predictive distribution of \\(\\beta\\) (multivariate normal with mean b and covariance matrix of b).\ngenerate predicted values for \\(Y_{hat}\\) (complete cases) and \\(Y_{star}\\) (missing)\nfor each \\(Y_{star}\\), identify a few cases (7,12) whose predicted values \\(Y_{hat}\\) are close to the predicted \\(Y_{star}\\) (10 in the illustration below)\nrandomly draw one value from the observed \\(Y\\) from the doner cases (6, 11).\n\n\n\n\n\n\nAssumption for PMM: distribution of missing is the same as obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.\nPMM is robust to transformation, less vulnerable to model misspecification.\nImplementation in mice:\n\nPredictive mean matching, mice.impute.pmm\nWeighted predictive mean matching, mice.impute.midastouch\nMultivariate predictive mean matching, mice.impute.mpmm\n\n\nimp_pmm &lt;- mice(nhanes, method = 'pmm', m=1, maxit=10)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n  2   1  bmi  hyp  chl\n  3   1  bmi  hyp  chl\n  4   1  bmi  hyp  chl\n  5   1  bmi  hyp  chl\n  6   1  bmi  hyp  chl\n  7   1  bmi  hyp  chl\n  8   1  bmi  hyp  chl\n  9   1  bmi  hyp  chl\n  10   1  bmi  hyp  chl\n\nimp_pmm\n\nClass: mids\nNumber of multiple imputations:  1 \nImputation methods:\n  age   bmi   hyp   chl \n   \"\" \"pmm\" \"pmm\" \"pmm\" \nPredictorMatrix:\n    age bmi hyp chl\nage   0   1   1   1\nbmi   1   0   1   1\nhyp   1   1   0   1\nchl   1   1   1   0\n\n# imputations for bmi\nimp_pmm$imp$bmi\n\n      1\n1  35.3\n3  27.2\n4  27.4\n6  22.5\n10 26.3\n11 22.5\n12 26.3\n16 33.2\n21 35.3\n\n\n\nimp_pmms &lt;- mice(nhanes, method = 'midastouch', m=1, maxit=10)\n\n\n iter imp variable\n  1   1  bmi  hyp  chl\n  2   1  bmi  hyp  chl\n  3   1  bmi  hyp  chl\n  4   1  bmi  hyp  chl\n  5   1  bmi  hyp  chl\n  6   1  bmi  hyp  chl\n  7   1  bmi  hyp  chl\n  8   1  bmi  hyp  chl\n  9   1  bmi  hyp  chl\n  10   1  bmi  hyp  chl\n\nimp_pmm\n\nClass: mids\nNumber of multiple imputations:  1 \nImputation methods:\n  age   bmi   hyp   chl \n   \"\" \"pmm\" \"pmm\" \"pmm\" \nPredictorMatrix:\n    age bmi hyp chl\nage   0   1   1   1\nbmi   1   0   1   1\nhyp   1   1   0   1\nchl   1   1   1   0\n\nimp_pmms$imp$bmi\n\n      1\n1  22.5\n3  30.1\n4  27.2\n6  27.4\n10 27.4\n11 30.1\n12 28.7\n16 22.5\n21 27.2"
+  },
+  {
+    "objectID": "method/case_study_liggetid_1.html",
+    "href": "method/case_study_liggetid_1.html",
+    "title": "Case study: length of hospital stay",
+    "section": "",
+    "text": "The data liggetid was collected at the Geriatric Department at Ullevål Sykehus. This dataset has been used for teaching at University of Oslo, MF9130E. The course material can be accessed here.\nWe will focus on the following variables:\nlos &lt;- readRDS('data/los.rds')\nhead(los, 3)\n\n  admission_year age    sex admission_from stroke los\n1           1987  81 female           home      0  13\n2           1987  96 female           home      0  17\n3           1987  79 female           home      0   6\nSome variables need to be recoded and put into factor to display nicely.\nShow the code\n# library(dplyr)\nlibrary(ggplot2)\n\n# remove NA\nlos &lt;- dplyr::filter(los, !is.na(sex) & !is.na(stroke) & !is.na(admission_from))\n\n# code admission from with text\n# unique(los$admission_from)\nlos$admission_from &lt;- factor(los$admission_from, \n                            levels = c('home', 'div_surgery', \n                                       'div_medicine', 'div_other', \n                                       'other_hospital', 'nursing_home'), \n                            labels = c('home', 'div_surgery', \n                                       'div_medicine', 'div_other', \n                                       'other_hospital', 'nursing_home'))\n\n# code admission year with text\nlos$admission_year &lt;- factor(los$admission_year,\n                            levels = c(1981:1987),\n                            labels = as.character(1981:1987))\n\nlos$stroke &lt;- factor(los$stroke, \n                          levels = c(0, 1), \n                          labels = c('no','yes'))"
+  },
+  {
+    "objectID": "method/case_study_liggetid_1.html#visualization",
+    "href": "method/case_study_liggetid_1.html#visualization",
+    "title": "Case study: length of hospital stay",
+    "section": "Visualization",
+    "text": "Visualization\n\nLOS vs age and sex\n\n\nShow the code\nplt_scat2 &lt;- ggplot(data = los, \n                    mapping = aes(x = age, y = los, shape = sex, color = sex))\nplt_scat2 &lt;- plt_scat2 + geom_point(size = 2, alpha = 0.7)\n# customize\nplt_scat2 &lt;- plt_scat2 + labs(\n  x = 'Age', \n  y = 'Length of hosptial stay (days)', \n  title = 'Length of stay versus age'\n)\nplt_scat2 &lt;- plt_scat2 + theme_bw() # make white background\n# change text size\nplt_scat2 &lt;- plt_scat2 + theme(\n  axis.text = element_text(size = 12),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15)\n)\n# change color\nplt_scat2 &lt;- plt_scat2 + scale_color_brewer(palette = 'Set1')\nplt_scat2\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nlibrary(ggridges)\nplt_ridge &lt;- ggplot(data = los, \n                    mapping = aes(x = los, y = admission_year, fill = sex))\nplt_ridge &lt;- plt_ridge + geom_density_ridges(alpha = 0.6) \nplt_ridge &lt;- plt_ridge + theme_ridges()\nplt_ridge &lt;- plt_ridge + labs(\n  x = 'Length of hosptial stay (days)', \n  y = 'Admission year', \n  title = 'Length of stay in each year, for each gender'\n)\n# change color\nplt_ridge &lt;- plt_ridge + scale_fill_brewer(palette = 'Set1')\nplt_ridge\n\n\nPicking joint bandwidth of 32.7\n\n\n\n\n\n\n\n\n\n\n\nLOS vs year of admission\n\n\nShow the code\nplt_box &lt;- ggplot(data = los, \n                  mapping = aes(x = admission_year, y = los, fill = sex))\nplt_box &lt;- plt_box + geom_boxplot(outlier.size = 1)\n# plt_box &lt;- plt_box + facet_wrap( ~ sex)\nplt_box &lt;- plt_box + coord_flip()\n\n# customize\nplt_box &lt;- plt_box + theme_bw() # make white background\nplt_box &lt;- plt_box + labs(\n  x = 'Admission year', \n  y = 'Length of hosptial stay (days)', \n  title = 'Length of stay in each year, both men and women'\n)\nplt_box &lt;- plt_box + theme(\n  axis.text = element_text(size = 12),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15), \n  strip.text = element_text(size = 12)\n)\n\nplt_box &lt;- plt_box + scale_fill_brewer(palette = 'Set1')\nplt_box \n\n\n\n\n\n\n\n\n\n\n\nLOS vs types of admission\n\n\nShow the code\nplt_box2 &lt;- ggplot(data = los, \n                   mapping = aes(x = admission_year, y = los, fill = sex))\nplt_box2 &lt;- plt_box2 + geom_boxplot(outlier.size = 0.8)\nplt_box2 &lt;- plt_box2 + facet_wrap( ~ admission_from)\n\n\n# customize\nplt_box2 &lt;- plt_box2 + theme_bw() # make white background\nplt_box2 &lt;- plt_box2 + labs(\n  x = 'Admission year', \n  y = 'Length of hosptial stay (days)', \n  title = 'Length of stay in each year, each type of admission'\n)\nplt_box2 &lt;- plt_box2 + theme(\n  axis.text = element_text(size = 11),\n  axis.title = element_text(size = 12), \n  plot.title = element_text(size = 15), \n  strip.text = element_text(size = 12), \n  axis.text.x = element_text(angle = 45) # more readable\n)\n\nplt_box2 &lt;- plt_box2 + scale_fill_brewer(palette = 'Set1')\nplt_box2"
+  },
+  {
+    "objectID": "method/rwd_statistics_overview.html",
+    "href": "method/rwd_statistics_overview.html",
+    "title": "RWD statistical considerations",
+    "section": "",
+    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)\nExamples of confounders\nAspects to consider: PROTECT framework (Fang 2019)"
+  },
+  {
+    "objectID": "method/rwd_statistics_overview.html#motivation-why-rwd-requires-special-treatment",
+    "href": "method/rwd_statistics_overview.html#motivation-why-rwd-requires-special-treatment",
+    "title": "RWD statistical considerations",
+    "section": "",
+    "text": "In addition to data quality, missing, …\nThe key is the bias\nSelection bias (p67)\nInformation bias (p68)\nExamples of confounders\nAspects to consider: PROTECT framework (Fang 2019)"
+  },
+  {
+    "objectID": "method/rwd_statistics_overview.html#methods",
+    "href": "method/rwd_statistics_overview.html#methods",
+    "title": "RWD statistical considerations",
+    "section": "Methods",
+    "text": "Methods\n\nStratification methods\nmatching, propensity score (p71)\n\n\nSensitivity analysis\np72\n\n\nMissing data\nOthers: G-methods (generalized)"
+  },
+  {
+    "objectID": "method/antibiotics.html",
+    "href": "method/antibiotics.html",
+    "title": "Antibiotics",
+    "section": "",
+    "text": "Drug-resistant diseases kill 700k people (Plackett2020) yearly, however fewer new antibiotic drugs are reaching the market.\nDevelopment cost: 1.5 billion USD (for one drug, based on 2017 study) while revenue is 45 million USD.\n\nnot enough demand: physicians prescribe less, treatment cycle is short compared to chronic diseases\nprice is low\ndevelopment is difficult\n\nhttps://www.nature.com/articles/s41429-023-00629-8"
+  },
+  {
+    "objectID": "method/antibiotics.html#economics-and-production",
+    "href": "method/antibiotics.html#economics-and-production",
+    "title": "Antibiotics",
+    "section": "",
+    "text": "Drug-resistant diseases kill 700k people (Plackett2020) yearly, however fewer new antibiotic drugs are reaching the market.\nDevelopment cost: 1.5 billion USD (for one drug, based on 2017 study) while revenue is 45 million USD.\n\nnot enough demand: physicians prescribe less, treatment cycle is short compared to chronic diseases\nprice is low\ndevelopment is difficult\n\nhttps://www.nature.com/articles/s41429-023-00629-8"
+  },
+  {
+    "objectID": "method/antibiotics.html#antibiotics-stewardship",
+    "href": "method/antibiotics.html#antibiotics-stewardship",
+    "title": "Antibiotics",
+    "section": "Antibiotics stewardship",
+    "text": "Antibiotics stewardship\nCoursera course: Antibiotics stewardship\nAntimicrobials are the 2nd most frequently prescribed claass of pharmaceuticals. As much as 50% of antibiotic use is inappropriate.\nFive D’s: (if it is the right) drug, dose, delivery, deescalation, duration.\nImpact of inappropriate AB use: poor patient outcomes (adverse reactions, organ toxicity, AB resistance, increased mortality); excess costs (drug acquisition cost, complication management, prolonged hospital stays, costs associated with AB resistance)\n\nPrinciples\nProphylactic to prevent infection, preemptive to abort infection, empiric to provide initial control in absence of knowledge of its etiology, definitive to cure infectiou of a knownn etiology or its antimicrobial susceptibility\nEmpiric use is very common - e.g. community and hospital acquired pneumonia, sepsis.\n\n\nPKPD\nPharmacokinetics (PK): what the body does to the drug - absorption, distribution, metabolism, elimination\nPharmacodynamics (PD): what the drug does to the body / target organism - measured drug concentration and antimicrobial effect (e.g. adverse effect, safety)\nMIC: minimum inhibitory concentration, from no visible growth to 99.9% bacteria kill (MBC)\nPharmacodynamic measures\n\nCmax, AB peak concentration\nCmin, AB trough concentration\nCmax / MIC, AUC / MIC, T&gt;MIC (on concentration time curve)\n\nConcentration-dependent AB classes: large, infrequent doses\n\naminoglycosides (e.g. gentamicin, tobramycin, aminkacin for life-threatening nosocomial infections)\nfluoroquinolonse (e.g. norfloxacin, ciprofloxacin, levofloxacin)\npolymyxin\n\nTime-dependent AB classes (beta-lactam): optimize the duration\n\npenicillins\ncephalosporins\ncarbapenems\nmacrolides"
+  },
+  {
+    "objectID": "method/antibiotics.html#research-on-antibiotics-use",
+    "href": "method/antibiotics.html#research-on-antibiotics-use",
+    "title": "Antibiotics",
+    "section": "Research on antibiotics use",
+    "text": "Research on antibiotics use\n(relevant to my research)\nhttps://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814214\nhttps://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814216\nhttps://pubmed.ncbi.nlm.nih.gov/37760690/"
+  },
+  {
+    "objectID": "method/sample_size_1.html",
+    "href": "method/sample_size_1.html",
+    "title": "Sample size (part I)",
+    "section": "",
+    "text": "(This is the part I on sample size calculation)\nSample size calculation is to determine the smallest number of subjects required, to detect a clinical meaningful effect. Why not recruiting as many as possible? Too expensive; or unethical (i.e. more people will be having potentially harmful or futile treatments)."
+  },
+  {
+    "objectID": "method/sample_size_1.html#relevant-concepts",
+    "href": "method/sample_size_1.html#relevant-concepts",
+    "title": "Sample size (part I)",
+    "section": "Relevant concepts",
+    "text": "Relevant concepts\nStudy design\n\nparallel: group 1 TxA, group 2 TxB\ncrossover: requires fewer ssample than parallel; but requires wash-out period. Group 1 TxA -&gt; TxB; group 2 TxB -&gt; TxA\n\nTests\n\n\\(\\mu_T, \\mu_s\\): mean of new Tx or standard procedure\n\\(\\delta\\): minimum clinically important difference\n\\(\\delta_{NI}\\): non-inferiority margin\n\n\n\n\n\n\n\n\n\nTest for\nH0\nH1\n\n\n\n\nEquality\n\\(\\mu_T - \\mu_s = 0\\)\n\\(\\mu_T - \\mu_s \\neq 0\\)\n\n\nEquivalence\n\\(|\\mu_T - \\mu_s| \\geq 0\\)\n\\(|\\mu_T - \\mu_s| &lt; 0\\)\n\n\nSuperiority\n\\(\\mu_T - \\mu_s \\geq 0\\)\n\\(\\mu_T - \\mu_s &lt; 0\\)\n\n\nNon-inferiority\n\\(\\mu_T - \\mu_s \\leq -\\delta_{NI}\\)\n\\(\\mu_T - \\mu_s \\geq -\\delta_{NI}\\)\n\n\n\nErrors\n\nType I error, significance level \\(\\alpha\\). P(reject H0 |H0). Usually set to 0.05\nType II error \\(\\beta\\). P(not reject H0 |H1).\nPower, \\(1 - \\beta\\). P(reject H0 |H1). Usually set to 80% or 90%\n\nPrimary outcome\n\ncan be categorical or continuous\nMinimal meaningful detecable difference MD: the smallest difference to be considered as clinically meaningful in the primary outcome\n\nDropout rate: need to be adjusted.\nAllocation ratio: unequal sample size.\nEffect size (Cohen’s d, f) should be found in the literature. In general,\n\nvery small, d = 0.01\nsmall, d = 0.2\nmedium, d = 0.5\nlarge, d = 0.8\nvery large, d = 1.2\nhuge, d = 2"
+  },
+  {
+    "objectID": "method/sample_size_1.html#two-sample-t-test",
+    "href": "method/sample_size_1.html#two-sample-t-test",
+    "title": "Sample size (part I)",
+    "section": "Two sample t-test",
+    "text": "Two sample t-test\nNote that this result is for one group: in total it’s times two.\n\n# effect size: 0.5\npwr::pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.8, type = 'two.sample', alternative = 'two.sided')\n\n\n     Two-sample t test power calculation \n\n              n = 63.76561\n              d = 0.5\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group"
+  },
+  {
+    "objectID": "method/sample_size_1.html#anova",
+    "href": "method/sample_size_1.html#anova",
+    "title": "Sample size (part I)",
+    "section": "ANOVA",
+    "text": "ANOVA\nResult is for each group.\n\n# k: number of groups; f: effect ssize\npwr::pwr.anova.test(k = 3, f = 0.25, sig.level = 0.05, power = 0.8)\n\n\n     Balanced one-way analysis of variance power calculation \n\n              k = 3\n              n = 52.3966\n              f = 0.25\n      sig.level = 0.05\n          power = 0.8\n\nNOTE: n is number in each group"
+  },
+  {
+    "objectID": "method/sample_size_1.html#proportions",
+    "href": "method/sample_size_1.html#proportions",
+    "title": "Sample size (part I)",
+    "section": "Proportions",
+    "text": "Proportions\nCohen’s h is used as the effect size, \\(h = 2arcsin(\\sqrt{p_1} - 2arcsin(\\sqrt{p_2}))\\). Use 0.2, 0.5, 0.8 for small, medium and large effect sizes.\n\n# one group\npwr::pwr.p.test(h = 0.5, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     proportion power calculation for binomial distribution (arcsine transformation) \n\n              h = 0.5\n              n = 31.39544\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\n# two groups\npwr::pwr.2p.test(h = 0.5, sig.level = 0.05, power = 0.8, alternative = 'two.sided')\n\n\n     Difference of proportion power calculation for binomial distribution (arcsine transformation) \n\n              h = 0.5\n              n = 62.79088\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: same sample sizes"
+  },
+  {
+    "objectID": "method/sample_size_1.html#chi-square-test",
+    "href": "method/sample_size_1.html#chi-square-test",
+    "title": "Sample size (part I)",
+    "section": "Chi-square test",
+    "text": "Chi-square test\nCohen’s w. Use \\(l, k\\) to compute degrees of freedom.\n\n# k: number of groups; f: effect ssize\npwr::pwr.chisq.test(w = 0.3, df = (2-1)*(3-1), sig.level = 0.05, power = 0.8)\n\n\n     Chi squared power calculation \n\n              w = 0.3\n              N = 107.0521\n             df = 2\n      sig.level = 0.05\n          power = 0.8\n\nNOTE: N is the number of observations"
+  },
+  {
+    "objectID": "method/sample_size_1.html#exact-test",
+    "href": "method/sample_size_1.html#exact-test",
+    "title": "Sample size (part I)",
+    "section": "Exact test",
+    "text": "Exact test\nNeed to specify the proportion in each group (control, treatment). Allocation ratio 1:1\n\nexact2x2::ss2x2(p0 = 0.2, p1 = 0.8, n1.over.n0 = 1, sig.level = 0.05, power = 0.8, \n                approx = F, print.steps = T, paired = F)\n\n[1] \"starting calculation at n0= 11  n1= 11\"\n[1] \"n0=11 n1=11 power=0.734302912043505\"\n[1] \"n0=19 n1=19 power=0.962100966603327\"\n[1] \"n0=15 n1=15 power=0.872315260457242\"\n[1] \"n0=13 n1=13 power=0.868827534112504\"\n[1] \"n0=12 n1=12 power=0.811527612034704\"\n\n\n\n     Power for Fisher's Exact Test \n\n          power = 0.8115276\n             n0 = 12\n             n1 = 12\n             p0 = 0.2\n             p1 = 0.8\n      sig.level = 0.05\n    alternative = two.sided\n  nullOddsRatio = 1\n\nNOTE: errbound= 1e-06"
+  },
+  {
+    "objectID": "method/overview_ci.html",
+    "href": "method/overview_ci.html",
+    "title": "Overview: causal inference",
+    "section": "",
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate"
+  },
+  {
+    "objectID": "method/overview_ci.html#effects",
+    "href": "method/overview_ci.html#effects",
+    "title": "Overview: causal inference",
+    "section": "",
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate"
+  },
+  {
+    "objectID": "method/overview_ci.html#estimands",
+    "href": "method/overview_ci.html#estimands",
+    "title": "Overview: causal inference",
+    "section": "Estimands",
+    "text": "Estimands\nGreifer, N., & Stuart, E. A. (2021). Choosing the estimand when matching or weighting in observational studies. arXiv preprint arXiv:2106.10577.\n\n\n\n\n\nATE: average treatment effect in the population\n\\(E[Y(1) - Y(0)]\\)\nATT: average treatment effect among the treated\n\\(E[Y(1) - Y(0) | Z = 1]\\)\nATC: average treatment effect among the controls\n\\(E[Y(1) - Y(0) | Z = 0]\\)\nATM: average treatment effect among the matched"
+  },
+  {
+    "objectID": "method/overview_ci.html#graphical-representation",
+    "href": "method/overview_ci.html#graphical-representation",
+    "title": "Overview: causal inference",
+    "section": "Graphical representation",
+    "text": "Graphical representation\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1"
+  },
+  {
+    "objectID": "method/overview_ci.html#selection-bias",
+    "href": "method/overview_ci.html#selection-bias",
+    "title": "Overview: causal inference",
+    "section": "Selection bias",
+    "text": "Selection bias\nThis bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.\n\nnon-response, missing data\nself-selection, volunteer bias\nselection affected by treatment before study started\n\nA form of lack of exchangeability between the treated and untreated.\nCorrect for selection bias: IP weighting"
+  },
+  {
+    "objectID": "method/mixed_models.html",
+    "href": "method/mixed_models.html",
+    "title": "Mixed models for repeted measurements",
+    "section": "",
+    "text": "Resources:\n\nmmrm package vignette\nMixed models with R\nGLMM FAQ\n\n\nMixed modeling in R\n\nLinear mixed models: nlme::lme, lme4::mner, brms::brm\ngeneralized linear mixed models (GLMM): lme4::glmer, glmmTMB; brms::brm for Bayesian\nnonlinear mixed models: nlme::nlme, lme4::nlmer; brms::brm\n\n\n\n\n\n\n\n\n\nequation\nformula\nmeaning\n\n\n\n\n\\(B_0 + B_1X_i + e_i\\)\n\nno random effect\n\n\n\\((B_0+b_{g,0} + B_1X_i + e_i)\\)\nx+(1|group)\nrandom group intercept\n\n\n\n(x|group)\nrandom slopt of x within group, with correlated intercept\n\n\n\n(1+x|group)\n\n\n\n\n(0+x | group)\nrandom slop of x within group, no variation in intercept\n\n\n\n(-1+x | group)\n\n\n\n\n(1| group) + (0+x|group)\nuncorrelated random intercept and random slopt within group\n\n\n\n\n\nRandom intercept\nEach group has different intercelpt, but the slope is the same\n\\[gpa = (b_0 + effect_{student} + b_{occasion} * occasion + e)\\]\n\n\nMMRM\nMMRM has one distinct feature compared to other linear mixed models: subject-specific random effects are considered as residual effects (part of error correlation matrix).\n\nMethodology\nBasic linear mixed-effects model for a single level of grouping\n\\[\ny_i = X_i \\beta + Z_i b_i + \\epsilon_i, i = 1, ..., n\n\\] \\[\nb_i \\sim N(0, \\Psi), \\epsilon \\sim N(0, \\sigma^2 I)\n\\]\n\n\\(\\beta\\) is p-dim vector of fixed effects\n\\(b\\) is q-dim vecor of random patient specific effects\n\\(X_i\\) of size \\(n_i \\times p\\) and \\(Z_i\\) of size \\(n_i \\times q\\) are regressor matrices relating observations to the fixed effects and random effects.\n\\(\\epsilon_i\\) is \\(n_i\\)-dimensional within-subject error"
+  },
+  {
+    "objectID": "method/case_study_ctn.html",
+    "href": "method/case_study_ctn.html",
+    "title": "Case study: CTN",
+    "section": "",
+    "text": "Task overview see here\nQuestions of interest (examples)\nArticle describing the process: Odom 2023"
+  },
+  {
+    "objectID": "method/case_study_ctn.html#ctn-data",
+    "href": "method/case_study_ctn.html#ctn-data",
+    "title": "Case study: CTN",
+    "section": "CTN data",
+    "text": "CTN data\n\nStudy protocol\nThree studies\n\nCTN 30(Protocol): prescription opiate abuse treatment study. Randomized, outpatient study, whether adding additional drug counseling improves outcome. Two phases.\n\nTx0: Bup/Nx (buprenorphine/naloxone) + SMM (standard medical management)\nTx1: Bup/Nx + EMM (enhanced medical management)\nphase 1 n=653, phase 2 n=360\nprimary finding: patients are likely to reduce opioid use during Bup/Nx treatment, however unsuccessful outcome is highly likely even after 12 weeks if tapering off treatment.\n\nCTN 27(Protocol, Saxon 2013): Bup/Nx vs MET (methadone) on liver function. Randomized, open-label, multi-center, phase 4 study.\nCTN 51 (Lee 2018): Bup/Nx vs XR-NTX naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570\n\nXR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)\nfor those inducted successfully, relapse rate is similar\nrelapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.\n\n\nIf want to know which subject belongs to which study, use CreateProtocolHistory() or everybody data to have project ID.\nOpioids: Oxymorphone, Opium, Fentanyl, Hydromorphone, Codeine, Suboxone, Tramadol, Morphine, Buprenorphine, Hydrocodone, Opioid, Methadone, Oxycodone, Heroin\n\n\nTimes\n\nday 0: consent signed\nday of randomization (dr)\nday of receiving first dose of study drug (dd)\ninduction delay: dr - dd (in terms of days, not weeks)\nany day before dd is pre-treatment, even if participants are assigned to a treatment arm\n\npre-tx (baseline) / treatment period is defined by the first non-zero dose for the patient.\n\n\n\n\nEndpoints (CTNote)\nAs of CTNote, there are three types of outcomes\n\nabstinence\nuse reduction\nrelapse\n\n\n\nRisk factors\ndatasets info\n\n\nData details\n\nctn0094data\nctn0094extra\n\n\nlibrary(public.ctn0094data)\nlibrary(public.ctn0094extra)\n\n# visit_imp &lt;- public.ctn0094extra::derived_visitImputed\n# eth &lt;- public.ctn0094extra::derived_raceEthnicity\n\n#visit_imp\n#eth\n\n\ninduct_delay &lt;- public.ctn0094extra::derived_inductDelay\ninduct_delay\n\n# A tibble: 2,492 × 3\n     who treatment            inductDelay\n   &lt;int&gt; &lt;fct&gt;                      &lt;dbl&gt;\n 1     2 Outpatient BUP + EMM           0\n 2     3 Inpatient BUP                 NA\n 3     4 Inpatient NR-NTX               0\n 4     6 Outpatient BUP + SMM           0\n 5     7 Inpatient NR-NTX               1\n 6     9 Inpatient NR-NTX              NA\n 7    10 Outpatient BUP                 0\n 8    11 Methadone                      0\n 9    12 Outpatient BUP                 0\n10    13 Outpatient BUP                 0\n# ℹ 2,482 more rows\n\n\nWeekly pattern data. Week 1 starts the day after randomisation or signed consent, depending whether patients are randomized or not. Negative time stamps suggest prior randomization (or consent).\n\npattern_o &lt;- public.ctn0094extra::derived_weeklyOpioidPattern\npattern_o\n\n# A tibble: 3,560 × 8\n     who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2\n   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;  \n 1     1        -4        NA        NA      15 _____    ooooooooooooooo  \"\"     \n 2     2        -5         0        NA      14 ____++   ----oo-o-o-o+o   \"\"     \n 3     3        -6         0        NA      23 _______  o-ooo-ooooooooo… \"\"     \n 4     4        -4         0        NA      24 ____-    ---------------… \"\"     \n 5     5        -4        NA        NA      15 _____    ooooooooooooooo  \"\"     \n 6     6        -6         0        NA      14 ____+_+  -ooooooooooooo   \"\"     \n 7     7        -5         0        NA      24 _____+   ----ooooooooooo… \"\"     \n 8     8        -4        NA        NA      25 _____    ooooooooooooooo… \"\"     \n 9     9        -6         0        NA      22 ____+__  ooooooooooooooo… \"\"     \n10    10        -7         0        NA      22 _____+_- --o--*++o-+++++… \"\"     \n# ℹ 3,550 more rows\n\n\n\npattern_t &lt;- public.ctn0094extra::derived_weeklyTLFBPattern\npattern_t\n\n# A tibble: 3,560 × 8\n     who startWeek randWeek1 randWeek2 endWeek Baseline Phase_1          Phase_2\n   &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;  \n 1     1        -4        NA        NA      14 _____    oooooooooooooo   \"\"     \n 2     2        -5         0        NA      14 ++++++   -----------*+-   \"\"     \n 3     3        -6         0        NA      23 ++++*--  ----*----------… \"\"     \n 4     4        -4         0        NA      24 +++--    -------------*-… \"\"     \n 5     5        -4        NA        NA      14 _____    oooooooooooooo   \"\"     \n 6     6        -6         0        NA      14 +++++++  --------------   \"\"     \n 7     7        -5         0        NA      24 _+++--   ---------------… \"\"     \n 8     8        -4        NA        NA      24 _____    ooooooooooooooo… \"\"     \n 9     9        -6         0        NA      22 +++**--  ---------------… \"\"     \n10    10        -7         0        NA      22 --*+++++ ---------++-+-*… \"\"     \n# ℹ 3,550 more rows\n\n\nOutcomes (relapse)\n\nout &lt;- CTNote::outcomesCTN0094\nout$ctn0094_relapse_event |&gt; table() # relapse\n\n\n   0    1 \n 619 2941"
   }
 ]

@@ -15,9 +15,11 @@ about:
 
 Hello, welcome!
 
-This is the note repository for **modern data science skills with a focus on drug development and clinical trials**. Content will be gradually added while I learn the topics. Therefore, it is *by no means* a complete guide by the time you read it!
+This is the note repository for **modern data science skills with a focus on real-world data (observational studies) and clinical trials**. 
 
-I try to organize the content in a modular way. I think these should cover the important aspects in which a data scientist / modern statistician should know.
+Content will be gradually added while I learn the topics, and mostly for personal use. Therefore, it is <u>by no means</u> a complete guide by the time you read it!
+
+I try to organize the content in a modular way: these should cover the important aspects in which a data scientist / modern statistician should know.
 
 * study design
 * inference

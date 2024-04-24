@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-04-20">
-<meta name="description" content="data.table paradigm">
+<meta name="dcterms.date" content="2024-01-03">
+<meta name="description" content="Use of machine learning techniques">
 
-<title>Data Apothecary’s Notes - Data manipulation with data.table</title>
+<title>Data Apothecary’s Notes - Genomics in Drug Discovery</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,41 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -133,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../inference/index.html"> 
+    <a class="nav-link" href="../inference/index.qmd"> 
 <span class="menu-text">Inference and models</span></a>
   </li>  
   <li class="nav-item">
@@ -171,7 +157,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#data.table-manipulation" id="toc-data.table-manipulation" class="nav-link active" data-scroll-target="#data.table-manipulation">data.table manipulation</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link active" data-scroll-target="#machine-learning">Machine learning</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -180,15 +167,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data manipulation with data.table</h1>
+<h1 class="title">Genomics in Drug Discovery</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Data manip</div>
+    <div class="quarto-category">Omics data</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p><code>data.table</code> paradigm</p>
+    <p>Use of machine learning techniques</p>
   </div>
 </div>
 
@@ -205,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 20, 2024</p>
+      <p class="date">January 3, 2024</p>
     </div>
   </div>
   
@@ -217,101 +204,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data.table-manipulation" class="level2">
-<h2 class="anchored" data-anchor-id="data.table-manipulation">data.table manipulation</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make some fake data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">2</span>), </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">4</span>, <span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ab_types <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ampicillin'</span>, <span class="st">'gentamicin'</span>, <span class="st">'cefalotin'</span>, <span class="st">'metronidazol'</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">sample</span>(ab_types, <span class="at">size =</span> <span class="fu">length</span>(id), <span class="at">replace =</span> T)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> id, <span class="at">ab =</span> ab</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>       id           ab
-    &lt;num&gt;       &lt;char&gt;
- 1:     1    cefalotin
- 2:     1 metronidazol
- 3:     1   gentamicin
- 4:     2    cefalotin
- 5:     2 metronidazol
- 6:     3 metronidazol
- 7:     3   ampicillin
- 8:     3    cefalotin
- 9:     3   gentamicin
-10:     3 metronidazol
-11:     3   ampicillin
-12:     4   ampicillin</code></pre>
-</div>
-</div>
-<section id="subsetting" class="level3">
-<h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
-<p>Remove a column temporarily</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dt[, <span class="sc">!</span><span class="fu">c</span>(<span class="st">'id'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              ab
-          &lt;char&gt;
- 1:    cefalotin
- 2: metronidazol
- 3:   gentamicin
- 4:    cefalotin
- 5: metronidazol
- 6: metronidazol
- 7:   ampicillin
- 8:    cefalotin
- 9:   gentamicin
-10: metronidazol
-11:   ampicillin
-12:   ampicillin</code></pre>
-</div>
-</div>
+<p>Why do we need <strong>precision medicine</strong>? Late-stage failures cost the most, and small improvements in failure rates at early stage yield largest savings - use <strong>better targets</strong>.</p>
+<p>As of 2016, 10-15% targets have genetic data; increased to 50%, expect 13-15% cost reduction.</p>
+<p>Not all genes are targets, and not all targets are genes.</p>
+<p>FTO (fat mass and obesity gene). Can search FTO in clinical trial gov website.</p>
+<p>Overall nearly 60% are pursued by multiple companies, 26% by more than 5 companies: once a drug is made a target, redundancy is high. But before a target is proven, high diversity and novelty.</p>
+<section id="machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning">Machine learning</h2>
+<p>Genomics data alone are insufficient for therapeutic development. How they interact with other types of data such as <strong>compounds, proteins, EHR, images, texts etc</strong> need to be investigated.</p>
+<p><strong>Target discovery</strong>: identify the molecure that can be targeted by a drug to produce a therapeutic effect, such as inhibition, to block the disease process.</p>
+<p><strong>Therapeutic discovery</strong>: design potent therapeutic agents to modulate the target and block disease pathway. ML can be used to predict drug response in cell lines. Drug combination screening.</p>
+<p>During <strong>clinical studies</strong>, ML can help characterize patient groups and identify eligible patients from gene expression data and EHRs.</p>
+<p>During <strong>post-market studies</strong>, mining EHR and other RWD to provid additional evidence, such as patients’ drug response given different patient characteristics.</p>
+<section id="supervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="supervised-learning">Supervised learning</h3>
+<p>Regression and classification, e.g.&nbsp;</p>
+<ul>
+<li>drug sensitivity prediction</li>
+<li>gene expression signitures that predict clinical trial success</li>
+</ul>
 </section>
-<section id="by-.sd" class="level3">
-<h3 class="anchored" data-anchor-id="by-.sd">By, .SD</h3>
-<p>Get number of records per person</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dt[, .N, by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      id     N
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     6
-4:     4     1</code></pre>
+<section id="unsupervised-learning" class="level3">
+<h3 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised learning</h3>
+<p>Clustering, e.g.&nbsp;</p>
+<ul>
+<li>feature reduction in single-cell data to identify cell types</li>
+<li>cell types and biomarkers from single-cell RNA data</li>
+</ul>
+<p>Example: drug sensitivity predictive model. Identify biomarkers and build drug sensitivity predictive models using preclinical data, then apply to patients in early-stage clinical trials. Once validated, the model can be used for patient stratification and disease indicaation selection to support clinical development of a drug.</p>
+<p>(Example from <span class="citation" data-cites="Vamathevan2019">(<a href="#ref-Vamathevan2019" role="doc-biblioref">Vamathevan et al. 2019</a>)</span>)</p>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Vamathevan2019" class="csl-entry" role="listitem">
+Vamathevan, Jessica, Dominic Clark, Paul Czodrowski, Ian Dunham, Edgardo Ferran, George Lee, Bin Li, et al. 2019. <span>“<span class="nocase">Applications of machine learning in drug discovery and development</span>.”</span> <em>Nature Reviews of Drug Discovery</em> 18 (6): 463–77. <a href="https://doi.org/10.1038/s41573-019-0024-5">https://doi.org/10.1038/s41573-019-0024-5</a>.
 </div>
 </div>
-<p>Number of unique records</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if use lapply, the results will be a list in the column</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt[, .(<span class="at">n_uab =</span> <span class="fu">sapply</span>(.SD, <span class="cf">function</span>(x){<span class="fu">length</span>(<span class="fu">unique</span>(x))})), </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   .SDcols <span class="ot">=</span> <span class="st">'ab'</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      id n_uab
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     4
-4:     4     1</code></pre>
-</div>
-</div>
+<p>https://www.iqvia.com/-/media/iqvia/pdfs/library/white-papers/machine-learning-applications-for-therapeutic-tasks.pdf</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

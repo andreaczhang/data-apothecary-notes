@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-04-20">
-<meta name="description" content="data.table paradigm">
+<meta name="dcterms.date" content="2024-03-28">
+<meta name="description" content="Focusing on CTN 51 data">
 
-<title>Data Apothecary’s Notes - Data manipulation with data.table</title>
+<title>Data Apothecary’s Notes - Case study: CTN-51</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../inference/index.html"> 
+    <a class="nav-link" href="../inference/index.qmd"> 
 <span class="menu-text">Inference and models</span></a>
   </li>  
   <li class="nav-item">
@@ -171,7 +171,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#data.table-manipulation" id="toc-data.table-manipulation" class="nav-link active" data-scroll-target="#data.table-manipulation">data.table manipulation</a></li>
+  <li><a href="#study-information" id="toc-study-information" class="nav-link active" data-scroll-target="#study-information">Study information</a></li>
+  <li><a href="#datasets-used" id="toc-datasets-used" class="nav-link" data-scroll-target="#datasets-used">Datasets used</a></li>
   </ul>
 </nav>
     </div>
@@ -180,15 +181,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data manipulation with data.table</h1>
+<h1 class="title">Case study: CTN-51</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Data manip</div>
+    <div class="quarto-category">RCT</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p><code>data.table</code> paradigm</p>
+    <p>Focusing on CTN 51 data</p>
   </div>
 </div>
 
@@ -205,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 20, 2024</p>
+      <p class="date">March 28, 2024</p>
     </div>
   </div>
   
@@ -217,98 +218,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data.table-manipulation" class="level2">
-<h2 class="anchored" data-anchor-id="data.table-manipulation">data.table manipulation</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make some fake data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">2</span>), </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">4</span>, <span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ab_types <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ampicillin'</span>, <span class="st">'gentamicin'</span>, <span class="st">'cefalotin'</span>, <span class="st">'metronidazol'</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">sample</span>(ab_types, <span class="at">size =</span> <span class="fu">length</span>(id), <span class="at">replace =</span> T)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> id, <span class="at">ab =</span> ab</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>       id           ab
-    &lt;num&gt;       &lt;char&gt;
- 1:     1    cefalotin
- 2:     1 metronidazol
- 3:     1   gentamicin
- 4:     2    cefalotin
- 5:     2 metronidazol
- 6:     3 metronidazol
- 7:     3   ampicillin
- 8:     3    cefalotin
- 9:     3   gentamicin
-10:     3 metronidazol
-11:     3   ampicillin
-12:     4   ampicillin</code></pre>
-</div>
-</div>
-<section id="subsetting" class="level3">
-<h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
-<p>Remove a column temporarily</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dt[, <span class="sc">!</span><span class="fu">c</span>(<span class="st">'id'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              ab
-          &lt;char&gt;
- 1:    cefalotin
- 2: metronidazol
- 3:   gentamicin
- 4:    cefalotin
- 5: metronidazol
- 6: metronidazol
- 7:   ampicillin
- 8:    cefalotin
- 9:   gentamicin
-10: metronidazol
-11:   ampicillin
-12:   ampicillin</code></pre>
-</div>
-</div>
+<section id="study-information" class="level2">
+<h2 class="anchored" data-anchor-id="study-information">Study information</h2>
+<p><a href="https://ctnlibrary.org/protocol/ctn0051/">CTN 51</a> (<a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(17)32812-X/abstract">Lee 2018</a>): <strong>Bup/Nx vs XR-NTX</strong> naltrexone, effectiveness of pharmacotheerapeutic aids to recovery who completed detoxification and achieved short term abstinence. n=570</p>
+<ul>
+<li>XR-NTX (n=283): induction hurdle, higher rate of 24-week relapse, fewer successfully initiated XR-NTX (204 of 283) than Bup/Nx (270 of 287)</li>
+<li>for those inducted successfully, relapse rate is similar</li>
+<li>relapse: 4 consecutive weeks of any non-study opioid use (UDS or report), or 7 consecutive days of self-reported use.</li>
+</ul>
+<p>Reproduce some of the results, try to understand the events involved after initiation</p>
+<p>Key numbers</p>
+<ul>
+<li>relapse is 4 consecutive weeks of non-study opioid use or 7 days of self-reported use</li>
+<li>ITT (n=570), 24 weeks relapse greater for NTX</li>
+<li>pre-protocol (n=474), similar relapse</li>
+<li>relapse rate is between 57% to 65%</li>
+</ul>
+<p>Things to understand</p>
+<ul>
+<li>initiation hurdle</li>
+</ul>
 </section>
-<section id="by-.sd" class="level3">
-<h3 class="anchored" data-anchor-id="by-.sd">By, .SD</h3>
-<p>Get number of records per person</p>
+<section id="datasets-used" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-used">Datasets used</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dt[, .N, by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094data)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(public.ctn0094extra)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CTNote)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> CTNote<span class="sc">::</span>outcomesCTN0094</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># take c51 </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>everybody<span class="sc">$</span>project <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="co"># this includes all eligible</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      id     N
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     6
-4:     4     1</code></pre>
+<pre><code>
+  27   30   51 
+1920  868  772 </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>out_c51 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(everybody, out) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(project <span class="sc">==</span> <span class="dv">51</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(who)`</code></pre>
 </div>
-<p>Number of unique records</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if use lapply, the results will be a list in the column</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt[, .(<span class="at">n_uab =</span> <span class="fu">sapply</span>(.SD, <span class="cf">function</span>(x){<span class="fu">length</span>(<span class="fu">unique</span>(x))})), </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   .SDcols <span class="ot">=</span> <span class="st">'ab'</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>out_c51 <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      id n_uab
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     4
-4:     4     1</code></pre>
+<pre><code># A tibble: 6 × 64
+    who project usePatternUDS             fiellin2006_abs kosten1993_isAbs
+  &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;                               &lt;dbl&gt; &lt;lgl&gt;           
+1     3 51      o-ooo-ooooooooooooooooo                 2 FALSE           
+2     4 51      -------------------o-o-o               21 TRUE            
+3     7 51      ----oooooooooooooooooooo                4 TRUE            
+4     9 51      oooooooooooooooooooooo                  0 FALSE           
+5    18 51      ooooooooooooooooooooooooo               0 FALSE           
+6    20 51      ooooooooooooooooooooooooo               0 FALSE           
+# ℹ 59 more variables: krupitsky2011A_isAbs &lt;lgl&gt;, krupitsky2011B_abs &lt;dbl&gt;,
+#   ling1998_isAbs &lt;lgl&gt;, lofwall2018_isAbs &lt;lgl&gt;, mokri2016_abs_time &lt;dbl&gt;,
+#   mokri2016_abs_event &lt;dbl&gt;, schottenfeld2005_abs &lt;dbl&gt;,
+#   schottenfeld2008A_abs_time &lt;dbl&gt;, schottenfeld2008A_abs_event &lt;dbl&gt;,
+#   schottenfeld2008B_abs &lt;dbl&gt;, shufman1994_absN_time &lt;dbl&gt;,
+#   shufman1994_absN_event &lt;dbl&gt;, weissLingCTN0030_isAbs &lt;lgl&gt;,
+#   comer2006_red &lt;dbl&gt;, eissenberg1997_isAbs &lt;lgl&gt;, fiellin2006_red &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
+<section id="treatment-and-outcome-related" class="level3">
+<h3 class="anchored" data-anchor-id="treatment-and-outcome-related">Treatment and outcome related</h3>
+<p>Outcome includes pattern and class</p>
+<p>Randomization</p>
+<p><code>treatment</code>: time is study day, amount is dose or 1 (injection)</p>
 
 
 </section>

@@ -8,14 +8,11 @@ website:
 
   navbar:
     left:
-      - href: index.qmd
-        text: Home
+     # - href: index.qmd
+     #   text: Home
 
-      - href: study_design/index.qmd
-        text: Study design
-
-      - href: inference/index.qmd
-        text: Inference and models
+      - href: method/index.qmd
+        text: Methods
 
       - href: reporting/index.qmd
         text: Reporting

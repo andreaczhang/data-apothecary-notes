@@ -45,6 +45,19 @@ dt
 ```
 
 
+### Subsetting
+
+Remove a column temporarily
+
+```{r}
+#| label: remove one
+#| echo: true
+#| eval: true
+
+dt[, !c('id')]
+```
+
+
 ### By, .SD
 
 Get number of records per person

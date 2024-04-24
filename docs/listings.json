@@ -55,7 +55,7 @@
       "/inference/antibiotics.html",
       "/inference/rwd_vendor_engagement.html",
       "/inference/overview_ci.html",
-      "/inference/propensity_score.html",
+      "/inference/weighting.html",
       "/inference/target_trial_emulation.html",
       "/inference/g_computation.html",
       "/inference/imputation_1_overview.html",
@@ -66,6 +66,32 @@
       "/inference/case_study_liggetid_1.html",
       "/inference/case_study_ctn.html",
       "/inference/case_study_ctn51.html"
+    ]
+  },
+  {
+    "listing": "/method/index.html",
+    "items": [
+      "/method/rwd_rwe.html",
+      "/method/genomics.html",
+      "/method/antibiotics.html",
+      "/method/rwd_vendor_engagement.html",
+      "/method/rct_design_overview.html",
+      "/method/sample_size_1.html",
+      "/method/sample_size_2.html",
+      "/method/adaptive_design.html",
+      "/method/survey.html",
+      "/method/overview_ci.html",
+      "/method/weighting.html",
+      "/method/target_trial_emulation.html",
+      "/method/g_computation.html",
+      "/method/imputation_1_overview.html",
+      "/method/imputation_2.html",
+      "/method/intervals.html",
+      "/method/mixed_models.html",
+      "/method/survival.html",
+      "/method/case_study_liggetid_1.html",
+      "/method/case_study_ctn.html",
+      "/method/case_study_ctn51.html"
     ]
   }
 ]

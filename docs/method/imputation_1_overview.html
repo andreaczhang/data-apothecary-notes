@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-04-20">
-<meta name="description" content="data.table paradigm">
+<meta name="dcterms.date" content="2024-02-14">
+<meta name="description" content="Overview of multiple imputation">
 
-<title>Data Apothecary’s Notes - Data manipulation with data.table</title>
+<title>Data Apothecary’s Notes - Missing data and imputation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -104,6 +70,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -133,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Study design</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../inference/index.html"> 
+    <a class="nav-link" href="../inference/index.qmd"> 
 <span class="menu-text">Inference and models</span></a>
   </li>  
   <li class="nav-item">
@@ -171,7 +166,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#data.table-manipulation" id="toc-data.table-manipulation" class="nav-link active" data-scroll-target="#data.table-manipulation">data.table manipulation</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#consideration" id="toc-consideration" class="nav-link" data-scroll-target="#consideration">Consideration</a></li>
+  <li><a href="#univariate-imputation" id="toc-univariate-imputation" class="nav-link" data-scroll-target="#univariate-imputation">Univariate imputation</a></li>
+  <li><a href="#multivariate-imputation" id="toc-multivariate-imputation" class="nav-link" data-scroll-target="#multivariate-imputation">Multivariate imputation</a></li>
+  <li><a href="#reference-based-methods-rct" id="toc-reference-based-methods-rct" class="nav-link" data-scroll-target="#reference-based-methods-rct">Reference based methods (RCT)</a></li>
   </ul>
 </nav>
     </div>
@@ -180,15 +179,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data manipulation with data.table</h1>
+<h1 class="title">Missing data and imputation</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Data manip</div>
+    <div class="quarto-category">Missing data</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p><code>data.table</code> paradigm</p>
+    <p>Overview of multiple imputation</p>
   </div>
 </div>
 
@@ -205,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 20, 2024</p>
+      <p class="date">February 14, 2024</p>
     </div>
   </div>
   
@@ -217,101 +216,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data.table-manipulation" class="level2">
-<h2 class="anchored" data-anchor-id="data.table-manipulation">data.table manipulation</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make some fake data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">2</span>), </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">4</span>, <span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ab_types <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ampicillin'</span>, <span class="st">'gentamicin'</span>, <span class="st">'cefalotin'</span>, <span class="st">'metronidazol'</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">sample</span>(ab_types, <span class="at">size =</span> <span class="fu">length</span>(id), <span class="at">replace =</span> T)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> id, <span class="at">ab =</span> ab</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>       id           ab
-    &lt;num&gt;       &lt;char&gt;
- 1:     1    cefalotin
- 2:     1 metronidazol
- 3:     1   gentamicin
- 4:     2    cefalotin
- 5:     2 metronidazol
- 6:     3 metronidazol
- 7:     3   ampicillin
- 8:     3    cefalotin
- 9:     3   gentamicin
-10:     3 metronidazol
-11:     3   ampicillin
-12:     4   ampicillin</code></pre>
-</div>
-</div>
-<section id="subsetting" class="level3">
-<h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
-<p>Remove a column temporarily</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dt[, <span class="sc">!</span><span class="fu">c</span>(<span class="st">'id'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              ab
-          &lt;char&gt;
- 1:    cefalotin
- 2: metronidazol
- 3:   gentamicin
- 4:    cefalotin
- 5: metronidazol
- 6: metronidazol
- 7:   ampicillin
- 8:    cefalotin
- 9:   gentamicin
-10: metronidazol
-11:   ampicillin
-12:   ampicillin</code></pre>
-</div>
-</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Missing data can occur in various situations:</p>
+<ul>
+<li><strong>unit non-response</strong>: individuals decline to participate</li>
+<li><strong>item non-response</strong>: some questions or measurements left out by participating individuals</li>
+<li><strong>loss of follow-up</strong>: drop outs</li>
+</ul>
+<p>For unit <strong>non-response</strong> and <strong>loss of follow-up</strong>, weighting the data could help. Need to know the response rate, characteristics of the non-responders and how the respondent differ.</p>
+<p>Solutions (to <u>item non-response</u>)</p>
+<ul>
+<li>complete case analysis (listwise deletion)</li>
+<li>single imputation
+<ul>
+<li>mean imputation</li>
+<li>conditional imputation: make a prediction, plus minus some noise</li>
+</ul></li>
+<li>multiple imputation: repeat single imputation M times, produce M complete datasets, use Rubin’s rules to pool the estimates.</li>
+</ul>
+<section id="mcar-mar-mnar" class="level3">
+<h3 class="anchored" data-anchor-id="mcar-mar-mnar">MCAR, MAR, MNAR</h3>
+<p>Three categories of missing mechanism. Example: disease status, level of exposure, age. Exposure is missing for some subjects.</p>
+<ul>
+<li>MCAR: any two individuals have the same probability of having missing value for exposure. This is unlikely.</li>
+<li>MAR: any two individuaals with the same disease status and age have the same chance of having the exposure missing</li>
+<li>MNAR: chance of having missing exposure depends on the value of exposure</li>
+</ul>
+<p>Data could also have special missing structures: multi-level, longitudinal and repeated measurements. In RCT a specific technique <em>reference based imputation</em> can be applied.</p>
 </section>
-<section id="by-.sd" class="level3">
-<h3 class="anchored" data-anchor-id="by-.sd">By, .SD</h3>
-<p>Get number of records per person</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dt[, .N, by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      id     N
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     6
-4:     4     1</code></pre>
-</div>
-</div>
-<p>Number of unique records</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if use lapply, the results will be a list in the column</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt[, .(<span class="at">n_uab =</span> <span class="fu">sapply</span>(.SD, <span class="cf">function</span>(x){<span class="fu">length</span>(<span class="fu">unique</span>(x))})), </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   .SDcols <span class="ot">=</span> <span class="st">'ab'</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      id n_uab
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     4
-4:     4     1</code></pre>
-</div>
-</div>
+</section>
+<section id="consideration" class="level2">
+<h2 class="anchored" data-anchor-id="consideration">Consideration</h2>
+<p>Need to account for the missinng data process, preserve the relations in the data and uncertainty in the relations.</p>
+<ul>
+<li>MAR assumption whether plausible. (FCS can handle both MAR anad MNAR)</li>
+<li>form of imputation model: structure and error distribution</li>
+<li>predictors, as many relevant as possible, including interactions</li>
+<li>the order in which to impute</li>
+<li>set up starting imputation and number of iteration</li>
+<li>decide number of imputed datasets</li>
+</ul>
+</section>
+<section id="univariate-imputation" class="level1">
+<h1>Univariate imputation</h1>
+<p>Assume only missing in one (continuous) variable.</p>
+<ul>
+<li><strong>predict</strong> from (linear) regression. No uncertainty</li>
+<li><strong>predict + noise</strong>. Assume normality, draw a random value from N(0, sd)</li>
+<li><strong>predict + noise + parameter uncertainty</strong>. Bayesian method, bootstrap (resamples observed data, re-estimate parameters)</li>
+<li>a second predictor (or more)</li>
+<li>draw from observed data - <strong>predictive mean matching</strong></li>
+</ul>
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<p><code>VIM::regressionImp</code></p>
+<ul>
+<li>Linear regression without parameter uncertainty, <a href="https://amices.org/mice/reference/mice.impute.norm.nob.html">mice.impute.norm.nob</a></li>
+<li>Linear regression through prediction, <a href="https://amices.org/mice/reference/mice.impute.norm.predict.html">mice.impute.norm.predict</a></li>
+<li>Bayesian linear regression, <a href="https://amices.org/mice/reference/mice.impute.norm.html">mice.impute.norm</a></li>
+<li>Linear regression bootstrap, <a href="https://amices.org/mice/reference/mice.impute.norm.boot.html">mice.impute.norm.boot</a></li>
+</ul>
+</section>
+<section id="predictive-mean-matching" class="level3">
+<h3 class="anchored" data-anchor-id="predictive-mean-matching">Predictive mean matching</h3>
+<p>Assumption: distribution of missing is the same aas obsereved data of the candidates that produce the closest values to the predicted value by the missing entry.</p>
+<p>Robust to transformation, less vulnerable to model misspecification.</p>
+<p>Implementation in <code>MICE</code>:</p>
+<ul>
+<li>Predictive mean matching, <a href="https://amices.org/mice/reference/mice.impute.pmm.html">mice.impute.pmm</a></li>
+<li>Weighted predictive mean matching, <a href="https://amices.org/mice/reference/mice.impute.midastouch.html">mice.impute.midastouch</a></li>
+<li>Multivariate predictive mean matching, <a href="https://amices.org/mice/reference/mice.impute.mpmm.html">mice.impute.mpmm</a></li>
+</ul>
+</section>
+</section>
+<section id="multivariate-imputation" class="level1">
+<h1>Multivariate imputation</h1>
+<p>Keywords: Sequential imputation (MICE), joint modeling, multi-level imputation</p>
+<section id="joint-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="joint-modeling">Joint modeling</h3>
+<p>More information see <a href="https://stefvanbuuren.name/fimd/sec-JM.html">book by van Buuren</a></p>
+<p>Data can be described by a multivariate distribution, imputations are created by draws from the fitted distribution.</p>
+<p>Continuous data: imputation under multivariate normal assumption is robusst to non-normal data, see simulation by <a href="https://www.tandfonline.com/doi/abs/10.1080/10629360600903866">Demirtas et al 2008</a>.</p>
+</section>
+<section id="fully-conditional-specification-mice-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="fully-conditional-specification-mice-algorithm">Fully conditional specification, MICE algorithm</h3>
+<p>More information see <a href="https://stefvanbuuren.name/fimd/sec-FCS.html">book by van Buuren</a></p>
+<p>FCS imputes multivariate data variable-by-variable, specify imputation model for each variable, then impute iteratively.</p>
+<p>One iteration goes through all <span class="math inline">\(Y_j, j = 1, ..., p\)</span>, number of iteration can be low as 5-10.</p>
+<p>Multivariate distribution <span class="math inline">\(P(Y, X, R|\theta)\)</span> is specified through a set of conditional densities <span class="math inline">\(P(Y_j | X, Y_{-j}, R, \phi_j)\)</span></p>
+<p>Other names of this category of approach:</p>
+<ul>
+<li>variable by variable imputation (Brand 1999)</li>
+<li>switching regressions (van Buuren, Boshuizen aand Knook 1999)</li>
+<li>sequential regressions (Raaghunathan 2001)</li>
+<li>partially incompatible MCMC (Rubin 2003)</li>
+<li>iterated univariate imputation (Gelman 2004)</li>
+<li>chained equations (van Buuren, Groothuis-Oudshoorn 2000)</li>
+<li>fully conditional specification FCS (van Buuren 2006)</li>
+</ul>
+<section id="mice-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="mice-algorithm">MICE algorithm</h4>
+<p>Multiple imputation via chained equations, it is a MCMC method. If conditionals are compatible, MICEE is a Gibbs sampler.</p>
+<p>Gibbs sampling (idea): knowledge on the <strong>conditional distribution</strong> is sufficient to determine a <strong>joint distribution</strong>.</p>
+</section>
+</section>
+</section>
+<section id="reference-based-methods-rct" class="level1">
+<h1>Reference based methods (RCT)</h1>
+<p>(This type of imputation is specific to RCT, might deserve a separate post)</p>
+<p>Package: <a href="https://insightsengineering.github.io/rbmi/main/articles/stat_specs.html">rbmi</a></p>
+<p>Keywords: delta adjustment, tipping point analysis, sensitivity analysis, jump to reference,</p>
+<p>https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01261-6</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
