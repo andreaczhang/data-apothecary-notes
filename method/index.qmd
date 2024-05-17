@@ -10,6 +10,7 @@ listing:
       - "rwd_vendor_engagement.qmd"
       - "genomics.qmd"
       - "antibiotics.qmd"
+      - "nut_epi.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

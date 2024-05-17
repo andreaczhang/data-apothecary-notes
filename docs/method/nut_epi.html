@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-04-20">
-<meta name="description" content="data.table paradigm">
+<meta name="dcterms.date" content="2024-05-17">
+<meta name="description" content="About Food">
 
-<title>Data Apothecary’s Notes - Data manipulation with data.table</title>
+<title>Data Apothecary’s Notes - Nutritional Epidemiology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -162,8 +128,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul class="collapse">
-  <li><a href="#data.table-manipulation" id="toc-data.table-manipulation" class="nav-link active" data-scroll-target="#data.table-manipulation">data.table manipulation</a></li>
+  <ul>
+  <li><a href="#study-designs" id="toc-study-designs" class="nav-link active" data-scroll-target="#study-designs">Study designs</a></li>
+  <li><a href="#measurements" id="toc-measurements" class="nav-link" data-scroll-target="#measurements">Measurements</a></li>
+  <li><a href="#dietary-assessment" id="toc-dietary-assessment" class="nav-link" data-scroll-target="#dietary-assessment">Dietary assessment</a></li>
   </ul>
 </nav>
     </div>
@@ -172,15 +140,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data manipulation with data.table</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Data manip</div>
-  </div>
-  </div>
+<h1 class="title">Nutritional Epidemiology</h1>
+</div>
 
 <div>
   <div class="description">
-    <p><code>data.table</code> paradigm</p>
+    <p>About Food</p>
   </div>
 </div>
 
@@ -197,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 20, 2024</p>
+      <p class="date">May 17, 2024</p>
     </div>
   </div>
   
@@ -209,101 +174,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data.table-manipulation" class="level2">
-<h2 class="anchored" data-anchor-id="data.table-manipulation">data.table manipulation</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make some fake data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">2</span>), </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">6</span>), </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">4</span>, <span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ab_types <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ampicillin'</span>, <span class="st">'gentamicin'</span>, <span class="st">'cefalotin'</span>, <span class="st">'metronidazol'</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">&lt;-</span> <span class="fu">sample</span>(ab_types, <span class="at">size =</span> <span class="fu">length</span>(id), <span class="at">replace =</span> T)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> id, <span class="at">ab =</span> ab</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>       id         ab
-    &lt;num&gt;     &lt;char&gt;
- 1:     1 gentamicin
- 2:     1 ampicillin
- 3:     1  cefalotin
- 4:     2 gentamicin
- 5:     2 ampicillin
- 6:     3 ampicillin
- 7:     3  cefalotin
- 8:     3 ampicillin
- 9:     3 ampicillin
-10:     3 gentamicin
-11:     3  cefalotin
-12:     4 ampicillin</code></pre>
-</div>
-</div>
-<section id="subsetting" class="level3">
-<h3 class="anchored" data-anchor-id="subsetting">Subsetting</h3>
-<p>Remove a column temporarily</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dt[, <span class="sc">!</span><span class="fu">c</span>(<span class="st">'id'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            ab
-        &lt;char&gt;
- 1: gentamicin
- 2: ampicillin
- 3:  cefalotin
- 4: gentamicin
- 5: ampicillin
- 6: ampicillin
- 7:  cefalotin
- 8: ampicillin
- 9: ampicillin
-10: gentamicin
-11:  cefalotin
-12: ampicillin</code></pre>
-</div>
-</div>
+<blockquote class="blockquote">
+<p>Reading notes from Chapter 29, Modern Epidemiology</p>
+</blockquote>
+<p>Nutritional epidemiology: determine relationships between dietary factors and occurrence of specific disease.</p>
+<p>Nutrition: could be nutrients, natural constituents of food, chemicals created in the cooking and preservation of food, or noninfectious food contaminants.</p>
+<p>In NE, exposure are aspects of diet, very complex set of variables. <strong>Measurements of dietary intake</strong> is key</p>
+<section id="study-designs" class="level3">
+<h3 class="anchored" data-anchor-id="study-designs">Study designs</h3>
+<p>Case control studies</p>
+<ul>
+<li>consistent valid results are difficult to obtain, due to methodological bias
+<ul>
+<li>selection bias, appropriate control group is difficult. Hospital based studies use patients from another disease, or from population; low participation rate, higher level of general health consciousness</li>
+<li>recall bias</li>
+</ul></li>
+</ul>
+<p>Experimental studies</p>
+<ul>
+<li>trials must be of long duration</li>
+<li>compliance with the treatment diet is likely to decrease, particularly if treatment involves a real change in food intake, comparison group may adopt diet of the treatment group if the treatment is beneficial</li>
+<li>higher health consciousness are likely to participate, hence those with highest potential risk are underrepresented</li>
+</ul>
 </section>
-<section id="by-.sd" class="level3">
-<h3 class="anchored" data-anchor-id="by-.sd">By, .SD</h3>
-<p>Get number of records per person</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dt[, .N, by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      id     N
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     6
-4:     4     1</code></pre>
-</div>
-</div>
-<p>Number of unique records</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if use lapply, the results will be a list in the column</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt[, .(<span class="at">n_uab =</span> <span class="fu">sapply</span>(.SD, <span class="cf">function</span>(x){<span class="fu">length</span>(<span class="fu">unique</span>(x))})), </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   .SDcols <span class="ot">=</span> <span class="st">'ab'</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   by <span class="ot">=</span> id]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      id n_uab
-   &lt;num&gt; &lt;int&gt;
-1:     1     3
-2:     2     2
-3:     3     3
-4:     4     1</code></pre>
-</div>
-</div>
+<section id="measurements" class="level3">
+<h3 class="anchored" data-anchor-id="measurements">Measurements</h3>
+<p>In human diets, intake of different components tend to be correlated. All individuals are exposed (e.g.&nbsp;fat, fiber, vitamin A), hence dietary exposures can rarely be ‘present’ or ‘absent’. Continuous range, with limited range of variation between persons with a common culture or geographic location.</p>
+<p>Diet can be described in terms of</p>
+<ul>
+<li>foods</li>
+<li>food groups</li>
+<li>overall dietary patterns</li>
+</ul>
+<section id="using-food" class="level4">
+<h4 class="anchored" data-anchor-id="using-food">Using food</h4>
+<p>Measurement of total intake of a nutrient provides the most powerful test of a hypothesis, especially if many foods each contributes only modestly to intake of that nutrient.</p>
+<p>Use of <strong>food</strong> to represent diet has advantage when suspicion exists, but no specific hypothesis is formulated.</p>
+<p>Foods are not fully represented by their nutrient composition: milk vs yogurt produce different physiologic effects</p>
+<p>Analyses based on foods (rather than nutrients) are more directly related with dietary recommendations.</p>
+<p>Reciprocal relations emerge, promoting use of <strong>nutrient</strong></p>
+<ul>
+<li>dark bread eaters tend to not eat white bread</li>
+<li>margarine users tend to not use butter</li>
+</ul>
+</section>
+<section id="using-food-group" class="level4">
+<h4 class="anchored" data-anchor-id="using-food-group">Using food group</h4>
+<p>Fiber from grains, fiber from fruit and vegetables may have different association with risk of disease</p>
+</section>
+<section id="time-dimension" class="level4">
+<h4 class="anchored" data-anchor-id="time-dimension">Time dimension</h4>
+<p>Diet may be important during childhood, even though disease occurs decades later</p>
+<p>Diet may also act as a late-stage promoting or inhibiting factor, hence intake near the time before diagnosis may be important.</p>
+<p>Diets of individuals tend to be correlated from year to year, with decreasing correlation over longer intervals</p>
+</section>
+</section>
+<section id="dietary-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="dietary-assessment">Dietary assessment</h3>
+<p>Three approaches:</p>
+<ul>
+<li>food intake</li>
+<li>biochemical measurements of blood or body tissues</li>
+<li>measurement of body dimensions</li>
+</ul>
+<p>Short-term recall (24h)</p>
+<ul>
+<li>requires 10-20 minutes</li>
+<li>no training or literacy and minimal effort for the participants</li>
+<li>validity needs to be assessed</li>
+<li>most serious limitation: highly variable from day to day, only very commonly eaten food can be studied with this method</li>
+</ul>
+<p>Dietary records, food diaries</p>
+<ul>
+<li>typical 3-7 days</li>
+<li>burdern on the subject, only for those literate and highly motivated</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

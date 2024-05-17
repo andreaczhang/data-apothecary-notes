@@ -117,16 +117,8 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../study_design/index.html"> 
-<span class="menu-text">Study design</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../inference/index.qmd"> 
-<span class="menu-text">Inference and models</span></a>
+    <a class="nav-link" href="../method/index.html"> 
+<span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reporting/index.html"> 
@@ -163,8 +155,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mixed-modeling-in-r" id="toc-mixed-modeling-in-r" class="nav-link active" data-scroll-target="#mixed-modeling-in-r">Mixed modeling in R</a></li>
+  <li><a href="#practical-strategy" id="toc-practical-strategy" class="nav-link active" data-scroll-target="#practical-strategy">Practical strategy</a>
+  <ul class="collapse">
+  <li><a href="#understand-the-design" id="toc-understand-the-design" class="nav-link" data-scroll-target="#understand-the-design">Understand the design</a></li>
+  <li><a href="#model-building" id="toc-model-building" class="nav-link" data-scroll-target="#model-building">Model building</a></li>
+  <li><a href="#mixed-modeling-in-r" id="toc-mixed-modeling-in-r" class="nav-link" data-scroll-target="#mixed-modeling-in-r">Mixed modeling in R</a></li>
   <li><a href="#random-intercept" id="toc-random-intercept" class="nav-link" data-scroll-target="#random-intercept">Random intercept</a></li>
+  </ul></li>
   <li><a href="#mmrm" id="toc-mmrm" class="nav-link" data-scroll-target="#mmrm">MMRM</a>
   <ul class="collapse">
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
@@ -200,6 +197,21 @@ window.Quarto = {
 <li><a href="https://m-clark.github.io/mixed-models-with-R/random_intercepts.html">Mixed models with R</a></li>
 <li><a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html">GLMM FAQ</a></li>
 </ul>
+<section id="practical-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="practical-strategy">Practical strategy</h2>
+<p>(Assuming it’s normal continuous outcome)</p>
+<section id="understand-the-design" class="level3">
+<h3 class="anchored" data-anchor-id="understand-the-design">Understand the design</h3>
+<ul>
+<li>repeated measures?</li>
+<li>any intervention?</li>
+<li>how many levels? nesting? clustering?</li>
+</ul>
+</section>
+<section id="model-building" class="level3">
+<h3 class="anchored" data-anchor-id="model-building">Model building</h3>
+<p>Start with <strong>linear model</strong> without any random effect.</p>
+</section>
 <section id="mixed-modeling-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="mixed-modeling-in-r">Mixed modeling in R</h3>
 <ul>
@@ -263,6 +275,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="random-intercept">Random intercept</h3>
 <p>Each group has different intercelpt, but the slope is the same</p>
 <p><span class="math display">\[gpa = (b_0 + effect_{student} + b_{occasion} * occasion + e)\]</span></p>
+</section>
 </section>
 <section id="mmrm" class="level1">
 <h1>MMRM</h1>

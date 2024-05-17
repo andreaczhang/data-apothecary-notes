@@ -15,6 +15,24 @@ Resources:
 * [GLMM FAQ](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html)
 
 
+
+## Practical strategy
+
+(Assuming it's normal continuous outcome)
+
+### Understand the design
+
+* repeated measures?
+* any intervention?
+* how many levels? nesting? clustering?
+
+### Model building
+
+Start with **linear model** without any random effect.
+
+
+
+
 ### Mixed modeling in R
 
 * Linear mixed models: `nlme::lme`, `lme4::mner`, `brms::brm`
