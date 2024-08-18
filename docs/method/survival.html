@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,6 +101,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,16 +151,8 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../study_design/index.html"> 
-<span class="menu-text">Study design</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../inference/index.qmd"> 
-<span class="menu-text">Inference and models</span></a>
+    <a class="nav-link" href="../method/index.html"> 
+<span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../reporting/index.html"> 
@@ -130,7 +185,26 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics">Basics</a>
+  <ul class="collapse">
+  <li><a href="#cox-regression" id="toc-cox-regression" class="nav-link" data-scroll-target="#cox-regression">Cox regression</a></li>
+  <li><a href="#landmark-analysis" id="toc-landmark-analysis" class="nav-link" data-scroll-target="#landmark-analysis">Landmark analysis</a></li>
+  <li><a href="#time-dependent-covariate" id="toc-time-dependent-covariate" class="nav-link" data-scroll-target="#time-dependent-covariate">Time-dependent covariate</a></li>
+  </ul></li>
+  <li><a href="#competing-risks" id="toc-competing-risks" class="nav-link" data-scroll-target="#competing-risks">Competing risks</a>
+  <ul class="collapse">
+  <li><a href="#nonparametric-estimation" id="toc-nonparametric-estimation" class="nav-link" data-scroll-target="#nonparametric-estimation">Nonparametric estimation</a></li>
+  </ul></li>
+  <li><a href="#multi-state-modeling" id="toc-multi-state-modeling" class="nav-link" data-scroll-target="#multi-state-modeling">Multi-state modeling</a>
+  <ul class="collapse">
+  <li><a href="#use-msm" id="toc-use-msm" class="nav-link" data-scroll-target="#use-msm">Use <code>msm</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -156,14 +230,102 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Links</p>
 <p>https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</p>
-<p>https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/</p>
 <p>https://www.danieldsjoberg.com/ggsurvfit/</p>
-<p>https://www.coursera.org/learn/survival-analysis-r-public-health</p>
-<p>https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</p>
-<p>https://rviews.rstudio.com/2017/09/25/survival-analysis-with-r/</p>
 <p>jmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/</p>
+<section id="basics" class="level2">
+<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<p>Observed time <span class="math inline">\(Y_i = min(T_i, C_i)\)</span></p>
+<ul>
+<li><span class="math inline">\(T_i\)</span> is event time</li>
+<li><span class="math inline">\(C_i\)</span> is censoring time</li>
+</ul>
+<p>Event indicator <span class="math inline">\(\delta_i = 1\)</span> if event observed (<span class="math inline">\(T_i &lt;= C_i\)</span>), 0 else.</p>
+<p>Probability that a subject surves beyond given specific time:</p>
+<p><span class="math display">\[S(t) = Pr(T&gt;t) = 1 - F(t)\]</span> where</p>
+<ul>
+<li><span class="math inline">\(S(t)\)</span> is the survival function</li>
+<li><span class="math inline">\(F(t) = Pr(T &lt;= t)\)</span> is the cumulative distribution function</li>
+</ul>
+<p>Survival probability at a certain time t is a conditional probability of surviving beyond that time, given that an individual has survived just prior to that time. This can be estimated as the number of patients who are alive (without loss of follow-up), divided by the number of patients who were alive just prior to that time.</p>
+<section id="cox-regression" class="level3">
+<h3 class="anchored" data-anchor-id="cox-regression">Cox regression</h3>
+<p>Semi-parametric model for survival outcome</p>
+<p><span class="math display">\[h(t|X_i) = h_0(t) exp(\beta_1 X_{i1} + ... + \beta_p X_{ip})\]</span> where</p>
+<ul>
+<li><span class="math inline">\(h(t)\)</span> is hazard, the instantaneous rate at which events occur</li>
+<li><span class="math inline">\(h_0(t)\)</span> is the underlying baseline hazard</li>
+</ul>
+<p>Assumptions</p>
+<ul>
+<li>non-informative censoring</li>
+<li>proportional hazards</li>
+</ul>
+<p>Hazard ratio HR: the ratio of hazards between two groups at any particular point in time. For example, HR = 0.59 (sex female) means 0.59 times as many females die as males <em>at any given time</em> - females have lower hazard of death than males.</p>
+</section>
+<section id="landmark-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="landmark-analysis">Landmark analysis</h3>
+<p>Covariates are measured at baseline - before follow-up time for the event begins</p>
+<p>Examples of covariates that are not measured at baseline: transplant failure, compliance, adverse events</p>
+<p>Landmark approach</p>
+<ul>
+<li>select a fixed time after baseline, this should be done based on clinical information</li>
+<li>subset population for those followed at least until landmark time</li>
+<li>calculate follow-up from landmark time, and apply log-rank tests or cox regression</li>
+</ul>
+<p>It might be necessary to reset the time (for example by substracting the landmark time, say 90 days)</p>
+</section>
+<section id="time-dependent-covariate" class="level3">
+<h3 class="anchored" data-anchor-id="time-dependent-covariate">Time-dependent covariate</h3>
+<p>This is more appropriate than landmark analysis when</p>
+<ul>
+<li>value of a covariate changes over time</li>
+<li>there isn’t an obvious landmark time</li>
+<li>use of landmark leads to too many exclusions</li>
+</ul>
+</section>
+</section>
+<section id="competing-risks" class="level2">
+<h2 class="anchored" data-anchor-id="competing-risks">Competing risks</h2>
+<p>Subdistribution hazards: modifies the traditional hazard function to account for probability of NOT experiencing the event of interest due to competing risks</p>
+<p>Cumulative incidence function: used to estimate the probability of experiencing each type of event over time</p>
+<p>Aalen-Johansen estimators <span class="math inline">\(\hat{P}(T&lt;=t, X_T = j), j = 1, 2\)</span> add up to 1 minus Kaplan-Meier estimator <span class="math inline">\(\hat{P}(T&gt;t)\)</span></p>
+<p>Independence assumption: assuming competing events are mutually exclusive</p>
+<section id="nonparametric-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="nonparametric-estimation">Nonparametric estimation</h3>
+<p>Cause-specific hazards <span class="math inline">\(\alpha_{0j}(t), j = 1,2\)</span> are key quantities of the competing risk model, its specification suffice to generate competing risk data (except censoring).</p>
+<p>Nelson-Aalen estimator of the <strong>cumulative</strong> cause-specific hazards <span class="math inline">\(A_{0j}(t) = \int_0^t \alpha_{0j}(u) du, j = 1,2\)</span></p>
+</section>
+</section>
+<section id="multi-state-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="multi-state-modeling">Multi-state modeling</h2>
+<p>Multi-state modeling is not only for time-to-event data. Competing risk is a special case for MS.</p>
+<p>Models the transition between states: healthy to diseased, diseased to death, healthy to death etc</p>
+<p>Transition probabilities</p>
+<p>Transition hazards</p>
+<p>State occupancy probabilities</p>
+<p>Use package <code>msm</code>, <code>mstate</code>, etc</p>
+<section id="use-msm" class="level3">
+<h3 class="anchored" data-anchor-id="use-msm">Use <code>msm</code></h3>
+<p>Time of transition is unknown. The time in the dataset is <em>observed</em> state</p>
+<p>Transition structure: defined by a matrix with <span class="math inline">\(r, s\)</span> entry. For example, for transitions allowed below</p>
+<ul>
+<li>1 to 2</li>
+<li>2 to 3</li>
+<li>3 to 4</li>
+</ul>
+<p>the transition matrix would be</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Transitions should only be allowed in adjacent states in continuous time. For example, even if we observe 1 -&gt; 3 without seeing the state 2, we know that patients have been through 1 -&gt; 2 -&gt; 3. The transition matrix should NOT be selected based on what we observe in the data!</p>
+<p>Mean sojourn time (waiting time): <span class="math inline">\(-1/q_{rr}\)</span> is the expected time to stay in the same state (hence the <span class="math inline">\(rr\)</span>).</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

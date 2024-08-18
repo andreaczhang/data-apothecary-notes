@@ -91,4 +91,13 @@ PS can also be estimated using other methods that produce probabilities, not jus
 
 
 
+Links
+
+
+https://stats.stackexchange.com/questions/492218/should-the-choice-of-propensity-score-matching-versus-weighting-depend-on-the-de
+
+https://stats.stackexchange.com/questions/553853/understanding-propensity-score-matching?rq=1
+
+https://aetion.com/evidence-hub/understanding-propensity-score-weighting-methods-rwe/
+
 
