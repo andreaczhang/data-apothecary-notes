@@ -43,6 +43,7 @@ listing:
     contents: 
       - "overview_ci.qmd"
       # - "rwd_statistics_overview.qmd"
+      - "book_whatif_part1.qmd"
       - "weighting.qmd"
       - "g_computation.qmd"
       - "target_trial_emulation.qmd"
