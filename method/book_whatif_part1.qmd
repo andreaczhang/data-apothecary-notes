@@ -62,6 +62,8 @@ When there is no effect modification, the effect measures (RR, RD) computed via 
 
 DAG: directed acyclic graphs. No cycles: a variable can not cause itself.
 
+Causal diagram guides the data analysis. The opposite direction is called 'causal discovery'.
+
 For marginally randomized experiment, variable L is not in the DAG as L does not affect the assignment. Example: aspirin use A has preventative causal effect on risk of heart disease Y. 
 
 ```{mermaid}
@@ -150,7 +152,30 @@ flowchart LR
 The path from A to Y is blocked by collider L, however *A and Y will be conditionally associated* within levels of their common effect L. Whether two variables (causes) are associated can not be influenced by an event in the future (effect), but they generally become associated once stratifying on the common effect. This is related to **selection bias**.
 
 
+## Chapter 7 Confounding
+
+Confounding is the main shortcoming of observational studies.
+
+**Backdoor path**: a non causal path between A and Y. $A \leftarrow L \rightarrow Y$ that links A to Y through their common cause L is a backdoor path.
+
+```{mermaid}
+%%| label: dag8
+flowchart LR
+  L(L) --> A[A]
+  A[A] --> Y{Y}
+  L(L) --> Y{Y}
+```
+
+* When exchangeability holds, meaning that $Y^a$ is independent from A, all individuals have the same probability of receiving treatment as in a marginally randomized experiment, the average causal effect $E[Y^{a=1}] - E[Y^{a=10}]$ is equivalent to $E[Y|A=1] - E[Y|A=0]$. 
+* When exchangeability does not hold, but conditional exchangeability holds (conditional on L), need to adjust for L via standardization or IP weighting to get the popuation causal effect.
 
 
+### Backdoor criterion
 
+
+### Confounding adjustment
+
+G-methods (generalized): **standardization, IP weighting, g-estimation**
+
+Stratification based methods: **stratification, matching**
 
