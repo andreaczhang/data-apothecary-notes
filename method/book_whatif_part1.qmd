@@ -14,6 +14,8 @@ format:
     toc-depth: 2
     code-fold: false
     code-tools: false
+    mermaid:
+      theme: forest
 ---
 
 > Objective for reading the first 10 chapters: build an overview of the concepts at a high level, so that details can fit in the big picture more easily.
@@ -55,6 +57,97 @@ All four approaches require exchangeability and positivity.
 When there is no effect modification, the effect measures (RR, RD) computed via these four approches will be equal.
 
 
+
+## Chapter 6 Graphical representation 
+
+DAG: directed acyclic graphs. No cycles: a variable can not cause itself.
+
+For marginally randomized experiment, variable L is not in the DAG as L does not affect the assignment. Example: aspirin use A has preventative causal effect on risk of heart disease Y. 
+
+```{mermaid}
+%%| label: dag1
+flowchart LR
+  A[A] --> Y{Y}
+```
+
+For conditionally randomized experiment, L is a confounder so needs to be in the DAG (has arrow to both A and Y), as L affects assignment. Example: carrying a lighter A has no causal effect on risk of lung cancer Y; cigarette smoking L has a causal effect on both carrying a lung cancer Y and carrying a light A. If one examines the association between Y and A, there is an association linked by L.
+
+
+```{mermaid}
+%%| label: dag2
+flowchart LR
+  L(L) --> A[A]
+  A[A] --> Y{Y}
+  L(L) --> Y{Y}
+```
+
+
+
+```{mermaid}
+%%| label: dag3
+%%| fig-cap: "DAG when L is a confounder (common cause)"
+flowchart LR
+  L(L) --> A[A]
+  L(L) --> Y{Y}
+```
+
+
+Example: genetic haplotype A has no causal effect on becoming cigarette smoker Y. Both the haplotype A and cigarette smoking Y has a causal effect on the risk of heart disease L. L here is a **collider**. A and Y are independent.
+
+```{mermaid}
+%%| label: dag4
+%%| fig-cap: "DAG when L is a collider (common effect)"
+flowchart LR
+  A[A] --> L(L)
+  Y{Y} --> L(L)
+```
+
+
+
+::: {.callout-tip}
+## Marginally association or not
+
+Two variables are marginally associated if 
+
+- one causes the other; or 
+- they share common causes (linked by common causes)
+
+Otherwise they are marginally independent (collider, linked by common effect). Note that if now you condition on levels of the collider, it opens the path and brings in association.
+:::
+
+
+### Conditional independence
+
+**d-separation**: two variable are d-separated if all paths between them are blocked. d stands for directional.
+
+```{mermaid}
+%%| label: dag5
+flowchart LR
+  A[Aspirin] --> B(Platelet aggregation)
+  B(Platelet aggregation) --> Y{Heart disease} 
+```
+
+A is marginally associated with Y. A affects Y only through B; hence knowing levels of B is enough to predict Y, there no information added by knowing A. *A and Y are conditionally independent given B*.
+
+
+```{mermaid}
+%%| label: dag6
+flowchart LR
+  L(Smoker) --> A[Carrying a lighter]
+  L(Smoker) --> Y{Lung cancer}
+```
+
+L here is a confounder. A and Y are marginally associated, however *A and Y are conditionally independent given L* (i.e. within each level of L). For non-smokers (L=0), knowing that he carries a lighter or not does not help predict the risk of lung cancers; as we assume people carrying lighter tend to be smokers and we already know the smoking status, no information needed for whether they carry a lighter (opposite direction).
+
+
+```{mermaid}
+%%| label: dag7
+flowchart LR
+  A[haplotype] --> L(heart disease)
+  Y{smoker} --> L(heart diseas)
+```
+
+The path from A to Y is blocked by collider L, however *A and Y will be conditionally associated* within levels of their common effect L. Whether two variables (causes) are associated can not be influenced by an event in the future (effect), but they generally become associated once stratifying on the common effect. This is related to **selection bias**.
 
 
 
