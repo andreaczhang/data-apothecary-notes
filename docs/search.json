@@ -1990,28 +1990,28 @@
   {
     "objectID": "method/weighting.html",
     "href": "method/weighting.html",
-    "title": "Weighting",
+    "title": "General techniques",
     "section": "",
     "text": "Exact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
   },
   {
     "objectID": "method/weighting.html#matching",
     "href": "method/weighting.html#matching",
-    "title": "Weighting",
+    "title": "General techniques",
     "section": "",
     "text": "Exact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference."
   },
   {
     "objectID": "method/weighting.html#weighting",
     "href": "method/weighting.html#weighting",
-    "title": "Weighting",
+    "title": "General techniques",
     "section": "Weighting",
     "text": "Weighting\nWeighting can be viewed as a generalization of matching\nUsed in weighting\nATE (population) \\(w_{ATE} = \\frac{Z_i}{p_i} + \\frac{1-Z_i}{1-p_i}\\)\nATT \\(w_{ATT} = \\frac{p_i Z_i}{p_i} + \\frac{p_i(1-Z_i)}{1-p_i}\\)\nATC \\(w_{ATC} = \\frac{(1 - p_i) Z_i}{p_i} + \\frac{(1 - p_i)(1-Z_i)}{1-p_i}\\)\n\nInverse probability weighting IPW\n(In my use case it is for survey sampling, rather than causal inference. My project does not have treatment group, and do not care about treatment effects. )"
   },
   {
     "objectID": "method/weighting.html#propensity-score",
     "href": "method/weighting.html#propensity-score",
-    "title": "Weighting",
+    "title": "General techniques",
     "section": "Propensity score",
     "text": "Propensity score\n(Rosenbaum and Rubin, 1983)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are no unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc.\nLinks\nhttps://stats.stackexchange.com/questions/492218/should-the-choice-of-propensity-score-matching-versus-weighting-depend-on-the-de\nhttps://stats.stackexchange.com/questions/553853/understanding-propensity-score-matching?rq=1\nhttps://aetion.com/evidence-hub/understanding-propensity-score-weighting-methods-rwe/"
   },
@@ -2368,6 +2368,27 @@
   {
     "objectID": "method/book_whatif_iv.html",
     "href": "method/book_whatif_iv.html",
+    "title": "Notes from book: What if (Part x)",
+    "section": "",
+    "text": "Instrumental variable estimation is one way that does not rely on the assumptions where all variables to adjust for confounding and selection bias to be identified and correctly measured.\n\n\n\n\nflowchart LR\n  Z[Z] --&gt; A[A]\n  A[A] --&gt; Y{Y}\n  U(U) --&gt; A[A]\n  U(U) --&gt; Y{Y}\n\n\n\n\n\n\nZ is the random assignment indicator (1 treatment 0 placebo)\nA is the treatment (1 yes 0 no), not all adhere to original assignment\nY is the outcome\nU is the unmeasured variables that affect both treatment adherence and outcome\n\n\nConditions for instrument Z\n\nZ is associated with A (treatment)\nZ does not affect Y through its potential effect on A\nZ and Y do not share causes\n\nThe three conditions are satisfied in a double blind randomized controlled trial as\n\nthose who are assigned to treatment (Z=1) are more likely to receive treatment (A=1), indicating association\nexpected in double blind design\nexpected by random assignment\n\nThere is a fourth condition of heterogeneity / monotonicity.\nIf an instrument is unmeasured, sometimes a proxy or surrogate instrument associated with the unmeasured instrument \\(U_z\\) can be used.\n\n\nIn observational studies\nIn observational studies we do not have the random assignment indicator Z. Some common categories of IV:\n\ngenetic factors\npreference\naccess to treatment\n\n\n\nCompare with other methods\nThe conditional exchangeability required by IP weighting, standardization is replaced by other assumptions. The choice of method depends on whether it is easier to identify and measure the confounders, or find an instrument Z and expect monotonicity and heterogeneity.\nViolation of assumptions 1-4 may result in large biases; IP weighting and standardization are more robust compared to IV.\nWhen there are time varying treatment, IV is not ideal as it is suited for point intervention.\n\n\nivreg package\nCheck out this post for an example. Only normal errors."
+  },
+  {
+    "objectID": "method/index.html#causal-inference",
+    "href": "method/index.html#causal-inference",
+    "title": "Inference and models",
+    "section": "Causal inference",
+    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization, G-formula \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/index.html#other-topics",
+    "href": "method/index.html#other-topics",
+    "title": "Inference and models",
+    "section": "Other topics",
+    "text": "Other topics\nTopics on inference in general, missing value handling\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nMissing data and imputation\n\n\nOverview of multiple imputation \n\n\n\n\nMultiple imputation in R\n\n\nMICE, regression, PMM \n\n\n\n\nIntervals\n\n\nConfidence, credible and prediction intervals \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/book_whatif_part4_iv.html",
+    "href": "method/book_whatif_part4_iv.html",
     "title": "Notes from book: What if (Part x)",
     "section": "",
     "text": "Instrumental variable estimation is one way that does not rely on the assumptions where all variables to adjust for confounding and selection bias to be identified and correctly measured.\n\n\n\n\nflowchart LR\n  Z[Z] --&gt; A[A]\n  A[A] --&gt; Y{Y}\n  U(U) --&gt; A[A]\n  U(U) --&gt; Y{Y}\n\n\n\n\n\n\nZ is the random assignment indicator (1 treatment 0 placebo)\nA is the treatment (1 yes 0 no), not all adhere to original assignment\nY is the outcome\nU is the unmeasured variables that affect both treatment adherence and outcome\n\n\nConditions for instrument Z\n\nZ is associated with A (treatment)\nZ does not affect Y through its potential effect on A\nZ and Y do not share causes\n\nThe three conditions are satisfied in a double blind randomized controlled trial as\n\nthose who are assigned to treatment (Z=1) are more likely to receive treatment (A=1), indicating association\nexpected in double blind design\nexpected by random assignment\n\nThere is a fourth condition of heterogeneity / monotonicity.\nIf an instrument is unmeasured, sometimes a proxy or surrogate instrument associated with the unmeasured instrument \\(U_z\\) can be used.\n\n\nIn observational studies\nIn observational studies we do not have the random assignment indicator Z. Some common categories of IV:\n\ngenetic factors\npreference\naccess to treatment\n\n\n\nCompare with other methods\nThe conditional exchangeability required by IP weighting, standardization is replaced by other assumptions. The choice of method depends on whether it is easier to identify and measure the confounders, or find an instrument Z and expect monotonicity and heterogeneity.\nViolation of assumptions 1-4 may result in large biases; IP weighting and standardization are more robust compared to IV.\nWhen there are time varying treatment, IV is not ideal as it is suited for point intervention.\n\n\nivreg package\nCheck out this post for an example. Only normal errors."

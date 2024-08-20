@@ -183,6 +183,34 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-othertopics .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-othertopics'] = new List('listing-othertopics', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-casestudy .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
@@ -300,12 +328,13 @@ window.Quarto = {
   <ul>
   <li><a href="#settings" id="toc-settings" class="nav-link active" data-scroll-target="#settings">Settings</a></li>
   <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design">Study design</a></li>
-  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
+  <li><a href="#causal-inference" id="toc-causal-inference" class="nav-link" data-scroll-target="#causal-inference">Causal inference</a></li>
   <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
+  <li><a href="#other-topics" id="toc-other-topics" class="nav-link" data-scroll-target="#other-topics">Other topics</a></li>
   <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case studies</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(24)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Design">Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Drugs">Drugs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Inference">Inference <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Missing data">Missing data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Omics data">Omics data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCT">RCT <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Sample size">Sample size <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(25)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Design">Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Drugs">Drugs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Inference">Inference <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Missing data">Missing data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Omics data">Omics data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCT">RCT <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Sample size">Sample size <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -467,9 +496,8 @@ No matching items
 </div>
 </div>
 </section>
-<section id="inference" class="level2">
-<h2 class="anchored" data-anchor-id="inference">Inference</h2>
-<p>Notes on causal inference and other related topics.</p>
+<section id="causal-inference" class="level2">
+<h2 class="anchored" data-anchor-id="causal-inference">Causal inference</h2>
 <div id="listing-inference" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
@@ -491,23 +519,15 @@ Description
 <span class="listing-description">Collider, confounder, mediator and M-bias </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="Causal inference" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1723986905719" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238" data-listing-title-sort="Weighting" data-listing-filename-sort="weighting.qmd">
+<tr data-index="1" data-categories="Causal inference" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1724160294247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238" data-listing-title-sort="General techniques" data-listing-filename-sort="weighting.qmd">
 <td>
-<a href="../method/weighting.html" class="title listing-title">Weighting</a>
+<a href="../method/weighting.html" class="title listing-title">General techniques</a>
 </td>
 <td>
-<span class="listing-description">Propensity score, matching, weighting </span>
-</td>
-</tr>
-<tr data-index="2" data-categories="Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1713078154248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Target trial emulation" data-listing-filename-sort="target_trial_emulation.qmd">
-<td>
-<a href="../method/target_trial_emulation.html" class="title listing-title">Target trial emulation</a>
-</td>
-<td>
-<span class="listing-description">TTE </span>
+<span class="listing-description">(to be integrated) </span>
 </td>
 </tr>
-<tr data-index="3" data-categories="Causal inference" data-listing-date-sort="1702335600000" data-listing-file-modified-sort="1713078154246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68" data-listing-title-sort="G-Computation" data-listing-filename-sort="g_computation.qmd">
+<tr data-index="2" data-categories="Causal inference" data-listing-date-sort="1702335600000" data-listing-file-modified-sort="1713078154246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68" data-listing-title-sort="G-Computation" data-listing-filename-sort="g_computation.qmd">
 <td>
 <a href="../method/g_computation.html" class="title listing-title">G-Computation</a>
 </td>
@@ -515,31 +535,7 @@ Description
 <span class="listing-description">G-Computation </span>
 </td>
 </tr>
-<tr data-index="4" data-categories="Missing data" data-listing-date-sort="1707865200000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602" data-listing-title-sort="Missing data and imputation" data-listing-filename-sort="imputation_1_overview.qmd">
-<td>
-<a href="../method/imputation_1_overview.html" class="title listing-title">Missing data and imputation</a>
-</td>
-<td>
-<span class="listing-description">Overview of multiple imputation </span>
-</td>
-</tr>
-<tr data-index="5" data-categories="Missing data" data-listing-date-sort="1708642800000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="746" data-listing-title-sort="Multiple imputation in R" data-listing-filename-sort="imputation_2.qmd">
-<td>
-<a href="../method/imputation_2.html" class="title listing-title">Multiple imputation in R</a>
-</td>
-<td>
-<span class="listing-description"><code>MICE</code>, regression, PMM </span>
-</td>
-</tr>
-<tr data-index="6" data-categories="Inference" data-listing-date-sort="1708729200000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1644" data-listing-title-sort="Intervals" data-listing-filename-sort="intervals.qmd">
-<td>
-<a href="../method/intervals.html" class="title listing-title">Intervals</a>
-</td>
-<td>
-<span class="listing-description">Confidence, credible and prediction intervals </span>
-</td>
-</tr>
-<tr data-index="7" data-categories="Causal inference" data-listing-date-sort="1723932000000" data-listing-file-modified-sort="1724144908614" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="973" data-listing-title-sort="Notes from book: What If (Part 1)" data-listing-filename-sort="book_whatif_part1.qmd">
+<tr data-index="3" data-categories="Causal inference" data-listing-date-sort="1723932000000" data-listing-file-modified-sort="1724144908614" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="973" data-listing-title-sort="Notes from book: What If (Part 1)" data-listing-filename-sort="book_whatif_part1.qmd">
 <td>
 <a href="../method/book_whatif_part1.html" class="title listing-title">Notes from book: What If (Part 1)</a>
 </td>
@@ -547,9 +543,25 @@ Description
 <span class="listing-description">Causal inference notes: chapter 1 to 10 </span>
 </td>
 </tr>
-<tr data-index="8" data-categories="Causal inference" data-listing-date-sort="1724104800000" data-listing-file-modified-sort="1724158053274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290" data-listing-title-sort="Notes from book: What if (Part x)" data-listing-filename-sort="book_whatif_iv.qmd">
+<tr data-index="4" data-categories="Causal inference" data-listing-date-sort="1724104800000" data-listing-file-modified-sort="1724160109334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Notes from book: What if (Part 2)" data-listing-filename-sort="book_whatif_part2_ipw_std.qmd">
 <td>
-<a href="../method/book_whatif_iv.html" class="title listing-title">Notes from book: What if (Part x)</a>
+<a href="../method/book_whatif_part2_ipw_std.html" class="title listing-title">Notes from book: What if (Part 2)</a>
+</td>
+<td>
+<span class="listing-description">IP weighting, standardization, G-formula </span>
+</td>
+</tr>
+<tr data-index="5" data-categories="Causal inference" data-listing-date-sort="1724104800000" data-listing-file-modified-sort="1724160104968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Notes from book: What if (Part 3)" data-listing-filename-sort="book_whatif_part3_propensity.qmd">
+<td>
+<a href="../method/book_whatif_part3_propensity.html" class="title listing-title">Notes from book: What if (Part 3)</a>
+</td>
+<td>
+<span class="listing-description">Outcome regression, propensity score </span>
+</td>
+</tr>
+<tr data-index="6" data-categories="Causal inference" data-listing-date-sort="1724104800000" data-listing-file-modified-sort="1724158053274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290" data-listing-title-sort="Notes from book: What if (Part x)" data-listing-filename-sort="book_whatif_part4_iv.qmd">
+<td>
+<a href="../method/book_whatif_part4_iv.html" class="title listing-title">Notes from book: What if (Part x)</a>
 </td>
 <td>
 <span class="listing-description">Instrumental variables </span>
@@ -591,6 +603,53 @@ Description
 </td>
 <td>
 <span class="listing-description">Links</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="other-topics" class="level2">
+<h2 class="anchored" data-anchor-id="other-topics">Other topics</h2>
+<p>Topics on inference in general, missing value handling</p>
+<div id="listing-othertopics" class="quarto-listing quarto-listing-container-table">
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Missing data" data-listing-date-sort="1707865200000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602" data-listing-title-sort="Missing data and imputation" data-listing-filename-sort="imputation_1_overview.qmd">
+<td>
+<a href="../method/imputation_1_overview.html" class="title listing-title">Missing data and imputation</a>
+</td>
+<td>
+<span class="listing-description">Overview of multiple imputation </span>
+</td>
+</tr>
+<tr data-index="1" data-categories="Missing data" data-listing-date-sort="1708642800000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="746" data-listing-title-sort="Multiple imputation in R" data-listing-filename-sort="imputation_2.qmd">
+<td>
+<a href="../method/imputation_2.html" class="title listing-title">Multiple imputation in R</a>
+</td>
+<td>
+<span class="listing-description"><code>MICE</code>, regression, PMM </span>
+</td>
+</tr>
+<tr data-index="2" data-categories="Inference" data-listing-date-sort="1708729200000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1644" data-listing-title-sort="Intervals" data-listing-filename-sort="intervals.qmd">
+<td>
+<a href="../method/intervals.html" class="title listing-title">Intervals</a>
+</td>
+<td>
+<span class="listing-description">Confidence, credible and prediction intervals </span>
 </td>
 </tr>
 </tbody>

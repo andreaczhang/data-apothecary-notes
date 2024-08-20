@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2023-09-03">
-<meta name="description" content="TTE">
+<meta name="dcterms.date" content="2024-08-20">
+<meta name="description" content="Instrumental variables">
 
-<title>Data Apothecary’s Notes - Target trial emulation</title>
+<title>Data Apothecary’s Notes - Notes from book: What if (Part x)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,39 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -132,15 +164,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Target trial emulation</h1>
+<h1 class="title">Notes from book: What if (Part x)</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Observational data</div>
+    <div class="quarto-category">Causal inference</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>TTE</p>
+    <p>Instrumental variables</p>
   </div>
 </div>
 
@@ -157,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2023</p>
+      <p class="date">August 20, 2024</p>
     </div>
   </div>
   
@@ -169,8 +201,64 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Instrumental variable estimation is one way that <u>does not</u> rely on the assumptions where all variables to adjust for confounding and selection bias to be identified and correctly measured.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="dag1">
+<div>
+<pre class="mermaid mermaid-js" data-label="dag1">flowchart LR
+  Z[Z] --&gt; A[A]
+  A[A] --&gt; Y{Y}
+  U(U) --&gt; A[A]
+  U(U) --&gt; Y{Y}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Z is the random assignment indicator (1 treatment 0 placebo)</li>
+<li>A is the treatment (1 yes 0 no), not all adhere to original assignment</li>
+<li>Y is the outcome</li>
+<li>U is the unmeasured variables that affect both treatment adherence and outcome</li>
+</ul>
+<section id="conditions-for-instrument-z" class="level3">
+<h3 class="anchored" data-anchor-id="conditions-for-instrument-z">Conditions for instrument Z</h3>
+<ol type="1">
+<li>Z is associated with A (treatment)</li>
+<li>Z does not affect Y through its potential effect on A</li>
+<li>Z and Y do not share causes</li>
+</ol>
+<p>The three conditions are satisfied in a <strong>double blind randomized controlled trial</strong> as</p>
+<ol type="1">
+<li>those who are assigned to treatment (Z=1) are more likely to receive treatment (A=1), indicating association</li>
+<li>expected in double blind design</li>
+<li>expected by random assignment</li>
+</ol>
+<p>There is a fourth condition of heterogeneity / monotonicity.</p>
+<p>If an instrument is unmeasured, sometimes a proxy or <strong>surrogate instrument</strong> associated with the unmeasured instrument <span class="math inline">\(U_z\)</span> can be used.</p>
+</section>
+<section id="in-observational-studies" class="level3">
+<h3 class="anchored" data-anchor-id="in-observational-studies">In observational studies</h3>
+<p>In observational studies we do not have the random assignment indicator Z. Some common categories of IV:</p>
+<ul>
+<li>genetic factors</li>
+<li>preference</li>
+<li>access to treatment</li>
+</ul>
+</section>
+<section id="compare-with-other-methods" class="level3">
+<h3 class="anchored" data-anchor-id="compare-with-other-methods">Compare with other methods</h3>
+<p>The conditional exchangeability required by IP weighting, standardization is replaced by other assumptions. The choice of method depends on <em>whether it is easier</em> to identify and measure the confounders, or find an instrument Z and expect monotonicity and heterogeneity.</p>
+<p>Violation of assumptions 1-4 may result in <strong>large biases</strong>; IP weighting and standardization are more robust compared to IV.</p>
+<p>When there are <strong>time varying treatment</strong>, IV is not ideal as it is suited for point intervention.</p>
+</section>
+<section id="ivreg-package" class="level3">
+<h3 class="anchored" data-anchor-id="ivreg-package"><code>ivreg</code> package</h3>
+<p>Check out <a href="https://cran.r-project.org/web/packages/ivreg/vignettes/ivreg.html">this post</a> for an example. Only normal errors.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

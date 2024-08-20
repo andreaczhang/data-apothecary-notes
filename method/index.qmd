@@ -44,13 +44,12 @@ listing:
       - "overview_ci.qmd"
       # - "rwd_statistics_overview.qmd"
       - "book_whatif_part1.qmd"
-      - "book_whatif_iv.qmd"
+      - "book_whatif_part2_ipw_std.qmd"
+      - "book_whatif_part3_propensity.qmd"
+      - "book_whatif_part4_iv.qmd"
       - "weighting.qmd"
       - "g_computation.qmd"
-      - "target_trial_emulation.qmd"
-      - "intervals.qmd"
-      - "imputation_1_overview.qmd"
-      - "imputation_2.qmd"
+      # - "target_trial_emulation.qmd"
     type: table
     grid-item-border: false
     sort-ui: false
@@ -72,6 +71,21 @@ listing:
     filter-ui: false
     categories: true    
 
+  - id: othertopics
+    max-description-length: 500
+    image-height: 150px
+    fields: [title, description]
+    contents: 
+      - "intervals.qmd"
+      - "imputation_1_overview.qmd"
+      - "imputation_2.qmd"
+    type: table
+    grid-item-border: false
+    sort-ui: false
+    sort: date
+    filter-ui: false
+    categories: true    
+    
   - id: casestudy
     max-description-length: 500
     image-height: 150px
@@ -111,9 +125,8 @@ Different settings to apply methods.
 :::
 
 
-## Inference
+## Causal inference
 
-Notes on causal inference and other related topics.
 
 ::: {#inference}
 :::
@@ -124,6 +137,15 @@ Notes on causal inference and other related topics.
 
 ::: {#models}
 :::
+
+
+## Other topics
+
+Topics on inference in general, missing value handling
+
+::: {#othertopics}
+:::
+
 
 ## Case studies
 
