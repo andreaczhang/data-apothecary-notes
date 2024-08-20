@@ -57,6 +57,7 @@ d %>%
 
 fit_lm <- lm(Reaction ~ Days, data = d)
 summ_lm <- summary(fit_lm)
+summ_lm
 
 # 1 unit increase of sleep deprivation increases 10s in reaction
 # 28.7% variance explained
@@ -140,6 +141,9 @@ ranef(fit1)
 fit2 <- lmer(Reaction ~ Days + (1|Subject), data = d)
 summary(fit2)
 # beta1 = 10.46, very close to lm
+# se around b1 is lower than ols (1.238)
+
+
 
 summ_f2 <- summary(fit2)
 summ_f2$coefficients
@@ -160,6 +164,178 @@ ind_reg0$estimate
 coef(fit2)$Subject[,1] - ind_reg0$estimate
 # differ by around 49
 plot(coef(fit2)$Subject[,1], ind_reg0$estimate)
+
+
+## point predictions ----
+
+# point predictions
+# x = 5 (Day)
+# re.form = NA - random effect
+predict(fit2, 
+        newdata = data.frame(Days = 5), 
+        re.form = NA)
+# 303.74
+
+
+# subject 308
+predict(fit2, 
+        newdata = data.frame(Days = 5, Subject = 308),
+        re.form = ~(1|Subject))
+# 344.52
+
+
+# new participants that's not in the data?
+# returns fixed effect estimate, the average 
+# allow.new.levels = T
+predict(fit2, 
+        newdata = data.frame(Days = 5, Subject = 800),
+        re.form = ~(1|Subject), 
+        allow.new.levels = T)
+
+
+# Make predictions using fixed effect only and then random effects and plot the results
+d %>%
+  mutate(pred_fixef = predict(fit2, newdata = ., re.form = NA),
+         pred_ranef = predict(fit2, newdata = ., re.form = ~(1|Subject))) %>%
+  ggplot(aes(x = Days, y = Reaction)) +
+  geom_point(shape = 21,
+             size = 2,
+             color = "black",
+             fill = "grey") +
+  geom_line(aes(y = pred_fixef),
+            color = "blue",
+            size = 1.2) +
+  geom_line(aes(y = pred_ranef),
+            color = "green",
+            size = 1.2) +
+  facet_wrap(~Subject) +
+  scale_x_continuous(labels = seq(from = 0, to = 9, by = 3),
+                     breaks = seq(from = 0, to = 9, by = 3)) +
+  labs(x = "Days of Sleep Deprivation",
+       y = "Average Reaction Time",
+       title = "Reaction Time ~ Days of Sleep Deprivation",
+       subtitle = "Blue = Fixed Effects Prediction | Green = Random Effects Prediction")
+
+## confidence interval -----
+
+# read this vignette 
+# https://cran.rstudio.com/web/packages/merTools/vignettes/Using_predictInterval.html
+# for at x = 5 (fixed effect)
+# re.form = NA, this produces confidence rather than prediction int
+# with predint, it's NULL
+
+boot_ci <- bootMer(fit2, 
+                   nsim = 100, 
+                   FUN = function(x){
+                     predict(x, 
+                             newdata = data.frame(Days = 5), 
+                             re.form = NA)
+                   })
+
+boot_ci # 303.74 (only fixed effect, no individual person)
+boot_ci$t |> hist()
+quantile(boot_ci$t)
+quantile(boot_ci$t, probs = c(0.05, 0.95))
+
+sd(boot_ci$t)
+# 95% ci
+mean(boot_ci$t) + qnorm(p = c(0.025, 0.975)) * sd(boot_ci$t)
+
+
+
+
+
+
+
+## prediction interval ----
+
+
+# for all persons
+pred_ints_fit2 <- merTools::predictInterval(
+  fit2, 
+  newdata = d, 
+  n.sims = 100,
+  returnSims = T, 
+  seed = 123,
+  level = 0.95
+)
+
+
+
+pred_ints_fit2 |> head()
+head(d)
+
+dnew <- cbind(d, pred_ints_fit2)
+head(dnew)
+
+# plot preddata# plot predictions
+dnew %>%
+  ggplot(aes(x = Days, y = Reaction)) +
+  geom_point(shape = 21,
+             size = 2,
+             color = "black",
+             fill = "grey") +
+  geom_ribbon(aes(ymin = lwr, ymax = upr),
+              fill = 'light grey',
+              alpha = 0.4) +
+  geom_line(aes(y = fit),
+            color = 'red',
+            size = 1.2) +
+  facet_wrap(~Subject) +
+  scale_x_continuous(labels = seq(from = 0, to = 9, by = 3),
+                     breaks = seq(from = 0, to = 9, by = 3)) +
+  labs(x = "Days of Sleep Deprivation",
+       y = "Average Reaction Time",
+       title = "Reaction Time ~ Days of Sleep Deprivation") + 
+  theme_bw()
+
+
+# for one person 
+merTools::predictInterval(fit2, 
+                          newdata = data.frame(Days = 5, Subject = 308), 
+                          n.sims = 300, 
+                          returnSims = T, 
+                          seed = 123,level = 0.95)
+# the fit is different from point prediction
+# 343.56
+# 274 - 411
+
+
+# prediction interval for subject 308 with bootMer
+boot_pi <- bootMer(fit2, 
+                   nsim = 300, 
+                   FUN = function(x){
+                     predict(x, 
+                             newdata = data.frame(Days = 5, Subject = 308), 
+                             re.form = NULL)
+                   })
+
+boot_pi
+# 344.52, se 38.23
+# quite large difference compared to predictInterval
+boot_pi$t |> quantile(p = c(0.025, 0.975))
+# 231.37, 379.14
+
+
+
+
+# new data
+merTools::predictInterval(fit2, 
+                   newdata = data.frame(Days = 5, Subject = 800), 
+                   n.sims = 100, 
+                   returnSims = T, 
+                   seed = 123,level = 0.95)
+
+
+
+
+
+
+
+
+
+
+
 
 # mm (random slope and intercept) ----
 # equivalent to (Days|Subject)

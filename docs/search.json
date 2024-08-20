@@ -2392,5 +2392,19 @@
     "title": "Notes from book: What if (Part x)",
     "section": "",
     "text": "Instrumental variable estimation is one way that does not rely on the assumptions where all variables to adjust for confounding and selection bias to be identified and correctly measured.\n\n\n\n\nflowchart LR\n  Z[Z] --&gt; A[A]\n  A[A] --&gt; Y{Y}\n  U(U) --&gt; A[A]\n  U(U) --&gt; Y{Y}\n\n\n\n\n\n\nZ is the random assignment indicator (1 treatment 0 placebo)\nA is the treatment (1 yes 0 no), not all adhere to original assignment\nY is the outcome\nU is the unmeasured variables that affect both treatment adherence and outcome\n\n\nConditions for instrument Z\n\nZ is associated with A (treatment)\nZ does not affect Y through its potential effect on A\nZ and Y do not share causes\n\nThe three conditions are satisfied in a double blind randomized controlled trial as\n\nthose who are assigned to treatment (Z=1) are more likely to receive treatment (A=1), indicating association\nexpected in double blind design\nexpected by random assignment\n\nThere is a fourth condition of heterogeneity / monotonicity.\nIf an instrument is unmeasured, sometimes a proxy or surrogate instrument associated with the unmeasured instrument \\(U_z\\) can be used.\n\n\nIn observational studies\nIn observational studies we do not have the random assignment indicator Z. Some common categories of IV:\n\ngenetic factors\npreference\naccess to treatment\n\n\n\nCompare with other methods\nThe conditional exchangeability required by IP weighting, standardization is replaced by other assumptions. The choice of method depends on whether it is easier to identify and measure the confounders, or find an instrument Z and expect monotonicity and heterogeneity.\nViolation of assumptions 1-4 may result in large biases; IP weighting and standardization are more robust compared to IV.\nWhen there are time varying treatment, IV is not ideal as it is suited for point intervention.\n\n\nivreg package\nCheck out this post for an example. Only normal errors."
+  },
+  {
+    "objectID": "method/book_whatif_part2_ipw_std.html",
+    "href": "method/book_whatif_part2_ipw_std.html",
+    "title": "Notes from book: What if (Part 2)",
+    "section": "",
+    "text": "Code: What If. R code\nCausal question: estimate the average causal effect of smoking cessation (treatment, A) on weight gain (outcome, Y)\nDataset: NHEFS. 1566 smokers, age 25-74. Baseline visit and follow-up 10 years later. A=1 means they quit smoking, 0 otherwise. Outcome weight gain measured in kg.\nAdjust for 9 variables measured at baseline:"
+  },
+  {
+    "objectID": "method/book_whatif_part2_ipw_std.html#ip-weighting",
+    "href": "method/book_whatif_part2_ipw_std.html#ip-weighting",
+    "title": "Notes from book: What if (Part 2)",
+    "section": "IP weighting",
+    "text": "IP weighting\nIP weighting creates pseudo-population to remove covariates L to the treatment A. Properties of the pseudo-population:\n\nA and L are statistically independent\n\\(E_{ps}[Y|A=a]\\) equals the standardized mean in the actual population, \\(\\sum_{l}E[Y|A=a,L=l]P[L=l]\\).\n\nIndividual-specific IP weights for treatment A is \\(W = 1/f(A|L)\\). For the quitters (A=1), \\(f(A|L) = P[A=1|L]\\). This is also the propensity score.\nThe weights can be estimated non-parametrically when the problem is simple: count the number of people treated (A=1) in each stratum (L=1, L=0) and then divide by the number in the stratum. When the problem has more variables (confounders), fit a logistic regression to estimate the probability."
   }
 ]
