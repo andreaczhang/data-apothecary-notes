@@ -167,15 +167,18 @@ flowchart LR
 ```
 
 * When exchangeability holds, meaning that $Y^a$ is independent from A, all individuals have the same probability of receiving treatment as in a marginally randomized experiment, the average causal effect $E[Y^{a=1}] - E[Y^{a=10}]$ is equivalent to $E[Y|A=1] - E[Y|A=0]$. 
-* When exchangeability does not hold, but conditional exchangeability holds (conditional on L), need to adjust for L via standardization or IP weighting to get the popuation causal effect.
+* When exchangeability does not hold, but conditional exchangeability holds (conditional on L), need to adjust for L via standardization or IP weighting to get the population causal effect.
 
 
 ### Backdoor criterion
 
+Minimal adjustment sets
+
 
 ### Confounding adjustment
 
-G-methods (generalized): **standardization, IP weighting, g-estimation**
+**Adjustment** or controlling for: any technique that removes the effect of the variables we are not interested in.  
 
-Stratification based methods: **stratification, matching**
+* G-methods (generalized): **standardization, IP weighting, g-estimation**
+* Stratification based methods: **stratification, matching**
 

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-08-18">
-<meta name="description" content="Causal inference notes: chapter 1 to 10">
+<meta name="dcterms.date" content="2024-08-20">
+<meta name="description" content="Instrumental variables">
 
-<title>Data Apothecary’s Notes - Notes from book: What If (Part 1)</title>
+<title>Data Apothecary’s Notes - Notes from book: What if (Part x)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta name="mermaid-theme" content="forest">
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -158,23 +157,14 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#chapter-1---3" id="toc-chapter-1---3" class="nav-link active" data-scroll-target="#chapter-1---3">Chapter 1 - 3</a></li>
-  <li><a href="#chapter-4-effect-modification" id="toc-chapter-4-effect-modification" class="nav-link" data-scroll-target="#chapter-4-effect-modification">Chapter 4 Effect Modification</a></li>
-  <li><a href="#chapter-6-graphical-representation" id="toc-chapter-6-graphical-representation" class="nav-link" data-scroll-target="#chapter-6-graphical-representation">Chapter 6 Graphical representation</a></li>
-  <li><a href="#chapter-7-confounding" id="toc-chapter-7-confounding" class="nav-link" data-scroll-target="#chapter-7-confounding">Chapter 7 Confounding</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notes from book: What If (Part 1)</h1>
+<h1 class="title">Notes from book: What if (Part x)</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Causal inference</div>
   </div>
@@ -182,7 +172,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    <p>Causal inference notes: chapter 1 to 10</p>
+    <p>Instrumental variables</p>
   </div>
 </div>
 
@@ -199,7 +189,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 18, 2024</p>
+      <p class="date">August 20, 2024</p>
     </div>
   </div>
   
@@ -211,192 +201,63 @@ window.Quarto = {
 </header>
 
 
-<blockquote class="blockquote">
-<p>Objective for reading the first 10 chapters: build an overview of the concepts at a high level, so that details can fit in the big picture more easily.</p>
-</blockquote>
-<section id="chapter-1---3" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-1---3">Chapter 1 - 3</h2>
-<p>(Notes are written on paper)</p>
-<p>Keywords:</p>
-<ul>
-<li>exchangeability, conditional exchangeability</li>
-<li>marginally randomized experiment, conditional and unconditional randomization</li>
-<li>the equivalence of causal risk difference (or ratio) to associational risk difference</li>
-<li>effect, and difference between standardization and IP weighting</li>
-</ul>
-</section>
-<section id="chapter-4-effect-modification" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-4-effect-modification">Chapter 4 Effect Modification</h2>
-<p>A null average causal effect in the population <u>does not</u> imply a null average causal effect in a particular <strong>subset</strong> of the population, such as males and females.</p>
-<p>Effect modifier: V is a modifier of the effect of A on Y, when the average causal effect on A on Y varies across levels of V.</p>
-<p><strong>Stratification</strong> is the natural way to identify effect modification. Effect modification is also called <strong>effect heterogeneity</strong> across strata of V.</p>
-<p>Why care about it? If V modifies the effect of A on Y, then the average effect will differ between populations with different prevalence of V, e.g.&nbsp;the effect (size and direction) is more pronounced in the larger group. Also, it helps to identify the group that would benefit the most from an intervention.</p>
-<p>When counterfactual outcomes <span class="math inline">\(Y^{a=1}, Y^{a=0}\)</span> are unavailable, only observed outcomes are available: the use of stratification to detect effect modification will depend on the study design.</p>
-<ul>
-<li>in an ideal marginally randomized experiment with unconditional randomization, the causal RD is the associational RD. Simply carry out a stratified analysis.</li>
-</ul>
-<section id="summary" class="level4">
-<h4 class="anchored" data-anchor-id="summary">Summary</h4>
-<ul>
-<li><strong>IP weighting</strong> and <strong>standardisation</strong> can be used to compute either marginal or conditional effects;</li>
-<li><strong>stratification</strong> / restriction and <strong>matching</strong> can only be used to compute conditional effects in certain subsets of the population.</li>
-</ul>
-<p>All four approaches require exchangeability and positivity.</p>
-<p>When there is no effect modification, the effect measures (RR, RD) computed via these four approches will be equal.</p>
-</section>
-</section>
-<section id="chapter-6-graphical-representation" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-6-graphical-representation">Chapter 6 Graphical representation</h2>
-<p>DAG: directed acyclic graphs. No cycles: a variable can not cause itself.</p>
-<p>Causal diagram guides the data analysis. The opposite direction is called ‘causal discovery’.</p>
-<p>For marginally randomized experiment, variable L is not in the DAG as L does not affect the assignment. Example: aspirin use A has preventative causal effect on risk of heart disease Y.</p>
+<p>Instrumental variable estimation is one way that <u>does not</u> rely on the assumptions where all variables to adjust for confounding and selection bias to be identified and correctly measured.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div id="dag1">
 <div>
 <pre class="mermaid mermaid-js" data-label="dag1">flowchart LR
+  Z[Z] --&gt; A[A]
   A[A] --&gt; Y{Y}
+  U(U) --&gt; A[A]
+  U(U) --&gt; Y{Y}
 </pre>
 </div>
 </div>
 </div>
 </div>
-<p>For conditionally randomized experiment, L is a confounder so needs to be in the DAG (has arrow to both A and Y), as L affects assignment. Example: carrying a lighter A has no causal effect on risk of lung cancer Y; cigarette smoking L has a causal effect on both carrying a lung cancer Y and carrying a light A. If one examines the association between Y and A, there is an association linked by L.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div id="dag2">
-<div>
-<pre class="mermaid mermaid-js" data-label="dag2">flowchart LR
-  L(L) --&gt; A[A]
-  A[A] --&gt; Y{Y}
-  L(L) --&gt; Y{Y}
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div id="dag3">
-<div>
-<pre class="mermaid mermaid-js" data-label="dag3">flowchart LR
-  L(L) --&gt; A[A]
-  L(L) --&gt; Y{Y}
-</pre>
-</div>
-<p>DAG when L is a confounder (common cause)</p>
-</div>
-</div>
-</div>
-<p>Example: genetic haplotype A has no causal effect on becoming cigarette smoker Y. Both the haplotype A and cigarette smoking Y has a causal effect on the risk of heart disease L. L here is a <strong>collider</strong>. A and Y are independent.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div id="dag4">
-<div>
-<pre class="mermaid mermaid-js" data-label="dag4">flowchart LR
-  A[A] --&gt; L(L)
-  Y{Y} --&gt; L(L)
-</pre>
-</div>
-<p>DAG when L is a collider (common effect)</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Marginally association or not
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Two variables are marginally associated if</p>
 <ul>
-<li>one causes the other; or</li>
-<li>they share common causes (linked by common causes)</li>
+<li>Z is the random assignment indicator (1 treatment 0 placebo)</li>
+<li>A is the treatment (1 yes 0 no), not all adhere to original assignment</li>
+<li>Y is the outcome</li>
+<li>U is the unmeasured variables that affect both treatment adherence and outcome</li>
 </ul>
-<p>Otherwise they are marginally independent (collider, linked by common effect). Note that if now you condition on levels of the collider, it opens the path and brings in association.</p>
-</div>
-</div>
-<section id="conditional-independence" class="level3">
-<h3 class="anchored" data-anchor-id="conditional-independence">Conditional independence</h3>
-<p><strong>d-separation</strong>: two variable are d-separated if all paths between them are blocked. d stands for directional.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div id="dag5">
-<div>
-<pre class="mermaid mermaid-js" data-label="dag5">flowchart LR
-  A[Aspirin] --&gt; B(Platelet aggregation)
-  B(Platelet aggregation) --&gt; Y{Heart disease} 
-</pre>
-</div>
-</div>
-</div>
-</div>
-<p>A is marginally associated with Y. A affects Y only through B; hence knowing levels of B is enough to predict Y, there no information added by knowing A. <em>A and Y are conditionally independent given B</em>.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div id="dag6">
-<div>
-<pre class="mermaid mermaid-js" data-label="dag6">flowchart LR
-  L(Smoker) --&gt; A[Carrying a lighter]
-  L(Smoker) --&gt; Y{Lung cancer}
-</pre>
-</div>
-</div>
-</div>
-</div>
-<p>L here is a confounder. A and Y are marginally associated, however <em>A and Y are conditionally independent given L</em> (i.e.&nbsp;within each level of L). For non-smokers (L=0), knowing that he carries a lighter or not does not help predict the risk of lung cancers; as we assume people carrying lighter tend to be smokers and we already know the smoking status, no information needed for whether they carry a lighter (opposite direction).</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div id="dag7">
-<div>
-<pre class="mermaid mermaid-js" data-label="dag7">flowchart LR
-  A[haplotype] --&gt; L(heart disease)
-  Y{smoker} --&gt; L(heart diseas)
-</pre>
-</div>
-</div>
-</div>
-</div>
-<p>The path from A to Y is blocked by collider L, however <em>A and Y will be conditionally associated</em> within levels of their common effect L. Whether two variables (causes) are associated can not be influenced by an event in the future (effect), but they generally become associated once stratifying on the common effect. This is related to <strong>selection bias</strong>.</p>
+<section id="conditions-for-instrument-z" class="level3">
+<h3 class="anchored" data-anchor-id="conditions-for-instrument-z">Conditions for instrument Z</h3>
+<ol type="1">
+<li>Z is associated with A (treatment)</li>
+<li>Z does not affect Y through its potential effect on A</li>
+<li>Z and Y do not share causes</li>
+</ol>
+<p>The three conditions are satisfied in a <strong>double blind randomized controlled trial</strong> as</p>
+<ol type="1">
+<li>those who are assigned to treatment (Z=1) are more likely to receive treatment (A=1), indicating association</li>
+<li>expected in double blind design</li>
+<li>expected by random assignment</li>
+</ol>
+<p>There is a fourth condition of heterogeneity / monotonicity.</p>
+<p>If an instrument is unmeasured, sometimes a proxy or <strong>surrogate instrument</strong> associated with the unmeasured instrument <span class="math inline">\(U_z\)</span> can be used.</p>
 </section>
+<section id="in-observational-studies" class="level3">
+<h3 class="anchored" data-anchor-id="in-observational-studies">In observational studies</h3>
+<p>In observational studies we do not have the random assignment indicator Z. Some common categories of IV:</p>
+<ul>
+<li>genetic factors</li>
+<li>preference</li>
+<li>access to treatment</li>
+</ul>
 </section>
-<section id="chapter-7-confounding" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-7-confounding">Chapter 7 Confounding</h2>
-<p>Confounding is the main shortcoming of observational studies.</p>
-<p><strong>Backdoor path</strong>: a non causal path between A and Y. <span class="math inline">\(A \leftarrow L \rightarrow Y\)</span> that links A to Y through their common cause L is a backdoor path.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div id="dag8">
-<div>
-<pre class="mermaid mermaid-js" data-label="dag8">flowchart LR
-  L(L) --&gt; A[A]
-  A[A] --&gt; Y{Y}
-  L(L) --&gt; Y{Y}
-</pre>
-</div>
-</div>
-</div>
-</div>
-<ul>
-<li>When exchangeability holds, meaning that <span class="math inline">\(Y^a\)</span> is independent from A, all individuals have the same probability of receiving treatment as in a marginally randomized experiment, the average causal effect <span class="math inline">\(E[Y^{a=1}] - E[Y^{a=10}]\)</span> is equivalent to <span class="math inline">\(E[Y|A=1] - E[Y|A=0]\)</span>.</li>
-<li>When exchangeability does not hold, but conditional exchangeability holds (conditional on L), need to adjust for L via standardization or IP weighting to get the population causal effect.</li>
-</ul>
-<p>###&nbsp;Backdoor criterion</p>
-<p>Minimal adjustment sets</p>
-<section id="confounding-adjustment" class="level3">
-<h3 class="anchored" data-anchor-id="confounding-adjustment">Confounding adjustment</h3>
-<p><strong>Adjustment</strong> or controlling for: any technique that removes the effect of the variables we are not interested in.</p>
-<ul>
-<li>G-methods (generalized): <strong>standardization, IP weighting, g-estimation</strong></li>
-<li>Stratification based methods: <strong>stratification, matching</strong></li>
-</ul>
+<section id="compare-with-other-methods" class="level3">
+<h3 class="anchored" data-anchor-id="compare-with-other-methods">Compare with other methods</h3>
+<p>The conditional exchangeability required by IP weighting, standardization is replaced by other assumptions. The choice of method depends on <em>whether it is easier</em> to identify and measure the confounders, or find an instrument Z and expect monotonicity and heterogeneity.</p>
+<p>Violation of assumptions 1-4 may result in <strong>large biases</strong>; IP weighting and standardization are more robust compared to IV.</p>
+<p>When there are <strong>time varying treatment</strong>, IV is not ideal as it is suited for point intervention.</p>
+</section>
+<section id="ivreg-package" class="level3">
+<h3 class="anchored" data-anchor-id="ivreg-package"><code>ivreg</code> package</h3>
+<p>Check out <a href="https://cran.r-project.org/web/packages/ivreg/vignettes/ivreg.html">this post</a> for an example. Only normal errors.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

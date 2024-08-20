@@ -44,6 +44,7 @@ listing:
       - "overview_ci.qmd"
       # - "rwd_statistics_overview.qmd"
       - "book_whatif_part1.qmd"
+      - "book_whatif_iv.qmd"
       - "weighting.qmd"
       - "g_computation.qmd"
       - "target_trial_emulation.qmd"
