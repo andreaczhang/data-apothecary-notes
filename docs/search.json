@@ -2377,7 +2377,7 @@
     "href": "method/index.html#causal-inference",
     "title": "Inference and models",
     "section": "Causal inference",
-    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization, G-formula \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\n\nNo matching items"
+    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization (g-computation) \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/index.html#other-topics",
@@ -2398,13 +2398,20 @@
     "href": "method/book_whatif_part2_ipw_std.html",
     "title": "Notes from book: What if (Part 2)",
     "section": "",
-    "text": "Code: What If. R code\nCausal question: estimate the average causal effect of smoking cessation (treatment, A) on weight gain (outcome, Y)\nDataset: NHEFS. 1566 smokers, age 25-74. Baseline visit and follow-up 10 years later. A=1 means they quit smoking, 0 otherwise. Outcome weight gain measured in kg.\nAdjust for 9 variables measured at baseline:"
+    "text": "Validatidy of causal inference requires exchangeability, positivity, consistency, no measurement error and no model misspecification.\nCode: What If. R code\nCausal question: estimate the average causal effect of smoking cessation (treatment, A) on weight gain (outcome, Y)\nDataset: NHEFS. 1566 smokers, age 25-74. Baseline visit and follow-up 10 years later. A=1 means they quit smoking, 0 otherwise. Outcome weight gain measured in kg.\nAdjust for 9 variables measured at baseline:\nR code for the two methods: link"
   },
   {
     "objectID": "method/book_whatif_part2_ipw_std.html#ip-weighting",
     "href": "method/book_whatif_part2_ipw_std.html#ip-weighting",
     "title": "Notes from book: What if (Part 2)",
     "section": "IP weighting",
-    "text": "IP weighting\nIP weighting creates pseudo-population to remove covariates L to the treatment A. Properties of the pseudo-population:\n\nA and L are statistically independent\n\\(E_{ps}[Y|A=a]\\) equals the standardized mean in the actual population, \\(\\sum_{l}E[Y|A=a,L=l]P[L=l]\\).\n\nIndividual-specific IP weights for treatment A is \\(W = 1/f(A|L)\\). For the quitters (A=1), \\(f(A|L) = P[A=1|L]\\). This is also the propensity score.\nThe weights can be estimated non-parametrically when the problem is simple: count the number of people treated (A=1) in each stratum (L=1, L=0) and then divide by the number in the stratum. When the problem has more variables (confounders), fit a logistic regression to estimate the probability."
+    "text": "IP weighting\nIP weighting creates pseudo-population to remove covariates L to the treatment A. Properties of the pseudo-population:\n\nA and L are statistically independent\n\\(E_{ps}[Y|A=a]\\) equals the standardized mean in the actual population, \\(\\sum_{l}E[Y|A=a,L=l]P[L=l]\\).\n\nIndividual-specific IP weights for treatment A is \\(W = 1/f(A|L)\\). For the quitters (A=1), \\(f(A|L) = P[A=1|L]\\). This is also the propensity score.\nThe weights can be estimated non-parametrically when the problem is simple: count the number of people treated (A=1) in each stratum (L=1, L=0) and then divide by the number in the stratum. When the problem has more variables (confounders), fit a logistic regression to estimate the probability.\n(more details to be filled in)"
+  },
+  {
+    "objectID": "method/book_whatif_part2_ipw_std.html#g-formula-standardization",
+    "href": "method/book_whatif_part2_ipw_std.html#g-formula-standardization",
+    "title": "Notes from book: What if (Part 2)",
+    "section": "g-formula, standardization",
+    "text": "g-formula, standardization\nIP weighting and standardization are estimators of g-formula (1986). g-formula is a synonym of g-computation. (g-estimation is a different method)\n\n\n\n\nflowchart LR\n  L(L) --&gt; A[A]\n  A[A] --&gt; Y{Y}\n  L(L) --&gt; Y{Y}\n\n\n\n\n\nProcedures:\n\nfit a regression with Y as outcome, A as treatment, L as control. It is possible to make polynomials and/or interactions.\ncreate a dataset identical to the original data, but \\(A = 1\\) in every row\ncreate a dataset identical to the original data, but \\(A = 0\\) in every row\nuse model from step 1 to compute adjusted predictions in the two counterfactual datasets.\n\nThe quantity of interest is the difference between the predictions.\n(Note that in Hernan & Robins, three blocks of data are binded into one. The counterfactual datasets (2nd and 3rd) have NA in the outcome. So even though in the regression model it’s using the large dataset with duplicates, it is effectively only using the original data to estimate the parameters.)\n\nRobust methods\nDoubly robust methods combine models for treatment (ipw) and for outcome (standardization) in the same estimator.\n\nAugmented IP weighted estimator\ndoubly robust plug-in estimator"
   }
 ]
