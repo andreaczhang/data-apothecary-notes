@@ -1824,14 +1824,14 @@
     "href": "method/index.html#models",
     "title": "Inference and models",
     "section": "Models",
-    "text": "Models\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nMixed models for repeted measurements\n\n\n\n\n\n\n\nSurvival\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Models\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nRegression\n\n\nLinear, logistic, poisson \n\n\n\n\nMixed models for repeted measurements\n\n\n\n\n\n\n\nSurvival\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/index.html#case-studies",
     "href": "method/index.html#case-studies",
     "title": "Inference and models",
     "section": "Case studies",
-    "text": "Case studies\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nCase study: length of hospital stay\n\n\nPart 1: EDA \n\n\n\n\nCase study: CTN\n\n\nData challenge R/Medicine 2024 \n\n\n\n\nCase study: CTN-51\n\n\nFocusing on CTN 51 data \n\n\n\n\n\nNo matching items"
+    "text": "Case studies\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nLength of hospital stay\n\n\nPart 1: EDA \n\n\n\n\nLength of hospital stay\n\n\nPart 2: time-to-event analysis \n\n\n\n\n\nNo matching items\n\n\n\nInterview preparation\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nInterview: clinical trial statistician\n\n\nKnowledge framework \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/rwd_rwe.html",
@@ -1880,7 +1880,7 @@
     "href": "method/adaptive_design.html",
     "title": "Adaptive design: overview",
     "section": "",
-    "text": "Resources\n\nR package rpact and tutorial\nR package gsDesign and tutorial\n\n\nSequential design\nNumber of patient isn’t set in advance. A good group sequential design can reduce the sample size needed, while keeping the desired statistical power and controlling the overall type I error.\nGSD includes pre-determined number of stages (interim, final). Each stage specified by\n\nsample size\ncritical values\nstopping criterion to support or reject null hypothesis\n\nTBC"
+    "text": "Resources\n\nR package rpact and tutorial\nR package gsDesign and tutorial\n\n\nSequential design\nNumber of patient isn’t set in advance. A good group sequential design can reduce the sample size needed, while keeping the desired statistical power and controlling the overall type I error.\nGSD includes pre-determined number of stages (interim, final). Each stage specified by\n\nsample size\ncritical values\nstopping criterion to support or reject null hypothesis\n\nTBC\n\n\nBasket and umbrella trials\n\n\nInterview questions\n\nCan you describe what an adaptive clinical trial design is and give an example of how it can be applied in oncology?\nWhat are the advantages and disadvantages of adaptive trial designs compared to traditional fixed designs?\nHow would you adjust a trial protocol if interim analysis shows a promising treatment effect?"
   },
   {
     "objectID": "method/intervals.html",
@@ -2377,7 +2377,7 @@
     "href": "method/index.html#causal-inference",
     "title": "Inference and models",
     "section": "Causal inference",
-    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization (g-computation) \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\n\nNo matching items"
+    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization (g-computation) \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\nMatching\n\n\nOverview of matching techniques \n\n\n\n\nHypothesis tests\n\n\nTypes of errors \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/index.html#other-topics",
@@ -2413,5 +2413,131 @@
     "title": "Notes from book: What if (Part 2)",
     "section": "g-formula, standardization",
     "text": "g-formula, standardization\nIP weighting and standardization are estimators of g-formula (1986). g-formula is a synonym of g-computation. (g-estimation is a different method)\n\n\n\n\nflowchart LR\n  L(L) --&gt; A[A]\n  A[A] --&gt; Y{Y}\n  L(L) --&gt; Y{Y}\n\n\n\n\n\nProcedures:\n\nfit a regression with Y as outcome, A as treatment, L as control. It is possible to make polynomials and/or interactions.\ncreate a dataset identical to the original data, but \\(A = 1\\) in every row\ncreate a dataset identical to the original data, but \\(A = 0\\) in every row\nuse model from step 1 to compute adjusted predictions in the two counterfactual datasets.\n\nThe quantity of interest is the difference between the predictions.\n(Note that in Hernan & Robins, three blocks of data are binded into one. The counterfactual datasets (2nd and 3rd) have NA in the outcome. So even though in the regression model it’s using the large dataset with duplicates, it is effectively only using the original data to estimate the parameters.)\n\nRobust methods\nDoubly robust methods combine models for treatment (ipw) and for outcome (standardization) in the same estimator.\n\nAugmented IP weighted estimator\ndoubly robust plug-in estimator"
+  },
+  {
+    "objectID": "method/matching.html",
+    "href": "method/matching.html",
+    "title": "Matching",
+    "section": "",
+    "text": "This overview summary is based on the review paper Stuart 2010: Matching methods for causal inference: a review and a look forward\nGoal of matching: choosing well-matched samples of the original groups to reduce confounding - acquire treatment and control groups with similar covariate distributions.\nAlternatives to matching: adjust for covariates in a regression model, instrumental variables, structural equation modeling etc.\nBenefits of matching:\nTwo settings to use matching:\n(note that the outcomes are usually not used even when they are available)\nHistory of matching methods"
+  },
+  {
+    "objectID": "method/matching.html#step-1-define-closeness",
+    "href": "method/matching.html#step-1-define-closeness",
+    "title": "Matching",
+    "section": "Step 1: define closeness",
+    "text": "Step 1: define closeness"
+  },
+  {
+    "objectID": "method/matching.html#step-2-implement-matching",
+    "href": "method/matching.html#step-2-implement-matching",
+    "title": "Matching",
+    "section": "Step 2: implement matching",
+    "text": "Step 2: implement matching\n\nnearest neighbor matching\n\n\nSubclassification, full matching, weighting"
+  },
+  {
+    "objectID": "method/matching.html#step-3-diagnose-matches",
+    "href": "method/matching.html#step-3-diagnose-matches",
+    "title": "Matching",
+    "section": "Step 3: diagnose matches",
+    "text": "Step 3: diagnose matches"
+  },
+  {
+    "objectID": "method/matching.html#step-4-analysis-of-the-outcome",
+    "href": "method/matching.html#step-4-analysis-of-the-outcome",
+    "title": "Matching",
+    "section": "Step 4: analysis of the outcome",
+    "text": "Step 4: analysis of the outcome\nVignette: Estimating effects after matching by Noah Greifer\n\nMatching (old notes)\nExact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations"
+  },
+  {
+    "objectID": "method/matching.html#software",
+    "href": "method/matching.html#software",
+    "title": "Matching",
+    "section": "Software",
+    "text": "Software\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference.\nLinks\nhttps://stats.stackexchange.com/questions/492218/should-the-choice-of-propensity-score-matching-versus-weighting-depend-on-the-de\nhttps://stats.stackexchange.com/questions/553853/understanding-propensity-score-matching?rq=1\nhttps://aetion.com/evidence-hub/understanding-propensity-score-weighting-methods-rwe/"
+  },
+  {
+    "objectID": "method/interview_clinical_trial.html",
+    "href": "method/interview_clinical_trial.html",
+    "title": "Interview: clinical trial statistician",
+    "section": "",
+    "text": "Book: Statistical design, monitoring and analysis of clinical trials"
+  },
+  {
+    "objectID": "method/interview_clinical_trial.html#topics-of-interest",
+    "href": "method/interview_clinical_trial.html#topics-of-interest",
+    "title": "Interview: clinical trial statistician",
+    "section": "Topics of interest",
+    "text": "Topics of interest\n\ndesign\nsample size\nanalysis"
+  },
+  {
+    "objectID": "method/interview_clinical_trial.html#design",
+    "href": "method/interview_clinical_trial.html#design",
+    "title": "Interview: clinical trial statistician",
+    "section": "Design",
+    "text": "Design\n\ngeneral design\nadaptive design link"
+  },
+  {
+    "objectID": "method/interview_clinical_trial.html#sample-size",
+    "href": "method/interview_clinical_trial.html#sample-size",
+    "title": "Interview: clinical trial statistician",
+    "section": "Sample size",
+    "text": "Sample size\n\nsample size"
+  },
+  {
+    "objectID": "method/interview_clinical_trial.html#survival-analysis",
+    "href": "method/interview_clinical_trial.html#survival-analysis",
+    "title": "Interview: clinical trial statistician",
+    "section": "Survival analysis",
+    "text": "Survival analysis\n\nadvanced survival"
+  },
+  {
+    "objectID": "method/interview_clinical_trial.html#longitudinal-data",
+    "href": "method/interview_clinical_trial.html#longitudinal-data",
+    "title": "Interview: clinical trial statistician",
+    "section": "Longitudinal data",
+    "text": "Longitudinal data\n\nrepeated measurement analysis"
+  },
+  {
+    "objectID": "method/hypothesis_tests.html",
+    "href": "method/hypothesis_tests.html",
+    "title": "Hypothesis tests",
+    "section": "",
+    "text": "Interview questions\n\nCan you explain Type I and Type II errors and how they impact clinical trial results?\nHow would you calculate power in a clinical trial, and why is it important?\nHow do you address multiple testing problems in a clinical trial with multiple endpoints?\nWhat is an intent-to-treat (ITT) analysis, and why is it important?"
+  },
+  {
+    "objectID": "method/survival_competing_risk.html",
+    "href": "method/survival_competing_risk.html",
+    "title": "Competing risks",
+    "section": "",
+    "text": "Links\nhttps://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html\nhttps://www.danieldsjoberg.com/ggsurvfit/\njmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/\nSubdistribution hazards: modifies the traditional hazard function to account for probability of NOT experiencing the event of interest due to competing risks\nCumulative incidence function: used to estimate the probability of experiencing each type of event over time\nAalen-Johansen estimators \\(\\hat{P}(T&lt;=t, X_T = j), j = 1, 2\\) add up to 1 minus Kaplan-Meier estimator \\(\\hat{P}(T&gt;t)\\)\nIndependence assumption: assuming competing events are mutually exclusive"
+  },
+  {
+    "objectID": "method/survival_competing_risk.html#multi-state-modeling",
+    "href": "method/survival_competing_risk.html#multi-state-modeling",
+    "title": "Competing risks",
+    "section": "Multi-state modeling",
+    "text": "Multi-state modeling\nMulti-state modeling is not only for time-to-event data. Competing risk is a special case for MS.\nModels the transition between states: healthy to diseased, diseased to death, healthy to death etc\nTransition probabilities\nTransition hazards\nState occupancy probabilities\nUse package msm, mstate, etc\n\nUse msm\nTime of transition is unknown. The time in the dataset is observed state\nTransition structure: defined by a matrix with \\(r, s\\) entry. For example, for transitions allowed below\n\n1 to 2\n2 to 3\n3 to 4\n\nthe transition matrix would be\n\nQ &lt;- rbind(c(0, 1, 0, 0), \n           c(0, 0, 1, 0), \n           c(0, 0, 0, 1),\n           c(0, 0, 0, 0))\n\nTransitions should only be allowed in adjacent states in continuous time. For example, even if we observe 1 -&gt; 3 without seeing the state 2, we know that patients have been through 1 -&gt; 2 -&gt; 3. The transition matrix should NOT be selected based on what we observe in the data!\nMean sojourn time (waiting time): \\(-1/q_{rr}\\) is the expected time to stay in the same state (hence the \\(rr\\))."
+  },
+  {
+    "objectID": "method/regression.html",
+    "href": "method/regression.html",
+    "title": "Regression",
+    "section": "",
+    "text": "Interview questions\nConcept explanation\nProcedure\nModel selection\nDiagnostics"
+  },
+  {
+    "objectID": "method/interview_clinical_trial.html#hospital-vs-pharmaceuticals",
+    "href": "method/interview_clinical_trial.html#hospital-vs-pharmaceuticals",
+    "title": "Interview: clinical trial statistician",
+    "section": "Hospital vs Pharmaceuticals",
+    "text": "Hospital vs Pharmaceuticals\n\nHospital\nTopics of interest: long-term patient outcomes, QoL, comparative effectiveness of treatments, rare conditions that are less commercially viable. E.g. new surgical technique; compare different treatment regiments for patients with specific biomarkers\nDesign: more flexible and exploratory, novel designs; smaller, single centered trials; early-stage, proof-of-concept\n\n\nPharma\nTopics of interest: strongly focused on meeting requirements of regulation, focus on predefined endpoints like efficacy and safety that align with drug approval processes. E.g. new cancer drug compared to placebo or existing treatment\nDesign: rigid design aligned with regulatory requirements; large, multicenter; RCT with precise inclusion/exclusion criteria"
+  },
+  {
+    "objectID": "method/case_study_liggetid_2_survival.html",
+    "href": "method/case_study_liggetid_2_survival.html",
+    "title": "Case study: length of hospital stay",
+    "section": "",
+    "text": "This analysis is in preparation for interviews related to time-to-event analysis. Focus will be put on the procedure (and how to do it in R), as well as interpretation of the results.\n\nThe data liggetid was collected at the Geriatric Department at Ullevål Sykehus. Detailed description can be found in part 1 of the case study.\nWe will focus on the following variables:\n\nadmission_year, year of hospital admission\nage\nsex\nadmission_from, where 1 = home, 2 = Div. of Medicine, 3 = Div. of Surgery, 4 = Other division, 5 = Other hospital, 6 = Nursing home\nstroke, where 1 = yes, 0 = no\nlos, hospital stay, in days\n\n\nlos &lt;- readRDS('data/los.rds')\nhead(los, 3)\n\n  admission_year age    sex admission_from stroke los\n1           1987  81 female           home      0  13\n2           1987  96 female           home      0  17\n3           1987  79 female           home      0   6"
   }
 ]

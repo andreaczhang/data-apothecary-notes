@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2024-08-23">
+<meta name="description" content="Overview of matching techniques">
 
-<title>Data Apothecary’s Notes - Survival</title>
+<title>Data Apothecary’s Notes - Matching</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,14 +157,12 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics">Basics</a>
   <ul class="collapse">
-  <li><a href="#cox-regression" id="toc-cox-regression" class="nav-link" data-scroll-target="#cox-regression">Cox regression</a></li>
-  <li><a href="#landmark-analysis" id="toc-landmark-analysis" class="nav-link" data-scroll-target="#landmark-analysis">Landmark analysis</a></li>
-  <li><a href="#time-dependent-covariate" id="toc-time-dependent-covariate" class="nav-link" data-scroll-target="#time-dependent-covariate">Time-dependent covariate</a></li>
-  </ul></li>
-  <li><a href="#interview-questions" id="toc-interview-questions" class="nav-link" data-scroll-target="#interview-questions">Interview questions</a></li>
+  <li><a href="#step-1-define-closeness" id="toc-step-1-define-closeness" class="nav-link active" data-scroll-target="#step-1-define-closeness">Step 1: define closeness</a></li>
+  <li><a href="#step-2-implement-matching" id="toc-step-2-implement-matching" class="nav-link" data-scroll-target="#step-2-implement-matching">Step 2: implement matching</a></li>
+  <li><a href="#step-3-diagnose-matches" id="toc-step-3-diagnose-matches" class="nav-link" data-scroll-target="#step-3-diagnose-matches">Step 3: diagnose matches</a></li>
+  <li><a href="#step-4-analysis-of-the-outcome" id="toc-step-4-analysis-of-the-outcome" class="nav-link" data-scroll-target="#step-4-analysis-of-the-outcome">Step 4: analysis of the outcome</a></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
   </ul>
 </nav>
     </div>
@@ -170,14 +171,34 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Survival</h1>
-</div>
+<h1 class="title">Matching</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Causal inference</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>Overview of matching techniques</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 23, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -187,72 +208,84 @@ window.Quarto = {
 </header>
 
 
+<blockquote class="blockquote">
+<p>This overview summary is based on the review paper <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2943670/">Stuart 2010</a>: Matching methods for causal inference: a review and a look forward</p>
+</blockquote>
+<p>Goal of matching: choosing well-matched samples of the original groups to reduce confounding - acquire treatment and control groups with similar covariate distributions.</p>
+<p>Alternatives to matching: adjust for covariates in a regression model, instrumental variables, structural equation modeling etc.</p>
+<p>Benefits of matching:</p>
+<ul>
+<li>complementary to regression adjustment, can and should be used together</li>
+<li>have straightforward diagnostics, hence performance can be assessed</li>
+</ul>
+<p>Two settings to use matching:</p>
+<ul>
+<li>when outcome values are NOT available, and matching is used to select subjects to follow up</li>
+<li>outcome values are available, matching is to <strong>reduce bias in treatment effect estimation</strong></li>
+</ul>
+<p>(note that the outcomes are usually not used even when they are available)</p>
+<p>History of matching methods</p>
+<ul>
+<li>they’ve been used in 1940s, but a theoretical basis was not developed until 1970s (Rubin et al)</li>
+<li>with multiple covariates it is difficult to find exact matches on even small number of covariates (Chapin 1947). The introduction of <strong>propensity score</strong> (1983, Rosenbaum and Rubin) helped.</li>
+</ul>
+<section id="steps-to-implement-matching-methods" class="level3">
+<h3 class="anchored" data-anchor-id="steps-to-implement-matching-methods">Steps to implement matching methods</h3>
+<ol type="1">
+<li>Define closeness: distance measure used to determine whether an individual is a good match for another</li>
+<li>implement a matching method</li>
+<li>assess the quality of a matching method. Might require iteration of step 1 and 2</li>
+<li>analyse the outcome given the matched data</li>
+</ol>
+</section>
+<section id="step-1-define-closeness" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-define-closeness">Step 1: define closeness</h2>
+</section>
+<section id="step-2-implement-matching" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-implement-matching">Step 2: implement matching</h2>
+<section id="nearest-neighbor-matching" class="level4">
+<h4 class="anchored" data-anchor-id="nearest-neighbor-matching">nearest neighbor matching</h4>
+</section>
+<section id="subclassification-full-matching-weighting" class="level4">
+<h4 class="anchored" data-anchor-id="subclassification-full-matching-weighting">Subclassification, full matching, weighting</h4>
+</section>
+</section>
+<section id="step-3-diagnose-matches" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-diagnose-matches">Step 3: diagnose matches</h2>
+</section>
+<section id="step-4-analysis-of-the-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-analysis-of-the-outcome">Step 4: analysis of the outcome</h2>
+<p><a href="https://cran.r-project.org/web/packages/MatchIt/vignettes/estimating-effects.html#estimating-treatment-effects-and-standard-errors-after-matching">Vignette: Estimating effects after matching</a> by Noah Greifer</p>
+<section id="matching-old-notes" class="level3">
+<h3 class="anchored" data-anchor-id="matching-old-notes">Matching (old notes)</h3>
+<p>Exact matching:</p>
+<ul>
+<li>perfect covariate balance; <span class="math inline">\(F(X_i|T_i = 1) = F(X_i|T_i=0)\)</span></li>
+<li>infeasible when covariate is continuous, and when there are many covariates.</li>
+</ul>
+<p>Probability of receiving treatment, <span class="math inline">\(\pi(X_i) = P(T_i = 1 | X_i)\)</span></p>
+<p>Matching based on distance measures</p>
+<ul>
+<li>Mahalanobis distance</li>
+<li>Estimated propensity score, <span class="math inline">\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\)</span></li>
+</ul>
+<p>Check covariate balance</p>
+<ul>
+<li>ideally compare joint distribution of all covariates</li>
+<li>practically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)</li>
+</ul>
+<p>Balance test</p>
+<p>Matching would reduce number of observations</p>
+</section>
+</section>
+<section id="software" class="level2">
+<h2 class="anchored" data-anchor-id="software">Software</h2>
+<p><code>MatchIt</code> package</p>
+<p>PS matching is ONE of the many matching techniques that uses PS as the difference.</p>
 <p>Links</p>
-<p>https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</p>
-<p>https://www.danieldsjoberg.com/ggsurvfit/</p>
-<p>jmpost: combines survival analysis, mixed effect model https://genentech.github.io/jmpost/main/</p>
-<section id="basics" class="level2">
-<h2 class="anchored" data-anchor-id="basics">Basics</h2>
-<p>Observed time <span class="math inline">\(Y_i = min(T_i, C_i)\)</span></p>
-<ul>
-<li><span class="math inline">\(T_i\)</span> is event time</li>
-<li><span class="math inline">\(C_i\)</span> is censoring time</li>
-</ul>
-<p>Event indicator <span class="math inline">\(\delta_i = 1\)</span> if event observed (<span class="math inline">\(T_i &lt;= C_i\)</span>), 0 else.</p>
-<p>Probability that a subject surves beyond given specific time:</p>
-<p><span class="math display">\[S(t) = Pr(T&gt;t) = 1 - F(t)\]</span> where</p>
-<ul>
-<li><span class="math inline">\(S(t)\)</span> is the survival function</li>
-<li><span class="math inline">\(F(t) = Pr(T &lt;= t)\)</span> is the cumulative distribution function</li>
-</ul>
-<p>Survival probability at a certain time t is a conditional probability of surviving beyond that time, given that an individual has survived just prior to that time. This can be estimated as the number of patients who are alive (without loss of follow-up), divided by the number of patients who were alive just prior to that time.</p>
-<section id="cox-regression" class="level3">
-<h3 class="anchored" data-anchor-id="cox-regression">Cox regression</h3>
-<p>Semi-parametric model for survival outcome</p>
-<p><span class="math display">\[h(t|X_i) = h_0(t) exp(\beta_1 X_{i1} + ... + \beta_p X_{ip})\]</span> where</p>
-<ul>
-<li><span class="math inline">\(h(t)\)</span> is hazard, the instantaneous rate at which events occur</li>
-<li><span class="math inline">\(h_0(t)\)</span> is the underlying baseline hazard</li>
-</ul>
-<p>Assumptions</p>
-<ul>
-<li>non-informative censoring</li>
-<li>proportional hazards</li>
-</ul>
-<p>Hazard ratio HR: the ratio of hazards between two groups at any particular point in time. For example, HR = 0.59 (sex female) means 0.59 times as many females die as males <em>at any given time</em> - females have lower hazard of death than males.</p>
-</section>
-<section id="landmark-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="landmark-analysis">Landmark analysis</h3>
-<p>Covariates are measured at baseline - before follow-up time for the event begins</p>
-<p>Examples of covariates that are not measured at baseline: transplant failure, compliance, adverse events</p>
-<p>Landmark approach</p>
-<ul>
-<li>select a fixed time after baseline, this should be done based on clinical information</li>
-<li>subset population for those followed at least until landmark time</li>
-<li>calculate follow-up from landmark time, and apply log-rank tests or cox regression</li>
-</ul>
-<p>It might be necessary to reset the time (for example by substracting the landmark time, say 90 days)</p>
-</section>
-<section id="time-dependent-covariate" class="level3">
-<h3 class="anchored" data-anchor-id="time-dependent-covariate">Time-dependent covariate</h3>
-<p>This is more appropriate than landmark analysis when</p>
-<ul>
-<li>value of a covariate changes over time</li>
-<li>there isn’t an obvious landmark time</li>
-<li>use of landmark leads to too many exclusions</li>
-</ul>
-</section>
-</section>
-<section id="interview-questions" class="level1">
-<h1>Interview questions</h1>
-<ul>
-<li>What is a Kaplan-Meier survival curve, and how do you interpret it?</li>
-<li>How do you handle censored data in survival analysis?</li>
-<li>Explain the Cox proportional hazards model and its assumptions. How would you test for proportionality of hazards?</li>
-<li>How would you perform a log-rank test to compare two survival curves?</li>
-<li>How is hazard ratio used in survival analysis? what are the limitations?</li>
-<li>How to handle time-to-event data when progression-free survival (PFS) is the primary endpoint in an oncology trial?</li>
-</ul>
+<p>https://stats.stackexchange.com/questions/492218/should-the-choice-of-propensity-score-matching-versus-weighting-depend-on-the-de</p>
+<p>https://stats.stackexchange.com/questions/553853/understanding-propensity-score-matching?rq=1</p>
+<p>https://aetion.com/evidence-hub/understanding-propensity-score-weighting-methods-rwe/</p>
 
 
 </section>

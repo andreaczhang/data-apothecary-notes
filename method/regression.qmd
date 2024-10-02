@@ -1,0 +1,33 @@
+---
+title: "Regression"
+description: |
+  Linear, logistic, poisson
+author: "Chi Zhang"
+date: "2024-10-02"
+categories: [Model]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+
+# Interview questions
+
+Concept explanation
+
+Procedure
+
+Model selection
+
+Diagnostics
+
+
+
+

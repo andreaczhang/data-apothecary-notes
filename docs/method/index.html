@@ -164,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -225,6 +225,34 @@ ul.task-list li input[type="checkbox"] {
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-casestudy'] = new List('listing-casestudy', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-interview .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-interview'] = new List('listing-interview', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -331,10 +359,13 @@ window.Quarto = {
   <li><a href="#causal-inference" id="toc-causal-inference" class="nav-link" data-scroll-target="#causal-inference">Causal inference</a></li>
   <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
   <li><a href="#other-topics" id="toc-other-topics" class="nav-link" data-scroll-target="#other-topics">Other topics</a></li>
-  <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case studies</a></li>
+  <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case studies</a>
+  <ul class="collapse">
+  <li><a href="#interview-preparation" id="toc-interview-preparation" class="nav-link" data-scroll-target="#interview-preparation">Interview preparation</a></li>
+  </ul></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(25)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Design">Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Drugs">Drugs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Inference">Inference <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Missing data">Missing data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Omics data">Omics data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCT">RCT <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Sample size">Sample size <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(28)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Design">Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Drugs">Drugs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Inference">Inference <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Missing data">Missing data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Model">Model <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Omics data">Omics data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCT">RCT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Sample size">Sample size <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Survival">Survival <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -449,7 +480,7 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="RCT" data-listing-date-sort="1685570400000" data-listing-file-modified-sort="1713078154252" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1366" data-listing-title-sort="Clinical trial design: overview" data-listing-filename-sort="rct_design_overview.qmd">
+<tr data-index="0" data-categories="RCT" data-listing-date-sort="1685570400000" data-listing-file-modified-sort="1727874925736" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1436" data-listing-title-sort="Clinical trial design: overview" data-listing-filename-sort="rct_design_overview.qmd">
 <td>
 <a href="../method/rct_design_overview.html" class="title listing-title">Clinical trial design: overview</a>
 </td>
@@ -473,7 +504,7 @@ Description
 <span class="listing-description">Regression </span>
 </td>
 </tr>
-<tr data-index="3" data-categories="Design" data-listing-date-sort="1693000800000" data-listing-file-modified-sort="1713078154251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="65" data-listing-title-sort="Adaptive design: overview" data-listing-filename-sort="adaptive_design.qmd">
+<tr data-index="3" data-categories="Design" data-listing-date-sort="1693000800000" data-listing-file-modified-sort="1727892132412" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="123" data-listing-title-sort="Adaptive design: overview" data-listing-filename-sort="adaptive_design.qmd">
 <td>
 <a href="../method/adaptive_design.html" class="title listing-title">Adaptive design: overview</a>
 </td>
@@ -567,6 +598,22 @@ Description
 <span class="listing-description">Instrumental variables </span>
 </td>
 </tr>
+<tr data-index="7" data-categories="Causal inference" data-listing-date-sort="1724364000000" data-listing-file-modified-sort="1724402972804" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="347" data-listing-title-sort="Matching" data-listing-filename-sort="matching.qmd">
+<td>
+<a href="../method/matching.html" class="title listing-title">Matching</a>
+</td>
+<td>
+<span class="listing-description">Overview of matching techniques </span>
+</td>
+</tr>
+<tr data-index="8" data-categories="Inference" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1727875930206" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="56" data-listing-title-sort="Hypothesis tests" data-listing-filename-sort="hypothesis_tests.qmd">
+<td>
+<a href="../method/hypothesis_tests.html" class="title listing-title">Hypothesis tests</a>
+</td>
+<td>
+<span class="listing-description">Types of errors </span>
+</td>
+</tr>
 </tbody>
 </table>
 <div class="listing-no-matching d-none">
@@ -589,7 +636,15 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1715334954419" data-listing-reading-time-sort="2" data-listing-word-count-sort="250" data-listing-title-sort="Mixed models for repeted measurements" data-listing-filename-sort="mixed_models.qmd">
+<tr data-index="0" data-categories="Model" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1727893914760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Regression" data-listing-filename-sort="regression.qmd">
+<td>
+<a href="../method/regression.html" class="title listing-title">Regression</a>
+</td>
+<td>
+<span class="listing-description">Linear, logistic, poisson </span>
+</td>
+</tr>
+<tr data-index="1" data-listing-file-modified-sort="1715334954419" data-listing-reading-time-sort="2" data-listing-word-count-sort="250" data-listing-title-sort="Mixed models for repeted measurements" data-listing-filename-sort="mixed_models.qmd">
 <td>
 <a href="../method/mixed_models.html" class="title listing-title">Mixed models for repeted measurements</a>
 </td>
@@ -597,7 +652,7 @@ Description
 <span class="listing-description">Resources:</span>
 </td>
 </tr>
-<tr data-index="1" data-listing-file-modified-sort="1719828851727" data-listing-reading-time-sort="4" data-listing-word-count-sort="620" data-listing-title-sort="Survival" data-listing-filename-sort="survival.qmd">
+<tr data-index="2" data-listing-file-modified-sort="1727876146163" data-listing-reading-time-sort="2" data-listing-word-count-sort="396" data-listing-title-sort="Survival" data-listing-filename-sort="survival.qmd">
 <td>
 <a href="../method/survival.html" class="title listing-title">Survival</a>
 </td>
@@ -628,7 +683,7 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Missing data" data-listing-date-sort="1707865200000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602" data-listing-title-sort="Missing data and imputation" data-listing-filename-sort="imputation_1_overview.qmd">
+<tr data-index="0" data-categories="Missing data" data-listing-date-sort="1707865200000" data-listing-file-modified-sort="1727876229473" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665" data-listing-title-sort="Missing data and imputation" data-listing-filename-sort="imputation_1_overview.qmd">
 <td>
 <a href="../method/imputation_1_overview.html" class="title listing-title">Missing data and imputation</a>
 </td>
@@ -674,28 +729,49 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="RWD" data-listing-date-sort="1702854000000" data-listing-file-modified-sort="1713078154245" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1019" data-listing-title-sort="Case study: length of hospital stay" data-listing-filename-sort="case_study_liggetid_1.qmd">
+<tr data-index="0" data-categories="RWD" data-listing-date-sort="1702854000000" data-listing-file-modified-sort="1727896659580" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1019" data-listing-title-sort="Length of hospital stay" data-listing-filename-sort="case_study_liggetid_1.qmd">
 <td>
-<a href="../method/case_study_liggetid_1.html" class="title listing-title">Case study: length of hospital stay</a>
+<a href="../method/case_study_liggetid_1.html" class="title listing-title">Length of hospital stay</a>
 </td>
 <td>
 <span class="listing-description">Part 1: EDA </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="RCT" data-listing-date-sort="1711321200000" data-listing-file-modified-sort="1713078154245" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="483" data-listing-title-sort="Case study: CTN" data-listing-filename-sort="case_study_ctn.qmd">
+<tr data-index="1" data-categories="Survival" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1727896646106" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="119" data-listing-title-sort="Length of hospital stay" data-listing-filename-sort="case_study_liggetid_2_survival.qmd">
 <td>
-<a href="../method/case_study_ctn.html" class="title listing-title">Case study: CTN</a>
+<a href="../method/case_study_liggetid_2_survival.html" class="title listing-title">Length of hospital stay</a>
 </td>
 <td>
-<span class="listing-description">Data challenge R/Medicine 2024 </span>
+<span class="listing-description">Part 2: time-to-event analysis </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="RCT" data-listing-date-sort="1711580400000" data-listing-file-modified-sort="1713078154245" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="183" data-listing-title-sort="Case study: CTN-51" data-listing-filename-sort="case_study_ctn51.qmd">
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+<section id="interview-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="interview-preparation">Interview preparation</h3>
+<div id="listing-interview" class="quarto-listing quarto-listing-container-table">
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+<th>
+Description
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="RCT" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1727894865357" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="780" data-listing-title-sort="Interview: clinical trial statistician" data-listing-filename-sort="interview_clinical_trial.qmd">
 <td>
-<a href="../method/case_study_ctn51.html" class="title listing-title">Case study: CTN-51</a>
+<a href="../method/interview_clinical_trial.html" class="title listing-title">Interview: clinical trial statistician</a>
 </td>
 <td>
-<span class="listing-description">Focusing on CTN 51 data </span>
+<span class="listing-description">Knowledge framework </span>
 </td>
 </tr>
 </tbody>
@@ -707,6 +783,7 @@ No matching items
 
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

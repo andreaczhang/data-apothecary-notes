@@ -1,0 +1,256 @@
+---
+title: "Interview: clinical trial statistician"
+description: |
+  Knowledge framework
+author: "Chi Zhang"
+date: "2024-10-02"
+categories: [RCT]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+> Book: Statistical design, monitoring and analysis of clinical trials
+
+
+
+
+
+
+# Statistics
+
+### Study design
+
+- [ ] [general design](rct_design_overview.qmd)
+- [ ] [adaptive design](adaptive_design.qmd) 
+- [ ] sample size [part 1](sample_size_1.qmd), [part 2](sample_size_2.qmd)
+- [ ] power analysis
+
+::: {.callout-note collapse='true'}
+## Relate to my own experience
+
+
+:::
+
+
+
+### Survival analysis
+
+- [ ] [Kaplan-Meier, Cox proportional hazard](survival.qmd)
+- [ ] [Competing risk](survival_competing_risk.qmd)
+- [ ] Survival analysis in oncology
+
+(datasets: `survival::pbc`)
+
+::: {.callout-note collapse='true'}
+## Relate to my own experience (hospital LOS)
+
+use `ggsurvfit`
+
+:::
+
+
+### Hypothesis testing
+
+- [ ] [general testing](hypothesis_tests.qmd)
+- [ ] interim analysis
+
+::: {.callout-note collapse='true'}
+## Relate to my own experience
+
+
+:::
+
+
+
+### Longitudinal data
+
+- [ ] repeated measurement analysis
+
+(datasets: `mmrm::bcva_data`, `mmrm::fev_data`)
+
+::: {.callout-note collapse='true'}
+## Relate to my own experience (peanut, norkost)
+
+
+:::
+
+
+### Regression
+
+- [ ] linear, logistic regression and diagnostics ([link](regression.qmd))
+- [ ] interaction
+- [ ] subgroup analysis
+
+
+::: {.callout-note collapse='true'}
+## Relate to my own experience: subgroup for COVITA
+
+
+:::
+
+
+### Missing data
+
+- [ ] [missing data](imputation_1_overview.qmd) (major issue in oncology)
+- [ ] drop-out handling, IIT vs per protocal
+
+::: {.callout-note collapse='true'}
+## Relate to my own experience
+
+
+:::
+
+
+### Meta analysis 
+
+- [ ] general
+
+
+
+# Programming
+
+* How would you implement survival analysis in R? Walk me through the process of creating Kaplan-Meier curves and performing Cox proportional hazards analysis.
+* Can you explain how you would handle missing data using the mice package in R? Provide an example.
+* What packages would you use for meta-analysis in R? Can you demonstrate how to perform a meta-analysis using the meta or metafor package?
+* How would you simulate a clinical trial in R to calculate power? What tools or packages would you use for this purpose?
+* Can you provide an example of how to perform bootstrapping to assess the robustness of a clinical trial result?
+
+
+
+# Background
+
+### Statistician's role
+
+Workflow: design -> data collection, monitoring -> analysis
+
+Design 
+
+* define **primary and secondary endpoints**, need to be clearly **measurable** (e.g. progression free survival, overall survival, tumor response)
+* randomization and blinding
+* calculate **sample size**
+* design study design (phase 1, 2, 3), sometimes adaptive design, Bayesian approach
+
+Analysis
+
+* survival (usually primary endpoint)
+* censored data handling
+* efficacy and safety: tumor shrinkage; QoL, side effects
+* side effects frequencies
+* subgroup analysis (need to pay attention to the risks of over-interpreting data)
+* biomarker to predict treatment response
+
+Reporting
+
+
+### Regulatory
+
+Regulatory and Compliance:
+
+* Can you explain the ICH E9 guidelines, and why they are important in clinical trials?
+* How would you prepare the statistical section of a regulatory submission for the FDA or EMA?
+* What are the CONSORT guidelines, and how would you ensure compliance with them in reporting trial results?
+
+Data Monitoring and Reporting:
+
+* What is the role of a Data Safety Monitoring Board (DSMB), and how would you collaborate with them as a statistician?
+* How do you ensure data integrity in the case of interim analyses or adaptive trial designs?
+
+
+### Oncology
+
+* In oncology, surrogate endpoints like progression-free survival (PFS) and overall response rate (ORR) are often used. How would you handle the analysis of these surrogate endpoints?
+* Can you explain the RECIST criteria used for assessing tumor response in clinical trials?
+* How do you design a basket trial or umbrella trial in oncology, and what statistical challenges do these designs present?
+
+
+
+## Hospital vs Pharmaceuticals
+
+#### Hospital
+
+Topics of interest: long-term patient outcomes, QoL, comparative effectiveness of treatments, rare conditions that are less commercially viable. E.g. new surgical technique; compare different treatment regiments for patients with specific biomarkers
+
+Design: more flexible and exploratory, novel designs; smaller, single centered trials; early-stage, proof-of-concept
+
+#### Pharma
+
+Topics of interest: strongly focused on meeting requirements of regulation, focus on predefined endpoints like efficacy and safety that align with drug approval processes. E.g. new cancer drug compared to placebo or existing treatment
+
+Design: rigid design aligned with regulatory requirements; large, multicenter; RCT with precise inclusion/exclusion criteria
+
+
+
+
+
+# Relevant experience
+
+
+<details>
+  <summary>List of my statistical advising work</summary>
+  
+### Observational studies
+  
+| Study | Endpoint| Design & analysis | Finding | Comment |
+|---------|---| -----|------|------|
+| 1       | | 1    |     1 |   1    |
+
+
+
+### Clinical trials
+
+| Study |Endpoint | Design & analysis | Finding | Comment |
+|---------|---| -----|------|------|
+| 1       | | 1    |     1 |   1    |
+
+
+
+</details>
+
+
+
+
+::: {.callout-note collapse='true'}
+## The kind of studies you've done
+
+* by outcome of interest: Covid; nutrition; 
+* by design: 
+
+
+:::
+
+
+::: {.callout-note collapse='true'}
+## What do you like and dislike about the work
+
+Like:  
+
+* like to help clinicians understand their data
+* like health data, sometimes you see very novel data types (e.g. measurements by the british doctor)
+
+Dislike:
+
+* communication (e.g. p-value interpretation)
+* sometimes feels the frustration that the importance of data quality, processing is undervalued, and we are just p-value producers
+* often need to re-work multiple rounds
+
+:::
+
+::: {.callout-note collapse='true'}
+## Challenges you had in a study
+
+
+:::
+
+
+
+
+
+

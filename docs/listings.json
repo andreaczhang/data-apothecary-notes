@@ -88,14 +88,17 @@
       "/method/book_whatif_part2_ipw_std.html",
       "/method/book_whatif_part3_propensity.html",
       "/method/book_whatif_part4_iv.html",
+      "/method/matching.html",
+      "/method/hypothesis_tests.html",
+      "/method/regression.html",
       "/method/mixed_models.html",
       "/method/survival.html",
       "/method/imputation_1_overview.html",
       "/method/imputation_2.html",
       "/method/intervals.html",
       "/method/case_study_liggetid_1.html",
-      "/method/case_study_ctn.html",
-      "/method/case_study_ctn51.html"
+      "/method/case_study_liggetid_2_survival.html",
+      "/method/interview_clinical_trial.html"
     ]
   }
 ]

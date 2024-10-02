@@ -1,5 +1,5 @@
 ---
-title: "Case study: length of hospital stay"
+title: "Length of hospital stay"
 description: |
   Part 1: EDA
 author: "Chi Zhang"

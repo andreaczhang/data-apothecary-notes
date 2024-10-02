@@ -1,0 +1,43 @@
+---
+title: "Length of hospital stay"
+description: |
+  Part 2: time-to-event analysis
+author: "Chi Zhang"
+date: "2024-10-02"
+categories: [Survival]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+> This analysis is in preparation for interviews related to time-to-event analysis. Focus will be put on the procedure (and how to do it in R), as well as interpretation of the results.
+
+The data `liggetid` was collected at the Geriatric Department at Ullevål Sykehus. Detailed description can be found in [part 1](case_study_liggetid_1.qmd) of the case study. 
+
+We will focus on the following variables: 
+
+- `admission_year`, year of hospital admission
+- `age`
+- `sex`
+- `admission_from`, where 1 = home, 2 = Div. of Medicine, 3 =
+Div. of Surgery, 4 = Other division, 5 = Other hospital, 6 =
+Nursing home
+- `stroke`, where 1 = yes, 0 = no
+- `los`, hospital stay, in days 
+
+
+```{r}
+#| label: data
+#| echo: true
+#| eval: true
+
+los <- readRDS('data/los.rds')
+head(los, 3)
+```
+

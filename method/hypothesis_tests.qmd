@@ -1,0 +1,32 @@
+---
+title: "Hypothesis tests"
+description: |
+  Types of errors
+author: "Chi Zhang"
+date: "2024-10-02"
+categories: [Inference]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+
+# Interview questions
+
+* Can you explain Type I and Type II errors and how they impact clinical trial results?
+* How would you calculate power in a clinical trial, and why is it important?
+* How do you address multiple testing problems in a clinical trial with multiple endpoints?
+* What is an intent-to-treat (ITT) analysis, and why is it important?
+
+
+
+
+
+

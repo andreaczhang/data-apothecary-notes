@@ -48,7 +48,9 @@ listing:
       - "book_whatif_part3_propensity.qmd"
       - "book_whatif_part4_iv.qmd"
       - "weighting.qmd"
+      - "matching.qmd"
       - "g_computation.qmd"
+      - "hypothesis_tests.qmd"
       # - "target_trial_emulation.qmd"
     type: table
     grid-item-border: false
@@ -62,8 +64,10 @@ listing:
     image-height: 150px
     fields: [title, description]
     contents: 
+      - "regression.qmd"
       - "mixed_models.qmd"
       - "survival.qmd"
+      - "survival_competing_risks.qmd"
     type: table
     grid-item-border: false
     sort-ui: false
@@ -92,14 +96,29 @@ listing:
     fields: [title, description]
     contents: 
       - "case_study_liggetid_1.qmd"
-      - "case_study_ctn.qmd"
-      - "case_study_ctn51.qmd"
+      - "case_study_liggetid_2_survival.qmd"
+      #- "case_study_ctn.qmd"
+      #- "case_study_ctn51.qmd"
     type: table
     grid-item-border: false
     sort-ui: false
     sort: date
     filter-ui: false
     categories: true  
+    
+  - id: interview
+    max-description-length: 500
+    image-height: 150px
+    fields: [title, description]
+    contents: 
+      - "interview_clinical_trial.qmd"
+    type: table
+    grid-item-border: false
+    sort-ui: false
+    sort: date
+    filter-ui: false
+    categories: true  
+
 ---
 
 ## Settings
@@ -151,4 +170,12 @@ Topics on inference in general, missing value handling
 
 ::: {#casestudy}
 :::
+
+
+### Interview preparation
+
+::: {#interview}
+:::
+
+
 

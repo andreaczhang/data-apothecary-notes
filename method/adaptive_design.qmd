@@ -38,5 +38,22 @@ TBC
 
 
 
+# Basket and umbrella trials
+
+
+
+# Interview questions
+
+* Can you describe what an adaptive clinical trial design is and give an example of how it can be applied in oncology?
+* What are the advantages and disadvantages of adaptive trial designs compared to traditional fixed designs?
+* How would you adjust a trial protocol if interim analysis shows a promising treatment effect?
+
+
+
+
+
+
+
+
 
 

@@ -163,6 +163,10 @@ https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01261-6
 
 
 
+# Interview questions
 
+* How do you handle missing data in clinical trials? * Can you explain the concepts of missing completely at random (MCAR), missing at random (MAR), and missing not at random (MNAR)?
+* Can you explain how multiple imputation works, and in what situations would you use it?
+* What is a sensitivity analysis, and why is it important when dealing with missing data?
 
 
