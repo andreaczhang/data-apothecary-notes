@@ -28,7 +28,7 @@ format:
 
 ### Study design
 
-- [ ] [general design](rct_design_overview.qmd)
+- [ ] [RCT design](rct_design_overview.qmd)
 - [ ] [adaptive design](adaptive_design.qmd) 
 - [ ] sample size [part 1](sample_size_1.qmd), [part 2](sample_size_2.qmd)
 - [ ] power analysis
@@ -83,11 +83,21 @@ use `ggsurvfit`
 :::
 
 
-### Regression
+### Metrics, regression
 
 - [ ] linear, logistic regression and diagnostics ([link](regression.qmd))
 - [ ] interaction
 - [ ] subgroup analysis
+- [ ] confounding
+- [ ] Odds ratio, risk ratio
+
+<details>
+  <summary>Example questions</summary>
+* why use OR instead of RR in case control studies
+* what is confounding, how can you adjust for it
+
+</details>
+
 
 
 ::: {.callout-note collapse='true'}
@@ -111,7 +121,7 @@ use `ggsurvfit`
 
 ### Meta analysis 
 
-- [ ] general
+
 
 
 
@@ -194,22 +204,29 @@ Design: rigid design aligned with regulatory requirements; large, multicenter; R
 
 
 <details>
-  <summary>List of my statistical advising work</summary>
+  <summary>Selected list of my statistical advising work</summary>
   
 ### Observational studies
   
-| Study | Endpoint| Design & analysis | Finding | Comment |
-|---------|---| -----|------|------|
-| 1       | | 1    |     1 |   1    |
-
-
+| Study | Endpoint| Design  | Analysis | Comment |
+|-------|-------|------|------|------|
+| Hansen 2018 |  QoL on vocal surgical questionnaire, likert scale  | Case control, 3 groups: controls (no voice problem), test-retest group, surgical group   |  Cohen's kappa   |   Reliability of questionnaire   |
+| Sarjomaa 2022 |    |    |     |  Tab 4    |
+| Sarjomaa 2024 |    | Case control (with population)   |     |      |
+| Kabashi 2019 |    | Cross-sectional, multi-site   |     |   Tab 2 and 3   |
+| Fell 2024 |  CB prevalence  |    |     |      |
+| Diab 2023 | ECG parameter. Pressure measures   |  n=20  | t-test or wilcoxon, correlation    |  Choice of method    |
 
 ### Clinical trials
 
-| Study |Endpoint | Design & analysis | Finding | Comment |
+| Study |Endpoint & Tx | Design  | Analysis | Comment |
 |---------|---| -----|------|------|
-| 1       | | 1    |     1 |   1    |
+| [Reier-Nilsen 2019](https://doi.org/10.1111/pai.13066) | QoL, Oral immunotherapy |  RCT, 2 year follow-up (T0, T1, T2). 2:1 block.   |     |      |
+| Opdal 2023 | QT intervals. Methadone vs R-methadone   | n=9. SS based on one-sample t-test with effect size (QT in ms) 20/15   |     |   SS calculation   |
+| Simonsen 2023 | QoL, stigma stress scale   | n=32, 1:1. Three endpoints (T0, T1, T2)   |     |  Revise study protocol, SS    |
+| Callender 2023 |  Artery measures for blood flow  | n=26. Two legs, one tx one ct. Tx has 3 levels of stimulus. Within-subject design   |  Anova; or mixed model   |  Choice of method    |
 
+Pay attention to how the sample size is calculated
 
 
 </details>
@@ -220,9 +237,9 @@ Design: rigid design aligned with regulatory requirements; large, multicenter; R
 ::: {.callout-note collapse='true'}
 ## The kind of studies you've done
 
-* by outcome of interest: Covid; nutrition; 
+* by field: Covid; nutrition; 
 * by design: 
-
+* by endpoint: most are *QoL*
 
 :::
 
@@ -234,6 +251,7 @@ Like:
 
 * like to help clinicians understand their data
 * like health data, sometimes you see very novel data types (e.g. measurements by the british doctor)
+* interesting ways people carry out their studies
 
 Dislike:
 

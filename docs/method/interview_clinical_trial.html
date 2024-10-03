@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="study-design" class="level3">
 <h3 class="anchored" data-anchor-id="study-design">Study design</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"><a href="../method/rct_design_overview.html">general design</a></label></li>
+<li><label><input type="checkbox"><a href="../method/rct_design_overview.html">RCT design</a></label></li>
 <li><label><input type="checkbox"><a href="../method/adaptive_design.html">adaptive design</a></label></li>
 <li><label><input type="checkbox">sample size <a href="../method/sample_size_1.html">part 1</a>, <a href="../method/sample_size_2.html">part 2</a></label></li>
 <li><label><input type="checkbox">power analysis</label></li>
@@ -282,13 +282,24 @@ Relate to my own experience (peanut, norkost)
 </div>
 </div>
 </section>
-<section id="regression" class="level3">
-<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<section id="metrics-regression" class="level3">
+<h3 class="anchored" data-anchor-id="metrics-regression">Metrics, regression</h3>
 <ul class="task-list">
 <li><label><input type="checkbox">linear, logistic regression and diagnostics (<a href="../method/regression.html">link</a>)</label></li>
 <li><label><input type="checkbox">interaction</label></li>
 <li><label><input type="checkbox">subgroup analysis</label></li>
+<li><label><input type="checkbox">confounding</label></li>
+<li><label><input type="checkbox">Odds ratio, risk ratio</label></li>
 </ul>
+<details>
+<summary>
+Example questions
+</summary>
+<ul>
+<li>why use OR instead of RR in case control studies</li>
+<li>what is confounding, how can you adjust for it</li>
+</ul>
+</details>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -331,9 +342,6 @@ Relate to my own experience
 </section>
 <section id="meta-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="meta-analysis">Meta analysis</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">general</label></li>
-</ul>
 </section>
 </section>
 <section id="programming" class="level1">
@@ -409,27 +417,69 @@ Relate to my own experience
 <h1>Relevant experience</h1>
 <details>
 <summary>
-List of my statistical advising work
+Selected list of my statistical advising work
 </summary>
 <section id="observational-studies" class="level3">
 <h3 class="anchored" data-anchor-id="observational-studies">Observational studies</h3>
 <table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Study</th>
 <th>Endpoint</th>
-<th>Design &amp; analysis</th>
-<th>Finding</th>
+<th>Design</th>
+<th>Analysis</th>
 <th>Comment</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
+<td>Hansen 2018</td>
+<td>QoL on vocal surgical questionnaire, likert scale</td>
+<td>Case control, 3 groups: controls (no voice problem), test-retest group, surgical group</td>
+<td>Cohen’s kappa</td>
+<td>Reliability of questionnaire</td>
+</tr>
+<tr class="even">
+<td>Sarjomaa 2022</td>
 <td></td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
+<td></td>
+<td></td>
+<td>Tab 4</td>
+</tr>
+<tr class="odd">
+<td>Sarjomaa 2024</td>
+<td></td>
+<td>Case control (with population)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Kabashi 2019</td>
+<td></td>
+<td>Cross-sectional, multi-site</td>
+<td></td>
+<td>Tab 2 and 3</td>
+</tr>
+<tr class="odd">
+<td>Fell 2024</td>
+<td>CB prevalence</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Diab 2023</td>
+<td>ECG parameter. Pressure measures</td>
+<td>n=20</td>
+<td>t-test or wilcoxon, correlation</td>
+<td>Choice of method</td>
 </tr>
 </tbody>
 </table>
@@ -440,22 +490,44 @@ List of my statistical advising work
 <thead>
 <tr class="header">
 <th>Study</th>
-<th>Endpoint</th>
-<th>Design &amp; analysis</th>
-<th>Finding</th>
+<th>Endpoint &amp; Tx</th>
+<th>Design</th>
+<th>Analysis</th>
 <th>Comment</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
+<td><a href="https://doi.org/10.1111/pai.13066">Reier-Nilsen 2019</a></td>
+<td>QoL, Oral immunotherapy</td>
+<td>RCT, 2 year follow-up (T0, T1, T2). 2:1 block.</td>
 <td></td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Opdal 2023</td>
+<td>QT intervals. Methadone vs R-methadone</td>
+<td>n=9. SS based on one-sample t-test with effect size (QT in ms) 20/15</td>
+<td></td>
+<td>SS calculation</td>
+</tr>
+<tr class="odd">
+<td>Simonsen 2023</td>
+<td>QoL, stigma stress scale</td>
+<td>n=32, 1:1. Three endpoints (T0, T1, T2)</td>
+<td></td>
+<td>Revise study protocol, SS</td>
+</tr>
+<tr class="even">
+<td>Callender 2023</td>
+<td>Artery measures for blood flow</td>
+<td>n=26. Two legs, one tx one ct. Tx has 3 levels of stimulus. Within-subject design</td>
+<td>Anova; or mixed model</td>
+<td>Choice of method</td>
 </tr>
 </tbody>
 </table>
+<p>Pay attention to how the sample size is calculated</p>
 </section></details>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
@@ -470,8 +542,9 @@ The kind of studies you’ve done
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li>by outcome of interest: Covid; nutrition;</li>
+<li>by field: Covid; nutrition;</li>
 <li>by design:</li>
+<li>by endpoint: most are <em>QoL</em></li>
 </ul>
 </div>
 </div>
@@ -492,6 +565,7 @@ What do you like and dislike about the work
 <ul>
 <li>like to help clinicians understand their data</li>
 <li>like health data, sometimes you see very novel data types (e.g.&nbsp;measurements by the british doctor)</li>
+<li>interesting ways people carry out their studies</li>
 </ul>
 <p>Dislike:</p>
 <ul>

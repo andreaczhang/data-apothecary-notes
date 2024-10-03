@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2024-10-02">
 <meta name="description" content="Part 2: time-to-event analysis">
 
-<title>Data Apothecary’s Notes - Case study: length of hospital stay</title>
+<title>Data Apothecary’s Notes - Length of hospital stay: Part II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -159,14 +159,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#kaplan-meier-analysis" id="toc-kaplan-meier-analysis" class="nav-link active" data-scroll-target="#kaplan-meier-analysis">Kaplan-Meier analysis</a></li>
+  <li><a href="#cox-proportional-hazards-model" id="toc-cox-proportional-hazards-model" class="nav-link" data-scroll-target="#cox-proportional-hazards-model">Cox proportional hazards model</a></li>
+  <li><a href="#time-varying-covariate" id="toc-time-varying-covariate" class="nav-link" data-scroll-target="#time-varying-covariate">Time varying covariate</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Case study: length of hospital stay</h1>
+<h1 class="title">Length of hospital stay: Part II</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Survival</div>
   </div>
@@ -226,8 +234,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3           1987  79 female           home      0   6</code></pre>
 </div>
 </div>
+<section id="simulate-times-and-status" class="level3">
+<h3 class="anchored" data-anchor-id="simulate-times-and-status">Simulate times and status</h3>
+<p>In this analysis we will do the following steps for processing. First we limit the analysis to data from 1985 onwards (not including).</p>
+<p><strong>Simulate censor time</strong>. We know the time for discharge is given as <code>los</code> - this is the true event time. In this example for hospital LOS, all patients are discharged (with final status 1). However <em>for the purpose of learning</em>, we randomly select 20% of the subjects and assume they are censored. The time for censored is fixed to 0.9 times their final LOS.</p>
+<p><strong>Simulate stroke time</strong>. <code>stroke</code> is a variable that is typically not measured at baseline, hence it should be treated as a time dependent variable. The time for stroke is fixed at 0.7 of their time (after censoring).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(data.table))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>los <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">'data/los.rds'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># table(dlos$admission_from)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># to increase readability, process</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">setDT</span>(los)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># code a status: 1 indicates released. all of them</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>los<span class="sc">$</span>discharge <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># take those from 1985 onwards</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>los <span class="ot">&lt;-</span> los[admission_year <span class="sc">&gt;</span> <span class="dv">1985</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># we know the true time (los)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># now randomly select subjects (20%), make a new time, then mark censor</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(los)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>id_time <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fl">0.2</span><span class="sc">*</span>n, <span class="at">replace =</span> F)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>los[, time <span class="sc">:</span><span class="er">=</span> los]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>los[id_time, time <span class="sc">:</span><span class="er">=</span> <span class="fu">round</span>(<span class="fl">0.9</span><span class="sc">*</span>los, <span class="at">digits =</span> <span class="dv">0</span>)]</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># make new status</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>los[, status <span class="sc">:</span><span class="er">=</span> <span class="dv">1</span>]</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>los[id_time, status <span class="sc">:</span><span class="er">=</span> <span class="dv">0</span>] <span class="co"># censored</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># for those with stroke, simulate a time</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># if no stroke, the time is same as overall time</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>los[stroke <span class="sc">==</span> <span class="dv">1</span>, time_stroke <span class="sc">:</span><span class="er">=</span> <span class="fu">round</span>(<span class="fl">0.7</span><span class="sc">*</span>time, <span class="at">digits =</span> <span class="dv">0</span>)]</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>los[stroke <span class="sc">==</span> <span class="dv">0</span>, time_stroke <span class="sc">:</span><span class="er">=</span> time]</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(los, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   admission_year   age    sex admission_from stroke   los discharge  time
+            &lt;num&gt; &lt;num&gt; &lt;char&gt;         &lt;char&gt; &lt;char&gt; &lt;num&gt;     &lt;num&gt; &lt;num&gt;
+1:           1987    81 female           home      0    13         1    13
+2:           1987    96 female           home      0    17         1    17
+3:           1987    79 female           home      0     6         1     6
+   status time_stroke
+    &lt;num&gt;       &lt;num&gt;
+1:      1          13
+2:      1          17
+3:      1           6</code></pre>
+</div>
+</div>
+</section>
+<section id="kaplan-meier-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="kaplan-meier-analysis">Kaplan-Meier analysis</h2>
+<p>Create KM curve</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggsurvfit)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from ggsurvfit pkg. using surfit also works</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">survfit2</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> los)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvfit</span>(ss) <span class="sc">+</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Days'</span>, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">'Overall survival prob'</span>) <span class="sc">+</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_confidence_interval</span>() <span class="sc">+</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_censor_mark</span>() <span class="sc">+</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_risktable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="case_study_liggetid_2_survival_files/figure-html/km-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="x-day-survival-probability" class="level3">
+<h3 class="anchored" data-anchor-id="x-day-survival-probability">x-day survival probability</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># beyond 100 days</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status)<span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> los), <span class="at">times =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ 1, data = los)
+
+ time n.risk n.event survival std.err lower 95% CI upper 95% CI
+  100     38     290    0.152  0.0212        0.116          0.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(los[time<span class="sc">&gt;=</span><span class="dv">100</span>]) <span class="co"># n at risk (still alive)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 38</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nrow(los[time&lt;=100])  # this includes censored, 363+1</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(los[status <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> time <span class="sc">&lt;=</span> <span class="dv">100</span>]) <span class="co"># n event (already happened)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 290</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># n at risk: 38; n event 290, p = 0.15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>401 total, 38 at risk, within the 364 (-1), 290 died</p>
+<p>Naive but incorrect way of calculating: 1-290/401 = 27.7%. This over-estimates how many are alive, as (364-290) = 74 are censored and we do not know the outcome.</p>
+</section>
+<section id="median-survival-time" class="level3">
+<h3 class="anchored" data-anchor-id="median-survival-time">Median survival time</h3>
+<p>Median survival time means half of the subjects have events happen before, and half after. It corresponds to the time where survival probability is 0.5.</p>
+<p>The median survival time is <strong>lower</strong> than if using <code>median(time_to_event)</code> on those with outcome, naive but incorrect.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> los)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(time, status) ~ 1, data = los)
+
+       n events median 0.95LCL 0.95UCL
+[1,] 401    321     35      28      41</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(los[status <span class="sc">==</span> <span class="dv">1</span>, time]) <span class="co"># only compute time for uncensored</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28</code></pre>
+</div>
+</div>
+<p>Compare with the complete case when there’s no censoring. We use <code>discharge</code> as the outcome status, all subjects have 1. The time variable is <code>los</code> which is the true time. Now these two should be consistent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(los, discharge) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> los)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: survfit(formula = Surv(los, discharge) ~ 1, data = los)
+
+       n events median 0.95LCL 0.95UCL
+[1,] 401    401     28      26      33</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(los<span class="sc">$</span>los)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvfit</span>(ss) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">35</span>), <span class="at">col =</span> <span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="case_study_liggetid_2_survival_files/figure-html/km2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Risk of ignoring censored subjects
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>over-estimated (higher) survival probability calculated as (1 - dead/n), since the numerator does not include censored subjects whose outcome is unknown.</li>
+<li>under-estimated (lower) median survival time, since their time before event will prolong the survival time.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cox-proportional-hazards-model" class="level2">
+<h2 class="anchored" data-anchor-id="cox-proportional-hazards-model">Cox proportional hazards model</h2>
+</section>
+<section id="time-varying-covariate" class="level2">
+<h2 class="anchored" data-anchor-id="time-varying-covariate">Time varying covariate</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

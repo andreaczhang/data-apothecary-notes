@@ -1,5 +1,5 @@
 ---
-title: "Length of hospital stay"
+title: "Length of hospital stay: Part I"
 description: |
   Part 1: EDA
 author: "Chi Zhang"
