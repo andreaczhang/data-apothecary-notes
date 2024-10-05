@@ -68,7 +68,7 @@ $callout-color-tip: $theme-milkcoffee3;
 @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
 
-$font-family-sans-serif: 'Montserrat', sans-serif;
+$font-family-sans-serif: 'Lato', sans-serif;
 $font-family-monospace: 'Source Code Pro', monospace;
 //$font-family: "Atkinson Hyperlegible", sans-serif;
 $font-poppins: 'Poppins', sans-serif; 
@@ -99,7 +99,7 @@ h2 {
 
 h3 {
   color: $theme-darkblue1;
-  font-family: $font-poppins;
+  font-family: $font-pt;
   //padding: 0.3em;
 }
 

@@ -97,6 +97,8 @@ listing:
     contents: 
       - "case_study_liggetid_1.qmd"
       - "case_study_liggetid_2_survival.qmd"
+      - "case_study_linearreg.qmd"
+      - "case_study_logistic.qmd"
       #- "case_study_ctn.qmd"
       #- "case_study_ctn51.qmd"
     type: table

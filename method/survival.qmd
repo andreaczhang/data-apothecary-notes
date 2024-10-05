@@ -35,8 +35,50 @@ where
 
 Survival probability at a certain time t is a conditional probability of surviving beyond that time, given that an individual has survived just prior to that time. This can be estimated as the number of patients who are alive (without loss of follow-up), divided by the number of patients who were alive just prior to that time.
 
+#### Left and right censor
+
+3 Time points: diagnosis, intervention or study time 0 (baseline), recording of outcome
+
+* Right censor: endpoint not observed, survived until at least recording time
+* Left censor: diagnosis time unknown. We might care about the time from diagnosis to outcome, rather than baseline to outcome.
+
+
+
+
+## Kaplain Meier curve
+
+It is **non-parametric estimator** of the survival function. 
+
+
+
+## Log-rank test
+
+This is a non-parametric test, comparing two survival distributions without assuming a parametric form for the survival distribution.
+
+
+## Cox proportional hazard
+
+The Lehmann alternative, $S_1(t) = [S_0(t)]^\psi$
+
+Proportional hazard assumption: $h_1(t) = \psi h_0(t)$. It is key to quantify the difference between two hazard functions.
+
+Hazard ratio, $\psi = e^{x\beta}$
+
+### Tests 
+
+H0: $\beta = 0$
+
+* Wald test
+* Score (logrank) test. The score function is the first derivative of log-likelihood
+* Likelihood ratio test 
+
+
 
 ### Cox regression 
+
+
+Hazard ratio (relative to baseline hazard) for subject i is $\psi_i = e^{x_i\beta}$
+
 
 Semi-parametric model for survival outcome
 

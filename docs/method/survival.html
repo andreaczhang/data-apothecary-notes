@@ -155,8 +155,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics">Basics</a>
+  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics">Basics</a></li>
+  <li><a href="#kaplain-meier-curve" id="toc-kaplain-meier-curve" class="nav-link" data-scroll-target="#kaplain-meier-curve">Kaplain Meier curve</a></li>
+  <li><a href="#log-rank-test" id="toc-log-rank-test" class="nav-link" data-scroll-target="#log-rank-test">Log-rank test</a>
   <ul class="collapse">
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests">Tests</a></li>
   <li><a href="#cox-regression" id="toc-cox-regression" class="nav-link" data-scroll-target="#cox-regression">Cox regression</a></li>
   <li><a href="#landmark-analysis" id="toc-landmark-analysis" class="nav-link" data-scroll-target="#landmark-analysis">Landmark analysis</a></li>
   <li><a href="#time-dependent-covariate" id="toc-time-dependent-covariate" class="nav-link" data-scroll-target="#time-dependent-covariate">Time-dependent covariate</a></li>
@@ -206,8 +209,38 @@ window.Quarto = {
 <li><span class="math inline">\(F(t) = Pr(T &lt;= t)\)</span> is the cumulative distribution function</li>
 </ul>
 <p>Survival probability at a certain time t is a conditional probability of surviving beyond that time, given that an individual has survived just prior to that time. This can be estimated as the number of patients who are alive (without loss of follow-up), divided by the number of patients who were alive just prior to that time.</p>
+<section id="left-and-right-censor" class="level4">
+<h4 class="anchored" data-anchor-id="left-and-right-censor">Left and right censor</h4>
+<p>3 Time points: diagnosis, intervention or study time 0 (baseline), recording of outcome</p>
+<ul>
+<li>Right censor: endpoint not observed, survived until at least recording time</li>
+<li>Left censor: diagnosis time unknown. We might care about the time from diagnosis to outcome, rather than baseline to outcome.</li>
+</ul>
+</section>
+</section>
+<section id="kaplain-meier-curve" class="level2">
+<h2 class="anchored" data-anchor-id="kaplain-meier-curve">Kaplain Meier curve</h2>
+<p>It is <strong>non-parametric estimator</strong> of the survival function.</p>
+</section>
+<section id="log-rank-test" class="level2">
+<h2 class="anchored" data-anchor-id="log-rank-test">Log-rank test</h2>
+<p>This is a non-parametric test, comparing two survival distributions without assuming a parametric form for the survival distribution.</p>
+<p>##&nbsp;Cox proportional hazard</p>
+<p>The Lehmann alternative, <span class="math inline">\(S_1(t) = [S_0(t)]^\psi\)</span></p>
+<p>Proportional hazard assumption: <span class="math inline">\(h_1(t) = \psi h_0(t)\)</span>. It is key to quantify the difference between two hazard functions.</p>
+<p>Hazard ratio, <span class="math inline">\(\psi = e^{x\beta}\)</span></p>
+<section id="tests" class="level3">
+<h3 class="anchored" data-anchor-id="tests">Tests</h3>
+<p>H0: <span class="math inline">\(\beta = 0\)</span></p>
+<ul>
+<li>Wald test</li>
+<li>Score (logrank) test. The score function is the first derivative of log-likelihood</li>
+<li>Likelihood ratio test</li>
+</ul>
+</section>
 <section id="cox-regression" class="level3">
 <h3 class="anchored" data-anchor-id="cox-regression">Cox regression</h3>
+<p>Hazard ratio (relative to baseline hazard) for subject i is <span class="math inline">\(\psi_i = e^{x_i\beta}\)</span></p>
 <p>Semi-parametric model for survival outcome</p>
 <p><span class="math display">\[h(t|X_i) = h_0(t) exp(\beta_1 X_{i1} + ... + \beta_p X_{ip})\]</span> where</p>
 <ul>

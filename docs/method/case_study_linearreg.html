@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-10-02">
-<meta name="description" content="Types of errors">
+<meta name="dcterms.date" content="2024-10-05">
+<meta name="description" content="Linear regression">
 
-<title>Data Apothecary’s Notes - Hypothesis tests</title>
+<title>Data Apothecary’s Notes - Linear regression example: prestige</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -129,8 +163,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#concepts" id="toc-concepts" class="nav-link active" data-scroll-target="#concepts">Concepts</a></li>
-  <li><a href="#interview-questions" id="toc-interview-questions" class="nav-link" data-scroll-target="#interview-questions">Interview questions</a></li>
+  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link active" data-scroll-target="#diagnostics">Diagnostics</a></li>
   </ul>
 </nav>
     </div>
@@ -139,15 +172,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hypothesis tests</h1>
+<h1 class="title">Linear regression example: prestige</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Inference</div>
+    <div class="quarto-category">Regression</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Types of errors</p>
+    <p>Linear regression</p>
   </div>
 </div>
 
@@ -164,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 2, 2024</p>
+      <p class="date">October 5, 2024</p>
     </div>
   </div>
   
@@ -176,19 +209,176 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="concepts" class="level1">
-<h1>Concepts</h1>
-<p>Significance level: P(reject H0 when H0 is true), usually at 5%</p>
-<p>LLN, CLT</p>
+<blockquote class="blockquote">
+<p>This analysis is in preparation for interviews related to linear regression. Focus will be put on the procedure (and how to do it in R), as well as interpretation of the results.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(car))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>prestige <span class="ot">&lt;-</span> carData<span class="sc">::</span>Prestige</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income <span class="sc">+</span> women, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> prestige)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = prestige ~ education + income + women, data = prestige)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-19.8246  -5.3332  -0.1364   5.1587  17.5045 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -6.7943342  3.2390886  -2.098   0.0385 *  
+education    4.1866373  0.3887013  10.771  &lt; 2e-16 ***
+income       0.0013136  0.0002778   4.729 7.58e-06 ***
+women       -0.0089052  0.0304071  -0.293   0.7702    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.846 on 98 degrees of freedom
+Multiple R-squared:  0.7982,    Adjusted R-squared:  0.792 
+F-statistic: 129.2 on 3 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<section id="t-test" class="level3">
+<h3 class="anchored" data-anchor-id="t-test">T-test</h3>
 </section>
-<section id="interview-questions" class="level1">
-<h1>Interview questions</h1>
-<ul>
-<li>Can you explain Type I and Type II errors and how they impact clinical trial results?</li>
-<li>How would you calculate power in a clinical trial, and why is it important?</li>
-<li>How do you address multiple testing problems in a clinical trial with multiple endpoints?</li>
-<li>What is an intent-to-treat (ITT) analysis, and why is it important?</li>
-</ul>
+<section id="f-test" class="level3">
+<h3 class="anchored" data-anchor-id="f-test">F-test</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>m11 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education <span class="sc">+</span> income, <span class="at">data =</span> prestige)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m11)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = prestige ~ education + income, data = prestige)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-19.4040  -5.3308   0.0154   4.9803  17.6889 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -6.8477787  3.2189771  -2.127   0.0359 *  
+education    4.1374444  0.3489120  11.858  &lt; 2e-16 ***
+income       0.0013612  0.0002242   6.071 2.36e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.81 on 99 degrees of freedom
+Multiple R-squared:  0.798, Adjusted R-squared:  0.7939 
+F-statistic: 195.6 on 2 and 99 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m10 <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige <span class="sc">~</span> education, <span class="at">data =</span> prestige)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = prestige ~ education, data = prestige)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-26.0397  -6.5228   0.6611   6.7430  18.1636 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -10.732      3.677  -2.919  0.00434 ** 
+education      5.361      0.332  16.148  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 9.103 on 100 degrees of freedom
+Multiple R-squared:  0.7228,    Adjusted R-squared:   0.72 
+F-statistic: 260.8 on 1 and 100 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m11)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: prestige ~ education + income + women
+Model 2: prestige ~ education + income
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1     98 6033.6                           
+2     99 6038.9 -1   -5.2806 0.0858 0.7702</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: prestige ~ education + income + women
+Model 2: prestige ~ education
+  Res.Df    RSS Df Sum of Sq    F    Pr(&gt;F)    
+1     98 6033.6                                
+2    100 8287.0 -2   -2253.4 18.3 1.765e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="likelihood-ratio-test-less-used" class="level3">
+<h3 class="anchored" data-anchor-id="likelihood-ratio-test-less-used">Likelihood ratio test (less used)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">lrtest</span>(m1, m11) <span class="co"># not sig</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Likelihood ratio test
+
+Model 1: prestige ~ education + income + women
+Model 2: prestige ~ education + income
+  #Df  LogLik Df  Chisq Pr(&gt;Chisq)
+1   5 -352.82                     
+2   4 -352.86 -1 0.0892     0.7652</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">lrtest</span>(m1, m10) <span class="co"># sig</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Likelihood ratio test
+
+Model 1: prestige ~ education + income + women
+Model 2: prestige ~ education
+  #Df  LogLik Df Chisq Pr(&gt;Chisq)    
+1   5 -352.82                        
+2   3 -369.00 -2 32.37  9.355e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="aic-bic" class="level3">
+<h3 class="anchored" data-anchor-id="aic-bic">AIC, BIC</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1, m11, m10) <span class="co"># m11 is the best</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    df      AIC
+m1   5 715.6358
+m11  4 713.7251
+m10  3 744.0053</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(m1, m11, m10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    df      BIC
+m1   5 728.7607
+m11  4 724.2250
+m10  3 751.8802</code></pre>
+</div>
+</div>
+</section>
+<section id="diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="diagnostics">Diagnostics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="case_study_linearreg_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

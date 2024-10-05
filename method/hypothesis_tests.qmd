@@ -18,6 +18,14 @@ format:
 
 
 
+
+# Concepts
+
+Significance level: P(reject H0 when H0 is true), usually at 5%
+
+
+LLN, CLT
+
 # Interview questions
 
 * Can you explain Type I and Type II errors and how they impact clinical trial results?
