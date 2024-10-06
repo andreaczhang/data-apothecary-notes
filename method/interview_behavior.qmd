@@ -1,0 +1,27 @@
+---
+title: "Interview: behavior"
+description: |
+  List of questions
+author: "Chi Zhang"
+date: "2024-10-06"
+categories: [Design]
+sidebar: false
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+<details>
+  <summary>Questions</summary>
+ 
+ 
+ Answer
+</details>
+
+
+
+

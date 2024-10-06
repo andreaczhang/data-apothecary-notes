@@ -22,7 +22,9 @@ format:
 
 
 
+# Behavior
 
+[List of behavior questions](interview_behavior.qmd)
 
 # Statistics
 
@@ -32,12 +34,20 @@ format:
 - [ ] [adaptive design](adaptive_design.qmd) 
 - [ ] sample size [part 1](sample_size_1.qmd), [part 2](sample_size_2.qmd)
 - [ ] power analysis
+- [ ] Odds ratio, risk ratio ([Observational study design](observational_design.qmd))
 
 ::: {.callout-note collapse='true'}
 ## Relate to my own experience
 
 
 :::
+
+<details>
+  <summary>Example questions</summary>
+* why use OR instead of RR in case control studies
+
+</details>
+
 
 
 
@@ -83,17 +93,19 @@ use `ggsurvfit`
 :::
 
 
-### Metrics, regression
+### Regression
 
-- [ ] linear, logistic regression and diagnostics ([link](regression.qmd))
+([Regression](regression.qmd))
+
+- [ ] assumptions and diagnostics
+- [ ] model selection
 - [ ] interaction
 - [ ] subgroup analysis
 - [ ] confounding
-- [ ] Odds ratio, risk ratio
+
 
 <details>
   <summary>Example questions</summary>
-* why use OR instead of RR in case control studies
 * what is confounding, how can you adjust for it
 
 </details>
@@ -232,6 +244,7 @@ Pay attention to how the sample size is calculated
 </details>
 
 
+For behavior questions check [here](interview_behavior.qmd)
 
 
 ::: {.callout-note collapse='true'}

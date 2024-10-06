@@ -1810,7 +1810,7 @@
     "href": "method/index.html#study-design",
     "title": "Inference and models",
     "section": "Study design",
-    "text": "Study design\n\nSurvey\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design. \n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison \n\n\n\n\nSample size (part II)\n\n\nRegression \n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design \n\n\n\n\nSurvey, stratification\n\n\nSurvey sampling \n\n\n\n\n\nNo matching items"
+    "text": "Study design\n\nSurvey\nClinical trial design\n\nPhase I, II, III\nadaptive design\n\nSample size calculation\n\ncomparing a few groups (visualization TBD)\nregression (LR, GLM)\nmore advanced model (e.g. GLMM)\n\n\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nClinical trial design: overview\n\n\nNotes related to clinical trial design. \n\n\n\n\nSample size (part I)\n\n\nOverview, mean and proportion comparison \n\n\n\n\nSample size (part II)\n\n\nRegression \n\n\n\n\nAdaptive design: overview\n\n\nIntro to adaptive design \n\n\n\n\nSurvey, stratification\n\n\nSurvey sampling \n\n\n\n\nObservational study design\n\n\nCohort, case control and related metrics \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/index.html#inference",
@@ -1831,7 +1831,7 @@
     "href": "method/index.html#case-studies",
     "title": "Inference and models",
     "section": "Case studies",
-    "text": "Case studies\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nLength of hospital stay: Part I\n\n\nPart 1: EDA \n\n\n\n\nLength of hospital stay: Part II\n\n\nPart 2: time-to-event analysis \n\n\n\n\nLinear regression example: prestige\n\n\nLinear regression \n\n\n\n\nLogistic regression example: lung\n\n\nLogistic regression \n\n\n\n\n\nNo matching items\n\n\n\nInterview preparation\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nInterview: clinical trial statistician\n\n\nKnowledge framework \n\n\n\n\n\nNo matching items"
+    "text": "Case studies\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nLength of hospital stay: Part I\n\n\nPart 1: EDA \n\n\n\n\nLength of hospital stay: Part II\n\n\nPart 2: time-to-event analysis \n\n\n\n\nLinear regression example: prestige\n\n\nLinear regression \n\n\n\n\nLogistic regression example: lung\n\n\nLogistic regression \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/rwd_rwe.html",
@@ -2524,7 +2524,7 @@
     "href": "method/regression.html",
     "title": "Regression",
     "section": "",
-    "text": "Aspect\nLinear\nLogistic\nCox\nComment\n\n\n\n\nVariable selection\nstepwise  regularisation\n\n\n\n\n\nModel selection\nAIC  BIC  R2\nAIC  BIC  adjusted R2  ROC/AUC\nAIC  BIC  Concordance index\n\n\n\nHypothesis test for coefficients\nt-test  F- test (overall model)\nWald test  likelihood ratio test\nWald test  Score (log rank) test  likelihood ratio test\n\n\n\nDiagnostics\nResidual plot  QQ plot  Influence measures (Cook’s distance)\nHosmer-Lemeshow test  Calibration plots  influence measures\nProportional hazard assumption test  martingale residuals  influence measures\n\n\n\n\n\n\n\nstate hypothesis\ndata exploration\nfit a regression model\ndiagnostics\n\n\n(linear reg:) residual vs fitted\nnormal QQ plot of residuals\nadded variable plots\ninfluence plot (residual vs leverage)\n\n\nfix biggest problem, go back to 3\ncompare alternative models with nested model tests\ninterpret the coefficients\n\n\n\n\n\n\nHypothesis: \\(H_0: \\beta_1 = 0\\)\nTest statistic: \\(T_0 = \\frac{\\hat{\\beta_1} - 0}{se{\\hat{\\beta_1}}}\\)\nReject H0 if \\(t_0 &gt; t_{\\alpha, n-p-1}\\). If one covariate, \\(n-2\\)\n\n\n\nEvaluate the overall significance of model, and compare nested models.\nHypothesis: \\(H_0: \\beta_1 = \\beta_2 = \\beta_3 = ... = 0\\). Joint non-significance of the model\nAlternative hypothesis: \\(H_1: \\beta_i \\neq = 0\\), one of them is significant\nCan be used for two nested linear regression models. Based on variance decomposition, not likelihood.\nCompare unrestricted sum of square of residuals (SSR) with restricted SSR.\n\nrestricted: coefficients are restricted to be 0 (i.e intercept only, H0). Would have higher SSR as no variance is explained by covariates\nunrestricted: not restricted to be 0, H1\n\nIf restricted is much larger than unrestricted, then reject the null.\n\\[F = \\frac{(SSR_r - SSR_u)/p}{SSR_u/n-p-1} \\sim f_{p, n-p-1}\\]\n\n\n\nTypically used for GLM and Cox regression. LRT can also be used for linear regression, but F-test is more common.\nLRT tests goodness-of-fit between two nested models, tests whether removing one predictor improves the model fit. It is based on likelihood function.\nFor GLM we do not have SSR, so comparing nested models requires likelihood from restricted and unrestricted models.\nNull hypothesis: reduced (fewer predictors) model is sufficient\nAlternative: full (more predictors) model is better\nDeviance: measures the difference in log-likelihood between fitted model and saturated model, which means it measures how far the current model is from the ideal model that fits the data perfectly.\n\nnull deviance: intercept only\nresidual deviance: deviance of the model with predictors included. Lower residual deviance, better fit\n\n\\[D = -2 \\times (\\frac{lik_{\\text{fitted model}}}{lik_{\\text{saturated}}}) \\sim \\chi^2_{p1 - p2}\\]\nModel 1 deviance - model 2 deviance\n\n\n\nCan be used to test about individual coefficients or set of coefficients in regression\n\\[W = \\frac{(\\hat{\\theta} - \\theta_0)^2}{I(\\theta)^{-1}} \\sim \\chi^2_1\\] For individual \\(\\beta\\), it is equivalent to t-test (to the power of 2) under normality assumptions\n\\[W = \\frac{(\\hat{\\beta} - \\beta_0)^2}{var(\\hat{\\beta})}\\] For multiple coefficients, testing whether several coefficients are simultaneously zero, the tests uses vectorized theta and covariance matrix.\nWald test is commonly seen in logistic and cox models to test the significance of covariates.\nSee an example here.\n\n\n\n\n\n\nScore test is used to test overall fit of the model without fitting the"
+    "text": "Aspect\nLinear\nLogistic\nCox\n\n\n\n\nVariable selection\nstepwise  regularisation\n\n\n\n\nModel selection\nAIC  BIC  R2\nAIC  BIC  adjusted R2  ROC/AUC\nAIC  BIC  Concordance index\n\n\nHypothesis test for one or more coefficients\nt-test / Wald test  F-test (overall model)  LRT (less common)\nWald test  LRT\nWald test  Score (log rank) test  LRT\n\n\nDiagnostics\nResidual plot  QQ plot  Influence (Cook’s distance)\nHosmer-Lemeshow test  Calibration plots  influence\nProportional hazard assumption (PH)  residuals (shoenfeld, martingale)  influence measures\n\n\nWhen assumption does not hold\n\n\nPH: stratified cox model  time varying covariats  parametric models  competing risk\n\n\n\n\n\n\nstate hypothesis\ndata exploration\nfit a regression model\ndiagnostics\n\n\n(linear reg:) residual vs fitted\nnormal QQ plot of residuals\nadded variable plots\ninfluence plot (residual vs leverage)\n\n\nfix biggest problem, go back to 3\ncompare alternative models with nested model tests\ninterpret the coefficients\n\n\n\n\n\n\nHypothesis: \\(H_0: \\beta_1 = 0\\)\nTest statistic: \\(T_0 = \\frac{\\hat{\\beta_1} - 0}{se{\\hat{\\beta_1}}}\\)\nReject H0 if \\(t_0 &gt; t_{\\alpha, n-p-1}\\). If one covariate, \\(n-2\\)\n\n\n\nEvaluate the overall significance of model, and compare nested models.\nHypothesis: \\(H_0: \\beta_1 = \\beta_2 = \\beta_3 = ... = 0\\). Joint non-significance of the model\nAlternative hypothesis: \\(H_1: \\beta_i \\neq = 0\\), one of them is significant\nCan be used for two nested linear regression models. Based on variance decomposition, not likelihood.\nCompare unrestricted sum of square of residuals (SSR) with restricted SSR.\n\nrestricted: coefficients are restricted to be 0 (i.e intercept only, H0). Would have higher SSR as no variance is explained by covariates\nunrestricted: not restricted to be 0, H1\n\nIf restricted is much larger than unrestricted, then reject the null.\n\\[F = \\frac{(SSR_r - SSR_u)/p}{SSR_u/n-p-1} \\sim f_{p, n-p-1}\\]\n\n\n\nTypically used for GLM and Cox regression. LRT can also be used for linear regression, but F-test is more common.\nLRT tests goodness-of-fit between two nested models, tests whether removing one predictor improves the model fit. It is based on likelihood function.\nFor GLM we do not have SSR, so comparing nested models requires likelihood from restricted and unrestricted models.\nNull hypothesis: reduced (fewer predictors) model is sufficient\nAlternative: full (more predictors) model is better\nDeviance: measures the difference in log-likelihood between fitted model and saturated model, which means it measures how far the current model is from the ideal model that fits the data perfectly.\n\nnull deviance: intercept only\nresidual deviance: deviance of the model with predictors included. Lower residual deviance, better fit\n\n\\[D = -2 \\times (\\frac{lik_{\\text{fitted model}}}{lik_{\\text{saturated}}}) \\sim \\chi^2_{p1 - p2}\\]\nModel 1 deviance - model 2 deviance\n\n\n\nCan be used to test about individual coefficients or set of coefficients in regression\n\\[W = \\frac{(\\hat{\\theta} - \\theta_0)^2}{I(\\theta)^{-1}} \\sim \\chi^2_1\\] For individual \\(\\beta\\), it is equivalent to t-test (to the power of 2) under normality assumptions\n\\[W = \\frac{(\\hat{\\beta} - \\beta_0)^2}{var(\\hat{\\beta})}\\] For multiple coefficients, testing whether several coefficients are simultaneously zero, the tests uses vectorized theta and covariance matrix.\nWald test is commonly seen in logistic and cox models to test the significance of covariates.\nSee an example here.\n\n\n\n\n\n\nScore test is used to test overall fit of the model without fitting the"
   },
   {
     "objectID": "method/interview_clinical_trial.html#hospital-vs-pharmaceuticals",
@@ -2580,21 +2580,21 @@
     "href": "method/regression.html#linear-regression",
     "title": "Regression",
     "section": "Linear regression",
-    "text": "Linear regression\nAssumptions:\n\nall relationships are linear\nindependent observation\nno perfect collinearity, no zero variance of independent variance (e.g. only female gender in the data, no male)\nerror term is normally distributed\nhomoscedasticity: error term has expected value of zero, uncorrelated with independent var\nerror term has equal variance\n\nUse residual as estimate for error terms.\n\nResidual vs fitted: should show no pattern. If it shows patterns (clusters, butterfly, U shape …) indicate either non-linearity or heteroscedasticity\n\nheteroscedasticity: try robust standard errors\nnon-linearity: consider transformation\n\nQ-Q plot\nResidual vs leverage: identify outliers (influential observations)\n\nleverage: distance from the mass center of the data\nCook’s distance: overall measure of influence of an observation\n\n\nLess important: scale vs location\nOther plots: car::avPlots\nSee case study: prestige for more examples."
+    "text": "Linear regression\nAssumptions:\n\nall relationships are linear\nindependent observation\nno perfect collinearity, no zero variance of independent variance (e.g. only female gender in the data, no male)\nerror term is normally distributed\nhomoscedasticity: error term has expected value of zero, uncorrelated with independent var\nerror term has equal variance\n\nUse residual as estimate for error terms.\n\nResidual vs fitted: should show no pattern. If it shows patterns (clusters, butterfly, U shape …) indicate either non-linearity or heteroscedasticity\n\nheteroscedasticity: try robust standard errors\nnon-linearity: consider transformation\n\nQ-Q plot\nResidual vs leverage: identify outliers (influential observations)\n\nleverage: distance from the mass center of the data\nCook’s distance: overall measure of influence of an observation\n\n\nLess important: scale vs location\nOther plots: car::avPlots\nSee case study: prestige for more examples.\nWhen assumption does not hold"
   },
   {
     "objectID": "method/regression.html#logistic-regression",
     "href": "method/regression.html#logistic-regression",
     "title": "Regression",
     "section": "Logistic regression",
-    "text": "Logistic regression\nLogit(p) = log(p/(1-p)) = b0 + bpxp\nAssumptions:\n\nbinary out ordinal outcome\nlarge samples\nindependence\nlinearity of indep variables and log odds (so that it’s linear addition)\nnone or little multicollinearity between independent variables"
+    "text": "Logistic regression\nLogit(p) = log(p/(1-p)) = b0 + bpxp\nAssumptions:\n\nbinary out ordinal outcome\nlarge samples\nindependence\nlinearity of indep variables and log odds (so that it’s linear addition)\nnone or little multicollinearity between independent variables\n\nWhen assumption does not hold"
   },
   {
     "objectID": "method/regression.html#cox-regression",
     "href": "method/regression.html#cox-regression",
     "title": "Regression",
     "section": "Cox regression",
-    "text": "Cox regression\nProportional hazards assumption, tested with cox.zph().\n\np-value for each covariate\nsignificant suggests proportional hazards is violated for this covariate\n\nConcordance: model’s ability to predict the ordering of survival times, i.e. how well the model can rank individual subjects by risk. It ranges from 0.5 to 1, the higher the better.\nResidual diagnostics, shouldn’t display patterns\n\nmartingale residual\ndeviance residual"
+    "text": "Cox regression\nProportional hazards assumption, tested with cox.zph().\n\np-value for each covariate\nsignificant suggests proportional hazards is violated for this covariate\n\nConcordance: model’s ability to predict the ordering of survival times, i.e. how well the model can rank individual subjects by risk. It ranges from 0.5 to 1, the higher the better.\nResidual diagnostics, shouldn’t display patterns\n\nmartingale residual\ndeviance residual\n\n\n\n\n\n\n\nNote\n\n\n\nWhen assumption does not hold\n\nModify the model within Cox: stratified cox, time varying covariate (e.g.landmark analysis)\nParametric model: accelerated failure time AFT model, cure model, competing risk"
   },
   {
     "objectID": "method/regression.html#hypothesis-tests-for-regression",
@@ -2641,21 +2641,21 @@
   {
     "objectID": "method/case_study_logistic.html",
     "href": "method/case_study_logistic.html",
-    "title": "Lung",
+    "title": "Logistic regression example: lung",
     "section": "",
     "text": "This analysis is in preparation for interviews related to logistic regression. Focus will be put on the procedure (and how to do it in R), as well as interpretation of the results.\nmtcars |&gt; head()\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\nmlr1 &lt;- glm(vs ~ mpg + wt, family = 'binomial', data = mtcars)\nsummary(mlr1)\n\n\nCall:\nglm(formula = vs ~ mpg + wt, family = \"binomial\", data = mtcars)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)  \n(Intercept) -12.5412     8.4660  -1.481   0.1385  \nmpg           0.5241     0.2604   2.012   0.0442 *\nwt            0.5829     1.1845   0.492   0.6227  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 43.860  on 31  degrees of freedom\nResidual deviance: 25.298  on 29  degrees of freedom\nAIC: 31.298\n\nNumber of Fisher Scoring iterations: 6\nDeviance\nThe difference is how much adding two variables has improved the model"
   },
   {
     "objectID": "method/case_study_logistic.html#hypothesis-tests",
     "href": "method/case_study_logistic.html#hypothesis-tests",
-    "title": "Lung",
+    "title": "Logistic regression example: lung",
     "section": "Hypothesis tests",
     "text": "Hypothesis tests\nWald test: z-values are the wald test statistics\n\nLikelihood ratio test for two nested LR\nBuild a second model\n\nmlr2 &lt;- glm(vs ~ mpg, family = 'binomial', data = mtcars)\nsummary(mlr2)\n\n\nCall:\nglm(formula = vs ~ mpg, family = \"binomial\", data = mtcars)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)   \n(Intercept)  -8.8331     3.1623  -2.793  0.00522 **\nmpg           0.4304     0.1584   2.717  0.00659 **\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 43.860  on 31  degrees of freedom\nResidual deviance: 25.533  on 30  degrees of freedom\nAIC: 29.533\n\nNumber of Fisher Scoring iterations: 6\n\nanova(mlr2, mlr1, test = 'Chisq') # analysis of deviance\n\nAnalysis of Deviance Table\n\nModel 1: vs ~ mpg\nModel 2: vs ~ mpg + wt\n  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)\n1        30     25.533                     \n2        29     25.298  1  0.23546   0.6275\n\n\n\nmlr3 &lt;- glm(vs ~ wt, family = 'binomial', data = mtcars)\nsummary(mlr3)\n\n\nCall:\nglm(formula = vs ~ wt, family = \"binomial\", data = mtcars)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)   \n(Intercept)   5.7147     2.3014   2.483  0.01302 * \nwt           -1.9105     0.7279  -2.625  0.00867 **\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 43.860  on 31  degrees of freedom\nResidual deviance: 31.367  on 30  degrees of freedom\nAIC: 35.367\n\nNumber of Fisher Scoring iterations: 5\n\nanova(mlr3, mlr1, test = 'Chisq') # analysis of deviance\n\nAnalysis of Deviance Table\n\nModel 1: vs ~ wt\nModel 2: vs ~ mpg + wt\n  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)  \n1        30     31.367                       \n2        29     25.298  1   6.0689  0.01376 *\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nAIC(mlr1, mlr2, mlr3)\n\n     df      AIC\nmlr1  3 31.29788\nmlr2  2 29.53334\nmlr3  2 35.36673\n\nBIC(mlr1, mlr2, mlr3)\n\n     df      BIC\nmlr1  3 35.69508\nmlr2  2 32.46481\nmlr3  2 38.29820"
   },
   {
     "objectID": "method/case_study_logistic.html#diagnostics",
     "href": "method/case_study_logistic.html#diagnostics",
-    "title": "Lung",
+    "title": "Logistic regression example: lung",
     "section": "Diagnostics",
     "text": "Diagnostics"
   },
@@ -2665,5 +2665,47 @@
     "title": "Regression",
     "section": "General: VIF, Cook’s distance, GoF",
     "text": "General: VIF, Cook’s distance, GoF"
+  },
+  {
+    "objectID": "method/regression.html#subgroup-analysis",
+    "href": "method/regression.html#subgroup-analysis",
+    "title": "Regression",
+    "section": "Subgroup analysis",
+    "text": "Subgroup analysis\nE.g. analyse effect of new treatment on patient under 50 vs above 50 to see if treatment works differently in two age subgroups.\n\npre-specified (a priori): planned in SAP\npost-hoc: conducted afterwards. useful for generating hypothesis, but high risk of false positives (type I) due to multiple comparisons\n\nSteps: define subgroup -&gt; conduct analysis and estimate treatment effect -&gt; check for interaction -&gt; interpretation\n\nRisks of subgroup analysis, how to mitigate\n\n\n\n\n\n\n\n\n\nRisk\n\nSolution\nComment\n\n\n\n\nMultiple comparison\nIncrease the risk of FP (type I error), statistically significant differences occur by chance\nBonferroni correction, FDR adjustments\n\n\n\nReduced power\n(even) Smaller sample\n\n\n\n\nOver-interpretation\nPost-hoc analysis are not confirming the hypothesis made in SAP, interpretation need to be cautious\nRelate to other studies\n\n\n\np-hacking\nSearch for significant subgroup without clear hypothesis\n\n\n\n\nLoss of generalizability\nObscure the overall treatment effect"
+  },
+  {
+    "objectID": "method/observational_design.html",
+    "href": "method/observational_design.html",
+    "title": "Observational study design",
+    "section": "",
+    "text": "Prospective studies: cohort. Population at risk and incidence are directly observed over time\nRetrospective studies: CC.\nIn cohort studies and RCT, participants are selected based on exposure status; in CC studies, they are selected based on outcome status."
+  },
+  {
+    "objectID": "method/observational_design.html#relative-risk-risk-ratio-rr-ddds-ratio-or",
+    "href": "method/observational_design.html#relative-risk-risk-ratio-rr-ddds-ratio-or",
+    "title": "Observational study design",
+    "section": "Relative risk (risk ratio) RR, ddds ratio OR",
+    "text": "Relative risk (risk ratio) RR, ddds ratio OR\n\nCase control studies\nOdds ratio is usually used over risk ratio for the following reasons\n\nCC studies aim to compare the exposure history (risk factor) between cases and controls. As subjects are selected based on outcome, you can’t compute risk (which measures the population)\nincidence or risk calculation: it is not directly measureable you do not have total number of people developing the disease. In CC typically matched as a ratio\nodds is computable\nin rare outcomes, OR approximates RR\nlogistic regression estimates OR"
+  },
+  {
+    "objectID": "method/observational_design.html#relative-risk-risk-ratio-rr-odds-ratio-or",
+    "href": "method/observational_design.html#relative-risk-risk-ratio-rr-odds-ratio-or",
+    "title": "Observational study design",
+    "section": "Relative risk (risk ratio) RR, odds ratio OR",
+    "text": "Relative risk (risk ratio) RR, odds ratio OR\n\nCase control studies\nOdds ratio is usually used over risk ratio for the following reasons\n\nCC studies aim to compare the exposure history (risk factor) between cases and controls. As subjects are selected based on outcome, you can’t compute risk (which measures the population)\nincidence or risk calculation: it is not directly measureable you do not have total number of people developing the disease. In CC typically matched as a ratio\nodds is computable\nin rare outcomes, OR approximates RR\nlogistic regression estimates OR"
+  },
+  {
+    "objectID": "method/index.html#interview-preparation",
+    "href": "method/index.html#interview-preparation",
+    "title": "Inference and models",
+    "section": "Interview preparation",
+    "text": "Interview preparation\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nInterview: clinical trial statistician\n\n\nKnowledge framework \n\n\n\n\nInterview: behavior\n\n\nList of questions \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "method/interview_behavior.html",
+    "href": "method/interview_behavior.html",
+    "title": "Interview: behavior",
+    "section": "",
+    "text": "Questions\n\nAnswer"
   }
 ]

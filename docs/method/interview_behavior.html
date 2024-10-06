@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-10-05">
-<meta name="description" content="Logistic regression">
+<meta name="dcterms.date" content="2024-10-06">
+<meta name="description" content="List of questions">
 
-<title>Data Apothecary’s Notes - Logistic regression example: lung</title>
+<title>Data Apothecary’s Notes - Interview: behavior</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -159,29 +125,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link active" data-scroll-target="#hypothesis-tests">Hypothesis tests</a></li>
-  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics">Diagnostics</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Logistic regression example: lung</h1>
+<h1 class="title">Interview: behavior</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Regression</div>
+    <div class="quarto-category">Design</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Logistic regression</p>
+    <p>List of questions</p>
   </div>
 </div>
 
@@ -198,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 5, 2024</p>
+      <p class="date">October 6, 2024</p>
     </div>
   </div>
   
@@ -210,149 +169,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<blockquote class="blockquote">
-<p>This analysis is in preparation for interviews related to logistic regression. Focus will be put on the procedure (and how to do it in R), as well as interpretation of the results.</p>
-</blockquote>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
-Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mlr1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vs <span class="sc">~</span> mpg <span class="sc">+</span> wt, <span class="at">family =</span> <span class="st">'binomial'</span>, <span class="at">data =</span> mtcars)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlr1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = vs ~ mpg + wt, family = "binomial", data = mtcars)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)  
-(Intercept) -12.5412     8.4660  -1.481   0.1385  
-mpg           0.5241     0.2604   2.012   0.0442 *
-wt            0.5829     1.1845   0.492   0.6227  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 43.860  on 31  degrees of freedom
-Residual deviance: 25.298  on 29  degrees of freedom
-AIC: 31.298
-
-Number of Fisher Scoring iterations: 6</code></pre>
-</div>
-</div>
-<p>Deviance</p>
-<ul>
-<li>null deviance: 43.8, when only intercept is fitted to the data</li>
-<li>residual deviance: 25.3, when model has two predictors</li>
-</ul>
-<p>The difference is how much adding two variables has improved the model</p>
-<section id="hypothesis-tests" class="level2">
-<h2 class="anchored" data-anchor-id="hypothesis-tests">Hypothesis tests</h2>
-<p>Wald test: z-values are the wald test statistics</p>
-<section id="likelihood-ratio-test-for-two-nested-lr" class="level3">
-<h3 class="anchored" data-anchor-id="likelihood-ratio-test-for-two-nested-lr">Likelihood ratio test for two nested LR</h3>
-<p>Build a second model</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mlr2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vs <span class="sc">~</span> mpg, <span class="at">family =</span> <span class="st">'binomial'</span>, <span class="at">data =</span> mtcars)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = vs ~ mpg, family = "binomial", data = mtcars)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)   
-(Intercept)  -8.8331     3.1623  -2.793  0.00522 **
-mpg           0.4304     0.1584   2.717  0.00659 **
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 43.860  on 31  degrees of freedom
-Residual deviance: 25.533  on 30  degrees of freedom
-AIC: 29.533
-
-Number of Fisher Scoring iterations: 6</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mlr2, mlr1, <span class="at">test =</span> <span class="st">'Chisq'</span>) <span class="co"># analysis of deviance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Deviance Table
-
-Model 1: vs ~ mpg
-Model 2: vs ~ mpg + wt
-  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)
-1        30     25.533                     
-2        29     25.298  1  0.23546   0.6275</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mlr3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vs <span class="sc">~</span> wt, <span class="at">family =</span> <span class="st">'binomial'</span>, <span class="at">data =</span> mtcars)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mlr3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = vs ~ wt, family = "binomial", data = mtcars)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)   
-(Intercept)   5.7147     2.3014   2.483  0.01302 * 
-wt           -1.9105     0.7279  -2.625  0.00867 **
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 43.860  on 31  degrees of freedom
-Residual deviance: 31.367  on 30  degrees of freedom
-AIC: 35.367
-
-Number of Fisher Scoring iterations: 5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mlr3, mlr1, <span class="at">test =</span> <span class="st">'Chisq'</span>) <span class="co"># analysis of deviance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Deviance Table
-
-Model 1: vs ~ wt
-Model 2: vs ~ mpg + wt
-  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)  
-1        30     31.367                       
-2        29     25.298  1   6.0689  0.01376 *
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(mlr1, mlr2, mlr3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     df      AIC
-mlr1  3 31.29788
-mlr2  2 29.53334
-mlr3  2 35.36673</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(mlr1, mlr2, mlr3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     df      BIC
-mlr1  3 35.69508
-mlr2  2 32.46481
-mlr3  2 38.29820</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="diagnostics" class="level2">
-<h2 class="anchored" data-anchor-id="diagnostics">Diagnostics</h2>
+<details>
+<summary>
+Questions
+</summary>
+Answer
+</details>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

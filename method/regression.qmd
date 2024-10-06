@@ -19,12 +19,13 @@ format:
 
 # Summary
 
-| Aspect | Linear | Logistic  | Cox  | Comment |
-|-------|-------|------|------|------|
-| Variable selection  |  stepwise <br>  regularisation |    |     |     |
-| Model selection  |  AIC <br> BIC <br> R2  | AIC <br> BIC <br> adjusted R2 <br>  ROC/AUC | AIC <br> BIC <br> Concordance index   |     |
-| Hypothesis test for coefficients  | t-test <br> F- test (overall model)   |  Wald test <br> likelihood ratio test  |  Wald test <br> Score (**log rank**) test <br> likelihood ratio test   |     |
-| Diagnostics  |  Residual plot <br> QQ plot <br> Influence measures (Cook's distance) | Hosmer-Lemeshow test <br>  Calibration plots <br> influence measures | Proportional hazard assumption test <br>  martingale residuals <br> influence measures  |     |
+| Aspect | Linear | Logistic  | Cox  | 
+|-------|-------|------|------|
+| Variable selection  |  stepwise <br>  regularisation |    |     |
+| Model selection  |  AIC <br> BIC <br> R2  | AIC <br> BIC <br> adjusted R2 <br>  ROC/AUC | AIC <br> BIC <br> Concordance index   | 
+| Hypothesis test for one or more coefficients  | t-test / Wald test <br> F-test (overall model) <br> LRT (less common) |  Wald test <br> LRT  |  Wald test <br> Score (**log rank**) test <br> LRT   |  
+| Diagnostics  |  Residual plot <br> QQ plot <br> Influence  (Cook's distance) | Hosmer-Lemeshow test <br>  Calibration plots <br> influence  | Proportional hazard assumption (PH) <br>  residuals (shoenfeld, martingale) <br> influence measures  |
+| When assumption does not hold  |   |  |  PH: stratified cox model <br> time varying covariats <br> parametric models <br> competing risk| 
 
 
 
@@ -162,9 +163,20 @@ BIC is stricter for model complexity, so favors simpler models in small datasets
 * fit (overall fit, goodness of fit, comparing nested models)
 * collinearity (variance inflation factor)
 
+When assumptions do not hold
+
+* model mis-specification: add more or remove variables; interaction terms; transformation of variables
+* collinearity: remove after checking VIF
+* other models: GAM, mixed effects, parametric models
+
 :::
 
 
+<details>
+  <summary>Related to my own work (TBF) </summary>
+  
+  
+</details>
 
 
 ## Linear regression
@@ -195,6 +207,9 @@ Other plots: `car::avPlots`
 See [case study: prestige](case_study_linearreg.qmd) for more examples.
 
 
+**When assumption does not hold**
+
+
 ## Logistic regression
 
 
@@ -207,6 +222,10 @@ Assumptions:
 3. independence 
 4. linearity of indep variables and log odds (so that it's linear addition)
 5. none or little multicollinearity between independent variables
+
+
+**When assumption does not hold**
+
 
 
 ## Cox regression
@@ -226,12 +245,53 @@ Residual diagnostics, shouldn't display patterns
 
 
 
+::: {.callout-note}
+
+When assumption does not hold
+
+* Modify the model within Cox: stratified cox, time varying covariate (e.g.landmark analysis)
+* Parametric model: accelerated failure time AFT model, cure model, competing risk
+
+:::
+
+
+
 ## General: VIF, Cook's distance, GoF
 
 
 
 
 # Subgroup analysis, Sensitivity, interaction
+
+<details>
+  <summary>Related to my own work (TBF) </summary>
+  
+  * requests for post-hoc power analysis
+  * separate analysis stratefied by sex and smoking status (COVITA)
+  * interaction: alcohol study
+  
+</details>
+
+## Subgroup analysis
+
+E.g. analyse effect of new treatment on patient under 50 vs above 50 to see if treatment works differently in two age subgroups.
+
+* pre-specified (a priori): planned in SAP 
+* post-hoc: conducted afterwards. useful for **generating hypothesis**, but high risk of **false positives (type I) due to multiple comparisons**
+
+Steps: define subgroup -> conduct analysis and estimate treatment effect -> check for interaction -> interpretation
+
+
+#### Risks of subgroup analysis, how to mitigate
+
+| Risk |   |Solution | Comment |
+|-------|-------|------|------|
+| Multiple comparison | Increase the risk of FP (type I error), statistically significant differences occur by chance | Bonferroni correction, FDR adjustments| |
+| Reduced power | (even) Smaller sample | | |
+| Over-interpretation | Post-hoc analysis are not confirming the hypothesis made in SAP, interpretation need to be cautious| Relate to other studies| |
+| p-hacking | Search for significant subgroup without clear hypothesis | | |
+| Loss of generalizability | Obscure the overall treatment effect | | |
+
 
 
 

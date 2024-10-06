@@ -81,6 +81,7 @@
       "/method/sample_size_2.html",
       "/method/adaptive_design.html",
       "/method/survey.html",
+      "/method/observational_design.html",
       "/method/overview_ci.html",
       "/method/weighting.html",
       "/method/g_computation.html",
@@ -100,7 +101,8 @@
       "/method/case_study_liggetid_2_survival.html",
       "/method/case_study_linearreg.html",
       "/method/case_study_logistic.html",
-      "/method/interview_clinical_trial.html"
+      "/method/interview_clinical_trial.html",
+      "/method/interview_behavior.html"
     ]
   }
 ]

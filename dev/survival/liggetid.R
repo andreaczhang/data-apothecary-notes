@@ -178,6 +178,7 @@ tbl_regression(cox_sex, exp = T)
 cox.zph(cox_sex)
 # p = 0.16
 # testing an interaction term between covariates and log(time)
+# schoenfeld residual 
 plot(cox.zph(cox_sex))
 
 cox_stk <- coxph(Surv(time, status) ~ stroke, data = los)
@@ -191,8 +192,11 @@ tbl_regression(cox_sexage, exp = T)
 
 colnames(los)
 
-coxph(Surv(time, status) ~ sex + age + stroke + admission_from, 
-      data = los) |> tbl_regression(exp = T)
+cox_4 <- coxph(Surv(time, status) ~ sex + age + stroke + admission_from, 
+      data = los) #|> tbl_regression(exp = T)
+
+plot(cox.zph(cox_4))
+cox.zph(cox_4) # they do not violate the PH assumption
 
 
 
@@ -212,6 +216,30 @@ newdata |> head()
 
 coxph(Surv(time = tstart, time2 = tstop, event = discharge) ~ stroke, 
       data = newdata) |> tbl_regression()
+
+
+
+
+# stratified cox model ----
+# allows for different baseline hazard for each level of stratified variable
+
+# stratify by sex
+cox_4s <- coxph(Surv(time, status) ~ strata(sex) + age + stroke + admission_from, 
+               data = los) 
+summary(cox_4s)
+
+
+
+
+# parametric methods ----
+# AFT
+# weibull, log normal, exponential 
+
+aft_model <- survreg(Surv(time, status) ~ sex, 
+                     data = los, 
+                     dist = 'weibull')
+summary(aft_model)
+ 
 
 
 

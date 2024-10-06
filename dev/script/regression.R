@@ -90,6 +90,11 @@ summary(mlr2)
 anova(mlr2, mlr1, test = 'Chisq') # analysis of deviance
 
 
+# goodness of fit
+# pseudo r2
+install.packages('pscl')
+pscl::pR2(mlr1)
+?pscl::pR2
 
 # _______ -----
 # cox regression ----

@@ -27,6 +27,7 @@ listing:
       - "sample_size_1.qmd"
       - "sample_size_2.qmd"
       - "adaptive_design.qmd"
+      - "observational_design.qmd"
       - "survey.qmd"
     type: table
     grid-item-border: false
@@ -113,6 +114,7 @@ listing:
     image-height: 150px
     fields: [title, description]
     contents: 
+      - "interview_behavior.qmd"
       - "interview_clinical_trial.qmd"
     type: table
     grid-item-border: false
@@ -174,7 +176,7 @@ Topics on inference in general, missing value handling
 :::
 
 
-### Interview preparation
+## Interview preparation
 
 ::: {#interview}
 :::

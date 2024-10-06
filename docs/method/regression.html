@@ -171,7 +171,10 @@ window.Quarto = {
   <li><a href="#cox-regression" id="toc-cox-regression" class="nav-link" data-scroll-target="#cox-regression">Cox regression</a></li>
   <li><a href="#general-vif-cooks-distance-gof" id="toc-general-vif-cooks-distance-gof" class="nav-link" data-scroll-target="#general-vif-cooks-distance-gof">General: VIF, Cook’s distance, GoF</a></li>
   </ul></li>
-  <li><a href="#sub-group-analysis-interaction" id="toc-sub-group-analysis-interaction" class="nav-link" data-scroll-target="#sub-group-analysis-interaction">Sub group analysis, interaction</a></li>
+  <li><a href="#subgroup-analysis-sensitivity-interaction" id="toc-subgroup-analysis-sensitivity-interaction" class="nav-link" data-scroll-target="#subgroup-analysis-sensitivity-interaction">Subgroup analysis, Sensitivity, interaction</a>
+  <ul class="collapse">
+  <li><a href="#subgroup-analysis" id="toc-subgroup-analysis" class="nav-link" data-scroll-target="#subgroup-analysis">Subgroup analysis</a></li>
+  </ul></li>
   <li><a href="#interview-questions" id="toc-interview-questions" class="nav-link" data-scroll-target="#interview-questions">Interview questions</a></li>
   </ul>
 </nav>
@@ -222,11 +225,10 @@ window.Quarto = {
 <h1>Summary</h1>
 <table class="table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 18%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 23%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -234,7 +236,6 @@ window.Quarto = {
 <th>Linear</th>
 <th>Logistic</th>
 <th>Cox</th>
-<th>Comment</th>
 </tr>
 </thead>
 <tbody>
@@ -243,28 +244,30 @@ window.Quarto = {
 <td>stepwise <br> regularisation</td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr class="even">
 <td>Model selection</td>
 <td>AIC <br> BIC <br> R2</td>
 <td>AIC <br> BIC <br> adjusted R2 <br> ROC/AUC</td>
 <td>AIC <br> BIC <br> Concordance index</td>
-<td></td>
 </tr>
 <tr class="odd">
-<td>Hypothesis test for coefficients</td>
-<td>t-test <br> F- test (overall model)</td>
-<td>Wald test <br> likelihood ratio test</td>
-<td>Wald test <br> Score (<strong>log rank</strong>) test <br> likelihood ratio test</td>
-<td></td>
+<td>Hypothesis test for one or more coefficients</td>
+<td>t-test / Wald test <br> F-test (overall model) <br> LRT (less common)</td>
+<td>Wald test <br> LRT</td>
+<td>Wald test <br> Score (<strong>log rank</strong>) test <br> LRT</td>
 </tr>
 <tr class="even">
 <td>Diagnostics</td>
-<td>Residual plot <br> QQ plot <br> Influence measures (Cook’s distance)</td>
-<td>Hosmer-Lemeshow test <br> Calibration plots <br> influence measures</td>
-<td>Proportional hazard assumption test <br> martingale residuals <br> influence measures</td>
+<td>Residual plot <br> QQ plot <br> Influence (Cook’s distance)</td>
+<td>Hosmer-Lemeshow test <br> Calibration plots <br> influence</td>
+<td>Proportional hazard assumption (PH) <br> residuals (shoenfeld, martingale) <br> influence measures</td>
+</tr>
+<tr class="odd">
+<td>When assumption does not hold</td>
 <td></td>
+<td></td>
+<td>PH: stratified cox model <br> time varying covariats <br> parametric models <br> competing risk</td>
 </tr>
 </tbody>
 </table>
@@ -371,12 +374,24 @@ Aspects to consider
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>residuals (pattern, outliers)</li>
+<li>distribution (QQ)</li>
+<li>residuals (pattern, outliers; deviance; Schoenfled)</li>
 <li>fit (overall fit, goodness of fit, comparing nested models)</li>
 <li>collinearity (variance inflation factor)</li>
 </ul>
+<p>When assumptions do not hold</p>
+<ul>
+<li>model mis-specification: add more or remove variables; interaction terms; transformation of variables</li>
+<li>collinearity: remove after checking VIF</li>
+<li>other models: GAM, mixed effects, parametric models</li>
+</ul>
 </div>
 </div>
+<details>
+<summary>
+Related to my own work (TBF)
+</summary>
+</details>
 <section id="linear-regression" class="level2">
 <h2 class="anchored" data-anchor-id="linear-regression">Linear regression</h2>
 <p>Assumptions:</p>
@@ -405,6 +420,7 @@ Aspects to consider
 <p>Less important: scale vs location</p>
 <p>Other plots: <code>car::avPlots</code></p>
 <p>See <a href="../method/case_study_linearreg.html">case study: prestige</a> for more examples.</p>
+<p><strong>When assumption does not hold</strong></p>
 </section>
 <section id="logistic-regression" class="level2">
 <h2 class="anchored" data-anchor-id="logistic-regression">Logistic regression</h2>
@@ -417,6 +433,7 @@ Aspects to consider
 <li>linearity of indep variables and log odds (so that it’s linear addition)</li>
 <li>none or little multicollinearity between independent variables</li>
 </ol>
+<p><strong>When assumption does not hold</strong></p>
 </section>
 <section id="cox-regression" class="level2">
 <h2 class="anchored" data-anchor-id="cox-regression">Cox regression</h2>
@@ -431,13 +448,102 @@ Aspects to consider
 <li>martingale residual</li>
 <li>deviance residual</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When assumption does not hold</p>
+<ul>
+<li>Modify the model within Cox: stratified cox, time varying covariate (e.g.landmark analysis)</li>
+<li>Parametric model: accelerated failure time AFT model, cure model, competing risk</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="general-vif-cooks-distance-gof" class="level2">
 <h2 class="anchored" data-anchor-id="general-vif-cooks-distance-gof">General: VIF, Cook’s distance, GoF</h2>
 </section>
 </section>
-<section id="sub-group-analysis-interaction" class="level1">
-<h1>Sub group analysis, interaction</h1>
+<section id="subgroup-analysis-sensitivity-interaction" class="level1">
+<h1>Subgroup analysis, Sensitivity, interaction</h1>
+<details>
+<summary>
+Related to my own work (TBF)
+</summary>
+<ul>
+<li>requests for post-hoc power analysis
+<ul>
+<li>separate analysis stratefied by sex and smoking status (COVITA)</li>
+<li>interaction: alcohol study</li>
+</ul></li>
+</ul>
+</details>
+<section id="subgroup-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="subgroup-analysis">Subgroup analysis</h2>
+<p>E.g. analyse effect of new treatment on patient under 50 vs above 50 to see if treatment works differently in two age subgroups.</p>
+<ul>
+<li>pre-specified (a priori): planned in SAP</li>
+<li>post-hoc: conducted afterwards. useful for <strong>generating hypothesis</strong>, but high risk of <strong>false positives (type I) due to multiple comparisons</strong></li>
+</ul>
+<p>Steps: define subgroup -&gt; conduct analysis and estimate treatment effect -&gt; check for interaction -&gt; interpretation</p>
+<section id="risks-of-subgroup-analysis-how-to-mitigate" class="level4">
+<h4 class="anchored" data-anchor-id="risks-of-subgroup-analysis-how-to-mitigate">Risks of subgroup analysis, how to mitigate</h4>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk</th>
+<th></th>
+<th>Solution</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Multiple comparison</td>
+<td>Increase the risk of FP (type I error), statistically significant differences occur by chance</td>
+<td>Bonferroni correction, FDR adjustments</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Reduced power</td>
+<td>(even) Smaller sample</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Over-interpretation</td>
+<td>Post-hoc analysis are not confirming the hypothesis made in SAP, interpretation need to be cautious</td>
+<td>Relate to other studies</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>p-hacking</td>
+<td>Search for significant subgroup without clear hypothesis</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Loss of generalizability</td>
+<td>Obscure the overall treatment effect</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 </section>
 <section id="interview-questions" class="level1">
 <h1>Interview questions</h1>
