@@ -24,6 +24,7 @@ listing:
     fields: [title, description]
     contents: 
       - "rct_design_overview.qmd"
+      - "study_design_statinf.qmd"
       - "sample_size_1.qmd"
       - "sample_size_2.qmd"
       - "adaptive_design.qmd"
@@ -51,7 +52,6 @@ listing:
       - "weighting.qmd"
       - "matching.qmd"
       - "g_computation.qmd"
-      - "hypothesis_tests.qmd"
       # - "target_trial_emulation.qmd"
     type: table
     grid-item-border: false

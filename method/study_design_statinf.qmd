@@ -1,0 +1,64 @@
+---
+title: "Study design and statistical inference"
+description: |
+  Terminology and examples
+author: "Chi Zhang"
+date: "2024-10-02"
+categories: [Inference]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+
+
+# Basic statistical concepts
+
+> What, purpose, example
+
+LLN, CLT
+
+Significance level: P(reject H0 when H0 is true), usually at 5%
+
+P-value
+
+Type 1, type 2 errors
+
+### Workflow related
+
+Randomization (if not RCT, other designs)
+
+Power and sample size
+
+Multiple testing
+
+
+### How I used them in my cases
+
+
+
+
+# Interview questions
+
+
+* Can you explain Type I and Type II errors and how they impact clinical trial results?
+* How would you calculate power in a clinical trial, and why is it important?
+* How do you address multiple testing problems in a clinical trial with multiple endpoints?
+* What is an intent-to-treat (ITT) analysis, and why is it important?
+* How would you design a Phase III randomized controlled trial to compare two cancer treatments?
+* Can you explain the difference between superiority, non-inferiority, and equivalence trials?
+* What are the key differences between Phase I, II, and III clinical trials?
+* What factors do you consider when determining the appropriate sample size for a clinical trial?
+* How would you explain the importance of randomization and blinding in a clinical trial?
+
+> Put these questions in a case I've dealt with. Explain the term, purpose and example
+
+
+

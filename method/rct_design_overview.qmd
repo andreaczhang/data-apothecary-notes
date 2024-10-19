@@ -267,16 +267,10 @@ Issue of multiple testing when doing a series of analyses
 
 * Coursera course [Design and interpretation of clinical trials](https://www.coursera.org/learn/clinical-trials/home/) by Johns Hopkins University
 
-* Book [Fast Facts: Clinical trialss inn oncology: The fundamentals]()
+* Book [Fast Facts: Clinical trials in oncology: The fundamentals]()
 
 
-# Interview questions
 
-* How would you design a Phase III randomized controlled trial to compare two cancer treatments?
-* Can you explain the difference between superiority, non-inferiority, and equivalence trials?
-* What are the key differences between Phase I, II, and III clinical trials?
-* What factors do you consider when determining the appropriate sample size for a clinical trial?
-* How would you explain the importance of randomization and blinding in a clinical trial?
 
 
 
