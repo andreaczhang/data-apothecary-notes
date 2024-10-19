@@ -97,11 +97,12 @@ use `ggsurvfit`
 
 ([Regression](regression.qmd))
 
-- [ ] assumptions and diagnostics
+- [ ] assumptions and diagnostics <span style = 'color:red'>add poisson and nb</span>
 - [ ] model selection
 - [ ] interaction
 - [ ] subgroup analysis
 - [ ] confounding
+- [ ] ANOVA, ANCOVA 
 
 
 <details>
