@@ -176,6 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests">Tests</a></li>
   <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
   <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data">Missing data</a></li>
+  <li><a href="#subgroup-analysis-sensitivity" id="toc-subgroup-analysis-sensitivity" class="nav-link" data-scroll-target="#subgroup-analysis-sensitivity">Subgroup analysis, sensitivity</a></li>
   <li><a href="#mixed-model" id="toc-mixed-model" class="nav-link" data-scroll-target="#mixed-model">Mixed model</a></li>
   <li><a href="#survival-analysis" id="toc-survival-analysis" class="nav-link" data-scroll-target="#survival-analysis">Survival analysis</a></li>
   <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others">Others</a></li>
@@ -409,25 +410,25 @@ Challenges you had in a study
 
 <section id="endpoints" class="level1">
 <h1>Endpoints</h1>
-<section id="covid-cb" class="level3">
-<h3 class="anchored" data-anchor-id="covid-cb">Covid / CB</h3>
-</section>
 <section id="quality-of-life-qol" class="level3">
 <h3 class="anchored" data-anchor-id="quality-of-life-qol">Quality of life QoL</h3>
-<p>Typically measured on a scale</p>
+<p>Typically measured on a scale, summed up</p>
 <ul>
 <li>QoL on vocal surgical questionnaire, likert scale. Intervention: throat surgery (Hansen 2018)</li>
-<li>QoL on … Intervention: oral immunotherapy (Reier-Nilsen 2019)</li>
+<li>QoL on likert scale for both children and parents. Intervention: oral immunotherapy (Reier-Nilsen 2019)</li>
 <li>QoL, stigma stress scale (Simonsen 2023)</li>
 </ul>
 </section>
 <section id="biomarker" class="level3">
 <h3 class="anchored" data-anchor-id="biomarker">Biomarker</h3>
 <ul>
-<li>Artery blood flow measures. Intervention: … (Callender 2023)</li>
+<li>Artery blood flow measures. Intervention: local anaesthesia medicine (Callender 2023)</li>
 <li>QT intervals. Intervention: methadone (Opdal 2023)</li>
 <li>ECG parameters. Intervention: pressure measures (Diab 2023)</li>
 </ul>
+</section>
+<section id="observational-covid-cb" class="level3">
+<h3 class="anchored" data-anchor-id="observational-covid-cb">Observational: Covid / CB</h3>
 </section>
 </section>
 <section id="design" class="level1">
@@ -441,24 +442,18 @@ Challenges you had in a study
 <p>I have never followed an RCT from start to end, so I’ve never been involved in the design of the studies.</p>
 <p>For the designs: mostly parallel designs with <strong>single measurement</strong> or <strong>longitudinal measurements</strong>, where subjects are measured multiple times. I’ve done one <strong>cross-over</strong> study (same patient, first tx then ct).</p>
 <p>I have not done any factorial design (multiple treatments at the same time).</p>
-<p>Selection criteria:</p>
-<ul>
-<li>Clinicians have</li>
-</ul>
-<p>Randomization:</p>
-<ul>
-<li>The ones I’ve done are mostly simple randomization</li>
-</ul>
-<p>Masking (blinding):</p>
+<p>Selection criteria: clinicians have their own criteria for relevant subjects, usually age groups, sex and underlying conditions</p>
+<p>Randomization: the ones I’ve done are mostly <strong>simple randomization</strong>, nothing with blocks or stratification</p>
+<p>Masking (blinding): my works seem to have open labels, not blinded</p>
 <section id="peanut-allergy" class="level4">
 <h4 class="anchored" data-anchor-id="peanut-allergy">Peanut allergy</h4>
 <p>(Reier-Nilsen 2019)</p>
 <p>2 year follow up (T0, T1, T2)</p>
-<p>2:1 block</p>
 <ul>
-<li>Selection</li>
-<li>Randomization</li>
-<li>Blinding</li>
+<li>Endpoint: 3 or 5-point likert scale for kids, 7 point likert scale for parents. Points are summed and reported</li>
+<li>Selection: Enroll positive food challenge 5-15 yo, 96 in total. Exclude asthma and other severe chronic diseases</li>
+<li>Randomization: Remove 19 ineligible, 77 2:1 block OIT vs controls (observation only). Possible reason for 2:1: many would drop out</li>
+<li>Blinding: NA</li>
 </ul>
 </section>
 <section id="methadone" class="level4">
@@ -481,7 +476,7 @@ Challenges you had in a study
 <li>Design: Parallel</li>
 <li>Randomization: two legs on the same patient, tx ct</li>
 <li>Blinding: NA</li>
-<li>Sample size: a=0.05, b=0.8; effect size based on previous works, computed by advisee themselves</li>
+<li>Sample size: a=0.05, b=0.8; effect size based on previous works, computed by clinicians themselves</li>
 </ul>
 </section>
 </section>
@@ -539,6 +534,8 @@ Challenges you had in a study
 </section>
 <section id="post-hoc-power-computation" class="level4">
 <h4 class="anchored" data-anchor-id="post-hoc-power-computation">Post-hoc power computation</h4>
+<p>It is not recommended, as the information is the same as what p-value provides: a small p-value that indicates a large effect size, that will give a high power.</p>
+<p>Power analysis is a design tool, not a diagnostic tool. It is used to make sure that the study has enough samples to detect an effect of a given magnitude and the study has high probability of detecting a true effect if it exists. Once the study is done, analyzing power adds little beyond the p-value.</p>
 </section>
 </section>
 <section id="observational" class="level2">
@@ -627,6 +624,15 @@ Challenges you had in a study
 <section id="not-typical-norkost-dietary-survey" class="level4">
 <h4 class="anchored" data-anchor-id="not-typical-norkost-dietary-survey">(not typical) Norkost dietary survey</h4>
 <p>Keep zero as is</p>
+</section>
+</section>
+<section id="subgroup-analysis-sensitivity" class="level2">
+<h2 class="anchored" data-anchor-id="subgroup-analysis-sensitivity">Subgroup analysis, sensitivity</h2>
+<section id="transfer-paper-1" class="level4">
+<h4 class="anchored" data-anchor-id="transfer-paper-1">Transfer paper</h4>
+</section>
+<section id="cb" class="level4">
+<h4 class="anchored" data-anchor-id="cb">CB</h4>
 </section>
 </section>
 <section id="mixed-model" class="level2">

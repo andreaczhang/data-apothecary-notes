@@ -87,25 +87,24 @@ Dislike:
 
 # Endpoints
 
-
-
-### Covid / CB
-
-
 ### Quality of life QoL
 
-Typically measured on a scale
+Typically measured on a scale, summed up 
 
 * QoL on vocal surgical questionnaire, likert scale. Intervention: throat surgery (Hansen 2018)
-* QoL on ... Intervention: oral immunotherapy (Reier-Nilsen 2019)
+* QoL on likert scale for both children and parents. Intervention: oral immunotherapy (Reier-Nilsen 2019)
 * QoL, stigma stress scale (Simonsen 2023)
 
 
 ### Biomarker
 
-* Artery blood flow measures. Intervention: ...  (Callender 2023)
+* Artery blood flow measures. Intervention: local anaesthesia medicine (Callender 2023)
 * QT intervals. Intervention: methadone (Opdal 2023)
 * ECG parameters. Intervention: pressure measures (Diab 2023)
+
+
+### Observational: Covid / CB
+
 
 # Design
 
@@ -122,15 +121,11 @@ For the designs: mostly parallel designs with **single measurement** or **longit
 
 I have not done any factorial design (multiple treatments at the same time).
 
-Selection criteria: 
+Selection criteria: clinicians have their own criteria for relevant subjects, usually age groups, sex and underlying conditions
 
-* Clinicians have 
+Randomization: the ones I've done are mostly **simple randomization**, nothing with blocks or stratification
 
-Randomization: 
-
-* The ones I've done are mostly simple randomization
-
-Masking (blinding): 
+Masking (blinding): my works seem to have open labels, not blinded 
 
 
 #### Peanut allergy
@@ -139,11 +134,10 @@ Masking (blinding):
 
 2 year follow up (T0, T1, T2)
 
-2:1 block
-
-* Selection
-* Randomization
-* Blinding
+* Endpoint: 3 or 5-point likert scale for kids, 7 point likert scale for parents. Points are summed and reported
+* Selection: Enroll positive food challenge 5-15 yo, 96 in total. Exclude asthma and other severe chronic diseases
+* Randomization: Remove 19 ineligible, 77 2:1 block OIT vs controls (observation only). Possible reason for 2:1: many would drop out
+* Blinding: NA
 
 
 #### Methadone
@@ -153,7 +147,7 @@ Masking (blinding):
 * Selection: 18+, not pregnant, no serious illness, willingness to comply
 * Design: Cross over, 14 days washoff
 * Randomization: Cross over, subjects are their own controls
-* Blinding: Cardiologist is blinded  to calculate QT measurement
+* Blinding: Cardiologist is blinded to calculate QT measurement
 * Comparison: on-methadone QTc vs off
 * Sample size: n=9, clinically relevant difference 20, SD 15 (unit: microsecond), b = 0.9. Can be computed with `pwr::pwr.t.test(d=20/15)`. See more in the next section.
 
@@ -166,7 +160,7 @@ Masking (blinding):
 * Design: Parallel
 * Randomization: two legs on the same patient, tx ct
 * Blinding: NA
-* Sample size: a=0.05, b=0.8; effect size based on previous works, computed by advisee themselves
+* Sample size: a=0.05, b=0.8; effect size based on previous works, computed by clinicians themselves
 
 
 
@@ -215,12 +209,11 @@ pwr::pwr.t.test(d = 20/15, sig.level = 0.05, power = 0.9, type = 'one.sample', a
 
 The effect size is huge, hence the small sample size required. 
 
-
-
-
 #### Post-hoc power computation 
 
+It is not recommended, as the information is the same as what p-value provides: a small p-value that indicates a large effect size, that will give a high power.
 
+Power analysis is a design tool, not a diagnostic tool. It is used to make sure that the study has enough samples to detect an effect of a given magnitude and the study has high probability of detecting a true effect if it exists. Once the study is done, analyzing power adds little beyond the p-value.
 
 
 
@@ -312,6 +305,12 @@ Over-dispersion
 Keep zero as is
 
 
+## Subgroup analysis, sensitivity 
+
+#### Transfer paper
+
+
+#### CB
 
 
 ## Mixed model
