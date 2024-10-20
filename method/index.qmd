@@ -116,6 +116,7 @@ listing:
     contents: 
       - "interview_behavior.qmd"
       - "interview_clinical_trial.qmd"
+      - "interview_stat_cases.qmd"
     type: table
     grid-item-border: false
     sort-ui: false

@@ -1,0 +1,334 @@
+---
+title: "Interview: statistics used in my work"
+description: |
+  Case studies
+author: "Chi Zhang"
+date: "2024-10-20"
+categories: [Inference]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+> Interview preparation: statistics and study designs used in my own work. Divide by types of endpoint, design (and why), analysis method.
+
+
+<details>
+  <summary>Selected list of my statistical advising work</summary>
+  
+### Observational studies
+  
+| Study | Endpoint| Design  | Analysis | Comment |
+|-------|-------|------|------|------|
+| Hansen 2018 |  QoL on vocal surgical questionnaire, likert scale  | Case control, 3 groups: controls (no voice problem), test-retest group, surgical group   |  Cohen's kappa   |   Reliability of questionnaire   |
+| Sarjomaa 2022 |    |    |     |  Tab 4    |
+| Sarjomaa 2024 |    | Case control (with population)   |     |      |
+| Kabashi 2019 |    | Cross-sectional, multi-site   |     |   Tab 2 and 3   |
+| Fell 2024 |  CB prevalence  |    |     |      |
+| Diab 2023 | ECG parameter. Pressure measures   |  n=20  | t-test or wilcoxon, correlation    |  Choice of method    |
+
+### Clinical trials
+
+| Study |Endpoint & Tx | Design  | Analysis | Comment |
+|---------|---| -----|------|------|
+| [Reier-Nilsen 2019](https://doi.org/10.1111/pai.13066) | QoL, Oral immunotherapy |  RCT, 2 year follow-up (T0, T1, T2). 2:1 block.   |     |      |
+| Opdal 2023 | QT intervals. Methadone vs R-methadone   | n=9. SS based on one-sample t-test with effect size (QT in ms) 20/15   |     |   SS calculation   |
+| Simonsen 2023 | QoL, stigma stress scale   | n=32, 1:1. Three endpoints (T0, T1, T2)   |     |  Revise study protocol, SS    |
+| Callender 2023 |  Artery measures for blood flow  | n=26. Two legs, one tx one ct. Tx has 3 levels of stimulus. Within-subject design   |  Anova; or mixed model   |  Choice of method    |
+
+Pay attention to how the sample size is calculated
+
+
+</details>
+
+
+For behavior questions check [here](interview_behavior.qmd)
+
+
+::: {.callout-note collapse='true'}
+## The kind of studies you've done
+
+* by field: Covid; nutrition; 
+* by design: 
+* by endpoint: most are *QoL*
+
+:::
+
+
+::: {.callout-note collapse='true'}
+## What do you like and dislike about the work
+
+Like:  
+
+* like to help clinicians understand their data
+* like health data, sometimes you see very novel data types (e.g. measurements by the british doctor)
+* interesting ways people carry out their studies
+
+Dislike:
+
+* communication (e.g. p-value interpretation)
+* sometimes feels the frustration that the importance of data quality, processing is undervalued, and we are just p-value producers
+* often need to re-work multiple rounds
+
+:::
+
+::: {.callout-note collapse='true'}
+## Challenges you had in a study
+
+
+:::
+
+
+# Endpoints
+
+
+
+### Covid / CB
+
+
+### Quality of life QoL
+
+Typically measured on a scale
+
+* QoL on vocal surgical questionnaire, likert scale. Intervention: throat surgery (Hansen 2018)
+* QoL on ... Intervention: oral immunotherapy (Reier-Nilsen 2019)
+* QoL, stigma stress scale (Simonsen 2023)
+
+
+### Biomarker
+
+* Artery blood flow measures. Intervention: ...  (Callender 2023)
+* QT intervals. Intervention: methadone (Opdal 2023)
+* ECG parameters. Intervention: pressure measures (Diab 2023)
+
+# Design
+
+## RCT
+
+> Parallel or cross-over? Choice of control - placebo, active control, historical control? Timing and frequency of measurements? Randomization method and blinding?
+
+
+My works have an exploratory nature - the RCT works I've done all seems to be phase II (neither determining the safe dose, nor find deterministic evidence in the wider population) with small to medium sample size.
+
+I have never followed an RCT from start to end, so I've never been involved in the design of the studies.
+
+For the designs: mostly parallel designs with **single measurement** or **longitudinal measurements**, where subjects are measured multiple times. I've done one **cross-over** study (same patient, first tx then ct).
+
+I have not done any factorial design (multiple treatments at the same time).
+
+Selection criteria: 
+
+* Clinicians have 
+
+Randomization: 
+
+* The ones I've done are mostly simple randomization
+
+Masking (blinding): 
+
+
+#### Peanut allergy
+
+(Reier-Nilsen 2019)
+
+2 year follow up (T0, T1, T2)
+
+2:1 block
+
+* Selection
+* Randomization
+* Blinding
+
+
+#### Methadone
+
+(Opdal 2023) 
+
+* Selection: 18+, not pregnant, no serious illness, willingness to comply
+* Design: Cross over, 14 days washoff
+* Randomization: Cross over, subjects are their own controls
+* Blinding: Cardiologist is blinded  to calculate QT measurement
+* Comparison: on-methadone QTc vs off
+* Sample size: n=9, clinically relevant difference 20, SD 15 (unit: microsecond), b = 0.9. Can be computed with `pwr::pwr.t.test(d=20/15)`. See more in the next section.
+
+
+#### Artery blood flow
+
+(Callender 2023) n = 26; within-subject two legs; three levels of intervention (stimulus)
+
+* Selection: 13M, 13F, healthy, between age 18-50, free from medication influencing cardiovascular system
+* Design: Parallel
+* Randomization: two legs on the same patient, tx ct
+* Blinding: NA
+* Sample size: a=0.05, b=0.8; effect size based on previous works, computed by advisee themselves
+
+
+
+
+## Power and sample size
+
+> clinicians provide information on the anticipated effect size, statistician calculate sample size needed to detect effect with adequate power while minimizing type I and II error.
+
+
+Sample size computation: 
+
+* Require:  
+  * test: t-test (one, two samples), tails
+  * significance level
+  * power
+  * cohen's d or f - effect size (e.g. standardized mean difference). If unavaiable, can use the Cohen's guideline for small, medium and large effect sizes: (f = 0.1, 0.25, 0.4)
+
+
+#### QoL stigma
+
+(Simonsen 2023) n = 32; T0, T1, T2; 1:1; justify SS computation
+
+If the study has a paired design with effect size (standardized after substracting the standard deviation) 0.5,
+
+```{r}
+#| label: ss1
+#| warning: false
+#| echo: true
+
+pwr::pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.8, type = 'one.sample', alternative = 'two.sided')
+```
+
+#### Methadone
+
+(Opdal 2023) n=9; effect size provided (as clinically relevant difference and standard deviation); compute SS
+
+In this case study, the computed sample size is as follow, 
+
+```{r}
+#| label: ss2
+#| warning: false
+#| echo: true
+
+pwr::pwr.t.test(d = 20/15, sig.level = 0.05, power = 0.9, type = 'one.sample', alternative = 'two.sided')
+```
+
+The effect size is huge, hence the small sample size required. 
+
+
+
+
+#### Post-hoc power computation 
+
+
+
+
+
+
+## Observational
+
+> Eligibility criteria?
+
+#### AHUS 
+
+Selected as subjects have been in the hospital during a certain time, above a certain age and have been in certain wards
+
+#### COVITA
+
+(Sarjomaa 2024) Case control with population 
+
+
+#### Alcohol
+
+(Kabashi 2019) Cross sectional, multi-site
+
+## Survey
+
+#### Norkost
+
+
+
+
+
+# Analysis
+
+
+
+
+## Tests
+
+> Superiority, equivalency and non-inferiority
+
+
+### t-test, wilcoxon
+
+### Multiple testing adjustment
+
+#### NAV paper
+
+
+## Regression
+
+### Linear regression / regularization
+
+#### HAI paper
+
+#### FHI Excess mortality
+
+
+
+### Logistic regression / ordinal
+
+#### DTW paper
+
+LR as a classifier
+
+#### COVITA
+
+
+
+
+### Poisson regression
+
+#### Transfer paper
+
+Transfer rate 
+
+#### NAV
+
+Over-dispersion
+
+
+## Missing data
+
+> Complete case only? Imputation? LOCF (last observation carried forward)? IIT vs per protocol
+
+#### (not typical) DTW
+
+
+
+#### (not typical) Norkost dietary survey
+
+Keep zero as is
+
+
+
+
+## Mixed model
+
+#### Peanut allergy
+
+#### Norkost
+
+## Survival analysis
+
+#### Hospital LOS
+
+
+## Others 
+
+Cohen's kappa
+
+
+
+

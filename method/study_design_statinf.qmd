@@ -39,6 +39,7 @@ Power and sample size
 
 Multiple testing
 
+Interim analysis
 
 ### How I used them in my cases
 

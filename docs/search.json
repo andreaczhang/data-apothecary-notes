@@ -2699,7 +2699,7 @@
     "href": "method/index.html#interview-preparation",
     "title": "Inference and models",
     "section": "Interview preparation",
-    "text": "Interview preparation\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nInterview: clinical trial statistician\n\n\nKnowledge framework \n\n\n\n\nInterview: behavior\n\n\nList of questions \n\n\n\n\n\nNo matching items"
+    "text": "Interview preparation\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nInterview: clinical trial statistician\n\n\nKnowledge framework \n\n\n\n\nInterview: behavior\n\n\nList of questions \n\n\n\n\nInterview: statistics used in my work\n\n\nCase studies \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/interview_behavior.html",
@@ -2720,6 +2720,139 @@
     "href": "method/study_design_statinf.html",
     "title": "Study design and statistical inference",
     "section": "",
-    "text": "Basic statistical concepts\n\nWhat, purpose, example\n\nLLN, CLT\nSignificance level: P(reject H0 when H0 is true), usually at 5%\nP-value\nType 1, type 2 errors\n\nWorkflow related\nRandomization (if not RCT, other designs)\nPower and sample size\nMultiple testing\n\n\nHow I used them in my cases\n\n\n\nInterview questions\n\nCan you explain Type I and Type II errors and how they impact clinical trial results?\nHow would you calculate power in a clinical trial, and why is it important?\nHow do you address multiple testing problems in a clinical trial with multiple endpoints?\nWhat is an intent-to-treat (ITT) analysis, and why is it important?\nHow would you design a Phase III randomized controlled trial to compare two cancer treatments?\nCan you explain the difference between superiority, non-inferiority, and equivalence trials?\nWhat are the key differences between Phase I, II, and III clinical trials?\nWhat factors do you consider when determining the appropriate sample size for a clinical trial?\nHow would you explain the importance of randomization and blinding in a clinical trial?\n\n\nPut these questions in a case I’ve dealt with. Explain the term, purpose and example"
+    "text": "Basic statistical concepts\n\nWhat, purpose, example\n\nLLN, CLT\nSignificance level: P(reject H0 when H0 is true), usually at 5%\nP-value\nType 1, type 2 errors\n\nWorkflow related\nRandomization (if not RCT, other designs)\nPower and sample size\nMultiple testing\nInterim analysis\n\n\nHow I used them in my cases\n\n\n\nInterview questions\n\nCan you explain Type I and Type II errors and how they impact clinical trial results?\nHow would you calculate power in a clinical trial, and why is it important?\nHow do you address multiple testing problems in a clinical trial with multiple endpoints?\nWhat is an intent-to-treat (ITT) analysis, and why is it important?\nHow would you design a Phase III randomized controlled trial to compare two cancer treatments?\nCan you explain the difference between superiority, non-inferiority, and equivalence trials?\nWhat are the key differences between Phase I, II, and III clinical trials?\nWhat factors do you consider when determining the appropriate sample size for a clinical trial?\nHow would you explain the importance of randomization and blinding in a clinical trial?\n\n\nPut these questions in a case I’ve dealt with. Explain the term, purpose and example"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html",
+    "href": "method/interview_stat_cases.html",
+    "title": "Interview: statistics used in my work",
+    "section": "",
+    "text": "Interview preparation: statistics and study designs used in my own work. Divide by types of endpoint, design (and why), analysis method.\nFor behavior questions check here"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#arms-rct",
+    "href": "method/interview_stat_cases.html#arms-rct",
+    "title": "Interview: statistics used in my work",
+    "section": "Arms (RCT)",
+    "text": "Arms (RCT)"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#groups-observational-put-emphasis-here",
+    "href": "method/interview_stat_cases.html#groups-observational-put-emphasis-here",
+    "title": "Interview: statistics used in my work",
+    "section": "Groups (observational, put emphasis here)",
+    "text": "Groups (observational, put emphasis here)"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#power-and-sample-size",
+    "href": "method/interview_stat_cases.html#power-and-sample-size",
+    "title": "Interview: statistics used in my work",
+    "section": "Power and sample size",
+    "text": "Power and sample size\n\nclinicians provide information on the anticipated effect size, statistician calculate sample size needed to detect effect with adequate power while minimizing type I and II error.\n\nSample size computation:\n\nRequire:\n\ntest: t-test (one, two samples), tails\nsignificance level\npower\ncohen’s d or f - effect size (e.g. standardized mean difference). If unavaiable, can use the Cohen’s guideline for small, medium and large effect sizes: (f = 0.1, 0.25, 0.4)\n\n\n\nQoL stigma\n(Simonsen 2023) n = 32; T0, T1, T2; 1:1; justify SS computation\nIf the study has a paired design with effect size (standardized after substracting the standard deviation) 0.5,\n\npwr::pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.8, type = 'one.sample', alternative = 'two.sided')\n\n\n     One-sample t test power calculation \n\n              n = 33.36713\n              d = 0.5\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\n\n\n\nMethadone\n(Opdal 2023) n=9; effect size provided (as clinically relevant difference and standard deviation); compute SS\nIn this case study, the computed sample size is as follow,\n\npwr::pwr.t.test(d = 20/15, sig.level = 0.05, power = 0.9, type = 'one.sample', alternative = 'two.sided')\n\n\n     One-sample t test power calculation \n\n              n = 8.07235\n              d = 1.333333\n      sig.level = 0.05\n          power = 0.9\n    alternative = two.sided\n\n\nThe effect size is huge, hence the small sample size required.\n\n\nPost-hoc power computation"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#t-test-wilcoxon",
+    "href": "method/interview_stat_cases.html#t-test-wilcoxon",
+    "title": "Interview: statistics used in my work",
+    "section": "t-test, wilcoxon",
+    "text": "t-test, wilcoxon"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#logistic-regression-ordinal",
+    "href": "method/interview_stat_cases.html#logistic-regression-ordinal",
+    "title": "Interview: statistics used in my work",
+    "section": "Logistic regression / ordinal",
+    "text": "Logistic regression / ordinal\n\nDTW paper\nLR as a classifier\n\n\nCOVITA"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#poisson-regression",
+    "href": "method/interview_stat_cases.html#poisson-regression",
+    "title": "Interview: statistics used in my work",
+    "section": "Poisson regression",
+    "text": "Poisson regression\n\nTransfer paper\nTransfer rate\n\n\nNAV\nOver-dispersion"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#missing-data",
+    "href": "method/interview_stat_cases.html#missing-data",
+    "title": "Interview: statistics used in my work",
+    "section": "Missing data",
+    "text": "Missing data\n\nComplete case only? Imputation? LOCF (last observation carried forward)? IIT vs per protocol\n\n\n(not typical) DTW\n\n\n(not typical) Norkost dietary survey\nKeep zero as is"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#mixed-model",
+    "href": "method/interview_stat_cases.html#mixed-model",
+    "title": "Interview: statistics used in my work",
+    "section": "Mixed model",
+    "text": "Mixed model\n\nPeanut allergy\n\n\nNorkost"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#survival-analysis",
+    "href": "method/interview_stat_cases.html#survival-analysis",
+    "title": "Interview: statistics used in my work",
+    "section": "Survival analysis",
+    "text": "Survival analysis\n\nHospital LOS"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#others",
+    "href": "method/interview_stat_cases.html#others",
+    "title": "Interview: statistics used in my work",
+    "section": "Others",
+    "text": "Others\nCohen’s kappa"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#linear-regression-regularization",
+    "href": "method/interview_stat_cases.html#linear-regression-regularization",
+    "title": "Interview: statistics used in my work",
+    "section": "Linear regression / regularization",
+    "text": "Linear regression / regularization\n\nHAI paper\n\n\nFHI Excess mortality"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#others-1",
+    "href": "method/interview_stat_cases.html#others-1",
+    "title": "Interview: statistics used in my work",
+    "section": "Others",
+    "text": "Others\nCohen’s kappa"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#rct",
+    "href": "method/interview_stat_cases.html#rct",
+    "title": "Interview: statistics used in my work",
+    "section": "RCT",
+    "text": "RCT\n\nParallel or cross-over? Choice of control - placebo, active control, historical control? Timing and frequency of measurements? Randomization method and blinding?\n\nMy works have an exploratory nature - the RCT works I’ve done all seems to be phase II (neither determining the safe dose, nor find deterministic evidence in the wider population) with small to medium sample size.\nI have never followed an RCT from start to end, so I’ve never been involved in the design of the studies.\nFor the designs: mostly parallel designs with single measurement or longitudinal measurements, where subjects are measured multiple times. I’ve done one cross-over study (same patient, first tx then ct).\nI have not done any factorial design (multiple treatments at the same time).\nSelection criteria:\n\nClinicians have\n\nRandomization:\n\nThe ones I’ve done are mostly simple randomization\n\nMasking (blinding):\n\nPeanut allergy\n(Reier-Nilsen 2019)\n2 year follow up (T0, T1, T2)\n2:1 block\n\nSelection\nRandomization\nBlinding\n\n\n\nMethadone\n(Opdal 2023)\n\nSelection: 18+, not pregnant, no serious illness, willingness to comply\nDesign: Cross over, 14 days washoff\nRandomization: Cross over, subjects are their own controls\nBlinding: Cardiologist is blinded to calculate QT measurement\nComparison: on-methadone QTc vs off\nSample size: n=9, clinically relevant difference 20, SD 15 (unit: microsecond), b = 0.9. Can be computed with pwr::pwr.t.test(d=20/15). See more in the next section.\n\n\n\nArtery blood flow\n(Callender 2023) n = 26; within-subject two legs; three levels of intervention (stimulus)\n\nSelection: 13M, 13F, healthy, between age 18-50, free from medication influencing cardiovascular system\nDesign: Parallel\nRandomization: two legs on the same patient, tx ct\nBlinding: NA\nSample size: a=0.05, b=0.8; effect size based on previous works, computed by advisee themselves"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#observational",
+    "href": "method/interview_stat_cases.html#observational",
+    "title": "Interview: statistics used in my work",
+    "section": "Observational",
+    "text": "Observational\n\nEligibility criteria?\n\n\nAHUS\nSelected as subjects have been in the hospital during a certain time, above a certain age and have been in certain wards\n\n\nCOVITA\n(Sarjomaa 2024) Case control with population\n\n\nAlcohol\n(Kabashi 2019) Cross sectional, multi-site"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#survey",
+    "href": "method/interview_stat_cases.html#survey",
+    "title": "Interview: statistics used in my work",
+    "section": "Survey",
+    "text": "Survey\n\nNorkost"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#tests",
+    "href": "method/interview_stat_cases.html#tests",
+    "title": "Interview: statistics used in my work",
+    "section": "Tests",
+    "text": "Tests\n\nSuperiority, equivalency and non-inferiority\n\n\nt-test, wilcoxon\n\n\nMultiple testing adjustment\n\nNAV paper"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#regression",
+    "href": "method/interview_stat_cases.html#regression",
+    "title": "Interview: statistics used in my work",
+    "section": "Regression",
+    "text": "Regression\n\nLinear regression / regularization\n\nHAI paper\n\n\nFHI Excess mortality\n\n\n\nLogistic regression / ordinal\n\nDTW paper\nLR as a classifier\n\n\nCOVITA\n\n\n\nPoisson regression\n\nTransfer paper\nTransfer rate\n\n\nNAV\nOver-dispersion"
+  },
+  {
+    "objectID": "method/interview_stat_cases.html#patient-selection-power-and-sample-size",
+    "href": "method/interview_stat_cases.html#patient-selection-power-and-sample-size",
+    "title": "Interview: statistics used in my work",
+    "section": "Patient selection, power and sample size",
+    "text": "Patient selection, power and sample size\n\nclinicians provide information on the anticipated effect size, statistician calculate sample size needed to detect effect with adequate power while minimizing type I and II error.\n\nSelection criteria:\nGO THROUGH THE WORKFLOW OF COMPUTATION\n\nQoL stigma\n(Simonsen 2023) n = 32; T0, T1, T2; 1:1; justify SS computation\n\n\nQT interval\n(Opdal 2023) n=9; effect size provided; compute SS\n\n\nPost-hoc power computation"
   }
 ]

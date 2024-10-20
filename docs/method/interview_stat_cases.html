@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-10-02">
-<meta name="description" content="Knowledge framework">
+<meta name="dcterms.date" content="2024-10-20">
+<meta name="description" content="Case studies">
 
-<title>Data Apothecary’s Notes - Interview: clinical trial statistician</title>
+<title>Data Apothecary’s Notes - Interview: statistics used in my work</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -129,14 +163,23 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#behavior" id="toc-behavior" class="nav-link active" data-scroll-target="#behavior">Behavior</a></li>
-  <li><a href="#statistics" id="toc-statistics" class="nav-link" data-scroll-target="#statistics">Statistics</a></li>
-  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming">Programming</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a>
+  <li><a href="#endpoints" id="toc-endpoints" class="nav-link active" data-scroll-target="#endpoints">Endpoints</a></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design">Design</a>
   <ul class="collapse">
-  <li><a href="#hospital-vs-pharmaceuticals" id="toc-hospital-vs-pharmaceuticals" class="nav-link" data-scroll-target="#hospital-vs-pharmaceuticals">Hospital vs Pharmaceuticals</a></li>
+  <li><a href="#rct" id="toc-rct" class="nav-link" data-scroll-target="#rct">RCT</a></li>
+  <li><a href="#power-and-sample-size" id="toc-power-and-sample-size" class="nav-link" data-scroll-target="#power-and-sample-size">Power and sample size</a></li>
+  <li><a href="#observational" id="toc-observational" class="nav-link" data-scroll-target="#observational">Observational</a></li>
+  <li><a href="#survey" id="toc-survey" class="nav-link" data-scroll-target="#survey">Survey</a></li>
   </ul></li>
-  <li><a href="#relevant-experience" id="toc-relevant-experience" class="nav-link" data-scroll-target="#relevant-experience">Relevant experience</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests">Tests</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data">Missing data</a></li>
+  <li><a href="#mixed-model" id="toc-mixed-model" class="nav-link" data-scroll-target="#mixed-model">Mixed model</a></li>
+  <li><a href="#survival-analysis" id="toc-survival-analysis" class="nav-link" data-scroll-target="#survival-analysis">Survival analysis</a></li>
+  <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others">Others</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -145,15 +188,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Interview: clinical trial statistician</h1>
+<h1 class="title">Interview: statistics used in my work</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">RCT</div>
+    <div class="quarto-category">Inference</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Knowledge framework</p>
+    <p>Case studies</p>
   </div>
 </div>
 
@@ -170,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 2, 2024</p>
+      <p class="date">October 20, 2024</p>
     </div>
   </div>
   
@@ -183,86 +226,177 @@ ul.task-list li input[type="checkbox"] {
 
 
 <blockquote class="blockquote">
-<p>Book: Statistical design, monitoring and analysis of clinical trials</p>
+<p>Interview preparation: statistics and study designs used in my own work. Divide by types of endpoint, design (and why), analysis method.</p>
 </blockquote>
-<section id="behavior" class="level1">
-<h1>Behavior</h1>
-<p><a href="../method/interview_behavior.html">List of behavior questions</a></p>
+<details>
+<summary>
+Selected list of my statistical advising work
+</summary>
+<section id="observational-studies" class="level3">
+<h3 class="anchored" data-anchor-id="observational-studies">Observational studies</h3>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Study</th>
+<th>Endpoint</th>
+<th>Design</th>
+<th>Analysis</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hansen 2018</td>
+<td>QoL on vocal surgical questionnaire, likert scale</td>
+<td>Case control, 3 groups: controls (no voice problem), test-retest group, surgical group</td>
+<td>Cohen’s kappa</td>
+<td>Reliability of questionnaire</td>
+</tr>
+<tr class="even">
+<td>Sarjomaa 2022</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Tab 4</td>
+</tr>
+<tr class="odd">
+<td>Sarjomaa 2024</td>
+<td></td>
+<td>Case control (with population)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Kabashi 2019</td>
+<td></td>
+<td>Cross-sectional, multi-site</td>
+<td></td>
+<td>Tab 2 and 3</td>
+</tr>
+<tr class="odd">
+<td>Fell 2024</td>
+<td>CB prevalence</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Diab 2023</td>
+<td>ECG parameter. Pressure measures</td>
+<td>n=20</td>
+<td>t-test or wilcoxon, correlation</td>
+<td>Choice of method</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="statistics" class="level1">
-<h1>Statistics</h1>
-<section id="study-design" class="level3">
-<h3 class="anchored" data-anchor-id="study-design">Study design</h3>
-<ul class="task-list">
-<li><label><input type="checkbox"><a href="../method/rct_design_overview.html">RCT design</a></label></li>
-<li><label><input type="checkbox"><a href="../method/adaptive_design.html">adaptive design</a></label></li>
-<li><label><input type="checkbox">sample size <a href="../method/sample_size_1.html">part 1</a>, <a href="../method/sample_size_2.html">part 2</a></label></li>
-<li><label><input type="checkbox">power analysis</label></li>
-<li><label><input type="checkbox">Odds ratio, risk ratio (<a href="../method/observational_design.html">Observational study design</a>)</label></li>
-</ul>
+<section id="clinical-trials" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-trials">Clinical trials</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Study</th>
+<th>Endpoint &amp; Tx</th>
+<th>Design</th>
+<th>Analysis</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://doi.org/10.1111/pai.13066">Reier-Nilsen 2019</a></td>
+<td>QoL, Oral immunotherapy</td>
+<td>RCT, 2 year follow-up (T0, T1, T2). 2:1 block.</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Opdal 2023</td>
+<td>QT intervals. Methadone vs R-methadone</td>
+<td>n=9. SS based on one-sample t-test with effect size (QT in ms) 20/15</td>
+<td></td>
+<td>SS calculation</td>
+</tr>
+<tr class="odd">
+<td>Simonsen 2023</td>
+<td>QoL, stigma stress scale</td>
+<td>n=32, 1:1. Three endpoints (T0, T1, T2)</td>
+<td></td>
+<td>Revise study protocol, SS</td>
+</tr>
+<tr class="even">
+<td>Callender 2023</td>
+<td>Artery measures for blood flow</td>
+<td>n=26. Two legs, one tx one ct. Tx has 3 levels of stimulus. Within-subject design</td>
+<td>Anova; or mixed model</td>
+<td>Choice of method</td>
+</tr>
+</tbody>
+</table>
+<p>Pay attention to how the sample size is calculated</p>
+</section></details>
+<p>For behavior questions check <a href="../method/interview_behavior.html">here</a></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Relate to my own experience
+The kind of studies you’ve done
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
-</div>
-</div>
-</div>
-<details>
-<summary>
-Example questions
-</summary>
 <ul>
-<li>why use OR instead of RR in case control studies</li>
+<li>by field: Covid; nutrition;</li>
+<li>by design:</li>
+<li>by endpoint: most are <em>QoL</em></li>
 </ul>
-</details>
-</section>
-<section id="survival-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="survival-analysis">Survival analysis</h3>
-<ul class="task-list">
-<li><label><input type="checkbox"><a href="../method/survival.html">Kaplan-Meier, Cox proportional hazard</a></label></li>
-<li><label><input type="checkbox"><a href="../method/survival_competing_risk.html">Competing risk</a></label></li>
-<li><label><input type="checkbox">Survival analysis in oncology</label></li>
-</ul>
-<p>(datasets: <code>survival::pbc</code>)</p>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Relate to my own experience (hospital LOS)
+What do you like and dislike about the work
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>use <code>ggsurvfit</code></p>
-</div>
-</div>
-</div>
-</section>
-<section id="hypothesis-testing" class="level3">
-<h3 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis testing</h3>
-<ul class="task-list">
-<li><label><input type="checkbox"><a href="hypothesis_tests.qmd">general testing</a></label></li>
-<li><label><input type="checkbox">interim analysis</label></li>
+<p>Like:</p>
+<ul>
+<li>like to help clinicians understand their data</li>
+<li>like health data, sometimes you see very novel data types (e.g.&nbsp;measurements by the british doctor)</li>
+<li>interesting ways people carry out their studies</li>
 </ul>
+<p>Dislike:</p>
+<ul>
+<li>communication (e.g.&nbsp;p-value interpretation)</li>
+<li>sometimes feels the frustration that the importance of data quality, processing is undervalued, and we are just p-value producers</li>
+<li>often need to re-work multiple rounds</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Relate to my own experience
+Challenges you had in a study
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -272,167 +406,250 @@ Relate to my own experience
 </div>
 </div>
 </div>
-</section>
-<section id="longitudinal-data" class="level3">
-<h3 class="anchored" data-anchor-id="longitudinal-data">Longitudinal data</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">repeated measurement analysis</label></li>
-</ul>
-<p>(datasets: <code>mmrm::bcva_data</code>, <code>mmrm::fev_data</code>)</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Relate to my own experience (peanut, norkost)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
 
-</div>
-</div>
-</div>
+<section id="endpoints" class="level1">
+<h1>Endpoints</h1>
+<section id="covid-cb" class="level3">
+<h3 class="anchored" data-anchor-id="covid-cb">Covid / CB</h3>
 </section>
-<section id="regression" class="level3">
-<h3 class="anchored" data-anchor-id="regression">Regression</h3>
-<p>(<a href="../method/regression.html">Regression</a>)</p>
-<ul class="task-list">
-<li><label><input type="checkbox">assumptions and diagnostics <span style="color:red">add poisson and nb</span></label></li>
-<li><label><input type="checkbox">model selection</label></li>
-<li><label><input type="checkbox">interaction</label></li>
-<li><label><input type="checkbox">subgroup analysis</label></li>
-<li><label><input type="checkbox">confounding</label></li>
-<li><label><input type="checkbox">ANOVA, ANCOVA</label></li>
-</ul>
-<details>
-<summary>
-Example questions
-</summary>
+<section id="quality-of-life-qol" class="level3">
+<h3 class="anchored" data-anchor-id="quality-of-life-qol">Quality of life QoL</h3>
+<p>Typically measured on a scale</p>
 <ul>
-<li>what is confounding, how can you adjust for it</li>
+<li>QoL on vocal surgical questionnaire, likert scale. Intervention: throat surgery (Hansen 2018)</li>
+<li>QoL on … Intervention: oral immunotherapy (Reier-Nilsen 2019)</li>
+<li>QoL, stigma stress scale (Simonsen 2023)</li>
 </ul>
-</details>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Relate to my own experience: subgroup for COVITA
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+</section>
+<section id="biomarker" class="level3">
+<h3 class="anchored" data-anchor-id="biomarker">Biomarker</h3>
+<ul>
+<li>Artery blood flow measures. Intervention: … (Callender 2023)</li>
+<li>QT intervals. Intervention: methadone (Opdal 2023)</li>
+<li>ECG parameters. Intervention: pressure measures (Diab 2023)</li>
+</ul>
+</section>
+</section>
+<section id="design" class="level1">
+<h1>Design</h1>
+<section id="rct" class="level2">
+<h2 class="anchored" data-anchor-id="rct">RCT</h2>
+<blockquote class="blockquote">
+<p>Parallel or cross-over? Choice of control - placebo, active control, historical control? Timing and frequency of measurements? Randomization method and blinding?</p>
+</blockquote>
+<p>My works have an exploratory nature - the RCT works I’ve done all seems to be phase II (neither determining the safe dose, nor find deterministic evidence in the wider population) with small to medium sample size.</p>
+<p>I have never followed an RCT from start to end, so I’ve never been involved in the design of the studies.</p>
+<p>For the designs: mostly parallel designs with <strong>single measurement</strong> or <strong>longitudinal measurements</strong>, where subjects are measured multiple times. I’ve done one <strong>cross-over</strong> study (same patient, first tx then ct).</p>
+<p>I have not done any factorial design (multiple treatments at the same time).</p>
+<p>Selection criteria:</p>
+<ul>
+<li>Clinicians have</li>
+</ul>
+<p>Randomization:</p>
+<ul>
+<li>The ones I’ve done are mostly simple randomization</li>
+</ul>
+<p>Masking (blinding):</p>
+<section id="peanut-allergy" class="level4">
+<h4 class="anchored" data-anchor-id="peanut-allergy">Peanut allergy</h4>
+<p>(Reier-Nilsen 2019)</p>
+<p>2 year follow up (T0, T1, T2)</p>
+<p>2:1 block</p>
+<ul>
+<li>Selection</li>
+<li>Randomization</li>
+<li>Blinding</li>
+</ul>
+</section>
+<section id="methadone" class="level4">
+<h4 class="anchored" data-anchor-id="methadone">Methadone</h4>
+<p>(Opdal 2023)</p>
+<ul>
+<li>Selection: 18+, not pregnant, no serious illness, willingness to comply</li>
+<li>Design: Cross over, 14 days washoff</li>
+<li>Randomization: Cross over, subjects are their own controls</li>
+<li>Blinding: Cardiologist is blinded to calculate QT measurement</li>
+<li>Comparison: on-methadone QTc vs off</li>
+<li>Sample size: n=9, clinically relevant difference 20, SD 15 (unit: microsecond), b = 0.9. Can be computed with <code>pwr::pwr.t.test(d=20/15)</code>. See more in the next section.</li>
+</ul>
+</section>
+<section id="artery-blood-flow" class="level4">
+<h4 class="anchored" data-anchor-id="artery-blood-flow">Artery blood flow</h4>
+<p>(Callender 2023) n = 26; within-subject two legs; three levels of intervention (stimulus)</p>
+<ul>
+<li>Selection: 13M, 13F, healthy, between age 18-50, free from medication influencing cardiovascular system</li>
+<li>Design: Parallel</li>
+<li>Randomization: two legs on the same patient, tx ct</li>
+<li>Blinding: NA</li>
+<li>Sample size: a=0.05, b=0.8; effect size based on previous works, computed by advisee themselves</li>
+</ul>
+</section>
+</section>
+<section id="power-and-sample-size" class="level2">
+<h2 class="anchored" data-anchor-id="power-and-sample-size">Power and sample size</h2>
+<blockquote class="blockquote">
+<p>clinicians provide information on the anticipated effect size, statistician calculate sample size needed to detect effect with adequate power while minimizing type I and II error.</p>
+</blockquote>
+<p>Sample size computation:</p>
+<ul>
+<li>Require:
+<ul>
+<li>test: t-test (one, two samples), tails</li>
+<li>significance level</li>
+<li>power</li>
+<li>cohen’s d or f - effect size (e.g.&nbsp;standardized mean difference). If unavaiable, can use the Cohen’s guideline for small, medium and large effect sizes: (f = 0.1, 0.25, 0.4)</li>
+</ul></li>
+</ul>
+<section id="qol-stigma" class="level4">
+<h4 class="anchored" data-anchor-id="qol-stigma">QoL stigma</h4>
+<p>(Simonsen 2023) n = 32; T0, T1, T2; 1:1; justify SS computation</p>
+<p>If the study has a paired design with effect size (standardized after substracting the standard deviation) 0.5,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.5</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">type =</span> <span class="st">'one.sample'</span>, <span class="at">alternative =</span> <span class="st">'two.sided'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     One-sample t test power calculation 
 
-</div>
+              n = 33.36713
+              d = 0.5
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided</code></pre>
 </div>
 </div>
 </section>
-<section id="missing-data" class="level3">
-<h3 class="anchored" data-anchor-id="missing-data">Missing data</h3>
-<ul class="task-list">
-<li><label><input type="checkbox"><a href="../method/imputation_1_overview.html">missing data</a> (major issue in oncology)</label></li>
-<li><label><input type="checkbox">drop-out handling, IIT vs per protocal</label></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Relate to my own experience
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<section id="methadone-1" class="level4">
+<h4 class="anchored" data-anchor-id="methadone-1">Methadone</h4>
+<p>(Opdal 2023) n=9; effect size provided (as clinically relevant difference and standard deviation); compute SS</p>
+<p>In this case study, the computed sample size is as follow,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pwr<span class="sc">::</span><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="dv">20</span><span class="sc">/</span><span class="dv">15</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.9</span>, <span class="at">type =</span> <span class="st">'one.sample'</span>, <span class="at">alternative =</span> <span class="st">'two.sided'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     One-sample t test power calculation 
 
+              n = 8.07235
+              d = 1.333333
+      sig.level = 0.05
+          power = 0.9
+    alternative = two.sided</code></pre>
 </div>
 </div>
-</div>
+<p>The effect size is huge, hence the small sample size required.</p>
 </section>
-<section id="meta-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="meta-analysis">Meta analysis</h3>
+<section id="post-hoc-power-computation" class="level4">
+<h4 class="anchored" data-anchor-id="post-hoc-power-computation">Post-hoc power computation</h4>
 </section>
 </section>
-<section id="programming" class="level1">
-<h1>Programming</h1>
-<ul>
-<li>How would you implement survival analysis in R? Walk me through the process of creating Kaplan-Meier curves and performing Cox proportional hazards analysis.</li>
-<li>Can you explain how you would handle missing data using the mice package in R? Provide an example.</li>
-<li>What packages would you use for meta-analysis in R? Can you demonstrate how to perform a meta-analysis using the meta or metafor package?</li>
-<li>How would you simulate a clinical trial in R to calculate power? What tools or packages would you use for this purpose?</li>
-<li>Can you provide an example of how to perform bootstrapping to assess the robustness of a clinical trial result?</li>
-</ul>
+<section id="observational" class="level2">
+<h2 class="anchored" data-anchor-id="observational">Observational</h2>
+<blockquote class="blockquote">
+<p>Eligibility criteria?</p>
+</blockquote>
+<section id="ahus" class="level4">
+<h4 class="anchored" data-anchor-id="ahus">AHUS</h4>
+<p>Selected as subjects have been in the hospital during a certain time, above a certain age and have been in certain wards</p>
 </section>
-<section id="background" class="level1">
-<h1>Background</h1>
-<section id="statisticians-role" class="level3">
-<h3 class="anchored" data-anchor-id="statisticians-role">Statistician’s role</h3>
-<p>Workflow: design -&gt; data collection, monitoring -&gt; analysis</p>
-<p>Design</p>
-<ul>
-<li>define <strong>primary and secondary endpoints</strong>, need to be clearly <strong>measurable</strong> (e.g.&nbsp;progression free survival, overall survival, tumor response)</li>
-<li>randomization and blinding</li>
-<li>calculate <strong>sample size</strong></li>
-<li>design study design (phase 1, 2, 3), sometimes adaptive design, Bayesian approach</li>
-</ul>
-<p>Analysis</p>
-<ul>
-<li>survival (usually primary endpoint)</li>
-<li>censored data handling</li>
-<li>efficacy and safety: tumor shrinkage; QoL, side effects</li>
-<li>side effects frequencies</li>
-<li>subgroup analysis (need to pay attention to the risks of over-interpreting data)</li>
-<li>biomarker to predict treatment response</li>
-</ul>
-<p>Reporting</p>
+<section id="covita" class="level4">
+<h4 class="anchored" data-anchor-id="covita">COVITA</h4>
+<p>(Sarjomaa 2024) Case control with population</p>
 </section>
-<section id="regulatory" class="level3">
-<h3 class="anchored" data-anchor-id="regulatory">Regulatory</h3>
-<p>Regulatory and Compliance:</p>
-<ul>
-<li>Can you explain the ICH E9 guidelines, and why they are important in clinical trials?</li>
-<li>How would you prepare the statistical section of a regulatory submission for the FDA or EMA?</li>
-<li>What are the CONSORT guidelines, and how would you ensure compliance with them in reporting trial results?</li>
-</ul>
-<p>Data Monitoring and Reporting:</p>
-<ul>
-<li>What is the role of a Data Safety Monitoring Board (DSMB), and how would you collaborate with them as a statistician?</li>
-<li>How do you ensure data integrity in the case of interim analyses or adaptive trial designs?</li>
-</ul>
+<section id="alcohol" class="level4">
+<h4 class="anchored" data-anchor-id="alcohol">Alcohol</h4>
+<p>(Kabashi 2019) Cross sectional, multi-site</p>
 </section>
-<section id="oncology" class="level3">
-<h3 class="anchored" data-anchor-id="oncology">Oncology</h3>
-<ul>
-<li>In oncology, surrogate endpoints like progression-free survival (PFS) and overall response rate (ORR) are often used. How would you handle the analysis of these surrogate endpoints?</li>
-<li>Can you explain the RECIST criteria used for assessing tumor response in clinical trials?</li>
-<li>How do you design a basket trial or umbrella trial in oncology, and what statistical challenges do these designs present?</li>
-</ul>
 </section>
-<section id="hospital-vs-pharmaceuticals" class="level2">
-<h2 class="anchored" data-anchor-id="hospital-vs-pharmaceuticals">Hospital vs Pharmaceuticals</h2>
-<section id="hospital" class="level4">
-<h4 class="anchored" data-anchor-id="hospital">Hospital</h4>
-<p>Topics of interest: long-term patient outcomes, QoL, comparative effectiveness of treatments, rare conditions that are less commercially viable. E.g. new surgical technique; compare different treatment regiments for patients with specific biomarkers</p>
-<p>Design: more flexible and exploratory, novel designs; smaller, single centered trials; early-stage, proof-of-concept</p>
-</section>
-<section id="pharma" class="level4">
-<h4 class="anchored" data-anchor-id="pharma">Pharma</h4>
-<p>Topics of interest: strongly focused on meeting requirements of regulation, focus on predefined endpoints like efficacy and safety that align with drug approval processes. E.g. new cancer drug compared to placebo or existing treatment</p>
-<p>Design: rigid design aligned with regulatory requirements; large, multicenter; RCT with precise inclusion/exclusion criteria</p>
+<section id="survey" class="level2">
+<h2 class="anchored" data-anchor-id="survey">Survey</h2>
+<section id="norkost" class="level4">
+<h4 class="anchored" data-anchor-id="norkost">Norkost</h4>
 </section>
 </section>
 </section>
-<section id="relevant-experience" class="level1">
-<h1>Relevant experience</h1>
-<p>See <a href="../method/interview_stat_cases.html">Interview: Statistics Case studies</a></p>
+<section id="analysis" class="level1">
+<h1>Analysis</h1>
+<section id="tests" class="level2">
+<h2 class="anchored" data-anchor-id="tests">Tests</h2>
+<blockquote class="blockquote">
+<p>Superiority, equivalency and non-inferiority</p>
+</blockquote>
+<section id="t-test-wilcoxon" class="level3">
+<h3 class="anchored" data-anchor-id="t-test-wilcoxon">t-test, wilcoxon</h3>
+</section>
+<section id="multiple-testing-adjustment" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-testing-adjustment">Multiple testing adjustment</h3>
+<section id="nav-paper" class="level4">
+<h4 class="anchored" data-anchor-id="nav-paper">NAV paper</h4>
+</section>
+</section>
+</section>
+<section id="regression" class="level2">
+<h2 class="anchored" data-anchor-id="regression">Regression</h2>
+<section id="linear-regression-regularization" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-regularization">Linear regression / regularization</h3>
+<section id="hai-paper" class="level4">
+<h4 class="anchored" data-anchor-id="hai-paper">HAI paper</h4>
+</section>
+<section id="fhi-excess-mortality" class="level4">
+<h4 class="anchored" data-anchor-id="fhi-excess-mortality">FHI Excess mortality</h4>
+</section>
+</section>
+<section id="logistic-regression-ordinal" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-ordinal">Logistic regression / ordinal</h3>
+<section id="dtw-paper" class="level4">
+<h4 class="anchored" data-anchor-id="dtw-paper">DTW paper</h4>
+<p>LR as a classifier</p>
+</section>
+<section id="covita-1" class="level4">
+<h4 class="anchored" data-anchor-id="covita-1">COVITA</h4>
+</section>
+</section>
+<section id="poisson-regression" class="level3">
+<h3 class="anchored" data-anchor-id="poisson-regression">Poisson regression</h3>
+<section id="transfer-paper" class="level4">
+<h4 class="anchored" data-anchor-id="transfer-paper">Transfer paper</h4>
+<p>Transfer rate</p>
+</section>
+<section id="nav" class="level4">
+<h4 class="anchored" data-anchor-id="nav">NAV</h4>
+<p>Over-dispersion</p>
+</section>
+</section>
+</section>
+<section id="missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="missing-data">Missing data</h2>
+<blockquote class="blockquote">
+<p>Complete case only? Imputation? LOCF (last observation carried forward)? IIT vs per protocol</p>
+</blockquote>
+<section id="not-typical-dtw" class="level4">
+<h4 class="anchored" data-anchor-id="not-typical-dtw">(not typical) DTW</h4>
+</section>
+<section id="not-typical-norkost-dietary-survey" class="level4">
+<h4 class="anchored" data-anchor-id="not-typical-norkost-dietary-survey">(not typical) Norkost dietary survey</h4>
+<p>Keep zero as is</p>
+</section>
+</section>
+<section id="mixed-model" class="level2">
+<h2 class="anchored" data-anchor-id="mixed-model">Mixed model</h2>
+<section id="peanut-allergy-1" class="level4">
+<h4 class="anchored" data-anchor-id="peanut-allergy-1">Peanut allergy</h4>
+</section>
+<section id="norkost-1" class="level4">
+<h4 class="anchored" data-anchor-id="norkost-1">Norkost</h4>
+</section>
+</section>
+<section id="survival-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="survival-analysis">Survival analysis</h2>
+<section id="hospital-los" class="level4">
+<h4 class="anchored" data-anchor-id="hospital-los">Hospital LOS</h4>
+</section>
+</section>
+<section id="others" class="level2">
+<h2 class="anchored" data-anchor-id="others">Others</h2>
+<p>Cohen’s kappa</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
