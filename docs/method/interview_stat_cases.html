@@ -540,16 +540,35 @@ Challenges you had in a study
 </section>
 <section id="observational" class="level2">
 <h2 class="anchored" data-anchor-id="observational">Observational</h2>
-<blockquote class="blockquote">
-<p>Eligibility criteria?</p>
-</blockquote>
 <section id="ahus" class="level4">
 <h4 class="anchored" data-anchor-id="ahus">AHUS</h4>
-<p>Selected as subjects have been in the hospital during a certain time, above a certain age and have been in certain wards</p>
+<p>Retrospective observational study, linked clinical data from EHR.</p>
+<p>Selected as subjects have been in the hospital during a certain time (June 2018-19), above a certain age (18) and have been in certain wards (four selected).</p>
+<p>Limitation</p>
+<ul>
+<li>generalizability: four wards only, pre-covid data</li>
+<li>error in data as EHR data goes</li>
+<li>unmeasured confounders</li>
+</ul>
 </section>
 <section id="covita" class="level4">
 <h4 class="anchored" data-anchor-id="covita">COVITA</h4>
 <p>(Sarjomaa 2024) Case control with population</p>
+<p>Aim is to assess risk factors for Covid infection:</p>
+<ul>
+<li>compare PCR positive (400) vs negative (719) (case control)</li>
+<li>them compare with population control (14509) (pre-pandemic)</li>
+</ul>
+<p>Selection: adults who did PCR tests between 2020.2 to 12. PCR+- identified from test centers and hospitals, then contacted by telephone and invited to participate in research project.</p>
+<p>Population controls are age matched. Pre-existing Telemark study data of 21-55 yo in 2018.</p>
+<p>Results: sex (M) in TND (test negative)</p>
+<p>Limitation (bias)</p>
+<ul>
+<li>generalizability: location is limited, age group is limited</li>
+<li>recall bias as it is questionnaire data; despite minimal missing</li>
+<li>bias in healthcare seeking behavior</li>
+<li>unmeasured confounders</li>
+</ul>
 </section>
 <section id="alcohol" class="level4">
 <h4 class="anchored" data-anchor-id="alcohol">Alcohol</h4>
@@ -567,9 +586,6 @@ Challenges you had in a study
 <h1>Analysis</h1>
 <section id="tests" class="level2">
 <h2 class="anchored" data-anchor-id="tests">Tests</h2>
-<blockquote class="blockquote">
-<p>Superiority, equivalency and non-inferiority</p>
-</blockquote>
 <section id="t-test-wilcoxon" class="level3">
 <h3 class="anchored" data-anchor-id="t-test-wilcoxon">t-test, wilcoxon</h3>
 </section>
@@ -577,6 +593,25 @@ Challenges you had in a study
 <h3 class="anchored" data-anchor-id="multiple-testing-adjustment">Multiple testing adjustment</h3>
 <section id="nav-paper" class="level4">
 <h4 class="anchored" data-anchor-id="nav-paper">NAV paper</h4>
+<p>Aim: compare sick leave and primary healthcare consultations in 2023 with pre-pandemic trends</p>
+<p>Combined Norsyss (norwegian syndromic surveillance system) and NAV (norwegian labour and welfare administration on sick leave)</p>
+<p>Results: general causese were 70% higher than expected, half was explained by the biggest factor is A04 (weakness/tiredness), and R(respiratory). Economic loss is 1.5 billion USD per year.</p>
+<ul>
+<li>NAV data: number of working person-days lost to sick leave; weekly new cases</li>
+<li>Norsyss data: number of consultation per ICPC2 code</li>
+</ul>
+<p>Model for baseline computation</p>
+<ul>
+<li>cases per 100k ~ year</li>
+<li>cases per 100k ~ year as cubic spline (2 or 3 degrees of freedome)</li>
+</ul>
+<p>Lowest AIC selected, then refit and predict</p>
+<p>(Multiple testing handling)</p>
+<ul>
+<li>compare the excess ratio with 1, produce p-value</li>
+<li>then <code>p.adjust(pval_list, method = 'fdr')</code></li>
+<li>only report those below 0.05</li>
+</ul>
 </section>
 </section>
 </section>
@@ -586,30 +621,66 @@ Challenges you had in a study
 <h3 class="anchored" data-anchor-id="linear-regression-regularization">Linear regression / regularization</h3>
 <section id="hai-paper" class="level4">
 <h4 class="anchored" data-anchor-id="hai-paper">HAI paper</h4>
+<p>Early warning system at a collective level, using predictors that are potentially interveneable.</p>
+<p>This was a simulation study.</p>
 </section>
 <section id="fhi-excess-mortality" class="level4">
 <h4 class="anchored" data-anchor-id="fhi-excess-mortality">FHI Excess mortality</h4>
+<p>Bayesian linear regression</p>
+<ul>
+<li>count data, but after doing EDA it can be approximated with linear with a single predictor: year</li>
+<li>the task is not to explain (i.e.&nbsp;regression coefficient and intervals), but to predict</li>
+<li>sometimes more convenient to use the per 100k number of death (or cases)</li>
+</ul>
 </section>
 </section>
 <section id="logistic-regression-ordinal" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-ordinal">Logistic regression / ordinal</h3>
+<section id="covita-1" class="level4">
+<h4 class="anchored" data-anchor-id="covita-1">COVITA</h4>
+<p>Different results (in terms of risk factors) can come from</p>
+<ul>
+<li>study design</li>
+<li>different selection for case and control</li>
+<li>geographical location (that affect the population)</li>
+</ul>
+<p>Comparisons</p>
+<ul>
+<li>Study I: 400 PCR+ vs 719 PCR-</li>
+<li>Study II: 286 PCR+ (age 18-55) vs 14509 pop</li>
+<li>Study III: 509 PCR- (age 18-55) vs 14509 pop -&gt; other infections other than COVID</li>
+</ul>
+<p>Missing data handling</p>
+<ul>
+<li>low rate of missing (0-6.2% for most questions, roughly 15% for smoking) in questionnaire subjects.</li>
+<li>no imputation was done</li>
+<li>sensitivity analysis: excluded the missing, do the analysis again and see whether the conclusion differ</li>
+</ul>
+</section>
 <section id="dtw-paper" class="level4">
 <h4 class="anchored" data-anchor-id="dtw-paper">DTW paper</h4>
 <p>LR as a classifier</p>
-</section>
-<section id="covita-1" class="level4">
-<h4 class="anchored" data-anchor-id="covita-1">COVITA</h4>
 </section>
 </section>
 <section id="poisson-regression" class="level3">
 <h3 class="anchored" data-anchor-id="poisson-regression">Poisson regression</h3>
 <section id="transfer-paper" class="level4">
 <h4 class="anchored" data-anchor-id="transfer-paper">Transfer paper</h4>
-<p>Transfer rate</p>
-</section>
-<section id="nav" class="level4">
-<h4 class="anchored" data-anchor-id="nav">NAV</h4>
-<p>Over-dispersion</p>
+<p>Two objectives:</p>
+<ul>
+<li>optimize patient logistics, quantify resource utilisation</li>
+<li>more detailed knowledge of highly connected hospital hubs and trajectories for infection prevention and control</li>
+</ul>
+<p>Transfer chain analysis, 15258 patient stays that have more than one location. 1118 unique transfer chains (sequence of locations)</p>
+<p>Skewed: 75% of patients followed one of the top 20 types: notably, ED to neurology; ED to gastrosurgery …. Many have the pattern of bed - ORblock - bed.</p>
+<p>Transfer rate with Poisson regression to identify risk factors contributing to higher number of transfers</p>
+<ul>
+<li>higher age, less transfers</li>
+<li>higher mean first 48h NEWS, more transfers. (used categories 0-2, 3-4, 5-6 instead of numbers to capture the non-linear relationship)</li>
+<li>no gender difference</li>
+<li>after adjusting for HDU/ICU and OR, effect of age and NEWS becomes insignificant</li>
+<li>interactions between department, surgery and antibiotics use are not significant</li>
+</ul>
 </section>
 </section>
 </section>

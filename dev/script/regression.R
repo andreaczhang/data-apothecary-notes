@@ -96,6 +96,56 @@ install.packages('pscl')
 pscl::pR2(mlr1)
 ?pscl::pR2
 
+
+
+# _______ -----
+# poisson regression ----
+
+
+# Load required library
+library(MASS)
+
+# Load data and inspect it
+data(quine)
+head(quine)
+
+hist(quine$Days)
+
+# Summarize the dependent variable (Days)
+summary(quine$Days)
+
+# Check the mean and variance of the count data (Days)
+mean_days <- mean(quine$Days)
+var_days <- var(quine$Days)
+
+mean_days  # Mean of Days
+var_days   # Variance of Days
+# 16 vs 264
+
+# Fit Poisson regression model
+poisson_model <- glm(Days ~ Sex + Age, family = poisson, data = quine)
+summary(poisson_model)
+
+# Check goodness of fit (dispersion parameter)
+# ssr / df
+# df here is n-p
+dispersion_poisson <- sum(residuals(poisson_model, type = "pearson")^2) / poisson_model$df.residual
+dispersion_poisson  # If > 1, indicates overdispersion
+
+
+# Fit Negative Binomial regression model
+nb_model <- glm.nb(Days ~ Sex + Age, data = quine)
+summary(nb_model)
+
+# Compare AIC of the models
+AIC(poisson_model, nb_model)
+
+# Perform a likelihood ratio test
+library(lmtest)
+lrtest(poisson_model, nb_model)
+
+
+
 # _______ -----
 # cox regression ----
 
@@ -133,6 +183,44 @@ plot(res_mart)
 
 res_dev <- residuals(coxm1, type = 'deviance')
 plot(res_dev)
+
+
+
+# _________ ----
+# anova ----
+
+# Load data and inspect
+data(mtcars)
+head(mtcars)
+
+# Convert 'cyl' (cylinder) into a factor
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+boxplot(mpg ~ cyl, data = mtcars)
+
+# Perform one-way ANOVA to see if mpg differs by cyl
+anova_model <- aov(mpg ~ cyl, data = mtcars)
+summary(anova_model)
+
+# ANCOVA to add one continuous covariate
+# Perform ANCOVA to compare mpg by cyl, adjusting for weight (wt)
+ancova_model <- aov(mpg ~ cyl + wt, data = mtcars)
+summary(ancova_model)
+
+# Perform multiple linear regression with both cyl and wt as predictors
+regression_model <- lm(mpg ~ cyl + wt, data = mtcars)
+summary(regression_model)
+
+
+# Define the MANCOVA model
+# two responses: mgp and hp
+# two covariates: cyl and wt
+mancova_model <- manova(cbind(mpg, hp) ~ cyl + wt, data = mtcars)
+
+# Summary of the MANCOVA model
+summary(mancova_model)
+
+
 
 
 

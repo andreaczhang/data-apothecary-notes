@@ -2825,7 +2825,7 @@
     "href": "method/interview_stat_cases.html#observational",
     "title": "Interview: statistics used in my work",
     "section": "Observational",
-    "text": "Observational\n\nEligibility criteria?\n\n\nAHUS\nSelected as subjects have been in the hospital during a certain time, above a certain age and have been in certain wards\n\n\nCOVITA\n(Sarjomaa 2024) Case control with population\n\n\nAlcohol\n(Kabashi 2019) Cross sectional, multi-site"
+    "text": "Observational\n\nAHUS\nRetrospective observational study, linked clinical data from EHR.\nSelected as subjects have been in the hospital during a certain time (June 2018-19), above a certain age (18) and have been in certain wards (four selected).\nLimitation\n\ngeneralizability: four wards only, pre-covid data\nerror in data as EHR data goes\nunmeasured confounders\n\n\n\nCOVITA\n(Sarjomaa 2024) Case control with population\nAim is to assess risk factors for Covid infection:\n\ncompare PCR positive (400) vs negative (719) (case control)\nthem compare with population control (14509) (pre-pandemic)\n\nSelection: adults who did PCR tests between 2020.2 to 12. PCR+- identified from test centers and hospitals, then contacted by telephone and invited to participate in research project.\nPopulation controls are age matched. Pre-existing Telemark study data of 21-55 yo in 2018.\nResults: sex (M) in TND (test negative)\nLimitation (bias)\n\ngeneralizability: location is limited, age group is limited\nrecall bias as it is questionnaire data; despite minimal missing\nbias in healthcare seeking behavior\nunmeasured confounders\n\n\n\nAlcohol\n(Kabashi 2019) Cross sectional, multi-site"
   },
   {
     "objectID": "method/interview_stat_cases.html#survey",
@@ -2839,14 +2839,14 @@
     "href": "method/interview_stat_cases.html#tests",
     "title": "Interview: statistics used in my work",
     "section": "Tests",
-    "text": "Tests\n\nSuperiority, equivalency and non-inferiority\n\n\nt-test, wilcoxon\n\n\nMultiple testing adjustment\n\nNAV paper"
+    "text": "Tests\n\nt-test, wilcoxon\n\n\nMultiple testing adjustment\n\nNAV paper\nAim: compare sick leave and primary healthcare consultations in 2023 with pre-pandemic trends\nCombined Norsyss (norwegian syndromic surveillance system) and NAV (norwegian labour and welfare administration on sick leave)\nResults: general causese were 70% higher than expected, half was explained by the biggest factor is A04 (weakness/tiredness), and R(respiratory). Economic loss is 1.5 billion USD per year.\n\nNAV data: number of working person-days lost to sick leave; weekly new cases\nNorsyss data: number of consultation per ICPC2 code\n\nModel for baseline computation\n\ncases per 100k ~ year\ncases per 100k ~ year as cubic spline (2 or 3 degrees of freedome)\n\nLowest AIC selected, then refit and predict\n(Multiple testing handling)\n\ncompare the excess ratio with 1, produce p-value\nthen p.adjust(pval_list, method = 'fdr')\nonly report those below 0.05"
   },
   {
     "objectID": "method/interview_stat_cases.html#regression",
     "href": "method/interview_stat_cases.html#regression",
     "title": "Interview: statistics used in my work",
     "section": "Regression",
-    "text": "Regression\n\nLinear regression / regularization\n\nHAI paper\n\n\nFHI Excess mortality\n\n\n\nLogistic regression / ordinal\n\nDTW paper\nLR as a classifier\n\n\nCOVITA\n\n\n\nPoisson regression\n\nTransfer paper\nTransfer rate\n\n\nNAV\nOver-dispersion"
+    "text": "Regression\n\nLinear regression / regularization\n\nHAI paper\nEarly warning system at a collective level, using predictors that are potentially interveneable.\nThis was a simulation study.\n\n\nFHI Excess mortality\nBayesian linear regression\n\ncount data, but after doing EDA it can be approximated with linear with a single predictor: year\nthe task is not to explain (i.e. regression coefficient and intervals), but to predict\nsometimes more convenient to use the per 100k number of death (or cases)\n\n\n\n\nLogistic regression / ordinal\n\nCOVITA\nDifferent results (in terms of risk factors) can come from\n\nstudy design\ndifferent selection for case and control\ngeographical location (that affect the population)\n\nComparisons\n\nStudy I: 400 PCR+ vs 719 PCR-\nStudy II: 286 PCR+ (age 18-55) vs 14509 pop\nStudy III: 509 PCR- (age 18-55) vs 14509 pop -&gt; other infections other than COVID\n\nMissing data handling\n\nlow rate of missing (0-6.2% for most questions, roughly 15% for smoking) in questionnaire subjects.\nno imputation was done\nsensitivity analysis: excluded the missing, do the analysis again and see whether the conclusion differ\n\n\n\nDTW paper\nLR as a classifier\n\n\n\nPoisson regression\n\nTransfer paper\nTwo objectives:\n\noptimize patient logistics, quantify resource utilisation\nmore detailed knowledge of highly connected hospital hubs and trajectories for infection prevention and control\n\nTransfer chain analysis, 15258 patient stays that have more than one location. 1118 unique transfer chains (sequence of locations)\nSkewed: 75% of patients followed one of the top 20 types: notably, ED to neurology; ED to gastrosurgery …. Many have the pattern of bed - ORblock - bed.\nTransfer rate with Poisson regression to identify risk factors contributing to higher number of transfers\n\nhigher age, less transfers\nhigher mean first 48h NEWS, more transfers. (used categories 0-2, 3-4, 5-6 instead of numbers to capture the non-linear relationship)\nno gender difference\nafter adjusting for HDU/ICU and OR, effect of age and NEWS becomes insignificant\ninteractions between department, surgery and antibiotics use are not significant"
   },
   {
     "objectID": "method/interview_stat_cases.html#patient-selection-power-and-sample-size",
@@ -2861,5 +2861,12 @@
     "title": "Interview: statistics used in my work",
     "section": "Subgroup analysis, sensitivity",
     "text": "Subgroup analysis, sensitivity\n\nTransfer paper\n\n\nCB"
+  },
+  {
+    "objectID": "method/regression.html#poisson-regression",
+    "href": "method/regression.html#poisson-regression",
+    "title": "Regression",
+    "section": "Poisson regression",
+    "text": "Poisson regression\nAnd negative binomial\nKey assumption for poisson regression: variance approximately equal to mean. If over dispersed (variance greater than mean), use NB.\nHow to choose\n\nfit a poisson, compute dispersion parameter (SSR/df), where df is n-p. If much greater than 1, consider nb\nfit a nb\ncompare goodness of fit measures (AIC, BIC, log-likelihood)\nuse likelihood ratio tests\n\nAssumptions:\n\ncount data\nresponse follows poisson or nb distribution.\nindependent observations\nlinearity of indep variables and the log link\nno excessive zeros\n\nWhen assumption does not hold\n\nrobust standard errors if over dispersion is mild\nexcessive zero: zero-inflated poisson or nb; hurdle models that splits the zeros and non-zeros\nindependence: use mixed model\nlinearity: polynomial term, transformation"
   }
 ]

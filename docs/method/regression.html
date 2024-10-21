@@ -168,6 +168,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear regression</a></li>
   <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic regression</a></li>
+  <li><a href="#poisson-regression" id="toc-poisson-regression" class="nav-link" data-scroll-target="#poisson-regression">Poisson regression</a></li>
   <li><a href="#cox-regression" id="toc-cox-regression" class="nav-link" data-scroll-target="#cox-regression">Cox regression</a></li>
   <li><a href="#general-vif-cooks-distance-gof" id="toc-general-vif-cooks-distance-gof" class="nav-link" data-scroll-target="#general-vif-cooks-distance-gof">General: VIF, Cook’s distance, GoF</a></li>
   </ul></li>
@@ -434,6 +435,33 @@ Related to my own work (TBF)
 <li>none or little multicollinearity between independent variables</li>
 </ol>
 <p><strong>When assumption does not hold</strong></p>
+</section>
+<section id="poisson-regression" class="level2">
+<h2 class="anchored" data-anchor-id="poisson-regression">Poisson regression</h2>
+<p>And negative binomial</p>
+<p>Key assumption for poisson regression: variance approximately equal to mean. If over dispersed (variance greater than mean), use NB.</p>
+<p>How to choose</p>
+<ul>
+<li>fit a poisson, compute dispersion parameter (SSR/df), where df is n-p.&nbsp;If much greater than 1, consider nb</li>
+<li>fit a nb</li>
+<li>compare goodness of fit measures (AIC, BIC, log-likelihood)</li>
+<li>use likelihood ratio tests</li>
+</ul>
+<p>Assumptions:</p>
+<ol type="1">
+<li>count data</li>
+<li>response follows poisson or nb distribution.</li>
+<li>independent observations</li>
+<li>linearity of indep variables and the log link</li>
+<li>no excessive zeros</li>
+</ol>
+<p><strong>When assumption does not hold</strong></p>
+<ol type="1">
+<li>robust standard errors if over dispersion is mild</li>
+<li>excessive zero: zero-inflated poisson or nb; hurdle models that splits the zeros and non-zeros</li>
+<li>independence: use mixed model</li>
+<li>linearity: polynomial term, transformation</li>
+</ol>
 </section>
 <section id="cox-regression" class="level2">
 <h2 class="anchored" data-anchor-id="cox-regression">Cox regression</h2>
