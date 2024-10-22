@@ -148,7 +148,7 @@ Naive but incorrect way of calculating: 1-290/401 = 27.7%. This over-estimates h
 
 Median survival time means half of the subjects have events happen before, and half after. It corresponds to the time where survival probability is 0.5.
 
-The median survival time is **lower** than if using `median(time_to_event)` on those with outcome, naive but incorrect. 
+The median survival time is **higher** than using `median(time_to_event)` on those with outcome. It is intuitive because with censored data there are time periods that are not observed, which are ignored by `median()`. 
 
 ```{r}
 #| label: median
