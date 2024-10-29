@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2024-10-29">
+<meta name="description" content="An overview">
 
-<title>Data Apothecary’s Notes - Programming</title>
+<title>Data Apothecary’s Notes - Generative AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,177 +69,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-ai .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-ai'] = new List('listing-ai', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-r-programming .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-r-programming'] = new List('listing-r-programming', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-r-pkg .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-r-pkg'] = new List('listing-r-pkg', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-web .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-web'] = new List('listing-web', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-misc .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-misc'] = new List('listing-misc', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -268,7 +99,7 @@ window.Quarto = {
 <span class="menu-text">Reporting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../programming/index.html" aria-current="page"> 
+    <a class="nav-link" href="../programming/index.html"> 
 <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
@@ -297,28 +128,44 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#r-programming" id="toc-r-programming" class="nav-link active" data-scroll-target="#r-programming">R programming</a></li>
-  <li><a href="#r-package" id="toc-r-package" class="nav-link" data-scroll-target="#r-package">R package</a></li>
-  <li><a href="#web-and-quarto" id="toc-web-and-quarto" class="nav-link" data-scroll-target="#web-and-quarto">Web and quarto</a></li>
-  <li><a href="#ai" id="toc-ai" class="nav-link" data-scroll-target="#ai">AI</a></li>
-  <li><a href="#other-topics" id="toc-other-topics" class="nav-link" data-scroll-target="#other-topics">Other topics</a></li>
+  <ul class="collapse">
+  <li><a href="#generative-ai" id="toc-generative-ai" class="nav-link active" data-scroll-target="#generative-ai">Generative AI</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="Data manip">Data manip <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GenAI">GenAI <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Git">Git <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Interview">Interview <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Publication">Publication <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Text">Text <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Programming</h1>
-</div>
+<h1 class="title">Generative AI</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">GenAI</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    <p>An overview</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 29, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -328,184 +175,46 @@ window.Quarto = {
 </header>
 
 
-<p>This page hosts study notes on programming, with a strong flavour of R.</p>
-<section id="r-programming" class="level3">
-<h3 class="anchored" data-anchor-id="r-programming">R programming</h3>
-<div id="listing-r-programming" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Data manip" data-listing-date-sort="1713564000000" data-listing-file-modified-sort="1713864846796" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="120" data-listing-title-sort="Data manipulation with data.table" data-listing-filename-sort="df_manipulation.qmd">
-<td>
-<a href="../programming/df_manipulation.html" class="title listing-title">Data manipulation with data.table</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Error handling in R" data-listing-filename-sort="r_error_handling.qmd">
-<td>
-<a href="../programming/r_error_handling.html" class="title listing-title">Error handling in R</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1696543200000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="186" data-listing-title-sort="Functions" data-listing-filename-sort="r_functions.qmd">
-<td>
-<a href="../programming/r_functions.html" class="title listing-title">Functions</a>
-</td>
-</tr>
-<tr data-index="3" data-categories="RSE,Rpkg" data-listing-date-sort="1677106800000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="843" data-listing-title-sort="OOP in R: S3" data-listing-filename-sort="r_roop.qmd">
-<td>
-<a href="../programming/r_roop.html" class="title listing-title">OOP in R: S3</a>
-</td>
-</tr>
-<tr data-index="4" data-categories="Text" data-listing-date-sort="1713477600000" data-listing-file-modified-sort="1713524036547" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27" data-listing-title-sort="Processing text and characters" data-listing-filename-sort="text.qmd">
-<td>
-<a href="../programming/text.html" class="title listing-title">Processing text and characters</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
-<section id="r-package" class="level3">
-<h3 class="anchored" data-anchor-id="r-package">R package</h3>
-<div id="listing-r-pkg" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="RSE,Rpkg" data-listing-date-sort="1699311600000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="337" data-listing-title-sort="Dependencies" data-listing-filename-sort="r_pkg_dependency.qmd">
-<td>
-<a href="../programming/r_pkg_dependency.html" class="title listing-title">Dependencies</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696716000000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="252" data-listing-title-sort="My workflow in working with functions in a package" data-listing-filename-sort="r_pkg_functions.qmd">
-<td>
-<a href="../programming/r_pkg_functions.html" class="title listing-title">My workflow in working with functions in a package</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1696197600000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415" data-listing-title-sort="R package Engineering Workflow" data-listing-filename-sort="r_pkg_0_wf.qmd">
-<td>
-<a href="../programming/r_pkg_0_wf.html" class="title listing-title">R package Engineering Workflow</a>
-</td>
-</tr>
-<tr data-index="3" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="228" data-listing-title-sort="R package: tests" data-listing-filename-sort="r_pkg_tests.qmd">
-<td>
-<a href="../programming/r_pkg_tests.html" class="title listing-title">R package: tests</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
-<section id="web-and-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="web-and-quarto">Web and quarto</h3>
-<div id="listing-web" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Website,revealjs" data-listing-date-sort="1696370400000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22" data-listing-title-sort="Make slides with `reveal.js`" data-listing-filename-sort="revealjs.qmd">
-<td>
-<a href="../programming/revealjs.html" class="title listing-title">Make slides with <code>reveal.js</code></a>
-</td>
-</tr>
-<tr data-index="1" data-categories="Website" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1713078154251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="205" data-listing-title-sort="Web basics" data-listing-filename-sort="web_basics.qmd">
-<td>
-<a href="../programming/web_basics.html" class="title listing-title">Web basics</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="Website" data-listing-date-sort="1696111200000" data-listing-file-modified-sort="1713078154251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238" data-listing-title-sort="WebR: Use with an existing quarto website" data-listing-filename-sort="webr.qmd">
-<td>
-<a href="../programming/webr.html" class="title listing-title">WebR: Use with an existing quarto website</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
-<section id="ai" class="level3">
-<h3 class="anchored" data-anchor-id="ai">AI</h3>
-<div id="listing-ai" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="GenAI" data-listing-date-sort="1730156400000" data-listing-file-modified-sort="1730199220186" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154" data-listing-title-sort="Generative AI" data-listing-filename-sort="ai_genai.qmd">
-<td>
-<a href="../programming/ai_genai.html" class="title listing-title">Generative AI</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
-<section id="other-topics" class="level3">
-<h3 class="anchored" data-anchor-id="other-topics">Other topics</h3>
-<div id="listing-misc" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Git" data-listing-date-sort="1712008800000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="264" data-listing-title-sort="Set up version control" data-listing-filename-sort="git_setup.qmd">
-<td>
-<a href="../programming/git_setup.html" class="title listing-title">Set up version control</a>
-</td>
-</tr>
-<tr data-index="1" data-categories="Publication" data-listing-date-sort="1698357600000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="210" data-listing-title-sort="Software papers" data-listing-filename-sort="misc_software_papers.qmd">
-<td>
-<a href="../programming/misc_software_papers.html" class="title listing-title">Software papers</a>
-</td>
-</tr>
-<tr data-index="2" data-categories="Interview" data-listing-date-sort="1696456800000" data-listing-file-modified-sort="1713078154250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="175" data-listing-title-sort="Topic coverage: R developer" data-listing-filename-sort="intv_rdev_topics.qmd">
-<td>
-<a href="../programming/intv_rdev_topics.html" class="title listing-title">Topic coverage: R developer</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+<section id="generative-ai" class="level2">
+<h2 class="anchored" data-anchor-id="generative-ai">Generative AI</h2>
+<p>AI systems that can produce high quality content, specifically text, images and audio</p>
+<p>General purpose technology: like electricity, and AI</p>
+<ul>
+<li>web based: chat-gpt, bard, …</li>
+<li>software based</li>
+</ul>
+<p>History of LLM</p>
+<ul>
+<li>ELiza (1960s), pattern matching. Encourages introspection, creating the illusion of understanding to make people feel heard</li>
+<li>2010s, GPT - generative pre-trained transformer by OpenAI
+<ul>
+<li>GPT2 (2018)</li>
+<li>GPT3 (2020)</li>
+<li>GPT4</li>
+</ul></li>
+<li>LlaMA by Meta</li>
+</ul>
+<section id="prompt-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-engineering">Prompt engineering</h3>
+<p>Write, refine, optimize prompts; perfect the interaction between humans and AI; continuously monitor these prompts; maintain an up-to-date prompt library</p>
+<p>Prompting guide</p>
+<ul>
+<li>give clear, specific prompt with context</li>
+<li>ask to include sources</li>
+<li>avoid leading the answer such that the answer is biased</li>
+</ul>
+<p>Quality of the results</p>
+<ul>
+<li>accuracy</li>
+<li>unbiased</li>
+<li>sufficient information</li>
+<li>consistency if using the same prompt multiple times</li>
+</ul>
+<p>Shot (examples): zero shot, one shot, few shot prompting (need to provide follow up information to make the answer more customized)</p>
+<p>Chain of thought prompting: break down a large task into smaller sub-tasks</p>
 
 
-
+</section>
 </section>
 
 </main> <!-- /main -->

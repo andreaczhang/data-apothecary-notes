@@ -1,6 +1,17 @@
 ---
 title: "Programming"
 listing:
+  - id: ai
+    fields: [title]
+    contents: 
+      - "ai_genai.qmd"
+    type: table
+    sort: "title"
+    filter-ui: false
+    sort-ui: false
+    categories: true
+
+
   - id: r-programming
     fields: [title]
     contents: 
@@ -69,6 +80,12 @@ This page hosts study notes on programming, with a strong flavour of R.
 
 ::: {#web}
 :::
+
+### AI
+
+::: {#ai}
+:::
+
 
 ### Other topics
 

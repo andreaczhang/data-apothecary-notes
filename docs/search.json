@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGenerative AI\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -2868,5 +2868,19 @@
     "title": "Regression",
     "section": "Poisson regression",
     "text": "Poisson regression\nAnd negative binomial\nKey assumption for poisson regression: variance approximately equal to mean. If over dispersed (variance greater than mean), use NB.\nHow to choose\n\nfit a poisson, compute dispersion parameter (SSR/df), where df is n-p. If much greater than 1, consider nb\nfit a nb\ncompare goodness of fit measures (AIC, BIC, log-likelihood)\nuse likelihood ratio tests\n\nAssumptions:\n\ncount data\nresponse follows poisson or nb distribution.\nindependent observations\nlinearity of indep variables and the log link\nno excessive zeros\n\nWhen assumption does not hold\n\nrobust standard errors if over dispersion is mild\nexcessive zero: zero-inflated poisson or nb; hurdle models that splits the zeros and non-zeros\nindependence: use mixed model\nlinearity: polynomial term, transformation"
+  },
+  {
+    "objectID": "programming/ai_genai.html",
+    "href": "programming/ai_genai.html",
+    "title": "Generative AI",
+    "section": "",
+    "text": "AI systems that can produce high quality content, specifically text, images and audio\nGeneral purpose technology: like electricity, and AI\n\nweb based: chat-gpt, bard, …\nsoftware based\n\nHistory of LLM\n\nELiza (1960s), pattern matching. Encourages introspection, creating the illusion of understanding to make people feel heard\n2010s, GPT - generative pre-trained transformer by OpenAI\n\nGPT2 (2018)\nGPT3 (2020)\nGPT4\n\nLlaMA by Meta\n\n\n\nWrite, refine, optimize prompts; perfect the interaction between humans and AI; continuously monitor these prompts; maintain an up-to-date prompt library\nPrompting guide\n\ngive clear, specific prompt with context\nask to include sources\navoid leading the answer such that the answer is biased\n\nQuality of the results\n\naccuracy\nunbiased\nsufficient information\nconsistency if using the same prompt multiple times\n\nShot (examples): zero shot, one shot, few shot prompting (need to provide follow up information to make the answer more customized)\nChain of thought prompting: break down a large task into smaller sub-tasks"
+  },
+  {
+    "objectID": "programming/ai_genai.html#generative-ai",
+    "href": "programming/ai_genai.html#generative-ai",
+    "title": "Generative AI",
+    "section": "",
+    "text": "AI systems that can produce high quality content, specifically text, images and audio\nGeneral purpose technology: like electricity, and AI\n\nweb based: chat-gpt, bard, …\nsoftware based\n\nHistory of LLM\n\nELiza (1960s), pattern matching. Encourages introspection, creating the illusion of understanding to make people feel heard\n2010s, GPT - generative pre-trained transformer by OpenAI\n\nGPT2 (2018)\nGPT3 (2020)\nGPT4\n\nLlaMA by Meta\n\n\n\nWrite, refine, optimize prompts; perfect the interaction between humans and AI; continuously monitor these prompts; maintain an up-to-date prompt library\nPrompting guide\n\ngive clear, specific prompt with context\nask to include sources\navoid leading the answer such that the answer is biased\n\nQuality of the results\n\naccuracy\nunbiased\nsufficient information\nconsistency if using the same prompt multiple times\n\nShot (examples): zero shot, one shot, few shot prompting (need to provide follow up information to make the answer more customized)\nChain of thought prompting: break down a large task into smaller sub-tasks"
   }
 ]
