@@ -1,5 +1,5 @@
 ---
-title: "Reporting"
+title: "Random things"
 listing:
   - id: docs
     max-description-length: 500
@@ -7,6 +7,9 @@ listing:
     fields: [title]
     contents: 
       - "reporting_overview.qmd"
+      - "dashboard_ojs.qmd"
+      - "dashboard_static_webr.qmd"
+      - "dashboard_semi_static_webr_ojs.qmd"
     type: table
     grid-item-border: false
     sort-ui: false
@@ -15,5 +18,5 @@ listing:
     categories: true
 ---
 
-It is important to document while you go.
+This page is a dumpster for random things I test out. 
 

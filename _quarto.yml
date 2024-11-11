@@ -14,11 +14,11 @@ website:
       - href: method/index.qmd
         text: Methods
 
-      - href: reporting/index.qmd
-        text: Reporting
-
       - href: programming/index.qmd
         text: Programming
+        
+      - href: random/index.qmd
+        text: Random tests
 
       - href: about.qmd
         text: About

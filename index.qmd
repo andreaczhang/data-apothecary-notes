@@ -24,7 +24,6 @@ I try to organize the content in a modular way: these should cover the important
 * study design
 * inference
 * models
-* reporting
 * programming
 
 Any feedback / mistake corrections are welcome, you can find me [here](https://andreaczhang.github.io). Thank you!

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2023-06-01">
+<meta name="description" content="Notes related to clinical trial reporting">
 
-<title>Data Apothecary’s Notes</title>
+<title>Data Apothecary’s Notes - Clinical trial: reporting results</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -65,6 +71,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 </head>
@@ -76,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Apothecary’s Notes</span>
     </a>
   </div>
@@ -87,19 +95,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./method/index.html"> 
+    <a class="nav-link" href="../method/index.html"> 
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./programming/index.html"> 
+    <a class="nav-link" href="../programming/index.html"> 
 <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./random/index.html"> 
+    <a class="nav-link" href="../random/index.html"> 
 <span class="menu-text">Random tests</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -124,47 +132,138 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<div class="quarto-about-trestles content">
-  <div class="about-entity">
-    <img src="misc/logo_dan.png" class="about-image
-  rectangle " style="width: 20em;">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Apothecary’s Notes</h1>
+<h1 class="title">Clinical trial: reporting results</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Notes</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Notes related to clinical trial reporting</p>
+  </div>
 </div>
+
+
 <div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
   </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 1, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="https://github.com/andreaczhang/data-apothecary-notes" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><div id="hero-heading">
-<p>Hello, welcome!</p>
-<p>This is the note repository for <strong>modern data science skills with a focus on real-world data (observational studies) and clinical trials</strong>.</p>
-<p>Content will be gradually added while I learn the topics, and mostly for personal use. Therefore, it is <u>by no means</u> a complete guide by the time you read it!</p>
-<p>I try to organize the content in a modular way: these should cover the important aspects in which a data scientist / modern statistician should know.</p>
+
+
+<section id="resources" class="level3">
+<h3 class="anchored" data-anchor-id="resources">Resources</h3>
 <ul>
-<li>study design</li>
-<li>inference</li>
-<li>models</li>
-<li>programming</li>
+<li>Coursera course <a href="https://www.coursera.org/learn/clinical-trials/home/">Design and interpretation of clinical trials</a> by Johns Hopkins University</li>
 </ul>
-<p>Any feedback / mistake corrections are welcome, you can find me <a href="https://andreaczhang.github.io">here</a>. Thank you!</p>
-</div></div>
+</section>
+<section id="consort" class="level2">
+<h2 class="anchored" data-anchor-id="consort">CONSORT</h2>
+<p>Consolidated Standards of Reporting Trials</p>
+<p>25 item checklist. Not a guideline of how to do the trial; but a guideline for writers on how to report clearly.</p>
+<p>Title</p>
+<ul>
+<li>key design items</li>
+<li>treatment(s) evaluated</li>
+<li>disease or population studied</li>
+</ul>
+<p>Abstract</p>
+<ul>
+<li>design, method, results, conclusions</li>
+</ul>
+<p>Introduction</p>
+<ul>
+<li>backgrounds, rationale, establish equipoise (balance), systematic review, objectives / hypothesis</li>
+</ul>
+<p>Method</p>
+<ul>
+<li>IRB review and approvals</li>
+<li>trial design, allocation ratio</li>
+<li>eligibility criteria</li>
+<li>setting and location of the trial</li>
+<li>intervention - detailed enough to allow replication</li>
+<li>outcomes - primary, secondary, how assessed and defined</li>
+<li>sample size - how determined, interim analyses</li>
+<li>important changes during trial</li>
+<li>randomization, allocation concealment, implementation</li>
+<li>masking - who, how</li>
+<li>statistical methods - primary and secondary; subgroup analyses</li>
+</ul>
+<p>Convenient to use a flow-chart</p>
+<p>Baseline characteristics by treatment group</p>
+<p>p-values (common to not report in rct?)</p>
+<section id="evaluate-literature" class="level3">
+<h3 class="anchored" data-anchor-id="evaluate-literature">Evaluate literature</h3>
+<ul>
+<li>Legitimacy, is it a fair comparison</li>
+<li>Trustworthy investigators? conflict of interest</li>
+<li>Adequate protections against bias
+<ul>
+<li>randomization</li>
+<li>masking</li>
+<li>follow-up design and execution</li>
+</ul></li>
+<li>ITT analysis
+<ul>
+<li>have all events (outcomes) observed been counted in the treatment group assigned?</li>
+<li>variations in denominators explained and consistent with good practice?</li>
+</ul></li>
+<li><strong>appropriate subgroup analysis interpretation</strong>
+<ul>
+<li>ad hoc or post hoc status</li>
+</ul></li>
+</ul>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
 </div>
+<div class="spinner-grow spinner-grow-sm">
 
-
-
-
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+</section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../random";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -185,6 +284,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
