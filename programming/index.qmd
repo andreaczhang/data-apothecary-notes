@@ -5,6 +5,7 @@ listing:
     fields: [title]
     contents: 
       - "ai_genai.qmd"
+      - "ai_in_rstudio.qmd"
     type: table
     sort: "title"
     filter-ui: false
