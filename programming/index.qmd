@@ -6,6 +6,7 @@ listing:
     contents: 
       - "ai_genai.qmd"
       - "ai_in_rstudio.qmd"
+      - "ai_google_genai.qmd"
     type: table
     sort: "title"
     filter-ui: false

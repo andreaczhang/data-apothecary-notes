@@ -30,7 +30,9 @@
   {
     "listing": "/programming/index.html",
     "items": [
+      "/programming/ai_in_rstudio.html",
       "/programming/ai_genai.html",
+      "/programming/ai_google_genai.html",
       "/programming/df_manipulation.html",
       "/programming/r_error_handling.html",
       "/programming/r_functions.html",
