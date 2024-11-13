@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -2959,5 +2959,33 @@
     "title": "Quarto Live (webR) and ojs (2): Penguins (DOES NOT WORK)",
     "section": "",
     "text": "This solution doesn’t work very well, stick to the quarto live + ojs.\n\nLoading\n  webR...\n\n\n  \n\n\nChoose a species of penguin, we’ll work with that species for the rest of the tutorial.\n\nviewof input_species = Inputs.select([\"Adelie\", \"Chinstrap\", \"Gentoo\"])\npenguin_info = {\n  const description = {\n    Adelie: md`The **Adelie** is the most widespread penguin species, and, along with the emperor penguin, is the most southerly distributed of all penguins.`,\n    Chinstrap: md`The **chinstrap** penguin's name stems from the narrow black band under its head, which makes it appear as if it were wearing a black helmet, making it easy to identify.`,\n    Gentoo: md`The **gentoo** penguin calls in a variety of ways, but the most frequently heard is a loud trumpeting, which the bird emits with its head thrown back.`,\n  }\n  return description[input_species]\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLoading\n  webR..."
+  },
+  {
+    "objectID": "programming/install_pkg_compilation.html",
+    "href": "programming/install_pkg_compilation.html",
+    "title": "Install R packages that require compilation",
+    "section": "",
+    "text": "System information:\nObjective: install Rcplex package so that I can run some analysis\nIssue: neither gfortran nor cplex were available."
+  },
+  {
+    "objectID": "programming/install_pkg_compilation.html#gfortran",
+    "href": "programming/install_pkg_compilation.html#gfortran",
+    "title": "Install R packages that require compilation",
+    "section": "gfortran",
+    "text": "gfortran\nNeed to first install the latest gfortran for your system. In my computer it’s by default installed to /opt/gfortran\nPay attention to the error messages, and note down which version is needed. For instance, it could be aarch64-apple-darwin23-gcc-13\nYou might have to add a makevar file in this location: ~/.R/Makevars\n\nLOC = /opt/gfortran\nCC=$(LOC)/bin/aarch64-apple-darwin23-gcc-13 -fopenmp\nCXX=$(LOC)/bin/aarch64-apple-darwin23-c++-13 -fopenmp\nCXX11 = $(LOC)/bin/g++ -fopenmp # for fst package\nCFLAGS=-g -O3 -Wall -pedantic -std=gnu99 -mtune=native -pipe\nCXXFLAGS=-g -O3 -Wall -pedantic -std=c++11 -mtune=native -pipe\nLDFLAGS=-L$(LOC)/lib -Wl,-rpath,$(LOC)/lib\n# CPPFLAGS=-I$(LOC)/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include\n\nIn case you forgot how to create a new file,\n\ntouch ~/.R/Makevars\nnano ~/.R/Makevars\n\nThis should solve the issue with gfortran."
+  },
+  {
+    "objectID": "programming/install_pkg_compilation.html#cplex",
+    "href": "programming/install_pkg_compilation.html#cplex",
+    "title": "Install R packages that require compilation",
+    "section": "cplex",
+    "text": "cplex\nI still had problem with cplex. The error message was:\n\nchecking for cplex… no Trying to use . as CPLEX installation location\n\nThere are 2 issues:\n\nI do not have an installation of CPLEX\nthe path is not specified (when checked in R with Sys.getenv(\"CPLEX_DIR\"))\n\n\nInstall CPLEX\nTo install CPLEX, need to have IBM ILOG CPLEX. One can install the trial version for free here: IBM ILOG CPLEX Optimization Studio.\nOn macOS, it is by default installing it to Applications/CPLEX_Studio&lt;your_version&gt;. (more information)\n\n\nConfigure the path\nNow locate the installed CPLEX and related folders. What I need is the */include/ folder which holds all the files necessary for the compilation.\nCan search the file in command line:\n\nfind /Applications/CPLEX_Studio_Community2211 -name \"cplex.h\"\n\nThere were a few ways to specify the system path, but the ONLY solution that worked for me on installing this particular package was:\nDirectly insert the CPLEX path in the installation argument.\n\ninstall.packages(\"Rcplex\", configure.args = \"--with-cplex-dir=/Applications/CPLEX_Studio_Community2211/cplex\")"
+  },
+  {
+    "objectID": "programming/install_pkg_compilation.html#misc-embedding-bash-code-in-quarto",
+    "href": "programming/install_pkg_compilation.html#misc-embedding-bash-code-in-quarto",
+    "title": "Install R packages that require compilation",
+    "section": "Misc: embedding bash code in quarto",
+    "text": "Misc: embedding bash code in quarto\nSide note: by including #|eval:false it’s actually quite convenient to highlight bash code without executing.\nIf want to execute, can simply remove the comment.\n\n#!/bin/bash\necho \"Today is \" `date`"
   }
 ]

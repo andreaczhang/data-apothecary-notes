@@ -59,6 +59,7 @@ listing:
       - "intv_rdev_topics.qmd"
       - "misc_software_papers.qmd"
       - "git_setup.qmd"
+      - "install_pkg_compilation.qmd"
     type: table
     sort: "title"
     filter-ui: false
