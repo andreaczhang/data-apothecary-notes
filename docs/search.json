@@ -2987,5 +2987,54 @@
     "title": "Install R packages that require compilation",
     "section": "Misc: embedding bash code in quarto",
     "text": "Misc: embedding bash code in quarto\nSide note: by including #|eval:false it’s actually quite convenient to highlight bash code without executing.\nIf want to execute, can simply remove the comment.\n\n#!/bin/bash\necho \"Today is \" `date`"
+  },
+  {
+    "objectID": "programming/automation.html",
+    "href": "programming/automation.html",
+    "title": "Automation with GitHub Action",
+    "section": "",
+    "text": "Tutorial by David Keyes: How to use GitHub Actions with R to Run Code Automatically\n\nCreate a folder, .github\nCreate a subfolder, workflows\nInside workflows, create import-data.yaml. You do need other code in place.\nPush changes\nCheck Actions on GitHub repository\nOnce finished, the changes should have been made to GH repo.\n\nIf you have saved some new data, then it would be important to pull the data back in your local repo.\n\n\nThis is how I fixed the permission denied: workflow permissions"
+  },
+  {
+    "objectID": "programming/automation.html#github-actions",
+    "href": "programming/automation.html#github-actions",
+    "title": "Automation with GitHub Action",
+    "section": "",
+    "text": "A YAML file placed in .github/workflows directory. Pay attention to the indentation!\n#| eval: false\n#| code-fold: true\n#| code-summary: \"Show the code\"\non:\n  push:\n    branches: main\n\njobs: \n  import-data:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Set up R\n        uses: r-lib/actions/setup-r@v2\n\n      - name: Install packages\n        uses: r-lib/actions/setup-r-dependencies@v2\n        with:\n          packages: |\n            any::tidyverse \n            any::googlesheets4\n\n      - name: Check out repository\n        uses: actions/checkout@v3\n\n      - name: Import data\n        run: Rscript -e 'source(\"import-data.R\")'\n\n      - name: Commit results\n        run: |\n          git config --local user.email \"actions@github.com\"\n          git config --local user.name \"GitHub Actions\"\n          git add survey_data.rds\n          git commit -m 'Data updated' || echo \"No changes to commit\"\n          git push origin || echo \"No changes to commit\"\n\n\nRuns the action whenever code is pushed from main branch to GH.\non:\n  push:\n    branches: main\n\n\n\njobs: \n  import-data:\n    runs-on: ubuntu-latest"
+  },
+  {
+    "objectID": "programming/qt_dashboard.html",
+    "href": "programming/qt_dashboard.html",
+    "title": "Quarto dashboard",
+    "section": "",
+    "text": "The way to deploy the dashboard website is exactly the same as a normal quarto website.\n\n_quarto.yml, do not need to change anything. The project can be kept as a website!\nindex.yml, change the format to dashboard.\n\nIt is possible to add a few pages, just like a normal quarto website."
+  },
+  {
+    "objectID": "programming/automation.html#step-overview",
+    "href": "programming/automation.html#step-overview",
+    "title": "Automation with GitHub Action",
+    "section": "",
+    "text": "Tutorial by David Keyes: How to use GitHub Actions with R to Run Code Automatically\n\nCreate a folder, .github\nCreate a subfolder, workflows\nInside workflows, create import-data.yaml. You do need other code in place.\nPush changes\nCheck Actions on GitHub repository\nOnce finished, the changes should have been made to GH repo.\n\nIf you have saved some new data, then it would be important to pull the data back in your local repo.\n\n\nThis is how I fixed the permission denied: workflow permissions"
+  },
+  {
+    "objectID": "programming/automation.html#the-yaml-file",
+    "href": "programming/automation.html#the-yaml-file",
+    "title": "Automation with GitHub Action",
+    "section": "The YAML file",
+    "text": "The YAML file\nA YAML file placed in .github/workflows directory. Pay attention to the indentation!\non:\n  push:\n    branches: main\n\njobs: \n  import-data:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Set up R\n        uses: r-lib/actions/setup-r@v2\n\n      - name: Install packages\n        uses: r-lib/actions/setup-r-dependencies@v2\n        with:\n          packages: |\n            any::tidyverse \n            any::googlesheets4\n\n      - name: Check out repository\n        uses: actions/checkout@v3\n\n      - name: Import data\n        run: Rscript -e 'source(\"import-data.R\")'\n\n      - name: Commit results\n        run: |\n          git config --local user.email \"actions@github.com\"\n          git config --local user.name \"GitHub Actions\"\n          git add survey_data.rds\n          git commit -m 'Data updated' || echo \"No changes to commit\"\n          git push origin || echo \"No changes to commit\"\n\nTriggers start GHA\nRuns the action whenever code is pushed from main branch to GH.\non:\n  push:\n    branches: main\n\n\nJobs\n\nGive a name to the task (import-data)\nlet it run on a virtual machine that GH maintains\n\njobs: \n  import-data:\n    runs-on: ubuntu-latest\nAs this machine does not have anything installed, need to run some code to install the necessary softwares. This is where people copy and paste.\n    steps:\n      - name: Set up R\n        uses: r-lib/actions/setup-r@v2\n      - name: Install packages\n        uses: r-lib/actions/setup-r-dependencies@v2\n        with:\n          packages: |\n            any::tidyverse \n            any::googlesheets4\nNext, use it to check out the repository onto the virtual computer.\n      - name: Check out repository\n        uses: actions/checkout@v3\nNext, execute the code we wrote. Need to specify the right path.\n      - name: Import data\n        run: Rscript -e 'source(\"import-data.R\")'\nSince the data is loaded on the remote virtual machine, we need to save it.\n      - name: Commit results\n        run: |\n          git config --local user.email \"actions@github.com\"\n          git config --local user.name \"GitHub Actions\"\n          git add survey_data.rds\n          git commit -m 'Data updated' || echo \"No changes to commit\"\n          git push origin || echo \"No changes to commit\""
+  },
+  {
+    "objectID": "programming/automation.html#example-import-and-write-data-public",
+    "href": "programming/automation.html#example-import-and-write-data-public",
+    "title": "Automation with GitHub Action",
+    "section": "Example: import and write data (public)",
+    "text": "Example: import and write data (public)\nThis is an example of importing data from a public google sheet, run an R script and save it in the remote Github repository.\nA YAML file placed in .github/workflows directory. Pay attention to the indentation!\non:\n  push:\n    branches: main\n\njobs: \n  import-data:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Set up R\n        uses: r-lib/actions/setup-r@v2\n\n      - name: Install packages\n        uses: r-lib/actions/setup-r-dependencies@v2\n        with:\n          packages: |\n            any::tidyverse \n            any::googlesheets4\n\n      - name: Check out repository\n        uses: actions/checkout@v3\n\n      - name: Import data\n        run: Rscript -e 'source(\"import-data.R\")'\n\n      - name: Commit results\n        run: |\n          git config --local user.email \"actions@github.com\"\n          git config --local user.name \"GitHub Actions\"\n          git add survey_data.rds\n          git commit -m 'Data updated' || echo \"No changes to commit\"\n          git push origin || echo \"No changes to commit\"\n\nTriggers start GHA\nRuns the action whenever code is pushed from main branch to GH.\non:\n  push:\n    branches: main\n\n\nJobs\n\nGive a name to the task (import-data)\nlet it run on a virtual machine that GH maintains\n\njobs: \n  import-data:\n    runs-on: ubuntu-latest\nAs this machine does not have anything installed, need to run some code to install the necessary softwares. This is where people copy and paste.\n    steps:\n      - name: Set up R\n        uses: r-lib/actions/setup-r@v2\n      - name: Install packages\n        uses: r-lib/actions/setup-r-dependencies@v2\n        with:\n          packages: |\n            any::tidyverse \n            any::googlesheets4\nNext, use it to check out the repository onto the virtual computer.\n      - name: Check out repository\n        uses: actions/checkout@v3\nNext, execute the code we wrote. Need to specify the right path.\n      - name: Import data\n        run: Rscript -e 'source(\"import-data.R\")'\nSince the data is loaded on the remote virtual machine, we need to save it.\n      - name: Commit results\n        run: |\n          git config --local user.email \"actions@github.com\"\n          git config --local user.name \"GitHub Actions\"\n          git add survey_data.rds\n          git commit -m 'Data updated' || echo \"No changes to commit\"\n          git push origin || echo \"No changes to commit\""
+  },
+  {
+    "objectID": "programming/automation.html#import-and-write-from-private",
+    "href": "programming/automation.html#import-and-write-from-private",
+    "title": "Automation with GitHub Action",
+    "section": "Import and write from private",
+    "text": "Import and write from private"
   }
 ]

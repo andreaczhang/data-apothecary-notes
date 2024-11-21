@@ -1,0 +1,153 @@
+---
+title: "Automation with GitHub Action"
+description: |
+  As title
+author: "Chi Zhang"
+date: "2024-11-21"
+categories: [Automation]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+
+
+## Step overview 
+
+Tutorial by David Keyes: [How to use GitHub Actions with R to Run Code Automatically](https://rfortherestofus.com/2023/05/github-actions)
+
+
+
+1. Create a folder, `.github`
+2. Create a subfolder, `workflows`
+3. Inside workflows, create `import-data.yaml`. You do need other code in place.
+4. Push changes 
+5. Check Actions on GitHub repository
+6. Once finished, the changes should have been made to GH repo. 
+
+If you have saved some new data, then it would be important to **pull the data** back in your local repo. 
+
+
+#### Trouble shooting
+
+This is how I fixed the permission denied: [workflow permissions](https://github.com/ad-m/github-push-action/issues/96#issuecomment-889984928)
+
+
+
+## Example: import and write data (public)
+
+This is an example of importing data from a **public google sheet**, run an R script and save it in the **remote** Github repository.
+
+
+A YAML file placed in `.github/workflows` directory. Pay attention to the indentation!
+
+
+```yaml
+on:
+  push:
+    branches: main
+
+jobs: 
+  import-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::tidyverse 
+            any::googlesheets4
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Import data
+        run: Rscript -e 'source("import-data.R")'
+
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add survey_data.rds
+          git commit -m 'Data updated' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+```
+
+### Triggers start GHA
+
+Runs the action whenever code is pushed from main branch to GH.
+
+```yaml
+on:
+  push:
+    branches: main
+```
+
+### Jobs
+
+- Give a name to the task (`import-data`)
+- let it run on a virtual machine that GH maintains
+
+```yaml
+jobs: 
+  import-data:
+    runs-on: ubuntu-latest
+```
+
+As this machine does not have anything installed, need to run some code to install the necessary softwares. This is where people copy and paste.
+
+```yaml
+    steps:
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+      - name: Install packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::tidyverse 
+            any::googlesheets4
+```
+
+Next, use it to check out the repository onto the virtual computer.
+
+```yaml
+      - name: Check out repository
+        uses: actions/checkout@v3
+```
+
+Next, execute the code we wrote. Need to specify the right path.
+
+```yaml
+      - name: Import data
+        run: Rscript -e 'source("import-data.R")'
+```
+
+Since the data is loaded on the remote virtual machine, we need to save it. 
+
+```yaml
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add survey_data.rds
+          git commit -m 'Data updated' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+```
+
+
+## Import and write from private
+
+
+
+
+
