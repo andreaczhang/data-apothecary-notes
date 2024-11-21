@@ -57,9 +57,10 @@ listing:
     fields: [title]
     contents: 
       - "intv_rdev_topics.qmd"
-      - "misc_software_papers.qmd"
       - "git_setup.qmd"
       - "install_pkg_compilation.qmd"
+      - "automation.qmd"
+      - "misc_software_papers.qmd"
     type: table
     sort: "title"
     filter-ui: false
