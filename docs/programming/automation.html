@@ -162,10 +162,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#step-overview" id="toc-step-overview" class="nav-link active" data-scroll-target="#step-overview">Step overview</a></li>
-  <li><a href="#example-import-and-write-data-public" id="toc-example-import-and-write-data-public" class="nav-link" data-scroll-target="#example-import-and-write-data-public">Example: import and write data (public)</a></li>
-  <li><a href="#import-and-write-from-private" id="toc-import-and-write-from-private" class="nav-link" data-scroll-target="#import-and-write-from-private">Import and write from private</a></li>
+  <li><a href="#import-and-write-public-google-sheet" id="toc-import-and-write-public-google-sheet" class="nav-link" data-scroll-target="#import-and-write-public-google-sheet">Import and write public google sheet</a>
+  <ul class="collapse">
+  <li><a href="#triggers-start-gha" id="toc-triggers-start-gha" class="nav-link" data-scroll-target="#triggers-start-gha">Triggers start GHA</a></li>
+  <li><a href="#jobs" id="toc-jobs" class="nav-link" data-scroll-target="#jobs">Jobs</a></li>
+  </ul></li>
+  <li><a href="#import-and-write-private-google-sheet" id="toc-import-and-write-private-google-sheet" class="nav-link" data-scroll-target="#import-and-write-private-google-sheet">Import and write private google sheet</a>
+  <ul class="collapse">
+  <li><a href="#google-cloud-platform" id="toc-google-cloud-platform" class="nav-link" data-scroll-target="#google-cloud-platform">1. Google Cloud Platform</a></li>
+  <li><a href="#service-account-token" id="toc-service-account-token" class="nav-link" data-scroll-target="#service-account-token">2. Service account token</a></li>
+  <li><a href="#turn-on-google-sheet-from-gcp-project" id="toc-turn-on-google-sheet-from-gcp-project" class="nav-link" data-scroll-target="#turn-on-google-sheet-from-gcp-project">3. Turn on Google sheet from GCP project</a></li>
+  <li><a href="#share-google-sheet-to-the-fake-bot" id="toc-share-google-sheet-to-the-fake-bot" class="nav-link" data-scroll-target="#share-google-sheet-to-the-fake-bot">4. Share Google Sheet to the ‘fake-bot’</a></li>
+  <li><a href="#add-token-to-github-action-secrets" id="toc-add-token-to-github-action-secrets" class="nav-link" data-scroll-target="#add-token-to-github-action-secrets">5. Add token to GitHub Action secrets</a></li>
+  <li><a href="#code-in-r" id="toc-code-in-r" class="nav-link" data-scroll-target="#code-in-r">6. Code in R</a></li>
+  <li><a href="#github-actions" id="toc-github-actions" class="nav-link" data-scroll-target="#github-actions">7. GitHub Actions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -211,9 +224,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Resources</p>
+<ul>
+<li>Tutorial by David Keyes: <a href="https://rfortherestofus.com/2023/05/github-actions">How to use GitHub Actions with R to Run Code Automatically</a></li>
+<li>Tutorial by Mike O’Brien: <a href="https://www.obrien.page/blog/2023/03_10_google_and_github_actions/">Connecting Google Sheets and GitHub Actions</a></li>
+</ul>
 <section id="step-overview" class="level2">
 <h2 class="anchored" data-anchor-id="step-overview">Step overview</h2>
-<p>Tutorial by David Keyes: <a href="https://rfortherestofus.com/2023/05/github-actions">How to use GitHub Actions with R to Run Code Automatically</a></p>
 <ol type="1">
 <li>Create a folder, <code>.github</code></li>
 <li>Create a subfolder, <code>workflows</code></li>
@@ -223,13 +240,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Once finished, the changes should have been made to GH repo.</li>
 </ol>
 <p>If you have saved some new data, then it would be important to <strong>pull the data</strong> back in your local repo.</p>
-<section id="trouble-shooting" class="level4">
-<h4 class="anchored" data-anchor-id="trouble-shooting">Trouble shooting</h4>
-<p>This is how I fixed the permission denied: <a href="https://github.com/ad-m/github-push-action/issues/96#issuecomment-889984928">workflow permissions</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span style="color:red">Trouble shooting</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>This is how I fixed the permission denied: <a href="https://github.com/ad-m/github-push-action/issues/96#issuecomment-889984928">workflow permissions</a></li>
+<li>Change the name for your own repository</li>
+</ul>
+</div>
+</div>
 </section>
-</section>
-<section id="example-import-and-write-data-public" class="level2">
-<h2 class="anchored" data-anchor-id="example-import-and-write-data-public">Example: import and write data (public)</h2>
+<section id="import-and-write-public-google-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="import-and-write-public-google-sheet">Import and write public google sheet</h2>
 <p>This is an example of importing data from a <strong>public google sheet</strong>, run an R script and save it in the <strong>remote</strong> Github repository.</p>
 <p>A YAML file placed in <code>.github/workflows</code> directory. Pay attention to the indentation!</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
@@ -263,6 +292,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>          git add survey_data.rds</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>          git commit -m 'Data updated' || echo "No changes to commit"</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>          git push origin || echo "No changes to commit"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Need to change the <code>user.email</code> and <code>user.name</code> to your own.</p>
+</blockquote>
 <section id="triggers-start-gha" class="level3">
 <h3 class="anchored" data-anchor-id="triggers-start-gha">Triggers start GHA</h3>
 <p>Runs the action whenever code is pushed from main branch to GH.</p>
@@ -305,10 +337,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          git push origin || echo "No changes to commit"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="import-and-write-from-private" class="level2">
-<h2 class="anchored" data-anchor-id="import-and-write-from-private">Import and write from private</h2>
+<section id="import-and-write-private-google-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="import-and-write-private-google-sheet">Import and write private google sheet</h2>
+<blockquote class="blockquote">
+<p>Based on Tutorial by Mike O’Brien: <a href="https://www.obrien.page/blog/2023/03_10_google_and_github_actions/">Connecting Google Sheets and GitHub Actions</a></p>
+</blockquote>
+<p>It is necessary to have correct authentication if I connect with my own private google sheet. The following steps are required:</p>
+<section id="google-cloud-platform" class="level3">
+<h3 class="anchored" data-anchor-id="google-cloud-platform">1. Google Cloud Platform</h3>
+<ol type="1">
+<li>Go to Google Cloud Platform: https://console.cloud.google.com. Use the correct account.</li>
+<li>Create a new project</li>
+</ol>
+<p><img src="fig/automation_0.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="service-account-token" class="level3">
+<h3 class="anchored" data-anchor-id="service-account-token">2. Service account token</h3>
+<ol type="1">
+<li>Click the navigation menu, and select “IAM &amp; Admin”, then “Service Accounts”.</li>
+</ol>
+<p><img src="fig/automation_1.png" class="img-fluid" style="width:60.0%"></p>
+<ol start="2" type="1">
+<li>At the top, next to “Service accounts” select “+ CREATE SERVICE ACCOUNT”.</li>
+</ol>
+<p><img src="fig/automation_2.png" class="img-fluid" style="width:80.0%"></p>
+<ol start="3" type="1">
+<li>Add a name (I suggest something somewhat descriptive) and the “Service account ID” section will autofill. Add a description if you desire.</li>
+<li>Click “DONE”.</li>
+<li>Click your newly-created service account and go to the “KEYS” tab.</li>
+</ol>
+<p><img src="fig/automation_3.png" class="img-fluid" style="width:80.0%"></p>
+<ol start="6" type="1">
+<li>Click “ADD KEY”, “Create new key”, select “JSON”, then “CREATE”.</li>
+</ol>
+<p><img src="fig/automation_4.png" class="img-fluid" style="width:60.0%"></p>
+<p>This will download a file. Pay attention to where it goes!</p>
+</section>
+<section id="turn-on-google-sheet-from-gcp-project" class="level3">
+<h3 class="anchored" data-anchor-id="turn-on-google-sheet-from-gcp-project">3. Turn on Google sheet from GCP project</h3>
+<ol type="1">
+<li>Click the menu, “API &amp; Services”</li>
+<li>Search for Google Sheets in the search bar. It does not appear: you need to search for it.</li>
+<li>Select “Google Sheets API”</li>
+<li>“ENABLE”</li>
+</ol>
+<p><img src="fig/automation_5.png" class="img-fluid" style="width:60.0%"></p>
+<p>Once this is done, it should appear under API/Service Details.</p>
+<p><img src="fig/automation_6.png" class="img-fluid" style="width:70.0%"></p>
+</section>
+<section id="share-google-sheet-to-the-fake-bot" class="level3">
+<h3 class="anchored" data-anchor-id="share-google-sheet-to-the-fake-bot">4. Share Google Sheet to the ‘fake-bot’</h3>
+<ol type="1">
+<li>Go to Google Sheet, find the project I want to share. Click “Share” on the top right</li>
+</ol>
+<p><img src="fig/automation_7.png" class="img-fluid" style="width:70.0%"></p>
+<ol start="2" type="1">
+<li>Paste the email address. <code>your_name@your_projectid.iam.gserviceaccount.com</code></li>
+</ol>
+<blockquote class="blockquote">
+<p>This is how you can find it in case you forgot: API &amp; Services -&gt; Google Sheets API -&gt; Credentials -&gt; Service Accounts</p>
+</blockquote>
+</section>
+<section id="add-token-to-github-action-secrets" class="level3">
+<h3 class="anchored" data-anchor-id="add-token-to-github-action-secrets">5. Add token to GitHub Action secrets</h3>
+<ol type="1">
+<li>Go to GitHub repository that you want to house the GHA.</li>
+<li>Settings</li>
+<li>Security -&gt; “Secrets and variables” -&gt; Actions</li>
+</ol>
+<p><img src="fig/automation_10.png" class="img-fluid" style="width:70.0%"></p>
+<ol start="4" type="1">
+<li>Copy and paste the text in the downloaded file (json). Give it a name</li>
+<li>Add secret</li>
+</ol>
+</section>
+<section id="code-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="code-in-r">6. Code in R</h3>
+<p>On my own <strong>computer</strong>: save the service token file somewhere safe, then refer to it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for googledrive</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_auth</span>(<span class="at">path =</span> <span class="st">'path/to/my/service_token.json'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for googlesheets4</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_auth</span>(<span class="at">path =</span> <span class="st">'path/to/my/service_token.json'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For GHA: change it to <code>Sys.getenv('NAME_OF_MY_SECRET')</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_auth</span>(<span class="at">path =</span> <span class="fu">Sys.getenv</span>(<span class="st">'NAME_OF_MY_SECRET'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="github-actions" class="level3">
+<h3 class="anchored" data-anchor-id="github-actions">7. GitHub Actions</h3>
+<p>Add the environment variable, give it a name. I call it <code>GOOGLE_SHEET</code></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">import-data</span><span class="kw">:</span><span class="co"> # my job name</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">GOOGLE_PAT</span><span class="kw">:</span><span class="at"> ${{ secrets.GOOGLE_SHEET }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The token is stored in a variable <code>GOOGLE_SHEET</code> in the server. Now when writing the following command in the R script below, it will be using the one without manual configuration.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_auth</span>(<span class="at">path =</span> <span class="fu">Sys.getenv</span>(<span class="st">'GOOGLE_SHEET'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
