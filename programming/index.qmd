@@ -13,6 +13,16 @@ listing:
     sort-ui: false
     categories: true
 
+  - id: python
+    fields: [title]
+    contents: 
+      - "py_setup.qmd"
+    type: table
+    sort: "title"
+    filter-ui: false
+    sort-ui: false
+    categories: true
+
 
   - id: r-programming
     fields: [title]
@@ -53,14 +63,15 @@ listing:
     sort-ui: false
     categories: true
     
-  - id: misc
+  - id: setup
     fields: [title]
     contents: 
-      - "intv_rdev_topics.qmd"
+      #- "intv_rdev_topics.qmd"
       - "git_setup.qmd"
+      - "py_setup.qmd"
       - "install_pkg_compilation.qmd"
       - "automation.qmd"
-      - "misc_software_papers.qmd"
+     # - "misc_software_papers.qmd"
     type: table
     sort: "title"
     filter-ui: false
@@ -68,12 +79,18 @@ listing:
     categories: true
 ---
 
-This page hosts study notes on programming, with a strong flavour of R.
+This page hosts study notes on programming.
 
 ### R programming
 
 ::: {#r-programming}
 :::
+
+### Python
+
+::: {#python}
+:::
+
 
 ### R package
 
@@ -91,9 +108,9 @@ This page hosts study notes on programming, with a strong flavour of R.
 :::
 
 
-### Other topics
+### Setting things up
 
-::: {#misc}
+::: {#setup}
 :::
 
 

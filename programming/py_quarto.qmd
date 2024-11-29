@@ -1,0 +1,49 @@
+---
+title: "Python set up with Quarto"
+description: |
+  Use Python with Quarto
+author: "Chi Zhang"
+date: "2024-11-29"
+categories: [Python, Quarto]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+
+### Pre-requisite 
+
+* Need to enter the virtual environment of your choosing. In RStudio, select the one you need inside Tools -> Global Options -> Python -> Interpreter -> Virtual Environment
+* Need `PyYaml` installed in this virtual environment. Try to run `pip install pyyaml` inside the virtualenv.
+* Need to set the engine as such, 
+
+```yaml
+---
+title: "test python"
+format: html
+jupyter: python3
+---
+```
+
+
+Afterwards, can try to render 
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0, 20, 100)
+plt.plot(x, np.sin(x))
+plt.show()
+```
+
+
+To check what packages are installed, can use `pip list`.
+
+

@@ -33,6 +33,7 @@
       "/programming/ai_in_rstudio.html",
       "/programming/ai_genai.html",
       "/programming/ai_google_genai.html",
+      "/programming/py_setup.html",
       "/programming/df_manipulation.html",
       "/programming/r_error_handling.html",
       "/programming/r_functions.html",
@@ -47,9 +48,7 @@
       "/programming/webr.html",
       "/programming/automation.html",
       "/programming/install_pkg_compilation.html",
-      "/programming/git_setup.html",
-      "/programming/misc_software_papers.html",
-      "/programming/intv_rdev_topics.html"
+      "/programming/git_setup.html"
     ]
   },
   {

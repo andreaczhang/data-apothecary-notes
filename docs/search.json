@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming, with a strong flavour of R.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nOther topics\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nSet up version control\n\n\n\n\nSoftware papers\n\n\n\n\nTopic coverage: R developer\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPython set up via pyenv\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -3050,5 +3050,54 @@
     "title": "Automation with GitHub Action",
     "section": "Import and write private google sheet",
     "text": "Import and write private google sheet\n\nBased on Tutorial by Mike O’Brien: Connecting Google Sheets and GitHub Actions\n\nIt is necessary to have correct authentication if I connect with my own private google sheet. The following steps are required:\n\n1. Google Cloud Platform\n\nGo to Google Cloud Platform: https://console.cloud.google.com. Use the correct account.\nCreate a new project\n\n\n\n\n2. Service account token\n\nClick the navigation menu, and select “IAM & Admin”, then “Service Accounts”.\n\n\n\nAt the top, next to “Service accounts” select “+ CREATE SERVICE ACCOUNT”.\n\n\n\nAdd a name (I suggest something somewhat descriptive) and the “Service account ID” section will autofill. Add a description if you desire.\nClick “DONE”.\nClick your newly-created service account and go to the “KEYS” tab.\n\n\n\nClick “ADD KEY”, “Create new key”, select “JSON”, then “CREATE”.\n\n\nThis will download a file. Pay attention to where it goes!\n\n\n3. Turn on Google sheet from GCP project\n\nClick the menu, “API & Services”\nSearch for Google Sheets in the search bar. It does not appear: you need to search for it.\nSelect “Google Sheets API”\n“ENABLE”\n\n\nOnce this is done, it should appear under API/Service Details.\n\n\n\n4. Share Google Sheet to the ‘fake-bot’\n\nGo to Google Sheet, find the project I want to share. Click “Share” on the top right\n\n\n\nPaste the email address. your_name@your_projectid.iam.gserviceaccount.com\n\n\nThis is how you can find it in case you forgot: API & Services -&gt; Google Sheets API -&gt; Credentials -&gt; Service Accounts\n\n\n\n5. Add token to GitHub Action secrets\n\nGo to GitHub repository that you want to house the GHA.\nSettings\nSecurity -&gt; “Secrets and variables” -&gt; Actions\n\n\n\nCopy and paste the text in the downloaded file (json). Give it a name\nAdd secret\n\n\n\n6. Code in R\nOn my own computer: save the service token file somewhere safe, then refer to it.\n\n# for googledrive\ndrive_auth(path = 'path/to/my/service_token.json')\n\n# for googlesheets4\ngs4_auth(path = 'path/to/my/service_token.json')\n\nFor GHA: change it to Sys.getenv('NAME_OF_MY_SECRET')\n\ngs4_auth(path = Sys.getenv('NAME_OF_MY_SECRET'))\n\n\n\n7. GitHub Actions\nAdd the environment variable, give it a name. I call it GOOGLE_SHEET\njobs: \n  import-data: # my job name\n    runs-on: ubuntu-latest\n    env: \n      GOOGLE_PAT: ${{ secrets.GOOGLE_SHEET }}\nThe token is stored in a variable GOOGLE_SHEET in the server. Now when writing the following command in the R script below, it will be using the one without manual configuration.\n\ngs4_auth(path = Sys.getenv('GOOGLE_SHEET'))"
+  },
+  {
+    "objectID": "programming/py_setup.html",
+    "href": "programming/py_setup.html",
+    "title": "Python set up via pyenv",
+    "section": "",
+    "text": "Might need to create the .zshrc if you don’t have it\ntouch .zshrc\nls -la\nFind homebrew - if don’t have it, need to install it; if have it, might have to update it\nwhich brew\n# /opt/homebrew/bin/brew\n\n\n\nbrew install pyenv\n# check if it exists\nwhich pyenv\n# /opt/homebrew/bin/pyenv\necho $PATH \n# check if the path is added\nCheck version\npyenv --version\n\n\n\nDecide which version of python you’d like to install.\npyenv install 3.12.7\nAfter it’s done, check if it exists\nwhich python # does not exist\npyenv global 3.12.7 # set the global python to be this version\npyenv versions \nModify the .zshrc file: add two lines in the file\nnano ~/.zshrc\nType in the following, and save.\neval \"$(pyenv init --path)\"\neval \"$(pyenv init -)\"\nCheck if they are correctly added. If it is, load them by using source\ncat ~/.zshrc\nsource .zshrc\nNow check again which python you have,\nwhich python\n# /Users/your_name/.pyenv/shims/python\npython --version\n# Python 3.12.7\n\n# try run python in the terminal\npython\n\n# exit python with ctrl + z"
+  },
+  {
+    "objectID": "programming/py_setup.html#installation",
+    "href": "programming/py_setup.html#installation",
+    "title": "Python set up via pyenv",
+    "section": "",
+    "text": "Might need to create the .zshrc if you don’t have it\ntouch .zshrc\nls -la\nFind homebrew - if don’t have it, need to install it; if have it, might have to update it\nwhich brew\n# /opt/homebrew/bin/brew\n\n\n\nbrew install pyenv\n# check if it exists\nwhich pyenv\n# /opt/homebrew/bin/pyenv\necho $PATH \n# check if the path is added\nCheck version\npyenv --version\n\n\n\nDecide which version of python you’d like to install.\npyenv install 3.12.7\nAfter it’s done, check if it exists\nwhich python # does not exist\npyenv global 3.12.7 # set the global python to be this version\npyenv versions \nModify the .zshrc file: add two lines in the file\nnano ~/.zshrc\nType in the following, and save.\neval \"$(pyenv init --path)\"\neval \"$(pyenv init -)\"\nCheck if they are correctly added. If it is, load them by using source\ncat ~/.zshrc\nsource .zshrc\nNow check again which python you have,\nwhich python\n# /Users/your_name/.pyenv/shims/python\npython --version\n# Python 3.12.7\n\n# try run python in the terminal\npython\n\n# exit python with ctrl + z"
+  },
+  {
+    "objectID": "programming/py_setup.html#virtual-environment",
+    "href": "programming/py_setup.html#virtual-environment",
+    "title": "Python set up via pyenv",
+    "section": "Virtual environment",
+    "text": "Virtual environment\nInstall the pyenv-virtualenv first.\nbrew install pyenv-virtualenv\nDecide a name for the virtual environment you want. For this one I’m using mypydev312.\npyenv virtualenv 3.12.7 mypydev312\n# check what you have \npyenv virtualenvs\n# ~/.pyenv/versions/mypydev312/bin/python\nActivate it then try to deactivate it\nsource .zshrc\npyenv activate mypydev312 # (mypydev312) should be printed in front of your user name\nInside the virtual environment, can also check which python version.\nwhich python\npython --version\n# run python\npython\nDeactivate the virtual environment,\npyenv deactivate\n\nPackage installation in virtual environment\nInside your virtual environment, try to install some packages.\n# if not already activated, do this\npyenv activate mypydev312 \n# check pip\nwhich pip\n# /Users/your_name/.pyenv/shims/pip\npip install numpy"
+  },
+  {
+    "objectID": "programming/py_setup.html#rstudio",
+    "href": "programming/py_setup.html#rstudio",
+    "title": "Python set up via pyenv",
+    "section": "Rstudio",
+    "text": "Rstudio\nCan go to Tools -&gt; Global options -&gt; Python, and select the virtual environment."
+  },
+  {
+    "objectID": "programming/py_setup.html#pycharm",
+    "href": "programming/py_setup.html#pycharm",
+    "title": "Python set up via pyenv",
+    "section": "Pycharm",
+    "text": "Pycharm\nGo to Settings -&gt; Project -&gt; Python Interpreter. You might see that the packages you want are not available; as we have installed numpy in our virtual environment mypydev312, this is expected.\n\nSet up the virtual environment of our choosing by selecting Add Interpreter -&gt; Add Local Interpreter. Select an existing one in the list.\n\nNow you see the ones we installed (numpy, pandas) are readily available."
+  },
+  {
+    "objectID": "programming/py_setup.html#vscode",
+    "href": "programming/py_setup.html#vscode",
+    "title": "Python set up via pyenv",
+    "section": "VSCode",
+    "text": "VSCode\nIf you open VSCode and run your python code, but it is missing modules, it suggests that the interpreter isn’t correctly specified. You can see which interpreter you’re using on the bottom right.\n\nClick on it, you can select the one you would like. We are using the virtual environment mypydev312 so this is the one we choose."
+  },
+  {
+    "objectID": "programming/py_quarto.html",
+    "href": "programming/py_quarto.html",
+    "title": "Python set up with Quarto",
+    "section": "",
+    "text": "Pre-requisite\n\nNeed to enter the virtual environment of your choosing. In RStudio, select the one you need inside Tools -&gt; Global Options -&gt; Python -&gt; Interpreter -&gt; Virtual Environment\nNeed PyYaml installed in this virtual environment.\nNeed to set the engine as such,\n\n---\ntitle: \"test python\"\nformat: html\njupyter: python3\n---\nAfterwards, can try to render\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.linspace(0, 20, 100)\nplt.plot(x, np.sin(x))\nplt.show()"
   }
 ]

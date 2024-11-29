@@ -1,0 +1,208 @@
+---
+title: "Python set up via `pyenv`"
+description: |
+  Setting up Python environment
+author: "Chi Zhang"
+date: "2024-11-29"
+categories: [Python]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+
+
+## Installation 
+
+### Check the environment
+
+Might need to create the `.zshrc` if you don't have it
+
+```bash
+touch .zshrc
+ls -la
+```
+
+Find **homebrew** - if don't have it, need to install it; if have it, might have to update it
+
+```bash
+which brew
+# /opt/homebrew/bin/brew
+```
+
+
+### Install `pyenv`
+
+```bash
+brew install pyenv
+# check if it exists
+which pyenv
+# /opt/homebrew/bin/pyenv
+echo $PATH 
+# check if the path is added
+```
+
+Check version 
+
+```bash
+pyenv --version
+```
+
+### Install python through `pyenv`
+
+Decide which version of python you'd like to install.
+
+```bash
+pyenv install 3.12.7
+```
+
+After it's done, check if it exists
+
+```bash
+which python # does not exist
+pyenv global 3.12.7 # set the global python to be this version
+pyenv versions 
+```
+
+Modify the `.zshrc` file: add two lines in the file
+
+```bash
+nano ~/.zshrc
+```
+
+Type in the following, and save.
+
+```bash
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+```
+
+Check if they are correctly added. If it is, load them by using `source`
+
+```bash
+cat ~/.zshrc
+source .zshrc
+```
+
+Now check again which python you have, 
+
+```bash
+which python
+# /Users/your_name/.pyenv/shims/python
+python --version
+# Python 3.12.7
+
+# try run python in the terminal
+python
+
+# exit python with ctrl + z
+```
+
+
+## Virtual environment
+
+Install the `pyenv-virtualenv` first.
+
+```bash
+brew install pyenv-virtualenv
+```
+
+Decide a name for the virtual environment you want. For this one I'm using `mypydev312`.
+
+```bash
+pyenv virtualenv 3.12.7 mypydev312
+# check what you have 
+pyenv virtualenvs
+# ~/.pyenv/versions/mypydev312/bin/python
+```
+
+Activate it then try to deactivate it
+
+```bash
+source .zshrc
+pyenv activate mypydev312 # (mypydev312) should be printed in front of your user name
+```
+
+
+Inside the virtual environment, can also check which python version. 
+
+```bash
+which python
+python --version
+# run python
+python
+```
+
+Deactivate the virtual environment,
+
+```bash
+pyenv deactivate
+```
+
+### Package installation in virtual environment
+
+**Inside** your virtual environment, try to install some packages. 
+
+```bash
+# if not already activated, do this
+pyenv activate mypydev312 
+# check pip
+which pip
+# /Users/your_name/.pyenv/shims/pip
+pip install numpy
+```
+
+
+
+# Use virtual environment with IDE
+
+## Rstudio
+
+Can go to Tools -> Global options -> Python, and select the virtual environment.
+
+
+![](fig/pysetup-1.png){width=70%}
+
+![](fig/pysetup-2.png){width=70%}
+
+
+
+## Pycharm
+
+Go to Settings -> Project -> Python Interpreter. You might see that the packages you want are not available; as we have installed `numpy` in our virtual environment `mypydev312`, this is expected.
+
+
+![](fig/pysetup-3.png){width=70%}
+
+Set up the virtual environment of our choosing by selecting **Add Interpreter** -> **Add Local Interpreter**. Select an existing one in the list.
+
+![](fig/pysetup-4.png){width=70%}
+
+
+Now you see the ones we installed (`numpy`, `pandas`) are readily available.
+
+![](fig/pysetup-5.png){width=70%}
+
+
+
+## VSCode
+
+If you open VSCode and run your python code, but it is missing modules, it suggests that the interpreter isn't correctly specified. You can see which interpreter you're using on the bottom right.
+
+![](fig/pysetup-6.png){width=30%}
+
+Click on it, you can select the one you would like. We are using the virtual environment `mypydev312` so this is the one we choose.
+
+![](fig/pysetup-7.png){width=70%}
+
+
+
+
+
