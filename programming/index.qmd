@@ -23,6 +23,16 @@ listing:
     sort-ui: false
     categories: true
 
+  - id: sql
+    fields: [title]
+    contents: 
+      - "sql_1.qmd"
+    type: table
+    sort: "title"
+    filter-ui: false
+    sort-ui: false
+    categories: true
+
 
   - id: r-programming
     fields: [title]
@@ -89,6 +99,11 @@ This page hosts study notes on programming.
 ### Python
 
 ::: {#python}
+:::
+
+### SQL
+
+::: {#sql}
 :::
 
 
