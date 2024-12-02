@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPython set up via pyenv\n\n\n\n\n\nNo matching items\n\n\n\n\nSQL\n\n\n\n\n\nTitle\n\n\n\n\n\n\nSQL basics\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nPython programming\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -3106,5 +3106,68 @@
     "title": "SQL basics",
     "section": "",
     "text": "Terminology\n\ntable in the database: as the name suggests\nfields: column names, such as id\nkey: the column to match different tables\n\n\nSorting ORDER BY\nBy default, in ascending order (smallest to largest). Or else, use DESC or ASC to clarify.\nSELECT *\nFROM customers\nORDER BY age DESC\nText are ordered in alphabetical.\nSELECT *\nFROM books\nORDER BY title ASC -- alphabetical \n\n\nLimiting data LIMIT, OFFSET\nLIMIT Only returns a few. Used in the end.\nSELECT *\nFROM customers\nLIMIT 3\nOFFSET parameter is used with LIMIT to skip a number of records\nSELECT *\nFROM customers\nLIMIT 3 OFFSET 2 -- returns the 3, 4, 5th record\n\n\nPutting together\n-- this is a comment\n\nSELECT \n  employee_id,\n  last_name,\n  first_name,\n  salary,\n  RANK() OVER (ORDER BY salary DESC) as ranking\nFROM employee\nORDER BY ranking\n\n/* if i have more \ncomments */"
+  },
+  {
+    "objectID": "programming/db_sql_1.html",
+    "href": "programming/db_sql_1.html",
+    "title": "SQL basics",
+    "section": "",
+    "text": "Terminology\n\ntable in the database: as the name suggests\nfields: column names, such as id\nkey: the column to match different tables\n\n\nSorting ORDER BY\nBy default, in ascending order (smallest to largest). Or else, use DESC or ASC to clarify.\nSELECT *\nFROM customers\nORDER BY age DESC\nText are ordered in alphabetical.\nSELECT *\nFROM books\nORDER BY title ASC -- alphabetical \n\n\nLimiting data LIMIT, OFFSET\nLIMIT Only returns a few. Used in the end.\nSELECT *\nFROM customers\nLIMIT 3\nOFFSET parameter is used with LIMIT to skip a number of records\nSELECT *\nFROM customers\nLIMIT 3 OFFSET 2 -- returns the 3, 4, 5th record\n\n\nFiltering WHERE\nSELECT name\nFROM sales \nWHERE year = 2024 -- country = 'USA'\n\n\nAliases AS\nUsed to create a new variable\nSELECT name, price*delivery AS multiplication\nFROM sales\n\n-- for strings, can use concat to combine\nSELECT CONCAT(first_name, last_name) AS full_name\nFROM employees\n\n\nPattern matching LIKE %\nWild cards % and _.\n\n'%case%'\n'A_B8', where underscore is one character\nmixed: 'A_B%'\n\nSELECT *\nFROM comics\nWHERE title\nLIKE 'The Avengers%' -- used for strings, and case sensitive\nUpper and lower cases conversion\n/*\nConverts strings in the title field to lowercase\n*/\nSELECT LOWER(title)\nFROM movies;\n\n/*\nConverts strings in the title field to uppercase\n*/\nSELECT UPPER(title)\nFROM movies;\nCan be combined like this for case insensitive search\nSELECT title\nFROM books\nWHERE LOWER(title) LIKE '%cooking%'\n\n\nAggregation MAX, MIN, COUNT, SUM, AVG\nSELECT MAX(year)\nFROM movies\n\n\nGrouping GROUP BY\nSELECT genre, AVG(budget)\nFROM movies\nGROUP BY genre;\nTypically when combining grouping and filtering with WHERE, the filtering happens first. Using HAVING, filter data after grouping\nSELECT genre, AVG(budget)\nFROM movies\nGROUP BY genre\nHAVING AVG(budget) &gt; 50;\n\n\nChecking data quality\nDuplicates\n--checking for id duplicates\nSELECT id, COUNT(id)\nFROM employees\nGROUP BY id\nHAVING COUNT(id) &gt; 1;\nMissing, IS NULL, IS NOT NULL\nSELECT * \nFROM movies \nWHERE genre IS NULL\n\n\nPutting together\n-- this is a comment\n\nSELECT \n  employee_id,\n  last_name,\n  first_name,\n  salary,\n  RANK() OVER (ORDER BY salary DESC) as ranking\nFROM employee\nORDER BY ranking\n\n/* if i have more \ncomments */\n\n\nCommon Table Expressions (CTEs)\nWITH mytable1 as (\nSELECT FROM WHERE....\n)\n\n, mytable2 as (\nSELECT FROM WHERE....\n)\n\nSELECT b.asd, avg(mmm), avg(yyy)\nFROM mytable1 as a\nLEFT JOIN mytable2 as a\nON b..... = a....\nWHERE ...\nGROUP BY .... ORDER BY ...\n;\nSELECT b.asd, avg(mmm), avg(yyy)\nFROM (\nSELECT ... \nFROM table1\nWHERE ...\nGROUP BY mmm\n) as a\nLEFT JOIN (\nSELECT ... \nFROM table1\nWHERE ...\nGROUP BY yyy\n) as a\nON b..... = a....\nWHERE ...\nGROUP BY .... ORDER BY ..."
+  },
+  {
+    "objectID": "programming/db_gcp.html",
+    "href": "programming/db_gcp.html",
+    "title": "Google BigQuery and GCP (Google Cloud Platform)",
+    "section": "",
+    "text": "Resource: Google BigQuery: First Steps in R"
+  },
+  {
+    "objectID": "programming/db_gcp.html#getting-started-in-gcp",
+    "href": "programming/db_gcp.html#getting-started-in-gcp",
+    "title": "Google BigQuery and GCP (Google Cloud Platform)",
+    "section": "Getting started in GCP",
+    "text": "Getting started in GCP\nGCP organises resources by project\nCreate project with a name and ID; Open BQ, preview public datasets"
+  },
+  {
+    "objectID": "programming/db_gcp.html#query-in-google-cloud",
+    "href": "programming/db_gcp.html#query-in-google-cloud",
+    "title": "Google BigQuery and GCP (Google Cloud Platform)",
+    "section": "Query in google cloud",
+    "text": "Query in google cloud\nUse fully qualified table names (project.dataset.table)"
+  },
+  {
+    "objectID": "programming/py_programming.html",
+    "href": "programming/py_programming.html",
+    "title": "Python programming",
+    "section": "",
+    "text": "Resources: Python Data Science Handbook by Jake VanderPlas"
+  },
+  {
+    "objectID": "programming/py_programming.html#basics",
+    "href": "programming/py_programming.html#basics",
+    "title": "Python programming",
+    "section": "Basics",
+    "text": "Basics\n\nprint('Winter' + 'Park')\n\nWinterPark\n\n\nCheck data types\n\nmovie = 'Matrix'\nprint(type(movie))\n\n&lt;class 'str'&gt;\n\n\nConditions\n\nrating = 74\nviews = 5400\nprint(rating&gt;70 and views &gt; 5000)\nprint(rating&gt;70 or views &gt; 6000)\n\nTrue\nTrue"
+  },
+  {
+    "objectID": "programming/py_programming.html#data-structure",
+    "href": "programming/py_programming.html#data-structure",
+    "title": "Python programming",
+    "section": "Data structure",
+    "text": "Data structure"
+  },
+  {
+    "objectID": "programming/py_programming.html#function",
+    "href": "programming/py_programming.html#function",
+    "title": "Python programming",
+    "section": "Function",
+    "text": "Function"
+  },
+  {
+    "objectID": "programming/py_programming.html#control-flow",
+    "href": "programming/py_programming.html#control-flow",
+    "title": "Python programming",
+    "section": "Control flow",
+    "text": "Control flow\nThe indentation can be either 2 or 4. In a loop, it has to be indented. The : also is necessary.\n\nFor loops when you know the number of iterations\nWhile loops when there is a condition to be met\n\n\nFor loop\n\nfor i in range(3):\n    print('hello')\n\nhello\nhello\nhello\n\n\nfor (i in 1:3){\n  print('hello')\n}\n\n# this prints 0, 1, 2, 3, 4\nfor i in range(5):\n    print(i)\n\n0\n1\n2\n3\n4\n\n\n\n\nWhile loop\n\nn = 4\nwhile n &gt;0:\n  print('continue')\n  n = n-1\n\ncontinue\ncontinue\ncontinue\ncontinue\n\n\nIn R\nn &lt;- 4\nwhile(n&gt;0){\n  print('continue')\n  n &lt;- n-1\n}"
   }
 ]

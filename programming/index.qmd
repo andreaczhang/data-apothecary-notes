@@ -17,16 +17,19 @@ listing:
     fields: [title]
     contents: 
       - "py_setup.qmd"
+      - "py_quarto.qmd"
+      - "py_programming.qmd"
     type: table
     sort: "title"
     filter-ui: false
     sort-ui: false
     categories: true
 
-  - id: sql
+  - id: db
     fields: [title]
     contents: 
-      - "sql_1.qmd"
+      - "db_sql_1.qmd"
+      - "db_gcp.qmd"
     type: table
     sort: "title"
     filter-ui: false
@@ -101,9 +104,9 @@ This page hosts study notes on programming.
 ::: {#python}
 :::
 
-### SQL
+### Database
 
-::: {#sql}
+::: {#db}
 :::
 
 

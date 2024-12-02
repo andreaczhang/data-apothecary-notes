@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-sql .list');
+    const listingTargetEl = window.document.querySelector('#listing-db .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -140,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-sql'] = new List('listing-sql', options);
+    window['quarto-listings']['listing-db'] = new List('listing-db', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -356,14 +356,14 @@ window.Quarto = {
   <ul>
   <li><a href="#r-programming" id="toc-r-programming" class="nav-link active" data-scroll-target="#r-programming">R programming</a></li>
   <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql">SQL</a></li>
+  <li><a href="#database" id="toc-database" class="nav-link" data-scroll-target="#database">Database</a></li>
   <li><a href="#r-package" id="toc-r-package" class="nav-link" data-scroll-target="#r-package">R package</a></li>
   <li><a href="#web-and-quarto" id="toc-web-and-quarto" class="nav-link" data-scroll-target="#web-and-quarto">Web and quarto</a></li>
   <li><a href="#ai" id="toc-ai" class="nav-link" data-scroll-target="#ai">AI</a></li>
   <li><a href="#setting-things-up" id="toc-setting-things-up" class="nav-link" data-scroll-target="#setting-things-up">Setting things up</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(21)</span></div><div class="category" data-category="Automation">Automation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Bash">Bash <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data manip">Data manip <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GenAI">GenAI <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Git">Git <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(7)</span></div><div class="category" data-category="SQL">SQL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="System">System <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Text">Text <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(24)</span></div><div class="category" data-category="Automation">Automation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Bash">Bash <span class="quarto-category-count">(1)</span></div><div class="category" data-category="BigQuery">BigQuery <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data manip">Data manip <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GenAI">GenAI <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Git">Git <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quarto">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(7)</span></div><div class="category" data-category="SQL">SQL <span class="quarto-category-count">(2)</span></div><div class="category" data-category="System">System <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Text">Text <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -443,9 +443,19 @@ Title
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Python" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1732880893516" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="394" data-listing-title-sort="Python set up via `pyenv`" data-listing-filename-sort="py_setup.qmd">
+<tr data-index="0" data-categories="Python" data-listing-date-sort="1733094000000" data-listing-file-modified-sort="1733161074663" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="120" data-listing-title-sort="Python programming" data-listing-filename-sort="py_programming.qmd">
+<td>
+<a href="../programming/py_programming.html" class="title listing-title">Python programming</a>
+</td>
+</tr>
+<tr data-index="1" data-categories="Python" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1732880893516" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="394" data-listing-title-sort="Python set up via `pyenv`" data-listing-filename-sort="py_setup.qmd">
 <td>
 <a href="../programming/py_setup.html" class="title listing-title">Python set up via <code>pyenv</code></a>
+</td>
+</tr>
+<tr data-index="2" data-categories="Python,Quarto" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1733159626727" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="82" data-listing-title-sort="Python set up with Quarto" data-listing-filename-sort="py_quarto.qmd">
+<td>
+<a href="../programming/py_quarto.html" class="title listing-title">Python set up with Quarto</a>
 </td>
 </tr>
 </tbody>
@@ -455,9 +465,9 @@ No matching items
 </div>
 </div>
 </section>
-<section id="sql" class="level3">
-<h3 class="anchored" data-anchor-id="sql">SQL</h3>
-<div id="listing-sql" class="quarto-listing quarto-listing-container-table">
+<section id="database" class="level3">
+<h3 class="anchored" data-anchor-id="database">Database</h3>
+<div id="listing-db" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
@@ -467,9 +477,14 @@ Title
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="SQL" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1732893479184" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="126" data-listing-title-sort="SQL basics" data-listing-filename-sort="sql_1.qmd">
+<tr data-index="0" data-categories="SQL,BigQuery" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1732963080601" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="33" data-listing-title-sort="Google BigQuery and GCP (Google Cloud Platform)" data-listing-filename-sort="db_gcp.qmd">
 <td>
-<a href="../programming/sql_1.html" class="title listing-title">SQL basics</a>
+<a href="../programming/db_gcp.html" class="title listing-title">Google BigQuery and GCP (Google Cloud Platform)</a>
+</td>
+</tr>
+<tr data-index="1" data-categories="SQL" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1733149369907" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="360" data-listing-title-sort="SQL basics" data-listing-filename-sort="db_sql_1.qmd">
+<td>
+<a href="../programming/db_sql_1.html" class="title listing-title">SQL basics</a>
 </td>
 </tr>
 </tbody>

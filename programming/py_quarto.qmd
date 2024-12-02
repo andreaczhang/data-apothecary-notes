@@ -8,6 +8,7 @@ categories: [Python, Quarto]
 sidebar: false
 code-block-bg: true
 code-block-border-left: true
+jupyter: python3
 format: 
   html:
     toc: true
@@ -45,5 +46,12 @@ plt.show()
 
 
 To check what packages are installed, can use `pip list`.
+
+
+
+
+
+
+
 
 

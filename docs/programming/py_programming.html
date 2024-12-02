@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2024-11-29">
-<meta name="description" content="Use Python with Quarto">
+<meta name="dcterms.date" content="2024-12-02">
+<meta name="description" content="Python basics">
 
-<title>Data Apothecary’s Notes - Python set up with Quarto</title>
+<title>Data Apothecary’s Notes - Python programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -163,7 +163,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pre-requisite" id="toc-pre-requisite" class="nav-link active" data-scroll-target="#pre-requisite">Pre-requisite</a></li>
+  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics">Basics</a></li>
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure">Data structure</a></li>
+  <li><a href="#control-flow" id="toc-control-flow" class="nav-link" data-scroll-target="#control-flow">Control flow</a>
+  <ul class="collapse">
+  <li><a href="#for-loop" id="toc-for-loop" class="nav-link" data-scroll-target="#for-loop">For loop</a></li>
+  <li><a href="#while-loop" id="toc-while-loop" class="nav-link" data-scroll-target="#while-loop">While loop</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -172,16 +178,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Python set up with Quarto</h1>
+<h1 class="title">Python programming</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Python</div>
-    <div class="quarto-category">Quarto</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Use Python with Quarto</p>
+    <p>Python basics</p>
   </div>
 </div>
 
@@ -198,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 29, 2024</p>
+      <p class="date">December 2, 2024</p>
     </div>
   </div>
   
@@ -210,36 +215,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="pre-requisite" class="level3">
-<h3 class="anchored" data-anchor-id="pre-requisite">Pre-requisite</h3>
+<blockquote class="blockquote">
+<p>Resources: <a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake VanderPlas</p>
+</blockquote>
+<section id="basics" class="level2">
+<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<div id="c10429bd" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Winter'</span> <span class="op">+</span> <span class="st">'Park'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>WinterPark</code></pre>
+</div>
+</div>
+<p>Check data types</p>
+<div id="a6e89490" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>movie <span class="op">=</span> <span class="st">'Matrix'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(movie))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'str'&gt;</code></pre>
+</div>
+</div>
+<p>Conditions</p>
+<div id="5a290ef3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rating <span class="op">=</span> <span class="dv">74</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>views <span class="op">=</span> <span class="dv">5400</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rating<span class="op">&gt;</span><span class="dv">70</span> <span class="kw">and</span> views <span class="op">&gt;</span> <span class="dv">5000</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rating<span class="op">&gt;</span><span class="dv">70</span> <span class="kw">or</span> views <span class="op">&gt;</span> <span class="dv">6000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+True</code></pre>
+</div>
+</div>
+</section>
+<section id="data-structure" class="level2">
+<h2 class="anchored" data-anchor-id="data-structure">Data structure</h2>
+</section>
+<section id="control-flow" class="level2">
+<h2 class="anchored" data-anchor-id="control-flow">Control flow</h2>
+<p>The indentation can be either 2 or 4. In a loop, it has to be indented. The <code>:</code> also is necessary.</p>
 <ul>
-<li>Need to enter the virtual environment of your choosing. In RStudio, select the one you need inside Tools -&gt; Global Options -&gt; Python -&gt; Interpreter -&gt; Virtual Environment</li>
-<li>Need <code>PyYaml</code> installed in this virtual environment. Try to run <code>pip install pyyaml</code> inside the virtualenv.</li>
-<li>Need to set the engine as such,</li>
+<li>For loops when you know the number of iterations</li>
+<li>While loops when there is a condition to be met</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"test python"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jupyter</span><span class="kw">:</span><span class="at"> python3</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Afterwards, can try to render</p>
-<div id="46be1fa7" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">100</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x, np.sin(x))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="py_quarto_files/figure-html/cell-2-output-1.png" width="590" height="411" class="figure-img"></p>
-</figure>
+<section id="for-loop" class="level3">
+<h3 class="anchored" data-anchor-id="for-loop">For loop</h3>
+<div id="4ec11a1e" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'hello'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>hello
+hello
+hello</code></pre>
 </div>
 </div>
+<pre class="{r}"><code>for (i in 1:3){
+  print('hello')
+}</code></pre>
+<div id="22fa5771" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this prints 0, 1, 2, 3, 4</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+1
+2
+3
+4</code></pre>
 </div>
-<p>To check what packages are installed, can use <code>pip list</code>.</p>
+</div>
+</section>
+<section id="while-loop" class="level3">
+<h3 class="anchored" data-anchor-id="while-loop">While loop</h3>
+<div id="e93800b5" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> n <span class="op">&gt;</span><span class="dv">0</span>:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">'continue'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> n<span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>continue
+continue
+continue
+continue</code></pre>
+</div>
+</div>
+<p>In R</p>
+<pre class="{r}"><code>n &lt;- 4
+while(n&gt;0){
+  print('continue')
+  n &lt;- n-1
+}</code></pre>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

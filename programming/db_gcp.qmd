@@ -1,0 +1,45 @@
+---
+title: "Google BigQuery and GCP (Google Cloud Platform)"
+description: |
+  Set up
+author: "Chi Zhang"
+date: "2024-11-29"
+categories: [SQL, BigQuery]
+sidebar: false
+code-block-bg: false
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    highlight-style: gruvbox
+---
+
+
+> Resource: [Google BigQuery: First Steps in R](https://www.youtube.com/watch?v=VzteK2K0gbc&t=4545s)
+
+## Getting started in GCP 
+
+GCP organises resources by project
+
+
+
+Create project with a name and ID; Open BQ, preview public datasets
+
+
+
+## Query in google cloud 
+
+Use fully qualified table names (`project.dataset.table`)
+
+
+
+
+
+
+
+
+
+

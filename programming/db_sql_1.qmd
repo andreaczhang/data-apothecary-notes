@@ -1,0 +1,245 @@
+---
+title: "SQL basics"
+description: |
+  Introduction to SQL
+author: "Chi Zhang"
+date: "2024-11-29"
+categories: [SQL]
+sidebar: false
+code-block-bg: false
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    highlight-style: gruvbox
+---
+
+
+Terminology
+
+* table in the database: as the name suggests
+* **fields**: column names, such as `id`
+* **key**: the column to match different tables
+
+
+
+### Sorting `ORDER BY`
+
+By default, in ascending order (smallest to largest). Or else, use `DESC` or `ASC` to clarify.
+
+```sql
+SELECT *
+FROM customers
+ORDER BY age DESC
+```
+
+Text are ordered in alphabetical.
+
+```sql
+SELECT *
+FROM books
+ORDER BY title ASC -- alphabetical 
+```
+
+
+### Limiting data `LIMIT`, `OFFSET`
+
+`LIMIT` Only returns a few. Used in the end.
+
+```sql
+SELECT *
+FROM customers
+LIMIT 3
+```
+
+`OFFSET` parameter is used with `LIMIT` to **skip** a number of records
+
+```sql
+SELECT *
+FROM customers
+LIMIT 3 OFFSET 2 -- returns the 3, 4, 5th record
+```
+
+
+
+### Filtering `WHERE`
+
+```sql
+SELECT name
+FROM sales 
+WHERE year = 2024 -- country = 'USA'
+```
+
+
+### Aliases `AS`
+
+Used to create a new variable
+
+```sql
+SELECT name, price*delivery AS multiplication
+FROM sales
+
+-- for strings, can use concat to combine
+SELECT CONCAT(first_name, last_name) AS full_name
+FROM employees
+```
+
+
+### Pattern matching `LIKE %`
+
+Wild cards `%` and `_`. 
+
+* `'%case%'`
+* `'A_B8'`, where underscore is one character
+* mixed: `'A_B%'`
+
+```sql
+SELECT *
+FROM comics
+WHERE title
+LIKE 'The Avengers%' -- used for strings, and case sensitive
+```
+
+Upper and lower cases conversion
+
+```sql
+/*
+Converts strings in the title field to lowercase
+*/
+SELECT LOWER(title)
+FROM movies;
+
+/*
+Converts strings in the title field to uppercase
+*/
+SELECT UPPER(title)
+FROM movies;
+```
+
+Can be combined like this for **case insensitive search**
+
+```sql
+SELECT title
+FROM books
+WHERE LOWER(title) LIKE '%cooking%'
+```
+
+### Aggregation `MAX`, `MIN`, `COUNT`, `SUM`, `AVG`
+
+```sql
+SELECT MAX(year)
+FROM movies
+```
+
+
+### Grouping `GROUP BY`
+
+
+
+```sql
+SELECT genre, AVG(budget)
+FROM movies
+GROUP BY genre;
+```
+
+Typically when combining grouping and filtering with `WHERE`, the filtering happens first. Using `HAVING`, filter data after grouping
+
+```sql
+SELECT genre, AVG(budget)
+FROM movies
+GROUP BY genre
+HAVING AVG(budget) > 50;
+```
+
+### Checking data quality 
+
+
+Duplicates 
+
+```sql
+--checking for id duplicates
+SELECT id, COUNT(id)
+FROM employees
+GROUP BY id
+HAVING COUNT(id) > 1;
+```
+
+Missing, `IS NULL`, `IS NOT NULL`
+
+```sql
+SELECT * 
+FROM movies 
+WHERE genre IS NULL
+```
+
+
+### Putting together 
+
+```sql
+-- this is a comment
+
+SELECT 
+  employee_id,
+  last_name,
+  first_name,
+  salary,
+  RANK() OVER (ORDER BY salary DESC) as ranking
+FROM employee
+ORDER BY ranking
+
+/* if i have more 
+comments */
+```
+
+
+
+### Common Table Expressions (CTEs)
+
+
+```sql
+WITH mytable1 as (
+SELECT FROM WHERE....
+)
+
+, mytable2 as (
+SELECT FROM WHERE....
+)
+
+SELECT b.asd, avg(mmm), avg(yyy)
+FROM mytable1 as a
+LEFT JOIN mytable2 as a
+ON b..... = a....
+WHERE ...
+GROUP BY .... ORDER BY ...
+;
+```
+
+
+```sql
+SELECT b.asd, avg(mmm), avg(yyy)
+FROM (
+SELECT ... 
+FROM table1
+WHERE ...
+GROUP BY mmm
+) as a
+LEFT JOIN (
+SELECT ... 
+FROM table1
+WHERE ...
+GROUP BY yyy
+) as a
+ON b..... = a....
+WHERE ...
+GROUP BY .... ORDER BY ...
+```
+
+
+
+
+
+
+

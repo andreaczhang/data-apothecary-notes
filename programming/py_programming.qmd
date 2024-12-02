@@ -1,0 +1,114 @@
+---
+title: "Python programming"
+description: |
+  Python basics
+author: "Chi Zhang"
+date: "2024-12-02"
+categories: [Python]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+jupyter: python3
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+> Resources: [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) by Jake VanderPlas
+
+
+## Basics
+
+```{python}
+print('Winter' + 'Park')
+```
+
+Check data types
+
+```{python}
+movie = 'Matrix'
+print(type(movie))
+```
+
+Conditions
+
+```{python}
+rating = 74
+views = 5400
+print(rating>70 and views > 5000)
+print(rating>70 or views > 6000)
+```
+
+
+## Data structure
+
+
+
+
+## Control flow
+
+The indentation can be either 2 or 4. In a loop, it has to be indented. The `:` also is necessary.
+
+* For loops when you know the number of iterations
+* While loops when there is a condition to be met
+
+### For loop 
+
+```{python}
+for i in range(3):
+    print('hello')
+```
+
+
+```{r}
+for (i in 1:3){
+  print('hello')
+}
+```
+
+```{python}
+# this prints 0, 1, 2, 3, 4
+for i in range(5):
+    print(i)
+```
+
+
+### While loop
+
+```{python}
+n = 4
+while n >0:
+  print('continue')
+  n = n-1
+```
+
+In R
+
+```{r}
+n <- 4
+while(n>0){
+  print('continue')
+  n <- n-1
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
