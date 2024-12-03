@@ -46,6 +46,91 @@ print(rating>70 or views > 6000)
 
 ## Data structure
 
+### Lists
+
+Square brackets
+
+```{python}
+list1 = ['tea', 'jam', 'scone']
+list1
+
+# different types of data can be mixed
+list2 = ['tea', 20, True]
+list2
+```
+
+Index starts from 0
+
+```{python}
+list1[0]
+```
+
+Lists are **mutable**, you can change the values in the list after it's created.
+
+```{python}
+list1[0] = 'milk'
+list1
+```
+
+Index can also be used on a **string**. However strings are **immutable**: we can not replace a character with another.
+
+```{python}
+string = 'milk'
+string[3] # prints the 4th character
+```
+
+
+### Slicing
+
+The stopping index is exclusive: `[0:2]` prints out the 1st and 2nd element. 
+
+```{python}
+animals =["cat", "dog", "bird", "cow"]
+print(animals[0:2]) # excludes 0, takes 1st and 2nd
+print(animals[1:3]) # excludes 1, takes 2nd and 3rd
+```
+
+The immediate two indices prints out only one value.
+
+```{python}
+print(animals[0:1]) # 1st
+print(animals[2:3]) # 3rd
+```
+
+A easier way to remember this for `[a:b]`, start counting from `[a+1:b]`. Example: `[3:5]` becomes the 4th and 5th; `[2:3]` becomes 3rd and 3rd - just the 3rd.
+
+Ignoring the starting index or stopping index
+
+```{python}
+cart = ['lamp', 'candles', 'chair', 'carpet']
+print(cart[:2]) # stopping at 2nd
+print(cart[1:]) # starting at 2nd
+```
+
+
+Negative indexing
+
+```{python}
+print(cart[-1]) # last one
+print(cart[-3:]) # last 3
+```
+
+```{python}
+cart = ['lamp', 'candles', 'chair', 'carpet']
+print(cart[1:-1])
+```
+
+
+```{python}
+x = 15
+x += 5
+print(x)
+
+prices = [15, 19, 24, 8, 5]
+for i in prices:
+  i += 5
+  print(i)
+```
 
 
 
@@ -76,6 +161,33 @@ for i in range(5):
     print(i)
 ```
 
+Combined with lists
+
+```{python}
+for i in range(1,3):
+  for j in range(2,4):
+    print(i, j)
+```
+
+
+```{python}
+scores = [45, 67, 89, 34, 56, 77, 49, 91, 52]
+
+for score in scores:
+  if score >= 70:
+    print(score)
+```
+
+Combined with counter
+
+```{python}
+results = ['Hit', 'Miss', 'Miss', 'Hit', 'Miss']
+count = 0
+for i in results:
+  if i == 'Hit':
+    count +=1
+print(count)
+```
 
 ### While loop
 
@@ -97,10 +209,17 @@ while(n>0){
 ```
 
 
+### If else
 
-
-
-
+```{python}
+age = 21
+if age <= 18:
+  print('discount')
+#elif age > 18 & age <= 21
+#  print('semi-discount')
+else:
+  print('original price')
+```
 
 
 
