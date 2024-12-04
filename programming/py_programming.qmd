@@ -44,7 +44,54 @@ print(rating>70 or views > 6000)
 ```
 
 
+## Strings
+
+
+```{python}
+channel = 'cnn'
+print(channel.upper())  # CNN
+print(channel.capitalize()) # Cnn
+print(channel.find('c')) # first
+print(len(channel)) 
+```
+
+
+
+
+
+### Useful functions
+
+```{python}
+movies = ['Avatar', 'Titanic', 'Alien']
+movies.append('Avengers')
+movies.insert(2, 'Terminator')
+print(movies[3])
+```
+
+
+```{python}
+ages = [25, 33, 19]
+sorted(ages)
+sorted(ages, reverse = True)
+
+# sort strings
+players = ["Zoe", "Liam", "Emma", "Noah", "Olivia"]
+srt_players = sorted(players)
+print(srt_players)
+```
+
+
+
 ## Data structure
+
+|    | Mutable   | Ordered | Indexing | Duplicates|
+|---------|-----|-----|------|---|
+| Lists   | Yes | Yes| Yes| Yes |
+| Tuples  |  - | Yes |  Yes| Yes |
+| Sets    | Yes  | - |  -   | - |
+
+: Demonstration of pipe table syntax
+
 
 ### Lists
 
@@ -130,6 +177,135 @@ prices = [15, 19, 24, 8, 5]
 for i in prices:
   i += 5
   print(i)
+```
+
+
+
+
+### Tuples `()`
+
+Use parentheses. Tuples are **immutable**, they are useful when data shouldn't be accidentally modified. Therefore you can not use `append` functions on tuples.
+
+```{python}
+b_date = (21, 'May', 2004)
+b_date[1]
+```
+
+
+
+```{python}
+scores = (7, 9, 9, 8, 9)
+print('# of 7:', scores.count(7))
+print('# of 9:', scores.count(9))
+```
+
+Unpacking in tuple. The length needs to be matched; however if you want to deal with unknown number of elements, can use `*`. After unpacking, the elements becomes a `list []`. 
+
+```{python}
+grades = (76, 81, 96)
+math, history, art = grades
+print(math)
+math, *others = grades
+print(others)
+```
+
+
+
+### Sets `{}`
+
+
+With curly brackets. Sets are **unordered** so does not support indexing or slicing. 
+
+```{python}
+guests = {"Mery", "Anna", "Jonathan"}
+print(guests)
+# print(guests[0]) #error
+```
+
+Sets can not have duplicates, and duplicates are automatically ignored
+
+```{python}
+friends = {'Anna', 'Mery', 'Mery', 'Jonathan'}
+print(friends)
+```
+
+Sets are mutable, so you can `add` and `remove` items. However, `append` does not work on sets since they are unordered.
+
+```{python}
+guests = {"Mery", "Anna", "Jonathan"}
+guests.add('Robert')
+guests.remove('Mery')
+print(guests)
+```
+
+To clear the set, 
+
+```{python}
+guests.clear()
+print(guests)
+```
+
+
+To join sets, use `set1.union(set2)`. This ignores the duplicates. To find the element only in set 1 but not set 2, use `set1.difference(set2)`
+
+```{python}
+set1 = {'apple', 'banana'}
+set2 = {'banana', 'cherry'}
+combined_set = set1.union(set2)
+print(combined_set)
+unique_1 = set1.difference(set2)
+unique_2 = set2.difference(set1)
+print([unique_1, unique_2]) # print toether
+```
+
+
+### Dictionary
+
+The values can be of any type, including a list. The keys has to be immutable.
+
+```{python}
+product = {
+  'name': 'pen',
+  'is_red':True,
+  'price': 79
+}
+print(product)
+```
+
+When the key is a string, it needs to go with quotation. 
+
+```{python}
+dancer = {
+  'name' : 'maria',
+  'points' : [9, 10, 7]
+}
+dancer
+```
+
+The key has to be unique. If duplicate, the values will be overwritten. 
+
+```{python}
+contact = {
+  'name' : 'maria',
+  'company': 'Google',
+  'company': 'facebook'
+}
+contact
+```
+
+To access the values, use `['key']`
+
+```{python}
+contact['company']
+contact.get('company')
+contact.get('baba', 'puff') # if baba does not exist, returns puff 
+```
+
+
+```{python}
+contact.keys()
+contact.values()
+contact.items() # all pairs
 ```
 
 
@@ -223,7 +399,39 @@ else:
 
 
 
+### Break, continue
 
+`break` needs to be inside the loop. Typically used with **while**
+
+```{python}
+songs = ["Hello", "Yesterday", "Happy", "Hallelujah"]
+
+for song in songs:
+  print("Searching")
+  if song == "Happy":
+    print("Playing " + song)
+    break
+```
+
+`continue` skips when the condition is not met
+
+```{python}
+ages = [13,19, 22, 8, 75, 34, 26, 41]
+for age in ages:
+  if age < 18:
+    continue
+  print(age)
+```
+
+
+## Function
+
+
+```{python}
+def discounted(price, discount):
+  return price * (1-discount/100)
+discounted(100, 10)
+```
 
 
 
