@@ -176,23 +176,19 @@ WHERE genre IS NULL
 ```
 
 
-### Putting together 
+
+## More than one table
+
+
+![](fig/sql_join.png)
 
 ```sql
--- this is a comment
-
-SELECT 
-  employee_id,
-  last_name,
-  first_name,
-  salary,
-  RANK() OVER (ORDER BY salary DESC) as ranking
-FROM employee
-ORDER BY ranking
-
-/* if i have more 
-comments */
+SELECT ...
+FROM tab1
+JOIN tab2
+ON key1 = key2
 ```
+
 
 
 

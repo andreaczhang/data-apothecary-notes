@@ -8,7 +8,7 @@
 
 <meta name="author" content="Chi Zhang">
 <meta name="dcterms.date" content="2024-11-29">
-<meta name="description" content="Set up">
+<meta name="description" content="Tutorial on how to set up BigQuery for your project using public datasets">
 
 <title>Data Apothecary’s Notes - Google BigQuery and GCP (Google Cloud Platform)</title>
 <style>
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -129,8 +163,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-started-in-gcp" id="toc-getting-started-in-gcp" class="nav-link active" data-scroll-target="#getting-started-in-gcp">Getting started in GCP</a></li>
-  <li><a href="#query-in-google-cloud" id="toc-query-in-google-cloud" class="nav-link" data-scroll-target="#query-in-google-cloud">Query in google cloud</a></li>
+  <li><a href="#create-a-gcp-project" id="toc-create-a-gcp-project" class="nav-link active" data-scroll-target="#create-a-gcp-project">Create a GCP project</a></li>
+  <li><a href="#bigquery-in-bigquery-studio" id="toc-bigquery-in-bigquery-studio" class="nav-link" data-scroll-target="#bigquery-in-bigquery-studio">BigQuery in BigQuery Studio</a>
+  <ul class="collapse">
+  <li><a href="#find-public-datasets" id="toc-find-public-datasets" class="nav-link" data-scroll-target="#find-public-datasets">Find Public datasets</a></li>
+  <li><a href="#query" id="toc-query" class="nav-link" data-scroll-target="#query">Query</a></li>
+  <li><a href="#join-tables" id="toc-join-tables" class="nav-link" data-scroll-target="#join-tables">Join tables</a></li>
+  <li><a href="#save-results" id="toc-save-results" class="nav-link" data-scroll-target="#save-results">Save results</a></li>
+  </ul></li>
+  <li><a href="#bigquery-in-r" id="toc-bigquery-in-r" class="nav-link" data-scroll-target="#bigquery-in-r">BigQuery in R</a></li>
   </ul>
 </nav>
     </div>
@@ -148,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    <p>Set up</p>
+    <p>Tutorial on how to set up BigQuery for your project using public datasets</p>
   </div>
 </div>
 
@@ -180,14 +221,100 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>Resource: <a href="https://www.youtube.com/watch?v=VzteK2K0gbc&amp;t=4545s">Google BigQuery: First Steps in R</a></p>
 </blockquote>
-<section id="getting-started-in-gcp" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started-in-gcp">Getting started in GCP</h2>
-<p>GCP organises resources by project</p>
-<p>Create project with a name and ID; Open BQ, preview public datasets</p>
+<section id="create-a-gcp-project" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-gcp-project">Create a GCP project</h3>
+<p>GCP organises resources by projects. If you do not already have a project, it’s time to create one!</p>
+<p>Create project with a name and ID</p>
+<p><img src="fig/gcp-bigquery/gcp-1.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="fig/gcp-bigquery/gcp-2.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="fig/gcp-bigquery/gcp-3.png" class="img-fluid" style="width:60.0%"></p>
 </section>
-<section id="query-in-google-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="query-in-google-cloud">Query in google cloud</h2>
-<p>Use fully qualified table names (<code>project.dataset.table</code>)</p>
+<section id="bigquery-in-bigquery-studio" class="level2">
+<h2 class="anchored" data-anchor-id="bigquery-in-bigquery-studio">BigQuery in BigQuery Studio</h2>
+<p>Now go to BigQuery in the menu. Open <strong>BigQuery Studio</strong>.</p>
+<p><img src="fig/gcp-bigquery/gcp-4.png" class="img-fluid" style="width:40.0%"></p>
+<p><img src="fig/gcp-bigquery/gcp-5.png" class="img-fluid" style="width:70.0%"></p>
+<section id="find-public-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="find-public-datasets">Find Public datasets</h3>
+<p><img src="fig/gcp-bigquery/gcp-6.png" class="img-fluid" style="width:60.0%"></p>
+<p>Search for BigQuery resources</p>
+<p><img src="fig/gcp-bigquery/gcp-7.png" class="img-fluid" style="width:30.0%"></p>
+<p>Can use the sources: <strong>public datasets</strong></p>
+<p><img src="fig/gcp-bigquery/gcp-9.png" class="img-fluid" style="width:70.0%"></p>
+<p>Now we use the examples of <strong>ADI (Area Deprivation Index)</strong> and <strong>Birth Data Summary</strong> schemas.</p>
+<p><img src="fig/gcp-bigquery/gcp-10.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="fig/gcp-bigquery/gcp-11.png" class="img-fluid" style="width:60.0%"></p>
+<p>It is useful to <strong>star</strong> the dataset.</p>
+<p><img src="fig/gcp-bigquery/gcp-13.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="fig/gcp-bigquery/gcp-14.png" class="img-fluid" style="width:60.0%"> <img src="fig/gcp-bigquery/gcp-15.png" class="img-fluid" style="width:40.0%"></p>
+<p>It is the entire schema (set of tables) that are added.</p>
+<p><img src="fig/gcp-bigquery/gcp-16.png" class="img-fluid" style="width:40.0%"></p>
+<p>Can check the <strong>schema, details, preview</strong> to display the table.</p>
+<p><img src="fig/gcp-bigquery/gcp-17.png" class="img-fluid" style="width:60.0%"></p>
+</section>
+<section id="query" class="level3">
+<h3 class="anchored" data-anchor-id="query">Query</h3>
+<p>Either in a new tab, or a split tab.</p>
+<p><img src="fig/gcp-bigquery/gcp-19.png" class="img-fluid" style="width:60.0%"></p>
+<p><img src="fig/gcp-bigquery/gcp-18.png" class="img-fluid" style="width:60.0%"></p>
+<p>The query is pre-filled with some information. You can click on the schema column names to add it to the query.</p>
+<p>Use fully qualified table names (<code>project.dataset.table</code>). It is good to limit the size of query results.</p>
+<p><img src="fig/gcp-bigquery/gcp-21.png" class="img-fluid" style="width:75.0%"></p>
+</section>
+<section id="join-tables" class="level3">
+<h3 class="anchored" data-anchor-id="join-tables">Join tables</h3>
+<p>When working on multiple tables, a good strategy to enable auto-filled fields is to select the tables first. On a second table (here for example it is <code>county_natality</code>), click on the <strong>menu</strong> (three dots), <code>Copy ID</code> - this will copy the fully qualified (long) table name.</p>
+<p><img src="fig/gcp-bigquery/gcp-22.png" class="img-fluid" style="width:50.0%"></p>
+<p>It is good practice to use aliases.</p>
+<p><img src="fig/gcp-bigquery/gcp-23.png" class="img-fluid" style="width:75.0%"></p>
+</section>
+<section id="save-results" class="level3">
+<h3 class="anchored" data-anchor-id="save-results">Save results</h3>
+<p>There are a few options to save the results:</p>
+<ul>
+<li>save the <strong>query result</strong> (not table) locally: such as <code>csv</code> file</li>
+<li>save <strong>BigQuery table</strong> on GCP</li>
+</ul>
+<p>Note that the BigQuery table, once created, can not be downloaded as csv. You need to save the SQL query to reproduce it as query result in order to export it (or connect directly from R).</p>
+<p>It is therefore important to <strong>save your SQL query</strong>!</p>
+<p><img src="fig/gcp-bigquery/gcp-24.png" class="img-fluid" style="width:40.0%"></p>
+<p>Sometimes it is necessary to create a <strong>dataset</strong> in order to save the BQ table.</p>
+<p><img src="fig/gcp-bigquery/gcp-25.png" class="img-fluid" style="width:60.0%"> <img src="fig/gcp-bigquery/gcp-26.png" class="img-fluid" style="width:60.0%"></p>
+<p>You can view the table in your own project list.</p>
+<p><img src="fig/gcp-bigquery/gcp-27.png" class="img-fluid" style="width:40.0%"></p>
+</section>
+</section>
+<section id="bigquery-in-r" class="level1">
+<h1>BigQuery in R</h1>
+<p>This section is an example using <code>bigrquery</code> package. Authentication is required.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'bigrquery'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bigrquery)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># authenticate</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bq_auth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run a query from Rstudio”</p>
+<ul>
+<li>set <code>project_id</code> and <code>my_sql_query</code> objects</li>
+<li>send query to BigQuery <code>results &lt;- bq_project_query(project_id, my_sql_query)</code></li>
+<li>get the table via <code>df &lt;- bq_table_download(results)</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>project_id <span class="ot">&lt;-</span> <span class="st">'bigquery-calicopuff'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_sql_query <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  date, </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">  daily_confirmed_cases, </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">  daily_deaths, </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">  confirmed_cases </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM `bigquery-public-data.covid19_ecdc.covid_19_geographic_distribution_worldwide` </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  LIMIT 300'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that the project and query are defined, can run the code to extract the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">bq_project_query</span>(project_id, my_sql_query)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">bq_table_download</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
