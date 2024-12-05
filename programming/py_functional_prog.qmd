@@ -1,0 +1,108 @@
+---
+title: "Functions, functional programming"
+description: |
+  Functions
+author: "Chi Zhang"
+date: "2024-12-05"
+categories: [Python]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+jupyter: python3
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+
+
+## Functional programming
+
+A function can be assigned to another. The same functionality exists in R. 
+
+```{python}
+def add_one(x):
+  return x+1
+add_one(10)
+
+# now assign this function to another, Add_One
+Add_One = add_one
+Add_One(10)
+```
+
+
+A function can be the argument of another function
+
+
+```{python}
+def add_two(x):
+  return x+2
+
+def add_value_string(x, function):
+  return 'result is '+ str(function(x))
+
+add_value_string(10, add_one)
+add_value_string(10, add_two)
+```
+
+
+## Lambda expressions
+
+These are functions that are without a name, and has a `lambda` keyword. Typically they do not have a name, but you can also assign a name so that it functions like a normal function.
+
+
+```python
+lambda x:x+5
+```
+
+```{python}
+add_five = lambda x:x+5
+add_five(3)
+```
+
+
+```{python}
+#def greet(name):
+#  return 'Welcome, ' + name
+greet = lambda name: 'Welcome, ' + name
+
+print(greet('Puff'))
+print(greet('Ponpon'))
+```
+
+
+Multiple arguments
+
+```python
+lambda a, b: a*b + 5
+```
+
+Execute 
+
+```{python}
+res = (lambda x, y: x+y)(2, 3)
+res
+```
+
+Lambda expressions are useful as a function factory,
+
+```{python}
+def mult(n):
+  return lambda a : a * n
+
+doubler = mult(2)
+tripler = mult(3)
+
+print(doubler(5))
+print(tripler(5))
+```
+
+
+
+
+
+

@@ -16,9 +16,10 @@ listing:
   - id: python
     fields: [title]
     contents: 
-      - "py_setup.qmd"
-      - "py_quarto.qmd"
-      - "py_programming.qmd"
+      #- "py_setup.qmd"
+      - "py_datastructure.qmd"
+      - "py_exceptions.qmd"
+      - "py_functional_prog.qmd"
     type: table
     sort: "title"
     filter-ui: false
@@ -84,6 +85,7 @@ listing:
       - "py_setup.qmd"
       - "install_pkg_compilation.qmd"
       - "automation.qmd"
+      - "py_quarto.qmd"
      # - "misc_software_papers.qmd"
     type: table
     sort: "title"

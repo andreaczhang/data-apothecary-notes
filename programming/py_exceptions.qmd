@@ -1,0 +1,226 @@
+---
+title: "Control flow, exceptions"
+description: |
+  Control flow, exceptions
+author: "Chi Zhang"
+date: "2024-12-05"
+categories: [Python]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+jupyter: python3
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+
+## Control flow
+
+The indentation can be either 2 or 4. In a loop, it has to be indented. The `:` also is necessary.
+
+* For loops when you know the number of iterations
+* While loops when there is a condition to be met
+
+### For loop 
+
+```{python}
+for i in range(3):
+    print('hello')
+```
+
+
+```{r}
+for (i in 1:3){
+  print('hello')
+}
+```
+
+```{python}
+# this prints 0, 1, 2, 3, 4
+for i in range(5):
+    print(i)
+```
+
+Combined with lists
+
+```{python}
+for i in range(1,3):
+  for j in range(2,4):
+    print(i, j)
+```
+
+
+```{python}
+scores = [45, 67, 89, 34, 56, 77, 49, 91, 52]
+
+for score in scores:
+  if score >= 70:
+    print(score)
+```
+
+Combined with counter
+
+```{python}
+results = ['Hit', 'Miss', 'Miss', 'Hit', 'Miss']
+count = 0
+for i in results:
+  if i == 'Hit':
+    count +=1
+print(count)
+```
+
+### While loop
+
+```{python}
+n = 4
+while n >0:
+  print('continue')
+  n = n-1
+```
+
+In R
+
+```{r}
+n <- 4
+while(n>0){
+  print('continue')
+  n <- n-1
+}
+```
+
+
+## If else
+
+
+Conditions
+
+```{python}
+rating = 74
+views = 5400
+print(rating>70 and views > 5000)
+print(rating>70 or views > 6000)
+```
+
+
+
+```{python}
+age = 21
+if age <= 18:
+  print('discount')
+#elif age > 18 & age <= 21
+#  print('semi-discount')
+else:
+  print('original price')
+```
+
+## Break, continue
+
+`break` needs to be inside the loop. Typically used with **while**
+
+```{python}
+songs = ["Hello", "Yesterday", "Happy", "Hallelujah"]
+
+for song in songs:
+  print("Searching")
+  if song == "Happy":
+    print("Playing " + song)
+    break
+```
+
+`continue` skips when the condition is not met
+
+```{python}
+ages = [13,19, 22, 8, 75, 34, 26, 41]
+for age in ages:
+  if age < 18:
+    continue
+  print(age)
+```
+
+# Exception handling
+
+Types of exceptions:
+
+* `NameError`
+* `SyntaxError`
+* `ValueError`
+* `IndexError`
+* `TypeErorr`
+
+`try` block: test a block of code for errors
+
+`except` block: handle the error
+
+```{python}
+try:
+  print(k) # k is not defined
+except:
+  print('an exception')
+```
+
+If we do not know what kind of exception we are expecting, 
+
+```{python}
+try:
+  print(k) # k is not defined, hence NameError
+except:
+  print('Something is wrong')
+```
+
+
+```{python}
+try:
+  print(k)
+except NameError:
+  print("Variable x is not defined")
+except:
+  print("Something else went wrong")
+```
+
+
+```{python}
+try:
+  print(3 + "3")
+except ValueError:
+  print("Cannot add different types")
+except TypeError:
+  print("Type mismatch error")
+```
+
+`else` block: execute code when there is no error
+
+`finally` block: execute code regardless of result of the try/except blocks
+
+
+
+```{python}
+books = ['HP', 'dune']
+try:
+  print(books[5])
+except IndexError:
+  print('out of range')
+finally:
+  print('happy reading')
+```
+
+
+Raise an exception 
+
+```python
+x = -1
+if x<0:
+  raise Exception('need x to be above 0') # can also be ValueError
+```
+
+Raise a type error
+
+```python
+x = 'hello'
+if not type(x) is int:
+  raise TypeError('needs to be an integer')
+```
