@@ -226,7 +226,7 @@ print('# of 7:', scores.count(7))
 print('# of 9:', scores.count(9))
 ```
 
-Unpacking in tuple. The length needs to be matched; however if you want to deal with unknown number of elements, can use `*`. After unpacking, the elements becomes a `list []`. 
+**Unpacking** in tuple. The length needs to be matched; however if you want to deal with unknown number of elements, can use `*`. After unpacking, the elements becomes a `list []`. 
 
 ```{python}
 grades = (76, 81, 96)
@@ -383,9 +383,14 @@ for i in car.items(): # this prints the pairs
 ```
 
 
+Unpack dictionary with `**`
 
-
-
+```{python}
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'c': 3, 'd': 4}
+merged_dict = {**dict1, **dict2}
+print(merged_dict)
+```
 
 
 

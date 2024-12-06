@@ -102,6 +102,158 @@ print(tripler(5))
 ```
 
 
+## Maps and filters
+
+Syntax: `map(<function>, <iterable>)`
+
+The iterable does not have to be a list: it can also be a dictionary
+
+### On lists
+
+```{python}
+#List of names in various cases
+names = ["alice", "bob", "CHARLIE", "dEborah"]
+
+# Function to capitalize each name
+def capitalize(name):
+  return name.capitalize()
+
+# Using map() to apply the capitalization to each name
+capitalized = map(capitalize, names)
+
+# Converting map object to a list
+capitalized = list(capitalized)
+
+print(capitalized)
+```
+
+Combined with lambdas
+
+```{python}
+numbers = [1, 2, 3]
+doubled = list(map(lambda x: x*2, numbers)) # first part is function
+doubled
+```
+
+Filters on a list
+
+```{python}
+products = ["Table", "Sofa", "Cushion", "Bookshelf", "Vase"]
+
+# Filters products with name length equal to 4
+filtered_prod = list(filter(lambda name: len(name) == 4, products))
+
+print(filtered_prod)
+```
+
+
+### On dictionary
+
+```{python}
+products = {'Table': 110, 'Sofa': 120, 'Chair': 45, 'Lamp': 70}
+
+#filtering products with prices less than 90
+filtered_products = dict(filter(lambda item: item[1] < 90, products.items()))
+
+print(filtered_products)
+```
+
+
+## args and kwargs
+
+The difference between `*args` and `**kwargs` is that the former receives a tuple, the later receives a dictionary.
+
+```{python}
+def total(numbers):
+  result = 0
+  # iterate over the list
+  for i in numbers:
+    result += i
+  return result
+
+nums = [1,2,3,4]
+print(total(nums))
+```
+
+### `*args`
+
+`*args` allows any number of arguments without creating a list before calling. It receives arguments as a **tuple** (an iterable)
+
+```{python}
+def total(*args): # can also be *number
+  result = 0
+  for arg in args: # no *, since it's unpacked
+    result += arg
+  return result
+
+print(total(1,2,3)) # no need to create a list, here we have 3 arguments instead of a list
+print(total(201,23))
+```
+
+
+
+Recall **unpacking** in tuples, use `*` operator. It unpacks a tuple as a list
+
+```{python}
+three_args = (76, 81, 96)
+arg1, arg2, arg3 = three_args
+print(arg1)
+arg1, *args = three_args # this is where args is
+print(args)
+```
+
+The *args* does not have to be `args`, it can take any name as long as the operator is there.
+
+```{python}
+def display(*words):
+  for item in words: # here no *, since it is unpacked!
+    print(item)
+
+display('word1')
+display('word1', 'word3', 'word4')
+display('word1', 3, 24.1) # doesn't have to be a string
+```
+
+
+
+When combining with regular arguments, the regular ones must come before `*args`
+
+`def<func> (<argument>, <*args>)`
+
+```{python}
+def show_items(category, *items):
+  print("Category: " + category)
+  for item in items:
+    print(item)
+
+show_items("Electronics", "Laptop", "Smartphone", "Tablet") # the first is the category
+```
+
+### `**kwargs`: keyword arguments
+
+This one receives argument in the form of a **dictionary** that have key:value pairs. The `**` operator unpacks dictionaries into arguments.
+
+```{python}
+#**kwargs is a dictionary
+def display_info(**kwargs):
+  #kwargs.items() returns the key:value pairs
+  for key, value in kwargs.items():
+    print(key, ":", value)
+
+display_info(name="Alice", age=30, city="New York")
+```
+
+
+```{python}
+person = {'name':"Alice", 'age':30, 'city':"New York"}
+person.items() # all pairs
+```
+
+
+### Put together
+
+`def<func> (<argument>, <*args>, <**kwargs>)`
+
 
 
 
