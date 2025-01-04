@@ -26,7 +26,7 @@ listing:
     sort-ui: false
     categories: true
 
-  - id: db
+  - id: db-cloud
     fields: [title]
     contents: 
       - "db_sql_1.qmd"
@@ -106,9 +106,9 @@ This page hosts study notes on programming.
 ::: {#python}
 :::
 
-### Database
+### Database and cloud
 
-::: {#db}
+::: {#db-cloud}
 :::
 
 

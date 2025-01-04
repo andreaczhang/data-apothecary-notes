@@ -17,6 +17,9 @@ website:
       - href: programming/index.qmd
         text: Programming
         
+      - href: gc_mle/index.qmd
+        text: GC MLE
+        
       - href: random/index.qmd
         text: Random tests
 

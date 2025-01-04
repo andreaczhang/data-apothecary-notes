@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-db .list');
+    const listingTargetEl = window.document.querySelector('#listing-db-cloud .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -140,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-db'] = new List('listing-db', options);
+    window['quarto-listings']['listing-db-cloud'] = new List('listing-db-cloud', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -324,6 +324,10 @@ window.Quarto = {
 <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../gc_mle/index.html"> 
+<span class="menu-text">GC MLE</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../random/index.html"> 
 <span class="menu-text">Random tests</span></a>
   </li>  
@@ -356,7 +360,7 @@ window.Quarto = {
   <ul>
   <li><a href="#r-programming" id="toc-r-programming" class="nav-link active" data-scroll-target="#r-programming">R programming</a></li>
   <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  <li><a href="#database" id="toc-database" class="nav-link" data-scroll-target="#database">Database</a></li>
+  <li><a href="#database-and-cloud" id="toc-database-and-cloud" class="nav-link" data-scroll-target="#database-and-cloud">Database and cloud</a></li>
   <li><a href="#r-package" id="toc-r-package" class="nav-link" data-scroll-target="#r-package">R package</a></li>
   <li><a href="#web-and-quarto" id="toc-web-and-quarto" class="nav-link" data-scroll-target="#web-and-quarto">Web and quarto</a></li>
   <li><a href="#ai" id="toc-ai" class="nav-link" data-scroll-target="#ai">AI</a></li>
@@ -448,7 +452,7 @@ Title
 <a href="../programming/py_exceptions.html" class="title listing-title">Control flow, exceptions</a>
 </td>
 </tr>
-<tr data-index="1" data-categories="Python" data-listing-date-sort="1733353200000" data-listing-file-modified-sort="1733421700481" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="550" data-listing-title-sort="Functions, functional programming" data-listing-filename-sort="py_functional_prog.qmd">
+<tr data-index="1" data-categories="Python" data-listing-date-sort="1733353200000" data-listing-file-modified-sort="1733661164163" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="787" data-listing-title-sort="Functions, functional programming" data-listing-filename-sort="py_functional_prog.qmd">
 <td>
 <a href="../programming/py_functional_prog.html" class="title listing-title">Functions, functional programming</a>
 </td>
@@ -465,9 +469,9 @@ No matching items
 </div>
 </div>
 </section>
-<section id="database" class="level3">
-<h3 class="anchored" data-anchor-id="database">Database</h3>
-<div id="listing-db" class="quarto-listing quarto-listing-container-table">
+<section id="database-and-cloud" class="level3">
+<h3 class="anchored" data-anchor-id="database-and-cloud">Database and cloud</h3>
+<div id="listing-db-cloud" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>

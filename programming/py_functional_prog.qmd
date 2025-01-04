@@ -255,6 +255,80 @@ person.items() # all pairs
 `def<func> (<argument>, <*args>, <**kwargs>)`
 
 
+## Decorators
 
+Functions can be nested
 
+```{python}
+def greet(name):
+    print("Hey", name)
+    
+# sub function
+    def account():
+        return "Your account is created!"
 
+    message = account()
+    return message
+
+print(greet("Bob"))
+```
+
+Decorator modifies a function's original behavior without changing it
+
+```{python}
+def greet():
+    return "Welcome!"
+
+#takes a function as an argument
+def uppercase(func): # this is the decorator
+    #wrapper function to keep the
+    #original function code unchanged
+    def wrapper():
+        orig_message = func()
+        modified_message = orig_message.upper()
+        return modified_message
+    return wrapper
+
+greet_upper = uppercase(greet)
+print(greet_upper())
+```
+
+Use `@`
+
+```{python}
+def uppercase(func):
+    def wrapper():
+        orig_message = func()
+        modified_message = orig_message.upper()
+        return modified_message
+    return wrapper
+
+@uppercase
+def greet():
+    return "Welcome!"
+
+# Using the decorated function
+print(greet())
+```
+
+Use different decorators for the same function
+
+```{python}
+def stock_status_decorator(func):
+    def wrapper(item):
+        result = func(item)
+        print(result, ": stock status for", item)
+        return result
+    return wrapper
+
+@stock_status_decorator
+def restock_item(item):
+    return "Restocked"
+
+@stock_status_decorator
+def sell_item(item):
+    return "Sold"
+
+print(restock_item("Laptop"))
+print(sell_item("Smartphone"))
+```

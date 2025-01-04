@@ -1,0 +1,300 @@
+---
+title: "Object oriented programming"
+description: |
+  OOP
+author: "Chi Zhang"
+date: "2024-12-10"
+categories: [Python]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+jupyter: python3
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+Class: template, abstraction, blueprint
+
+Object: and instance of a class, one derivation
+
+Attributes: characteristics 
+
+Define a class
+
+`__init__` method, the first is always `self`
+
+```{python}
+class Car:
+  # Initialize attributes
+  def __init__(self, brand, color):
+    # Assign values to attributes
+    self.brand = brand
+    self.color = color
+
+# Create an object of the Car class
+my_car = Car('Audi', 'yellow')
+
+print(my_car)
+```
+
+Access the attributes using `.`
+
+```{python}
+print(my_car.brand)
+print(my_car.color)
+```
+
+Add custom behaviors to a class. Must always have `self` as the first argument
+
+
+
+```{python}
+class Car:
+  # Initialize attributes
+  def __init__(self, brand, color):
+    # Assign values to attributes
+    self.brand = brand
+    self.color = color
+
+  def honk(self):
+    print('honk honk')
+# Create an object of the Car class
+my_car = Car('Audi', 'yellow')
+
+print(my_car)
+my_car.honk()
+```
+
+Difference between a function and a method: function can be called on its own, and method has to be called with the object
+
+
+
+```{python}
+#function
+def greet():
+  print("Welcome!")
+
+#list
+prices = [55, 68, 77, 36]
+
+#data types
+x = 5
+city = "London"
+is_open = True
+
+
+print(type(greet))
+print(type(prices))
+print(type(x))
+print(type(city))
+print(type(is_open))
+```
+
+
+## Inheritance
+
+From an existing class `Animal`, the class `Dog` inherits the method `move`, and also has its own method `bark`.
+
+
+```{python}
+class Animal:
+  def __init__(self, name):
+    self.name = name
+  
+  def move(self):
+    print("Moving")
+
+# Inherits from Animal class
+class Dog(Animal):
+  # Specific behavior
+  def bark(self):
+    print("Woof!")
+    
+# Creating an instance
+my_dog = Dog("Bob")
+
+# Inherited attribute and behavior
+print(my_dog.name)
+my_dog.move()
+
+# Specific behavior
+my_dog.bark()
+```
+
+Add more attributes on the child class in addition to the ones inherited from the parent class: use `super.__init__()` to inherit
+
+
+```{python}
+#child class
+class Dog(Animal):
+  def __init__(self, name, breed, age):
+    # Initialize attributes of the superclass
+    super().__init__(name)
+    # Additional attributes specific to Dog
+    self.breed = breed
+    self.age = age
+
+  def bark(self):
+    print("Woof!")
+
+my_dog = Dog("Jax", "Bulldog", 5)
+#inherited attribute
+print(my_dog.name)
+
+#Additional attributes
+print(my_dog.breed)
+print(my_dog.age)
+```
+
+
+**Method overriding**: inherits the method from the parent class, but have modified behavior
+
+
+## Data hiding
+
+Values of attributes can be modified. The code below modifies the value of `odometer`
+
+```{python}
+class Car:
+  def __init__(self, model, year, odometer):
+    self.model = model
+    self.year = year
+    self.odometer = odometer
+
+  def describe_car(self):
+    print(self.year, self.model)
+
+  def read_odometer(self):
+    print("Odometer:", self.odometer, "miles")
+
+my_car = Car('Audi', 2020, 15000)
+
+my_car.describe_car()
+my_car.read_odometer()
+
+#changing a value of the attribute
+my_car.odometer = 20000
+
+my_car.read_odometer()
+```
+
+To hide the values, the first way is to use `_` before the attribute. This indicates the attribute is for **internal use** only. They can still be accessed by calling `class._attribute`
+
+
+```{python}
+class Car:
+  def __init__(self, model, year, odometer):
+    self.model = model
+    self.year = year
+    # Making the odometer attribute 'protected'
+    self._odometer = odometer  
+
+  def describe_car(self):
+    print(self.year, self.model)
+
+  def read_odometer(self):
+    print("Odometer:", self._odometer, "miles")
+
+my_car = Car('Audi', 2020, 15000)
+
+my_car.describe_car()
+my_car.read_odometer()
+# access the protected attribute
+print(my_car._odometer)
+```
+
+The second way for data hiding is to make it private. If trying to access it, `my_car.__odometer` will print an error.
+
+```python
+class Car:
+  def __init__(self, model, year, odometer):
+    self.model = model
+    self.year = year
+    # Making the odometer attribute 'private'
+    self.__odometer = odometer
+```
+
+It is possible via name mangling, to access a private member of a class.
+
+
+```{python}
+class Car:
+  def __init__(self, model, year, odometer):
+    self.model = model
+    self.year = year
+    # Making the odometer attribute 'private'
+    self.__odometer = odometer  
+
+  def _describe_car(self):  # Making the describe_car method 'protected'
+    print(self.year, self.model)
+
+  def __read_odometer(self):  # Making the read_odometer method 'private'
+    print("Odometer:", self.__odometer, "miles")
+
+
+my_car = Car('Audi', 2020, 15000)
+
+#accessing protected method
+my_car._describe_car()
+
+#error when accessing a privet method
+#my_car.__read_odometer()
+```
+
+
+## Class methods
+
+Define  a class method that works on class itself, instead of an instance (even though it can also be called on a class). It uses the `@classmethod` decorator, and takes the `cls` as argument. 
+
+* regular method: self
+* class method: cls
+
+
+```{python}
+class Book:
+  def __init__(self, title, author):
+    self.title = title
+    self.author = author
+
+  #regular method
+  def describe_book(self):
+    print(self.title, 'by', self.author)
+
+  #class method
+  @classmethod
+  def books_in_series(cls, series_name, number_of_books):
+    print('There are', number_of_books, 'books in the', series_name, 'series')
+
+# Creating an instance of Book
+my_book = Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling")
+
+# Using the instance method to describe the book
+my_book.describe_book()
+
+# Using the class method to display information about the series
+Book.books_in_series("Harry Potter", 7)
+```
+
+Can also call the class method from the instance.
+
+```{python}
+# calling the class method on the instance
+my_book.books_in_series("Harry Potter", 7)
+```
+
+A **static method** does not need the `cls` argument. A static method does not access or modify the class's state.
+
+```python
+  #staticmethod
+  @staticmethod
+  def books_in_series(series_name, number_of_books):
+    print('There are', number_of_books, 'books in the', series_name, 'series')
+
+# when it's called on the class; 
+Book.books_in_series("Harry Potter", 7)
+```

@@ -124,5 +124,11 @@
       "/random/dashboard_semi_static_webr_ojs.html",
       "/random/reporting_overview.html"
     ]
+  },
+  {
+    "listing": "/gc_mle/index.html",
+    "items": [
+      "/gc_mle/cloud_overview.html"
+    ]
   }
 ]

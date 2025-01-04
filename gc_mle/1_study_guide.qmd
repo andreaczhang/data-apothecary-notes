@@ -1,0 +1,33 @@
+---
+title: "Google Cloud MLE Learning Path Study Guide"
+description: |
+  Google Cloud x ML
+author: "Chi Zhang"
+date: "2025-01-04"
+categories: [Cloud, ML]
+sidebar: false
+code-block-bg: false
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    highlight-style: gruvbox
+---
+
+
+This is a guide towards an exam: **Google Cloud Professional Machine Learning Engineer**. Check the [official PDF](resources/gc_mle_studyguide.pdf)
+
+
+build, deploy, optimize AI solutions on Google Cloud
+
+
+
+
+
+
+
+
+
