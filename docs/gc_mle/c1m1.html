@@ -7,10 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chi Zhang">
-<meta name="dcterms.date" content="2025-01-04">
-<meta name="description" content="Google Cloud x ML">
+<meta name="dcterms.date" content="2025-01-05">
 
-<title>Data Apothecary’s Notes - Google Cloud MLE Learning Path Study Guide</title>
+<title>Data Apothecary’s Notes - C1M1: AI foundations on GC</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,25 +128,26 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#google-cloud-infrastructure" id="toc-google-cloud-infrastructure" class="nav-link active" data-scroll-target="#google-cloud-infrastructure">Google Cloud infrastructure</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Google Cloud MLE Learning Path Study Guide</h1>
+<h1 class="title">C1M1: AI foundations on GC</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Cloud</div>
     <div class="quarto-category">ML</div>
   </div>
   </div>
 
-<div>
-  <div class="description">
-    <p>Google Cloud x ML</p>
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -162,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 4, 2025</p>
+      <p class="date">January 5, 2025</p>
     </div>
   </div>
   
@@ -174,10 +174,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a guide towards an exam: <strong>Google Cloud Professional Machine Learning Engineer</strong>. Check the <a href="resources/gc_mle_studyguide.pdf">official PDF</a></p>
-<p>build, deploy, optimize AI solutions on Google Cloud</p>
+<section id="google-cloud-infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="google-cloud-infrastructure">Google Cloud infrastructure</h2>
+<p>Networking and security -&gt; Compute and storage -&gt; Data and AI products</p>
+<p>Compute</p>
+<ul>
+<li>compute engine, GKE (kubernetes), App engine, cloud run, cloud run functions</li>
+<li>Processing power: CPU, GPU, TPU (tensor processing unit)</li>
+</ul>
+<p>Storage</p>
+<ul>
+<li>Cloud SQL, Spanner, Firestore, Bigtable, BigQuery</li>
+<li>structured data: transactional workload, analytical workload (SQL: BQ; NoSQL: Bigtable)</li>
+</ul>
+<p>Data and AI products</p>
+<p>Data-to-AI workflow: ingestion and process, storage, analytics (BQ), AI/ML (VertexAI)</p>
+<p>Vertex AI: AutoML, Workbench, Colab Enterprise, Vertex AI Studio, Model Garden</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
