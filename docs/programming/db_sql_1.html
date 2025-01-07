@@ -133,6 +133,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../gc_mle/index.html"> 
+<span class="menu-text">GC MLE</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../random/index.html"> 
 <span class="menu-text">Random tests</span></a>
   </li>  
@@ -191,6 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#identity" id="toc-identity" class="nav-link" data-scroll-target="#identity">Identity</a></li>
   <li><a href="#keys" id="toc-keys" class="nav-link" data-scroll-target="#keys">Keys</a></li>
   <li><a href="#unique" id="toc-unique" class="nav-link" data-scroll-target="#unique">Unique</a></li>
+  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update">Update</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -509,6 +514,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="unique">Unique</h3>
 <div class="sourceCode" id="cb32"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> customers</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">UNIQUE</span> (lastname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="update" class="level3">
+<h3 class="anchored" data-anchor-id="update">Update</h3>
+<p>Update the patients table for the allergies column. If the patient’s allergies is null then replace it with ‘NKA’</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> patients</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> allergies <span class="op">=</span> <span class="st">'NKA'</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> allergies <span class="kw">IS</span> <span class="kw">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

@@ -1,0 +1,132 @@
+---
+title: "SQL: my workflow"
+description: |
+  My workflow on exploring new datasets
+author: "Chi Zhang"
+date: "2025-01-07"
+categories: [SQL]
+sidebar: false
+code-block-bg: false
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    highlight-style: gruvbox
+---
+
+## Summary on one table
+
+* get to know what variables (columns) are available in the table -> print first n rows (potential 1)
+* number of rows with `COUNT(*)`, combined with conditions
+
+
+```sql
+-- prints first row
+SELECT * FROM data LIMIT 1 
+
+-- prints nrow
+SELECT COUNT(*) FROM data 
+
+-- number of the first names that start with "C"
+SELECT COUNT(*) FROM data WHERE first_name LIKE "C%" 
+```
+
+subsetting with `IN` syntax
+
+```sql
+SELECT *
+FROM patients 
+WHERE patient_id IN (1, 45, 534, 879, 1000)
+```
+
+grouping by ID, then count records per ID (no need to compile the inner data first)
+
+```sql
+SELECT
+  patient_id,
+  COUNT(*) AS total_admissions
+FROM admissions
+WHERE patient_id = 579;
+```
+
+### Data quality
+
+check missing (NULL)
+
+
+
+
+
+### Numerial column
+
+* range of values, with `max` and `min`
+* combine with values derived from inside the table, say the maximum of a column
+
+```sql
+SELECT
+  first_name,
+  last_name,
+  height
+FROM patients
+WHERE height = (
+    SELECT max(height)
+    FROM patients
+  )
+```
+
+
+
+### Date
+
+select year that starts from a certain value, like 2020
+
+```sql
+SELECT count(*) 
+FROM patients 
+WHERE birth_date like "2010%"
+
+-- the following should also work
+-- WHERE YEAR(birth_date) = '2010'
+-- WHERE EXTRACT(YEAR from birth_date) = '2010'
+-- WHERE substring(birth_date, 4) = '2010'
+```
+
+
+### Text
+
+* unique categories
+* get the number of unique values
+  * select count directly
+  * `WITH` clause
+
+```sql
+SELECT DISTINCT xvar FROM data
+
+-- solution 1
+SELECT COUNT(allergies) FROM (select distinct allergies
+FROM patients
+WHERE allergies IS NOT NULL)
+
+-- solution 2
+WITH alls AS (select distinct allergies
+FROM patients
+WHERE allergies IS NOT NULL) 
+
+WHERE COUNT(allergies) FROM alls
+```
+
+## Multiple tables: JOIN 
+
+```sql
+SELECT first_name, last_name, province_name 
+FROM patients LEFT JOIN province_names
+ON patients.province_id = province_names.province_id
+```
+
+
+
+
+

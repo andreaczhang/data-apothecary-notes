@@ -30,6 +30,7 @@ listing:
     fields: [title]
     contents: 
       - "db_sql_1.qmd"
+      - "db_sql_myworkflow.qmd"
       - "db_gcp.qmd"
     type: table
     sort: "title"
