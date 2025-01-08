@@ -34,7 +34,7 @@ SELECT COUNT(*) FROM data
 SELECT COUNT(*) FROM data WHERE first_name LIKE "C%" 
 ```
 
-subsetting with `IN` syntax
+Subsetting with `IN` syntax. It also works on texts.
 
 ```sql
 SELECT *
@@ -98,6 +98,7 @@ WHERE birth_date like "2010%"
 ### Text
 
 * unique categories
+* text length with `LEN()`
 * get the number of unique values
   * select count directly
   * `WITH` clause
@@ -110,12 +111,18 @@ SELECT COUNT(allergies) FROM (select distinct allergies
 FROM patients
 WHERE allergies IS NOT NULL)
 
--- solution 2
+-- solution 2 (with clause)
 WITH alls AS (select distinct allergies
 FROM patients
 WHERE allergies IS NOT NULL) 
 
-WHERE COUNT(allergies) FROM alls
+SELECT COUNT(allergies) FROM alls
+
+-- get the id and firstname where it starts and end with s, with length greater or equal to 6
+SELECT patient_id, first_name 
+FROM patients
+WHERE first_name LIKE "S%s" 
+AND LEN(first_name)>=6
 ```
 
 ## Multiple tables: JOIN 
@@ -126,7 +133,47 @@ FROM patients LEFT JOIN province_names
 ON patients.province_id = province_names.province_id
 ```
 
+## Subquery
+
+### `WITH` and `HAVING`
+
+```sql
+WITH alls AS (select distinct allergies
+FROM patients
+WHERE allergies IS NOT NULL) 
+
+SELECT COUNT(allergies) FROM alls
+```
+
+```sql
+WITH tmp AS (
+  select patient_id, diagnosis, count(*) as freq
+	from admissions
+group by patient_id, diagnosis)
+
+select patient_id, diagnosis from tmp where freq >1
+
+-- equivalent to 
+
+SELECT
+  patient_id,
+  diagnosis
+FROM admissions
+GROUP BY
+  patient_id,
+  diagnosis
+HAVING COUNT(*) > 1
+```
 
 
+### Column-wise presentation 
+
+`SELECT` does not need to always end with `FROM` at the very end, it can combine results from other selects.
+
+```sql
+select 
+(select count(*) FROM patients where gender = 'M') as male_count, 
+(select count(*) FROM patients where gender = 'F') as female_count 
+```
 
 
