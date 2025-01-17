@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chi Zhang">
+<meta name="dcterms.date" content="2025-01-17">
 
-<title>Data Apothecary’s Notes - Google Cloud Machine Learning Engineer</title>
+<title>Data Apothecary’s Notes - C1 Labs: VertexAI studio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,65 +68,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-others .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-others'] = new List('listing-others', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -156,7 +98,7 @@ window.Quarto = {
 <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../gc_mle/index.html" aria-current="page"> 
+    <a class="nav-link" href="../gc_mle/index.html"> 
 <span class="menu-text">GC MLE</span></a>
   </li>  
   <li class="nav-item">
@@ -190,25 +132,43 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#curriculum" id="toc-curriculum" class="nav-link" data-scroll-target="#curriculum">Curriculum</a></li>
-  <li><a href="#other-topics" id="toc-other-topics" class="nav-link" data-scroll-target="#other-topics">Other topics</a></li>
+  <li><a href="#automl-in-vertex-ai" id="toc-automl-in-vertex-ai" class="nav-link active" data-scroll-target="#automl-in-vertex-ai">AutoML in Vertex AI</a>
+  <ul class="collapse">
+  <li><a href="#specify-model-specs" id="toc-specify-model-specs" class="nav-link" data-scroll-target="#specify-model-specs">Specify model specs</a></li>
+  </ul></li>
+  <li><a href="#load-a-model-from-existing-endpoint" id="toc-load-a-model-from-existing-endpoint" class="nav-link" data-scroll-target="#load-a-model-from-existing-endpoint">Load a model from existing endpoint</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Cloud">Cloud <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Google Cloud Machine Learning Engineer</h1>
-</div>
+<h1 class="title">C1 Labs: VertexAI studio</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Cloud</div>
+    <div class="quarto-category">ML</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chi Zhang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 17, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -218,399 +178,26 @@ window.Quarto = {
 </header>
 
 
-<p>Resources</p>
-<ul>
-<li><a href="https://www.cloudskillsboost.google/paths/17">Google Cloud Skills Boost: Machine Learning Engineer Learning Path</a></li>
-<li><a href="https://developers.google.com/machine-learning">Google ML education</a></li>
-<li><a href="https://www.cloudskillsboost.google/paths/17/course_templates/1171">Professional MLE study guide</a></li>
-</ul>
-<section id="objectives" class="level3">
-<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
-<ol type="1">
-<li><strong>architecting low-code AI solutions</strong></li>
-</ol>
-<ul>
-<li>develop ML models with BQML (C1M2, C2L1, C4 all, C5 all, C6M3, C16M3)</li>
-<li>build AI solutions by using ML APIs or foundational models (C1M3, C2L7-9, C16L2, C17)</li>
-<li>training models by using AutoML (C1 all, C3)</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>collaborating within and across teams to manage data and models</strong></li>
-</ol>
-<ul>
-<li>explore and process data (C1M2-4, C3, C5 all, C10)</li>
-<li>model prototyping using Jupyter notebooks (C3)</li>
-<li>tracking and running ML experiments (C16L1, C14)</li>
-</ul>
-<ol start="3" type="1">
-<li><strong>scaling prototypes into ML models</strong></li>
-</ol>
-<ul>
-<li>building models (C8)</li>
-<li>training models (C1M4, C12, C13, C8M3-6, C16L3)</li>
-<li>choosing the right hardware (C8M3)</li>
-</ul>
-<ol start="4" type="1">
-<li><strong>serving and scaling models</strong></li>
-</ol>
-<ul>
-<li>serving models (C6M1, C8M2, C16L3)</li>
-<li>scaling online model serving (C6M1, )</li>
-</ul>
-<ol start="5" type="1">
-<li><strong>automating and orchestrating ML pipelines</strong></li>
-</ol>
-<ul>
-<li>developing end-to-end ML pipelines (C1M4, C8, C9, C16L4)</li>
-<li>automate model retraining (C16, C15)</li>
-</ul>
-<ol start="6" type="1">
-<li><strong>monitoring AI solutions</strong></li>
-</ol>
-<ul>
-<li>identifying risks to ML solutions (C8M1,2,6, C18, C19, C20)</li>
-<li>monitoring, testing, troubleshooting ML solutions (C16L1,L3,L5, C8M2,M6, C7M4)</li>
-</ul>
+<section id="automl-in-vertex-ai" class="level2">
+<h2 class="anchored" data-anchor-id="automl-in-vertex-ai">AutoML in Vertex AI</h2>
+<p>Create a dataset</p>
+<p><img src="resources/c1lab-1.png" class="img-fluid" style="width:75.0%"> <img src="resources/c1lab-2.png" class="img-fluid" style="width:75.0%"> <img src="resources/c1lab-3.png" class="img-fluid" style="width:75.0%"></p>
+<section id="specify-model-specs" class="level3">
+<h3 class="anchored" data-anchor-id="specify-model-specs">Specify model specs</h3>
+<p><img src="resources/c1lab-4.png" class="img-fluid" style="width:75.0%"></p>
+<p><img src="resources/c1lab-5.png" class="img-fluid" style="width:75.0%"></p>
+<p><img src="resources/c1lab-6.png" class="img-fluid" style="width:75.0%"></p>
+<p><img src="resources/c1lab-7.png" class="img-fluid" style="width:75.0%"></p>
+<p>For me this model has taken way too long, so I decided to find the existing model endpoint.</p>
 </section>
-<section id="curriculum" class="level3">
-<h3 class="anchored" data-anchor-id="curriculum">Curriculum</h3>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">ID</th>
-<th style="text-align: center;">Chapter</th>
-<th style="text-align: center;">Topic</th>
-<th style="text-align: center;">Resources</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">C1M1</td>
-<td style="text-align: center;"><strong>Introduction to AI and Machine Learning on Google Cloud</strong></td>
-<td style="text-align: center;">AI Foundations on GC</td>
-<td style="text-align: center;"><a href="../gc_mle/c1.html">Notes</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C1M2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">AI development on GC</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C1M3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">ML Workflow and Vertex AI</td>
-<td style="text-align: center;"><a href="../gc_mle/c1_labs.html">Notes (labs)</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C1M4</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">GenAI on GC</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C2L1</td>
-<td style="text-align: center;"><strong>Prepare data for ML APIs on GC</strong></td>
-<td style="text-align: center;">Vertex AI</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C2L2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Dataprep</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C2L3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Dataflow</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C2L4</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Dataflow</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C2L5</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Dataproc</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C2L6</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Dataproc</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C2L7</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Cloud NL API</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C2L8</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Speech-to-text API</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C2L9</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Video intelligence</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C2L10</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Prepare data for ML API on GC</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C3</td>
-<td style="text-align: center;"><strong>Working with Notebooks in Vertex AI</strong></td>
-<td style="text-align: center;">Working with Notebooks in Vertex AI</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C4L1</td>
-<td style="text-align: center;"><strong>Create ML Models with BigQuery ML</strong></td>
-<td style="text-align: center;">Getting started with BigQuery ML</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C4L2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Predict visitor purchases with classification with BQML</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C4L3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Predict taxi fare with BQML</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C4L4</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Bracktology with Google ML</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C4L5</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Create ML models with BQML</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C5L1</td>
-<td style="text-align: center;"><strong>Engineer Data for Predictive Modeling with BigQuery ML</strong></td>
-<td style="text-align: center;">Create a data transformation pipeline with cloud dataprep</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C5L2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">ETL processing</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C5L3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Predict visitor purchases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C5L4</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Engineer data for predicitive modeling</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C6M1</td>
-<td style="text-align: center;"><strong>Feature engineering</strong></td>
-<td style="text-align: center;">Intro</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C6M2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Raw data to features</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C6M3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Feature engineering</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C6M4</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Preprocessing and feature creation</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C6M5</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Feature crosses</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C6M6</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Introduction to tensorflow transformation</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C7L1</td>
-<td style="text-align: center;"><strong>Tensorflow on GC</strong></td>
-<td style="text-align: center;">TensorFlow ecosystem</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C7L2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Design and build an input data pipeline</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C7L3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Building Neural networks with TF and Keras</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C7L4</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Training at scale with Vertex AI</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C8</td>
-<td style="text-align: center;"><strong>Production ML systems</strong></td>
-<td style="text-align: center;"><em>Less relevant</em></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C9</td>
-<td style="text-align: center;"><strong>MLOps: getting started</strong></td>
-<td style="text-align: center;"><em>Less relevant</em></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C10</td>
-<td style="text-align: center;"><strong>MLOps with vertex AI: manage features</strong></td>
-<td style="text-align: center;"><em>Less relevant</em></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C11, C13</td>
-<td style="text-align: center;"><strong>Intro to Generative AI</strong>, MLOps</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C12</td>
-<td style="text-align: center;"><strong>Intro to LLM</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C14</td>
-<td style="text-align: center;"><strong>MLOps with vertex AI: model evaluation</strong></td>
-<td style="text-align: center;"><em>Less relevant</em></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C15</td>
-<td style="text-align: center;"><strong>ML Pipelines on GC</strong></td>
-<td style="text-align: center;"><em>Less relevant</em></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C16L1</td>
-<td style="text-align: center;"><strong>Build and Deploy Machine Learning Solutions on Vertex AI</strong></td>
-<td style="text-align: center;">Vertex AI</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C16L1</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Identify damaged car parts with vertex AutoML vision</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C16L1</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Deploy a BQML customer churn classifier</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C16L1</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Vertex pipelines</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C16L5</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Build and deploy ML solutions with vertex AI</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C17</td>
-<td style="text-align: center;"><strong>Build GenAI apps on GC</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C18</td>
-<td style="text-align: center;"><strong>Responsible AI: fairness and bias</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">C19</td>
-<td style="text-align: center;"><strong>Responsible AI: interpretability and transparency</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">C20</td>
-<td style="text-align: center;"><strong>Responsible AI: privacy and safety</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="other-topics" class="level3">
-<h3 class="anchored" data-anchor-id="other-topics">Other topics</h3>
-<div id="listing-others" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Title
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Cloud" data-listing-date-sort="1735858800000" data-listing-file-modified-sort="1735982178877" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="89" data-listing-title-sort="Cloud services overview" data-listing-filename-sort="cloud_overview.qmd">
-<td>
-<a href="../gc_mle/cloud_overview.html" class="title listing-title">Cloud services overview</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-
+<section id="load-a-model-from-existing-endpoint" class="level2">
+<h2 class="anchored" data-anchor-id="load-a-model-from-existing-endpoint">Load a model from existing endpoint</h2>
+<p>Please refer to the official doc</p>
+<p><img src="resources/c1lab-8.png" class="img-fluid" style="width:75.0%"></p>
+<p>The authentication needs to be refreshed quite frequently.</p>
+<p>Can edit the <code>.Json</code> for different data input.</p>
+<p><img src="resources/c1lab-9.png" class="img-fluid" style="width:75.0%"></p>
 
 
 </section>

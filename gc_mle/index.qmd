@@ -48,9 +48,9 @@ Resources
 
 | ID |Chapter|  Topic | Resources |
 |:--:|:-------:|:---------:|:---:|
-| C1M1 | **Introduction to AI and Machine Learning on Google Cloud** |  AI Foundations on GC | [Notes](c1.qmd)   |
+| C1M1 | **Introduction to AI and Machine Learning on Google Cloud** |  AI Foundations on GC | [Notes](c1.qmd) |
 | C1M2 || AI development on GC |     |
-| C1M3 ||  ML Workflow and Vertex AI |   | 
+| C1M3 ||  ML Workflow and Vertex AI | [Notes (labs)](c1_labs.qmd)  | 
 | C1M4 ||  GenAI on GC |    |
 | C2L1 | **Prepare data for ML APIs on GC** |  Vertex AI  |  |
 | C2L2 | |  Dataprep  |  |
