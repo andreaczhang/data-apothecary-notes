@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nNumPy cheatsheet\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -3554,5 +3554,40 @@
     "title": "C1 Labs: VertexAI studio",
     "section": "",
     "text": "Create a dataset\n  \n\n\n\n\n\n\nFor me this model has taken way too long, so I decided to find the existing model endpoint."
+  },
+  {
+    "objectID": "programming/py_numpy.html",
+    "href": "programming/py_numpy.html",
+    "title": "NumPy cheatsheet",
+    "section": "",
+    "text": "Resources: Python Data Science Handbook by Jake VanderPlas"
+  },
+  {
+    "objectID": "programming/py_numpy.html#generate-lists-and-array",
+    "href": "programming/py_numpy.html#generate-lists-and-array",
+    "title": "NumPy cheatsheet",
+    "section": "Generate lists and array",
+    "text": "Generate lists and array\n\nList and array\nCreate a list with range()\n# create a list directly\n[1, 2, 3]\n\n# the following does not print out the lists\nrange(3)\nrange(0, 10, 2)\nThere are a few ways to print out elements from a list generated from range() * list comprehension ([function(i) for i in LIST]) * directly listing out (list(LIST)) * for loop, more tedious and requires a placeholder to be created first.\n# directly listing out\nlist(range(0, 10, 2))\n\n# list comprehension\n[i for i in range(0, 10, 2)] # omit the function\n\n# for loop\nlst = []\nfor i in range(0, 10, 2):\n    lst.append(i)\nDistinguish list and array, the way they are created. range() is built-in, and produces a list. np.arange() is from numpy, and produces a numpy array. The arguments are the same: np.arange(start, end, step)\nimport numpy as np\nnp.arange(3)\nnp.arange(0, 10, 2)\nOther useful functions for array:\n# np.linspace(start, end, nelements)\nnp.linspace(0, 1, 5) # 0, 0.25, 0.5, 0.75, 1\n\n# repeat the same values\nnp.zeros(10)\nnp.ones(5)\n\n\nGenerate random number\n\nUniform (between 0, 1): np.random.random((nrow, ncol))\nNormal: np.random.normal(mu, sd, (nrow, ncol))\nRandom integer: `np.random.randint(0, 10, (nrow, ncol))``"
+  },
+  {
+    "objectID": "programming/py_numpy.html#basics",
+    "href": "programming/py_numpy.html#basics",
+    "title": "NumPy cheatsheet",
+    "section": "Basics",
+    "text": "Basics\n\nList and array\nCreate a list with range()\n# create a list directly\n[1, 2, 3]\n\n# the following does not print out the lists\nrange(3)\nrange(0, 10, 2)\nThere are a few ways to print out elements from a list generated from range() * list comprehension ([function(i) for i in LIST]) * directly listing out (list(LIST)) * for loop, more tedious and requires a placeholder to be created first.\n# directly listing out\nlist(range(0, 10, 2))\n\n# list comprehension\n[i for i in range(0, 10, 2)] # omit the function\n\n# for loop\nlst = []\nfor i in range(0, 10, 2):\n    lst.append(i)\nDistinguish list and array, the way they are created. range() is built-in, and produces a list. np.arange() is from numpy, and produces a numpy array. The arguments are the same: np.arange(start, end, step)\nimport numpy as np\nnp.arange(3)\nnp.arange(0, 10, 2)\nOther useful functions for array:\n# np.linspace(start, end, nelements)\nnp.linspace(0, 1, 5) # 0, 0.25, 0.5, 0.75, 1\n\n# repeat the same values\nnp.zeros(10)\nnp.ones(5)\n\n\nGenerate random number\n\nUniform (between 0, 1): np.random.random((nrow, ncol))\nNormal: np.random.normal(mu, sd, (nrow, ncol))\nRandom integer: np.random.randint(0, 10, (nrow, ncol))"
+  },
+  {
+    "objectID": "programming/py_numpy.html#manipulation",
+    "href": "programming/py_numpy.html#manipulation",
+    "title": "NumPy cheatsheet",
+    "section": "Manipulation",
+    "text": "Manipulation"
+  },
+  {
+    "objectID": "programming/py_numpy.html#computation",
+    "href": "programming/py_numpy.html#computation",
+    "title": "NumPy cheatsheet",
+    "section": "Computation",
+    "text": "Computation\nAxis: The axis is quite convenient: axis = 0 conducts column-wise computations, and axis = 1 is row-wise. This needs to be distinguished with R where the first axis is row (apply(matrix, 1, function) does operation per row)."
   }
 ]

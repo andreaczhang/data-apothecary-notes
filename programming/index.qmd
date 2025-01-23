@@ -20,6 +20,7 @@ listing:
       - "py_datastructure.qmd"
       - "py_exceptions.qmd"
       - "py_functional_prog.qmd"
+      - "py_numpy.qmd"
     type: table
     sort: "title"
     filter-ui: false

@@ -1,0 +1,95 @@
+---
+title: "NumPy cheatsheet"
+description: |
+  Refer to the jupyter notebook for rendered code.
+author: "Chi Zhang"
+date: "2025-01-22"
+categories: [Python]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+jupyter: python3
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+> Resources: [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) by Jake VanderPlas
+
+## Basics
+
+### List and array
+
+Create a list with `range()`
+
+```python
+# create a list directly
+[1, 2, 3]
+
+# the following does not print out the lists
+range(3)
+range(0, 10, 2)
+```
+
+There are a few ways to **print out elements** from a list generated from `range()`
+  * list comprehension (`[function(i) for i in LIST]`)
+  * directly listing out (`list(LIST)`)
+  * for loop, more tedious and requires a placeholder to be created first.
+
+
+```python
+# directly listing out
+list(range(0, 10, 2))
+
+# list comprehension
+[i for i in range(0, 10, 2)] # omit the function
+
+# for loop
+lst = []
+for i in range(0, 10, 2):
+    lst.append(i)
+```
+
+Distinguish list and array, the way they are created. `range()` is built-in, and produces a **list**. `np.arange()` is from numpy, and produces a **numpy array**. The arguments are the same: `np.arange(start, end, step)`
+
+```python
+import numpy as np
+np.arange(3)
+np.arange(0, 10, 2)
+```
+
+Other useful functions for array:
+
+```python
+# np.linspace(start, end, nelements)
+np.linspace(0, 1, 5) # 0, 0.25, 0.5, 0.75, 1
+
+# repeat the same values
+np.zeros(10)
+np.ones(5)
+```
+
+
+### Generate random number
+
+* Uniform (between 0, 1): `np.random.random((nrow, ncol))`
+* Normal: `np.random.normal(mu, sd, (nrow, ncol))`
+* Random integer: `np.random.randint(0, 10, (nrow, ncol))`
+
+
+
+
+## Manipulation
+
+
+## Computation 
+
+**Axis**: The axis is quite convenient: `axis = 0` conducts column-wise computations, and `axis = 1` is row-wise. This needs to be distinguished with R where the first axis is row (`apply(matrix, 1, function)` does operation per row).
+
+
+
+
