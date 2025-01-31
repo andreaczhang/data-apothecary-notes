@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2025-01-22">
 <meta name="description" content="Refer to the jupyter notebook for rendered code.">
 
-<title>Data Apothecary’s Notes - NumPy cheatsheet</title>
+<title>Data Apothecary’s Notes - Cheatsheet: NumPy, Pandas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -167,13 +170,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics">Basics</a>
+  <li><a href="#generate-data" id="toc-generate-data" class="nav-link active" data-scroll-target="#generate-data">Generate data</a>
   <ul class="collapse">
-  <li><a href="#list-and-array" id="toc-list-and-array" class="nav-link" data-scroll-target="#list-and-array">List and array</a></li>
-  <li><a href="#generate-random-number" id="toc-generate-random-number" class="nav-link" data-scroll-target="#generate-random-number">Generate random number</a></li>
+  <li><a href="#list-sequence" id="toc-list-sequence" class="nav-link" data-scroll-target="#list-sequence">List sequence</a></li>
+  <li><a href="#np.array-sequences-with-np.arange" id="toc-np.array-sequences-with-np.arange" class="nav-link" data-scroll-target="#np.array-sequences-with-np.arange">np.array, sequences with <code>np.arange()</code></a></li>
+  <li><a href="#random-number-np.random" id="toc-random-number-np.random" class="nav-link" data-scroll-target="#random-number-np.random">Random number <code>np.random</code></a></li>
+  <li><a href="#pandas-series" id="toc-pandas-series" class="nav-link" data-scroll-target="#pandas-series">Pandas Series</a></li>
   </ul></li>
-  <li><a href="#manipulation" id="toc-manipulation" class="nav-link" data-scroll-target="#manipulation">Manipulation</a></li>
+  <li><a href="#common-attributes" id="toc-common-attributes" class="nav-link" data-scroll-target="#common-attributes">Common attributes</a></li>
   <li><a href="#computation" id="toc-computation" class="nav-link" data-scroll-target="#computation">Computation</a></li>
+  <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection">Selection</a>
+  <ul class="collapse">
+  <li><a href="#numpy-array" id="toc-numpy-array" class="nav-link" data-scroll-target="#numpy-array">Numpy array</a></li>
+  <li><a href="#pandas-series-1" id="toc-pandas-series-1" class="nav-link" data-scroll-target="#pandas-series-1">Pandas Series</a></li>
+  </ul></li>
+  <li><a href="#pandas-dataframe" id="toc-pandas-dataframe" class="nav-link" data-scroll-target="#pandas-dataframe">Pandas DataFrame</a>
+  <ul class="collapse">
+  <li><a href="#create-a-dataframe" id="toc-create-a-dataframe" class="nav-link" data-scroll-target="#create-a-dataframe">Create a dataframe</a></li>
+  <li><a href="#selection-2" id="toc-selection-2" class="nav-link" data-scroll-target="#selection-2">Selection</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -182,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">NumPy cheatsheet</h1>
+<h1 class="title">Cheatsheet: NumPy, Pandas</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Python</div>
   </div>
@@ -222,10 +237,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Resources: <a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by Jake VanderPlas</p>
 </blockquote>
-<section id="basics" class="level2">
-<h2 class="anchored" data-anchor-id="basics">Basics</h2>
-<section id="list-and-array" class="level3">
-<h3 class="anchored" data-anchor-id="list-and-array">List and array</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Content for <strong>Pandas DataFrame</strong> are in a separate section as it is a very big topic. The data structures here are</p>
+<ul>
+<li>Lists</li>
+<li>Numpy Array (1D, higher-D)</li>
+<li>Pandas Series</li>
+</ul>
+</div>
+</div>
+<section id="generate-data" class="level2">
+<h2 class="anchored" data-anchor-id="generate-data">Generate data</h2>
+<section id="list-sequence" class="level3">
+<h3 class="anchored" data-anchor-id="list-sequence">List sequence</h3>
 <p>Create a list with <code>range()</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a list directly</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
@@ -244,11 +277,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>lst <span class="op">=</span> []</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>):</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    lst.append(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="np.array-sequences-with-np.arange" class="level3">
+<h3 class="anchored" data-anchor-id="np.array-sequences-with-np.arange">np.array, sequences with <code>np.arange()</code></h3>
 <p>Distinguish list and array, the way they are created. <code>range()</code> is built-in, and produces a <strong>list</strong>. <code>np.arange()</code> is from numpy, and produces a <strong>numpy array</strong>. The arguments are the same: <code>np.arange(start, end, step)</code></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">3</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Other useful functions for array:</p>
+<p>Other useful functions to generate a sequence:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># np.linspace(start, end, nelements)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>) <span class="co"># 0, 0.25, 0.5, 0.75, 1</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -256,23 +292,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>np.zeros(<span class="dv">10</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>np.ones(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="generate-random-number" class="level3">
-<h3 class="anchored" data-anchor-id="generate-random-number">Generate random number</h3>
+<section id="random-number-np.random" class="level3">
+<h3 class="anchored" data-anchor-id="random-number-np.random">Random number <code>np.random</code></h3>
 <ul>
 <li>Uniform (between 0, 1): <code>np.random.random((nrow, ncol))</code></li>
 <li>Normal: <code>np.random.normal(mu, sd, (nrow, ncol))</code></li>
 <li>Random integer: <code>np.random.randint(0, 10, (nrow, ncol))</code></li>
 </ul>
 </section>
+<section id="pandas-series" class="level3">
+<h3 class="anchored" data-anchor-id="pandas-series">Pandas Series</h3>
+<p>A pandas Series is a column variable, rather than a vector. It is similar to a dataframe with one column, hence they have row names (index).</p>
+<p>Inherently Series is an array. Can change the index</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># access value</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data.values</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># customize the index</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>],</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                  index <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>])</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>data2[<span class="st">'a'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Series is also a <strong>dictionary</strong>, so it can be created as such</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="st">'a'</span>: <span class="dv">100</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'b'</span>: <span class="dv">200</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'c'</span>: <span class="dv">300</span>}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> pd.Series(my_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="manipulation" class="level2">
-<h2 class="anchored" data-anchor-id="manipulation">Manipulation</h2>
+</section>
+<section id="common-attributes" class="level2">
+<h2 class="anchored" data-anchor-id="common-attributes">Common attributes</h2>
+<p>That can be accessed by calling <code>obj.size</code>, <code>obj.value</code> etc Size, dimension</p>
+<p>.value</p>
+<p>.index</p>
+<p>for dataframe, .column</p>
 </section>
 <section id="computation" class="level2">
 <h2 class="anchored" data-anchor-id="computation">Computation</h2>
 <p><strong>Axis</strong>: The axis is quite convenient: <code>axis = 0</code> conducts column-wise computations, and <code>axis = 1</code> is row-wise. This needs to be distinguished with R where the first axis is row (<code>apply(matrix, 1, function)</code> does operation per row).</p>
+</section>
+<section id="selection" class="level2">
+<h2 class="anchored" data-anchor-id="selection">Selection</h2>
+<p>Generally counting starts from 0, access the index with square brackets.</p>
+<ul>
+<li>indexing: generally refer to column</li>
+<li><strong>slicing</strong>: refer to row</li>
+<li>concatenate and splitting</li>
+</ul>
+<section id="numpy-array" class="level3">
+<h3 class="anchored" data-anchor-id="numpy-array">Numpy array</h3>
+<section id="selection-1" class="level4">
+<h4 class="anchored" data-anchor-id="selection-1">selection</h4>
+<p>1-D array</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>] <span class="co"># first</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x[<span class="op">-</span><span class="dv">1</span>] <span class="co"># last</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">4</span>] <span class="co"># slicing</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x[::<span class="dv">2</span>] <span class="co"># every other element</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x[::<span class="op">-</span><span class="dv">1</span>] <span class="co"># reversing the array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Higher-D array</p>
+<div id="c14beeb5" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.RandomState(<span class="dv">42</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> rng.randint(<span class="dv">0</span>, <span class="dv">10</span>, (<span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">0</span>, <span class="dv">0</span>]) <span class="co"># rowid, colid</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">0</span>, :]) <span class="co"># entire row: slicing</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">0</span>]) <span class="co"># entire row</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[:<span class="dv">2</span>, :<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[6 3 7 4]
+ [6 9 2 6]
+ [7 4 3 7]]
+6
+[6 3 7 4]
+[6 3 7 4]
+[[6 3 7]
+ [6 9 2]]</code></pre>
+</div>
+</div>
+</section>
+<section id="indexing" class="level4">
+<h4 class="anchored" data-anchor-id="indexing">Indexing</h4>
+<p>Always pay attention to where the index starts, typically 0.</p>
+<div id="816064d5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">10</span>) <span class="co"># sequence from 1 to 10</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ind <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">2</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x[ind]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array([3, 7, 2])</code></pre>
+</div>
+</div>
+</section>
+<section id="concatenate-and-splitting" class="level4">
+<h4 class="anchored" data-anchor-id="concatenate-and-splitting">concatenate and splitting</h4>
+<p>1-D arrays</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>np.concatenate([x, y]) <span class="co"># the square brackets remains</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Spliting</p>
+<div id="ec95b4fc" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x1, x2, x3 <span class="op">=</span> np.split(x, [<span class="dv">2</span>, <span class="dv">4</span>])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x1, x2, x3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0 1] [2 3] [4 5 6 7 8 9]</code></pre>
+</div>
+</div>
+<p>Higher-D arrays</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]])</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># concatenate, by default is axis=0         </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>np.concatenate([grid, grid])</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># by column, result is 4 by 3</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>np.concatenate([grid, grid], axis <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># by row, result is 2 by 6</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>np.concatenate([grid, grid], axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># vstack, hstack</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>np.vstack([x, grid])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="pandas-series-1" class="level3">
+<h3 class="anchored" data-anchor-id="pandas-series-1">Pandas Series</h3>
+<section id="indexing-1" class="level4">
+<h4 class="anchored" data-anchor-id="indexing-1">Indexing</h4>
+<p>Pandas indices are customizable. It is useful to check them. <code>data.index</code></p>
+<p>If a data has explicit index, can also access the element with index names</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># it is like a 1-d array</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>],</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                  index <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>data2[<span class="st">'a'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="pandas-dataframe" class="level1">
+<h1>Pandas DataFrame</h1>
+<section id="create-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-dataframe">Create a dataframe</h3>
+<p>There are multiple ways to do it:</p>
+<ul>
+<li><code>pd.Series</code></li>
+<li>dictionary</li>
+<li>2-d array</li>
+</ul>
+<p>Create a dataframe by <strong>combining Series</strong></p>
+<div id="b0c8d0ed" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define population</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>population_dict <span class="op">=</span> {<span class="st">'California'</span>: <span class="dv">38332521</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Texas'</span>: <span class="dv">26448193</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'New York'</span>: <span class="dv">19651127</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Florida'</span>: <span class="dv">19552860</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Illinois'</span>: <span class="dv">12882135</span>}</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> pd.Series(population_dict)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># define area</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>area_dict <span class="op">=</span> {<span class="st">'California'</span>: <span class="dv">423967</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>             <span class="st">'Texas'</span>: <span class="dv">695662</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>             <span class="st">'New York'</span>: <span class="dv">141297</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>             <span class="st">'Florida'</span>: <span class="dv">170312</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>             <span class="st">'Illinois'</span>: <span class="dv">149995</span>}</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> pd.Series(area_dict)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># now combine these two</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'population'</span>: population,</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'area'</span>: area</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">area</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">California</td>
+<td>38332521</td>
+<td>423967</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Texas</td>
+<td>26448193</td>
+<td>695662</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">New York</td>
+<td>19651127</td>
+<td>141297</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Florida</td>
+<td>19552860</td>
+<td>170312</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Illinois</td>
+<td>12882135</td>
+<td>149995</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Create a df from dictionary</p>
+</section>
+<section id="selection-2" class="level3">
+<h3 class="anchored" data-anchor-id="selection-2">Selection</h3>
+<ul>
+<li>rownames: index</li>
+<li>colnames: column</li>
+<li>select columns</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>states.index <span class="co"># rownames (index)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>states.columns <span class="co"># colnames</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>states[<span class="st">'area'</span>] <span class="co"># select column by name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->

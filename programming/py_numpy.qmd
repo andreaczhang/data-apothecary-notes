@@ -1,5 +1,5 @@
 ---
-title: "NumPy cheatsheet"
+title: "Cheatsheet: NumPy, Pandas"
 description: |
   Refer to the jupyter notebook for rendered code.
 author: "Chi Zhang"
@@ -20,9 +20,20 @@ format:
 
 > Resources: [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) by Jake VanderPlas
 
-## Basics
+::: {.callout-note}
 
-### List and array
+Content for **Pandas DataFrame** are in a separate section as it is a very big topic. The data structures here are 
+
+* Lists
+* Numpy Array (1D, higher-D)
+* Pandas Series
+
+:::
+
+
+## Generate data
+
+### List sequence 
 
 Create a list with `range()`
 
@@ -54,6 +65,9 @@ for i in range(0, 10, 2):
     lst.append(i)
 ```
 
+
+### np.array, sequences with `np.arange()`
+
 Distinguish list and array, the way they are created. `range()` is built-in, and produces a **list**. `np.arange()` is from numpy, and produces a **numpy array**. The arguments are the same: `np.arange(start, end, step)`
 
 ```python
@@ -62,7 +76,7 @@ np.arange(3)
 np.arange(0, 10, 2)
 ```
 
-Other useful functions for array:
+Other useful functions to generate a sequence:
 
 ```python
 # np.linspace(start, end, nelements)
@@ -74,21 +88,234 @@ np.ones(5)
 ```
 
 
-### Generate random number
+### Random number `np.random`
 
 * Uniform (between 0, 1): `np.random.random((nrow, ncol))`
 * Normal: `np.random.normal(mu, sd, (nrow, ncol))`
 * Random integer: `np.random.randint(0, 10, (nrow, ncol))`
 
 
+### Pandas Series
+
+A pandas Series is a column variable, rather than a vector. It is similar to a dataframe with one column, hence they have row names (index).
+
+Inherently Series is an array. Can change the index
+
+```python
+data = pd.Series([0.25, 0.5, 0.75, 1.0])
+# access value
+data.values
+
+# customize the index
+data2 = pd.Series([0.25, 0.5, 0.75, 1.0],
+                  index = ['a', 'b', 'c', 'd'])
+data2['a']
+```
+
+Series is also a **dictionary**, so it can be created as such
+
+```python
+my_dict = {'a': 100,
+           'b': 200,
+           'c': 300}
+my_dict = pd.Series(my_dict)
+```
 
 
-## Manipulation
+## Common attributes
 
+That can be accessed by calling `obj.size`, `obj.value` etc
+Size, dimension
+
+.value
+
+.index
+
+for dataframe, .column
 
 ## Computation 
 
 **Axis**: The axis is quite convenient: `axis = 0` conducts column-wise computations, and `axis = 1` is row-wise. This needs to be distinguished with R where the first axis is row (`apply(matrix, 1, function)` does operation per row).
+
+
+
+
+## Selection
+
+Generally counting starts from 0, access the index with square brackets.
+
+* indexing: generally refer to column
+* **slicing**: refer to row
+* concatenate and splitting
+
+
+
+
+
+
+### Numpy array
+
+#### selection
+
+1-D array
+
+```python
+x = np.array([1,2,3,4,5])
+x[0] # first
+x[-1] # last
+x[:4] # slicing
+x[::2] # every other element
+x[::-1] # reversing the array
+```
+
+Higher-D array
+
+```{python}
+import numpy as np
+
+rng = np.random.RandomState(42)
+x = rng.randint(0, 10, (3, 4))
+print(x)
+print(x[0, 0]) # rowid, colid
+print(x[0, :]) # entire row: slicing
+print(x[0]) # entire row
+print(x[:2, :3])
+```
+
+
+#### Indexing
+
+Always pay attention to where the index starts, typically 0.
+
+```{python}
+x = np.arange(0, 10) # sequence from 1 to 10
+ind = [3, 7, 2]
+x[ind]
+```
+
+
+
+
+#### concatenate and splitting
+
+1-D arrays
+
+```python
+x = np.array([1,2,3])
+y = np.array([4,5,6])
+np.concatenate([x, y]) # the square brackets remains
+```
+
+Spliting 
+
+```{python}
+x = np.arange(10)
+x1, x2, x3 = np.split(x, [2, 4])
+print(x1, x2, x3)
+```
+
+Higher-D arrays
+
+```python
+grid = np.array([[1,2,3],
+                [4,5,6]])
+
+# concatenate, by default is axis=0         
+np.concatenate([grid, grid])
+
+# by column, result is 4 by 3
+np.concatenate([grid, grid], axis = 0)
+# by row, result is 2 by 6
+np.concatenate([grid, grid], axis = 1)
+
+# vstack, hstack
+np.vstack([x, grid])
+```
+
+
+### Pandas Series
+
+#### Indexing
+
+Pandas indices are customizable. It is useful to check them. `data.index`
+
+If a data has explicit index, can also access the element with index names
+
+```python
+data = pd.Series([0.25, 0.5, 0.75, 1.0])
+# it is like a 1-d array
+data[0]
+
+data2 = pd.Series([0.25, 0.5, 0.75, 1.0],
+                  index = ['a', 'b', 'c', 'd'])
+data2['a']
+```
+
+
+
+
+
+
+
+# Pandas DataFrame
+
+### Create a dataframe
+
+There are multiple ways to do it: 
+
+* `pd.Series`
+* dictionary
+* 2-d array
+
+Create a dataframe by **combining Series**
+
+```{python}
+import pandas as pd
+
+# define population
+population_dict = {'California': 38332521,
+                   'Texas': 26448193,
+                   'New York': 19651127,
+                   'Florida': 19552860,
+                   'Illinois': 12882135}
+population = pd.Series(population_dict)
+
+# define area
+area_dict = {'California': 423967,
+             'Texas': 695662,
+             'New York': 141297,
+             'Florida': 170312,
+             'Illinois': 149995}
+area = pd.Series(area_dict)
+
+# now combine these two
+states = pd.DataFrame({
+    'population': population,
+    'area': area
+})
+states
+```
+
+
+Create a df from dictionary
+
+
+
+### Selection
+
+* rownames: index
+* colnames: column
+* select columns
+
+```python
+states.index # rownames (index)
+states.columns # colnames
+states['area'] # select column by name
+```
+
+
+
+
 
 
 
