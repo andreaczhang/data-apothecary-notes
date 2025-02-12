@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas Series\n\n\n\n\nCheatsheet: Pandas DataFrame\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -3558,7 +3558,7 @@
   {
     "objectID": "programming/py_numpy.html",
     "href": "programming/py_numpy.html",
-    "title": "Cheatsheet: NumPy, Pandas",
+    "title": "Cheatsheet: NumPy, Pandas Series",
     "section": "",
     "text": "Resources: Python Data Science Handbook by Jake VanderPlas"
   },
@@ -3586,7 +3586,7 @@
   {
     "objectID": "programming/py_numpy.html#computation",
     "href": "programming/py_numpy.html#computation",
-    "title": "Cheatsheet: NumPy, Pandas",
+    "title": "Cheatsheet: NumPy, Pandas Series",
     "section": "Computation",
     "text": "Computation\nAxis: The axis is quite convenient: axis = 0 conducts column-wise computations, and axis = 1 is row-wise. This needs to be distinguished with R where the first axis is row (apply(matrix, 1, function) does operation per row)."
   },
@@ -3621,21 +3621,21 @@
   {
     "objectID": "programming/py_numpy.html#selection",
     "href": "programming/py_numpy.html#selection",
-    "title": "Cheatsheet: NumPy, Pandas",
+    "title": "Cheatsheet: NumPy, Pandas Series",
     "section": "Selection",
-    "text": "Selection\nGenerally counting starts from 0, access the index with square brackets.\n\nindexing: generally refer to column\nslicing: refer to row\nconcatenate and splitting\n\n\nNumpy array\n\nselection\n1-D array\nx = np.array([1,2,3,4,5])\nx[0] # first\nx[-1] # last\nx[:4] # slicing\nx[::2] # every other element\nx[::-1] # reversing the array\nHigher-D array\n\nimport numpy as np\n\nrng = np.random.RandomState(42)\nx = rng.randint(0, 10, (3, 4))\nprint(x)\nprint(x[0, 0]) # rowid, colid\nprint(x[0, :]) # entire row: slicing\nprint(x[0]) # entire row\nprint(x[:2, :3])\n\n[[6 3 7 4]\n [6 9 2 6]\n [7 4 3 7]]\n6\n[6 3 7 4]\n[6 3 7 4]\n[[6 3 7]\n [6 9 2]]\n\n\n\n\nIndexing\nAlways pay attention to where the index starts, typically 0.\n\nx = np.arange(0, 10) # sequence from 1 to 10\nind = [3, 7, 2]\nx[ind]\n\narray([3, 7, 2])\n\n\n\n\nconcatenate and splitting\n1-D arrays\nx = np.array([1,2,3])\ny = np.array([4,5,6])\nnp.concatenate([x, y]) # the square brackets remains\nSpliting\n\nx = np.arange(10)\nx1, x2, x3 = np.split(x, [2, 4])\nprint(x1, x2, x3)\n\n[0 1] [2 3] [4 5 6 7 8 9]\n\n\nHigher-D arrays\ngrid = np.array([[1,2,3],\n                [4,5,6]])\n\n# concatenate, by default is axis=0         \nnp.concatenate([grid, grid])\n\n# by column, result is 4 by 3\nnp.concatenate([grid, grid], axis = 0)\n# by row, result is 2 by 6\nnp.concatenate([grid, grid], axis = 1)\n\n# vstack, hstack\nnp.vstack([x, grid])\n\n\n\nPandas Series\n\nIndexing\nPandas indices are customizable. It is useful to check them. data.index\nIf a data has explicit index, can also access the element with index names\ndata = pd.Series([0.25, 0.5, 0.75, 1.0])\n# it is like a 1-d array\ndata[0]\n\ndata2 = pd.Series([0.25, 0.5, 0.75, 1.0],\n                  index = ['a', 'b', 'c', 'd'])\ndata2['a']"
+    "text": "Selection\nGenerally counting starts from 0, access the index with square brackets.\n\nindexing: generally refer to column\nslicing: refer to row\nconcatenate and splitting\n\n\nNumpy array\n\nselection\n1-D array\nx = np.array([1,2,3,4,5])\nx[0] # first\nx[-1] # last\nx[:4] # slicing\nx[::2] # every other element\nx[::-1] # reversing the array\nHigher-D array\n\nimport numpy as np\n\nrng = np.random.RandomState(42)\nx = rng.randint(0, 10, (3, 4))\nprint(x)\nprint(x[0, 0]) # rowid, colid\nprint(x[0, :]) # entire row: slicing\nprint(x[0]) # entire row\nprint(x[:2, :3])\n\n[[6 3 7 4]\n [6 9 2 6]\n [7 4 3 7]]\n6\n[6 3 7 4]\n[6 3 7 4]\n[[6 3 7]\n [6 9 2]]\n\n\n\n\nIndexing\nAlways pay attention to where the index starts, typically 0.\n\nx = np.arange(0, 10) # sequence from 1 to 10\nind = [3, 7, 2]\nx[ind]\n\narray([3, 7, 2])\n\n\n\n\nconcatenate and splitting\n1-D arrays\nx = np.array([1,2,3])\ny = np.array([4,5,6])\nnp.concatenate([x, y]) # the square brackets remains\nSpliting\n\nx = np.arange(10)\nx1, x2, x3 = np.split(x, [2, 4])\nprint(x1, x2, x3)\n\n[0 1] [2 3] [4 5 6 7 8 9]\n\n\nHigher-D arrays\ngrid = np.array([[1,2,3],\n                [4,5,6]])\n\n# concatenate, by default is axis=0         \nnp.concatenate([grid, grid])\n\n# by column, result is 4 by 3\nnp.concatenate([grid, grid], axis = 0)\n# by row, result is 2 by 6\nnp.concatenate([grid, grid], axis = 1)\n\n# vstack, hstack\nnp.vstack([x, grid])\n\n\n\nPandas Series\n\nIndexing\nPandas indices are customizable. It is useful to check them. data.index\nIf a data has explicit index, can also access the element with index names\ndata = pd.Series([0.25, 0.5, 0.75, 1.0])\n# it is like a 1-d array\ndata[0]\n\ndata2 = pd.Series([0.25, 0.5, 0.75, 1.0],\n                  index = ['a', 'b', 'c', 'd'])\ndata2['a']\nDifference between loc and iloc\n\nloc refers to the index user defined, typically starts from 1.\niloc refers to the implicit python index, starting from 0.\n\n\nimport pandas as pd\n\ndata = pd.Series(['a', 'b', 'c'], index = [1,3,5])\n\n# loc\nprint(data.loc[1])\nprint(data.loc[1:3])\n\n# iloc: implicit python style index\nprint(data.iloc[1]) # 2nd\nprint(data.iloc[1:3]) # 2,3rd\n\na\n1    a\n3    b\ndtype: object\nb\n3    b\n5    c\ndtype: object\n\n\n\n\n\nMissing value for array and pd.series\nBoth None and np.nan are null.\nDetect null values with isnull(), notnull()"
   },
   {
     "objectID": "programming/py_numpy.html#generate-data",
     "href": "programming/py_numpy.html#generate-data",
-    "title": "Cheatsheet: NumPy, Pandas",
+    "title": "Cheatsheet: NumPy, Pandas Series",
     "section": "Generate data",
     "text": "Generate data\n\nList sequence\nCreate a list with range()\n# create a list directly\n[1, 2, 3]\n\n# the following does not print out the lists\nrange(3)\nrange(0, 10, 2)\nThere are a few ways to print out elements from a list generated from range() * list comprehension ([function(i) for i in LIST]) * directly listing out (list(LIST)) * for loop, more tedious and requires a placeholder to be created first.\n# directly listing out\nlist(range(0, 10, 2))\n\n# list comprehension\n[i for i in range(0, 10, 2)] # omit the function\n\n# for loop\nlst = []\nfor i in range(0, 10, 2):\n    lst.append(i)\n\n\nnp.array, sequences with np.arange()\nDistinguish list and array, the way they are created. range() is built-in, and produces a list. np.arange() is from numpy, and produces a numpy array. The arguments are the same: np.arange(start, end, step)\nimport numpy as np\nnp.arange(3)\nnp.arange(0, 10, 2)\nOther useful functions to generate a sequence:\n# np.linspace(start, end, nelements)\nnp.linspace(0, 1, 5) # 0, 0.25, 0.5, 0.75, 1\n\n# repeat the same values\nnp.zeros(10)\nnp.ones(5)\n\n\nRandom number np.random\n\nUniform (between 0, 1): np.random.random((nrow, ncol))\nNormal: np.random.normal(mu, sd, (nrow, ncol))\nRandom integer: np.random.randint(0, 10, (nrow, ncol))\n\n\n\nPandas Series\nA pandas Series is a column variable, rather than a vector. It is similar to a dataframe with one column, hence they have row names (index).\nInherently Series is an array. Can change the index\ndata = pd.Series([0.25, 0.5, 0.75, 1.0])\n# access value\ndata.values\n\n# customize the index\ndata2 = pd.Series([0.25, 0.5, 0.75, 1.0],\n                  index = ['a', 'b', 'c', 'd'])\ndata2['a']\nSeries is also a dictionary, so it can be created as such\nmy_dict = {'a': 100,\n           'b': 200,\n           'c': 300}\nmy_dict = pd.Series(my_dict)"
   },
   {
     "objectID": "programming/py_numpy.html#common-attributes",
     "href": "programming/py_numpy.html#common-attributes",
-    "title": "Cheatsheet: NumPy, Pandas",
+    "title": "Cheatsheet: NumPy, Pandas Series",
     "section": "Common attributes",
     "text": "Common attributes\nThat can be accessed by calling obj.size, obj.value etc Size, dimension\n.value\n.index\nfor dataframe, .column"
   },
@@ -3645,5 +3645,33 @@
     "title": "Cheatsheet: NumPy, Pandas",
     "section": "Pandas DataFrame",
     "text": "Pandas DataFrame\n\nimport pandas as pd\n\n# define population\npopulation_dict = {'California': 38332521,\n                   'Texas': 26448193,\n                   'New York': 19651127,\n                   'Florida': 19552860,\n                   'Illinois': 12882135}\npopulation = pd.Series(population_dict)\n\n# define area\narea_dict = {'California': 423967,\n             'Texas': 695662,\n             'New York': 141297,\n             'Florida': 170312,\n             'Illinois': 149995}\narea = pd.Series(area_dict)\n\n# now combine these two\nstates = pd.DataFrame({\n    'population': population,\n    'area': area\n})\nstates\n\n\n\n\n\n\n\n\n\npopulation\narea\n\n\n\n\nCalifornia\n38332521\n423967\n\n\nTexas\n26448193\n695662\n\n\nNew York\n19651127\n141297\n\n\nFlorida\n19552860\n170312\n\n\nIllinois\n12882135\n149995"
+  },
+  {
+    "objectID": "programming/py_pandas.html",
+    "href": "programming/py_pandas.html",
+    "title": "Cheatsheet: Pandas DataFrame",
+    "section": "",
+    "text": "Note\n\n\n\nWhen working with data that need to be transformed, create a copy so that the original data is not affected.\nplanet_sub = planets.copy()[planets['Mass']&gt;15]\n\n\n\n\ndf.head()\ndf.columns\ndf.shape\ndf.describe()\ndf.dtypes\ndf.isnull().sum() # check missing\nUnique values, count frequency\ndf['col'].unique()\ndf['col'].value_counts() # same as R table()\n\n\n\n# rename column\ndf = df.rename(columns = {'old_name': 'new_name'})\nConvert data type, rounding\ndf['num_col'].round(2) # 2 digits\ndf['num_col'].astype(str) # change into string\nMissing value handling\ndf = df.dropna() # drop na\ndf['col'] = df['col'].fillna(value) # impute with known value\ndf['col'] = df['col'].fillna(df['col'].mean()) # mean imputation\n\n\n\ndf_sub = df[['col1', 'col2']]\ndf_filter = df[df['col1'] &lt; 25]\nMight have to reset index afterwards, df_new.reset_index()\n\n\n\nCreate new variable based on another\n# solution 1\nplanet_sub['pre2005'] = 'yes'\nplanet_sub.loc[planet_sub.year &gt; 2005, \"pre2005\"] = \"no\"\n# solution 2\nplanet_sub['pre2005'] = np.where(planet_sub['year']&lt;2005, 'yes', 'no')\nSort\nplanet_sub.sort_values('Mass', ascending=False)\nplanet_sub.sort_values(by = ['orbital_period', 'Mass'], ascending=False)\nTransform with lambda\ndf.transform(lambda x: x-x.mean())\n\n\n\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\n# histogram\nsns.histplot(df['numvar'])\nplt.show()\n\n# boxplot\nsns.boxplot(df['numvar'])\n\n# barplot (categorical, raw data)\nsns.countplot(df['cate_var'])\n\n# scatter (2 var)\nsns.scatterplot(x = 'var1', y = 'var2', hue = 'var3', data = df)"
+  },
+  {
+    "objectID": "programming/py_pandas.html#create-a-dataframe",
+    "href": "programming/py_pandas.html#create-a-dataframe",
+    "title": "Cheatsheet: Pandas DataFrame",
+    "section": "Create a dataframe",
+    "text": "Create a dataframe\nThere are multiple ways to do it:\n\npd.Series\ndictionary\n2-d array\n\n\nCreate a dataframe by combining Series\n\n\nimport pandas as pd\nimport numpy as np\n\n# define population\npopulation_dict = {'California': 38332521,\n                   'Texas': 26448193,\n                   'New York': 19651127,\n                   'Florida': 19552860,\n                   'Illinois': 12882135}\npopulation = pd.Series(population_dict)\n\n# define area\narea_dict = {'California': 423967,\n             'Texas': 695662,\n             'New York': 141297,\n             'Florida': 170312,\n             'Illinois': 149995}\narea = pd.Series(area_dict)\n\n# now combine these two\nstates = pd.DataFrame({\n    'population': population,\n    'area': area\n})\nstates\n\n\n\n\n\n\n\n\n\npopulation\narea\n\n\n\n\nCalifornia\n38332521\n423967\n\n\nTexas\n26448193\n695662\n\n\nNew York\n19651127\n141297\n\n\nFlorida\n19552860\n170312\n\n\nIllinois\n12882135\n149995\n\n\n\n\n\n\n\n\nIt is convenient to create a new column based on other columns,\nstates['density'] = states['population'] / states['area']\n\nCreate a df from dictionary\n\n\npd.DataFrame([{'a': 1, 'b': 2}, {'b': 3, 'c': 4}])\n\n\n\n\n\n\n\n\n\na\nb\nc\n\n\n\n\n0\n1.0\n2\nNaN\n\n\n1\nNaN\n3\n4.0\n\n\n\n\n\n\n\n\n\nCreate a df from a 2-d array\n\n\npd.DataFrame(np.random.rand(3, 2),\n             columns=['foo', 'bar'],\n             index=['a', 'b', 'c'])\n\n\n\n\n\n\n\n\n\nfoo\nbar\n\n\n\n\na\n0.309580\n0.622274\n\n\nb\n0.652878\n0.981840\n\n\nc\n0.820927\n0.434668"
+  },
+  {
+    "objectID": "programming/py_pandas.html#selection",
+    "href": "programming/py_pandas.html#selection",
+    "title": "Cheatsheet: Pandas DataFrame",
+    "section": "Selection",
+    "text": "Selection\n\nrownames: index\ncolnames: column\nselect columns\n\nstates.index # rownames (index)\nstates.columns # colnames\nstates['area'] # select column by name\nSubsetting with loc, iloc\n# implicit index\nstates.iloc[:3, :2]\n\n# explicit index\nstates.iloc[:'Illinois', :'pop']\nCombine filtering\nstates.loc[data.density &gt; 100, ['pop', 'density']]"
+  },
+  {
+    "objectID": "programming/py_pandas.html#visualization-basics",
+    "href": "programming/py_pandas.html#visualization-basics",
+    "title": "Cheatsheet: Pandas DataFrame",
+    "section": "",
+    "text": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\n# histogram\nsns.histplot(df['numvar'])\nplt.show()\n\n# boxplot\nsns.boxplot(df['numvar'])\n\n# barplot (categorical, raw data)\nsns.countplot(df['cate_var'])\n\n# scatter (2 var)\nsns.scatterplot(x = 'var1', y = 'var2', hue = 'var3', data = df)"
   }
 ]

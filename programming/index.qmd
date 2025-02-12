@@ -21,6 +21,7 @@ listing:
       - "py_exceptions.qmd"
       - "py_functional_prog.qmd"
       - "py_numpy.qmd"
+      - "py_pandas.qmd"
     type: table
     sort: "title"
     filter-ui: false

@@ -1,5 +1,5 @@
 ---
-title: "Cheatsheet: NumPy, Pandas"
+title: "Cheatsheet: NumPy, Pandas Series"
 description: |
   Refer to the jupyter notebook for rendered code.
 author: "Chi Zhang"
@@ -251,67 +251,35 @@ data2 = pd.Series([0.25, 0.5, 0.75, 1.0],
 data2['a']
 ```
 
+Difference between `loc` and `iloc`
 
-
-
-
-
-
-# Pandas DataFrame
-
-### Create a dataframe
-
-There are multiple ways to do it: 
-
-* `pd.Series`
-* dictionary
-* 2-d array
-
-Create a dataframe by **combining Series**
+* `loc` refers to the index user defined, typically starts from 1.
+* `iloc` refers to the implicit python index, starting from 0.
 
 ```{python}
 import pandas as pd
 
-# define population
-population_dict = {'California': 38332521,
-                   'Texas': 26448193,
-                   'New York': 19651127,
-                   'Florida': 19552860,
-                   'Illinois': 12882135}
-population = pd.Series(population_dict)
+data = pd.Series(['a', 'b', 'c'], index = [1,3,5])
 
-# define area
-area_dict = {'California': 423967,
-             'Texas': 695662,
-             'New York': 141297,
-             'Florida': 170312,
-             'Illinois': 149995}
-area = pd.Series(area_dict)
+# loc
+print(data.loc[1])
+print(data.loc[1:3])
 
-# now combine these two
-states = pd.DataFrame({
-    'population': population,
-    'area': area
-})
-states
+# iloc: implicit python style index
+print(data.iloc[1]) # 2nd
+print(data.iloc[1:3]) # 2,3rd
 ```
 
 
-Create a df from dictionary
+### Missing value for array and pd.series
+
+Both `None` and `np.nan` are null.
+ 
+Detect null values with `isnull(), notnull()`
 
 
 
-### Selection
 
-* rownames: index
-* colnames: column
-* select columns
-
-```python
-states.index # rownames (index)
-states.columns # colnames
-states['area'] # select column by name
-```
 
 
 
