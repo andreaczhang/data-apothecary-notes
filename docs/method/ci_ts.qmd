@@ -1,0 +1,22 @@
+---
+title: "Causal Inference in Time Series"
+description: |
+    BSTS and Synthetic Control
+author: "Chi Zhang"
+date: "2025-02-19"
+categories: [Observational data]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: false
+---
+
+
+
+
+

@@ -1,5 +1,5 @@
 ---
-title: "Overview: causal inference"
+title: "Effects and Estimands"
 description: |
     Collider, confounder, mediator and M-bias
 author: "Chi Zhang"

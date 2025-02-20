@@ -2377,7 +2377,7 @@
     "href": "method/index.html#causal-inference",
     "title": "Inference and models",
     "section": "Causal inference",
-    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nOverview: causal inference\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization (g-computation) \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\nMatching\n\n\nOverview of matching techniques \n\n\n\n\n\nNo matching items"
+    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nEffects and Estimands\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization (g-computation) \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\nMatching\n\n\nOverview of matching techniques \n\n\n\n\nCausal Inference in Data Science\n\n\nSome topics that need to be reviewed \n\n\n\n\nCausal Inference in Aggregated Time Series\n\n\nBSTS, ITS, Synthetic Control, difference-in-difference \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/index.html#other-topics",
@@ -3673,5 +3673,103 @@
     "title": "Cheatsheet: Pandas DataFrame",
     "section": "",
     "text": "import seaborn as sns\nimport matplotlib.pyplot as plt\n\n# histogram\nsns.histplot(df['numvar'])\nplt.show()\n\n# boxplot\nsns.boxplot(df['numvar'])\n\n# barplot (categorical, raw data)\nsns.countplot(df['cate_var'])\n\n# scatter (2 var)\nsns.scatterplot(x = 'var1', y = 'var2', hue = 'var3', data = df)"
+  },
+  {
+    "objectID": "method/ci_ds.html",
+    "href": "method/ci_ds.html",
+    "title": "Causal Inference in Data Science",
+    "section": "",
+    "text": "Categorise the problem quickly\n\n\n\n\nlevel of aggregation: individual, or aggregated counts/ country level summary statistic\ntime component: temporal intervention of not\ncontrol: is control available, or do we need to construct it\nThese techniques have different use-cases. Focus on the aggregated time series ones first."
+  },
+  {
+    "objectID": "method/effects_estimands.html",
+    "href": "method/effects_estimands.html",
+    "title": "Effects and Estimands",
+    "section": "",
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate"
+  },
+  {
+    "objectID": "method/effects_estimands.html#effects",
+    "href": "method/effects_estimands.html#effects",
+    "title": "Effects and Estimands",
+    "section": "",
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate"
+  },
+  {
+    "objectID": "method/effects_estimands.html#estimands",
+    "href": "method/effects_estimands.html#estimands",
+    "title": "Effects and Estimands",
+    "section": "Estimands",
+    "text": "Estimands\nGreifer, N., & Stuart, E. A. (2021). Choosing the estimand when matching or weighting in observational studies. arXiv preprint arXiv:2106.10577.\n\n\n\n\n\nATE: average treatment effect in the population\n\\(E[Y(1) - Y(0)]\\)\nATT: average treatment effect among the treated\n\\(E[Y(1) - Y(0) | Z = 1]\\)\nATC: average treatment effect among the controls\n\\(E[Y(1) - Y(0) | Z = 0]\\)\nATM: average treatment effect among the matched"
+  },
+  {
+    "objectID": "method/effects_estimands.html#graphical-representation",
+    "href": "method/effects_estimands.html#graphical-representation",
+    "title": "Effects and Estimands",
+    "section": "Graphical representation",
+    "text": "Graphical representation\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1"
+  },
+  {
+    "objectID": "method/effects_estimands.html#selection-bias",
+    "href": "method/effects_estimands.html#selection-bias",
+    "title": "Effects and Estimands",
+    "section": "Selection bias",
+    "text": "Selection bias\nThis bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.\n\nnon-response, missing data\nself-selection, volunteer bias\nselection affected by treatment before study started\n\nA form of lack of exchangeability between the treated and untreated.\nCorrect for selection bias: IP weighting"
+  },
+  {
+    "objectID": "method/ci_ts.html",
+    "href": "method/ci_ts.html",
+    "title": "Causal Inference in Aggregated Time Series",
+    "section": "",
+    "text": "Familiar examples\n\n\n\n\nexcess mortality: we computed it using methods similar to BSTS; it can also be done with SCM\ncommodity prices\nThese methods are different in the way they construct the counterfactuals:"
+  },
+  {
+    "objectID": "method/ci_ts.html#synthetic-control",
+    "href": "method/ci_ts.html#synthetic-control",
+    "title": "Causal Inference in Aggregated Time Series",
+    "section": "Synthetic control",
+    "text": "Synthetic control\nUse-case: when an existing control group does not exist, but it’s possible to find a good synthetic control group.\n\n\n\n\n\n\nNote\n\n\n\n\nHow to find good controls, any technique or metrics? measure correlation?\nIt would appear that no predictors are involved, only the outcome\n\n\n\n\nPublic health example\n\noutcome: deaths\nexposure: severity of covid\ntreated: country A with severe covid outbreak (treatment 1)\ncontrol: neighboring countries (B, C, D) with similar outcome trend (death) pre-2020, but had strict lockdowns hence minimal covid spread (treatment 0)\n\nCreate a synthetic control using B, C, D’s outcomes, could be a weighted average as S.\nCausal estimate: difference in post-2020 outcomes between A and S. This becomes the excess mortality attributed to covid.\n\nIdeal: if can find other region(s) with similar pre-covid trend in death (outcome), but low covid exposure (different treatment).\nNot ideal: if all regions are affected by covid -&gt; impossible to construct synthetic control\nNot ideal: outcomes (deaths) before covid were not similar across regions\nNot ideal: other confounders bring in bias\n\n\n\nCommodity price example\nthis might be better case for SCM, as the trend itself is difficult to model statistically, and no good exogenous variable TS can be used to predict the outcome. so it would be useful to find other similar commodity series to construct the target. However BSTS can also do it; and war/covid does affect all commodities in different ways\n\n\nCompare with propensity score matching\nThe key difference is that SCM works best when working with aggregates (e.g. total number of deaths), and PSM works for individual level data where each subject has a few features to compute the PS.\n\n\n\n\n\n\n\n\n\nSCM\nPSM\n\n\n\n\nTreatment unit\none, or a few aggregated values: country, city, company\nmany units at individual levels: patients, customers\n\n\nControl group construction\nsynthetic control created by weighting multiple control units\nmatches treated units with similar control units based on propensity score\n\n\nTime series\npre-treatment trends used to create control group\nno particular consideration\n\n\nUnobserved confounders\nassumes pre-treatment trends capture all confounders (since it’s aggregated values)\nassumes all confounders are measured and accounted for in the PS model\n\n\nMatching process\noptimisation and others(see above)\nknn etc\n\n\n\n\n\nControl units selection and weight computation\nSelect similar control units (Donor Pool Selection)\n\ncorrelation-based: Pearson, Spearman, Kendall’s Tau, appropriate versions for time series\ndistance-based: Euclidean, DTW, Mahalanobis\nclustering: k-means, hierarchical clustering, DBSCAN\nregression-based: use other series to predict A, select the significant ones\n\nCompute weights\n\nconvex optimization (default SCM): assign non-negative weights that sum to 1, while solving for weights that minimizes the sum of squares difference between treated and weighted control combinations.\npenalised regression: shrinks some weights to zero; or handles correlated series\nBayesian weighting. this provides uncertainty estimates.\nML based"
+  },
+  {
+    "objectID": "method/ci_ts.html#bayesian-structured-time-series",
+    "href": "method/ci_ts.html#bayesian-structured-time-series",
+    "title": "Causal Inference in Time Series",
+    "section": "Bayesian structured time series",
+    "text": "Bayesian structured time series"
+  },
+  {
+    "objectID": "method/ci_ts.html#bayesian-structured-time-series-and-its",
+    "href": "method/ci_ts.html#bayesian-structured-time-series-and-its",
+    "title": "Causal Inference in Aggregated Time Series",
+    "section": "Bayesian structured time series (and ITS)",
+    "text": "Bayesian structured time series (and ITS)\nInterrupted time series analysis can be considered as a simplified version of BSTS."
+  },
+  {
+    "objectID": "method/ci_ts.html#difference-in-difference",
+    "href": "method/ci_ts.html#difference-in-difference",
+    "title": "Causal Inference in Aggregated Time Series",
+    "section": "Difference in difference",
+    "text": "Difference in difference\nParallel trends assumption: without a treatment, the trends in control and treatment groups are the same.\nIt is not designed for TS, but in practice can be used in TS. It can be considered as a two-sample t-test.\nDiD estimate = (post - pre treated) - (post - pre control)\nCompare with others:\n\nDiD and ITS: DiD requires a control, while ITS does not - it compares with its own history.\nDiD and SCM: both require control group. However DiD does not require constructing the synthetic control, SCM does need to construct them."
+  },
+  {
+    "objectID": "method/ci_ts.html#might-move-out-instrument-variable-approach",
+    "href": "method/ci_ts.html#might-move-out-instrument-variable-approach",
+    "title": "Causal Inference in Aggregated Time Series",
+    "section": "(might move out) Instrument variable approach",
+    "text": "(might move out) Instrument variable approach\nDoes not need a control.\nInstead of modeling death using covid as covariate directly, find an instrument IV that does not directly affect outcome (death):\n\npolicy: lockdown policies, mask mandates, mobility restrictions. Use this as an instrument for covid cases, then estimate effect on deaths.\n\nTwo stage least squares\n\ndisease counts = a + delta Z, predict disease D hat\ndeath = beta + gamma x D hat\n\n\n\n\n\n\n\nNote\n\n\n\nThe motivation for using IV is unclear. Does it work on aggregates? or individual counts?"
+  },
+  {
+    "objectID": "method/ci_ds.html#non-ts-usecases-in-business",
+    "href": "method/ci_ds.html#non-ts-usecases-in-business",
+    "title": "Causal Inference in Data Science",
+    "section": "Non-TS usecases in business",
+    "text": "Non-TS usecases in business\nIV, RD, PSM"
+  },
+  {
+    "objectID": "method/ci_individuals.html#instrumental-variables",
+    "href": "method/ci_individuals.html#instrumental-variables",
+    "title": "Causal Inference in healthcare",
+    "section": "Instrumental variables",
+    "text": "Instrumental variables"
   }
 ]
