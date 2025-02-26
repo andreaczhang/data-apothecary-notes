@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas Series\n\n\n\n\nCheatsheet: Pandas DataFrame\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas Series\n\n\n\n\nCheatsheet: Pandas DataFrame\n\n\n\n\nCheatsheet: Scikit-learn\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -3658,7 +3658,7 @@
     "href": "programming/py_pandas.html#create-a-dataframe",
     "title": "Cheatsheet: Pandas DataFrame",
     "section": "Create a dataframe",
-    "text": "Create a dataframe\nThere are multiple ways to do it:\n\npd.Series\ndictionary\n2-d array\n\n\nCreate a dataframe by combining Series\n\n\nimport pandas as pd\nimport numpy as np\n\n# define population\npopulation_dict = {'California': 38332521,\n                   'Texas': 26448193,\n                   'New York': 19651127,\n                   'Florida': 19552860,\n                   'Illinois': 12882135}\npopulation = pd.Series(population_dict)\n\n# define area\narea_dict = {'California': 423967,\n             'Texas': 695662,\n             'New York': 141297,\n             'Florida': 170312,\n             'Illinois': 149995}\narea = pd.Series(area_dict)\n\n# now combine these two\nstates = pd.DataFrame({\n    'population': population,\n    'area': area\n})\nstates\n\n\n\n\n\n\n\n\n\npopulation\narea\n\n\n\n\nCalifornia\n38332521\n423967\n\n\nTexas\n26448193\n695662\n\n\nNew York\n19651127\n141297\n\n\nFlorida\n19552860\n170312\n\n\nIllinois\n12882135\n149995\n\n\n\n\n\n\n\n\nIt is convenient to create a new column based on other columns,\nstates['density'] = states['population'] / states['area']\n\nCreate a df from dictionary\n\n\npd.DataFrame([{'a': 1, 'b': 2}, {'b': 3, 'c': 4}])\n\n\n\n\n\n\n\n\n\na\nb\nc\n\n\n\n\n0\n1.0\n2\nNaN\n\n\n1\nNaN\n3\n4.0\n\n\n\n\n\n\n\n\n\nCreate a df from a 2-d array\n\n\npd.DataFrame(np.random.rand(3, 2),\n             columns=['foo', 'bar'],\n             index=['a', 'b', 'c'])\n\n\n\n\n\n\n\n\n\nfoo\nbar\n\n\n\n\na\n0.309580\n0.622274\n\n\nb\n0.652878\n0.981840\n\n\nc\n0.820927\n0.434668"
+    "text": "Create a dataframe\nThere are multiple ways to do it:\n\npd.Series\ndictionary\n2-d array\ncombining mixed types\n\n\nCreate a dataframe by combining Series\n\nimport pandas as pd\nimport numpy as np\n\n# define population\npopulation_dict = {'California': 38332521,\n                   'Texas': 26448193,\n                   'New York': 19651127,\n                   'Florida': 19552860,\n                   'Illinois': 12882135}\npopulation = pd.Series(population_dict)\n\n# define area\narea_dict = {'California': 423967,\n             'Texas': 695662,\n             'New York': 141297,\n             'Florida': 170312,\n             'Illinois': 149995}\narea = pd.Series(area_dict)\n\n# now combine these two\nstates = pd.DataFrame({\n    'population': population,\n    'area': area\n})\nstates\n\n\n\n\n\n\n\n\n\npopulation\narea\n\n\n\n\nCalifornia\n38332521\n423967\n\n\nTexas\n26448193\n695662\n\n\nNew York\n19651127\n141297\n\n\nFlorida\n19552860\n170312\n\n\nIllinois\n12882135\n149995\n\n\n\n\n\n\n\n\nIt is convenient to create a new column based on other columns,\nstates['density'] = states['population'] / states['area']\n\n\nCreate a df from dictionary\n\npd.DataFrame([{'a': 1, 'b': 2}, {'b': 3, 'c': 4}])\n\n\n\n\n\n\n\n\n\na\nb\nc\n\n\n\n\n0\n1.0\n2\nNaN\n\n\n1\nNaN\n3\n4.0\n\n\n\n\n\n\n\n\n\n\nCreate a df from a 2-d array\n\npd.DataFrame(np.random.rand(3, 2),\n             columns=['foo', 'bar'],\n             index=['a', 'b', 'c'])\n\n\n\n\n\n\n\n\n\nfoo\nbar\n\n\n\n\na\n0.689885\n0.040796\n\n\nb\n0.301851\n0.645022\n\n\nc\n0.628453\n0.774906\n\n\n\n\n\n\n\n\n\n\nMix types combination\nThis is equivalent to R cbind. Assuming that we have the following np.array: X (n by 2), y (n by 1), yhat (n by 1). We want to combine them together for easier visualization.\n\nuse np.column.stack(()) first, then convert into pandas dataframe; This is similar to creating a numeric matrix, then convert it to dataframe in R.\nor, create a dataframe based on one of the variables first; then attach a second variable using df['new_var'] = var2. This is similar to df$new_var &lt;- var2 in R.\n\n# option 1\nmat = np.column_stack((X, y, yhat)) # double bracket\ndf1 = pd.DataFrame(mat, columns = ['x1', 'x2', 'y', 'yhat'])\n\n# option 2\ndf2 = pd.DataFrame(X, columns = ['x1', 'x2'])\ndf2['y'] = y\ndf2['yhat'] = yhat"
   },
   {
     "objectID": "programming/py_pandas.html#selection",
@@ -3771,5 +3771,47 @@
     "title": "Causal Inference in healthcare",
     "section": "Instrumental variables",
     "text": "Instrumental variables"
+  },
+  {
+    "objectID": "programming/py_sklearn.html",
+    "href": "programming/py_sklearn.html",
+    "title": "Cheatsheet: Scikit-learn",
+    "section": "",
+    "text": "import numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns"
+  },
+  {
+    "objectID": "programming/py_sklearn.html#feature-engineering",
+    "href": "programming/py_sklearn.html#feature-engineering",
+    "title": "Cheatsheet: Scikit-learn",
+    "section": "Feature engineering",
+    "text": "Feature engineering\n# split the response and explanatory\nX = data.drop('response', axis = 1)\ny = data['response']\nTrain test split\nfrom sklearn.model_selection import train_test_split\nXtrain, Xtest, y_train, y_test = train_test_split(X, y, random_state = 0)\nCan check the size of the data using Xtrain.shape\nCross validation\nfrom sklearn.model_selection import cross_val_score\ncvs = cross_val_score(model, Xtrain, y_train, cv = 10)"
+  },
+  {
+    "objectID": "programming/py_sklearn.html#fit-ml-model",
+    "href": "programming/py_sklearn.html#fit-ml-model",
+    "title": "Cheatsheet: Scikit-learn",
+    "section": "Fit ML model",
+    "text": "Fit ML model\n\nNaive Bayes\nfrom sklearn.naive_bayes import GaussianNB\nmodel = GaussianNB()\nmodel.fit(Xtrain, y_train)\ny_model = model.predict(Xtest)\nMeasure results\nfrom sklearn.metrics import accuracy_score\naccuracy_score(y_test, y_model)\n# can also try to compare the results manually\nnp.sum(y_test == y_model)"
+  },
+  {
+    "objectID": "programming/py_sklearn.html#fit-ml-model-and-predictions",
+    "href": "programming/py_sklearn.html#fit-ml-model-and-predictions",
+    "title": "Cheatsheet: Scikit-learn",
+    "section": "Fit ML model and predictions",
+    "text": "Fit ML model and predictions\nGeneral workflow\n\nDecision tree and random forest\nThey can work on more than two classes, as well as regression.\nFor decision tree, probability prediction isn’t available.\nfrom sklearn.tree import DecisionTreeClassifier\ntree = DecisionTreeClassifier().fit(Xtrain, ytrain)\n\n# predict class\ntree.predict(Xtest)\nRandom forest\nfrom sklearn.ensemble import RandomForestClassifier\nforest = RandomForestClassifier(max_depth=3, random_state=42)\nforest.fit(Xtrain, ytrain)\n\n# predict class\nforest.predict(Xtest)\n\n# predict probability\nforest.predict_proba(Xtest)\n\n\nNaive Bayes\nfrom sklearn.naive_bayes import GaussianNB\nmodel = GaussianNB()\nmodel.fit(Xtrain, y_train)\n\n# can also be written as model = GaussianNB().fit(X,y)\ny_model = model.predict(Xtest)"
+  },
+  {
+    "objectID": "programming/py_sklearn.html#performance",
+    "href": "programming/py_sklearn.html#performance",
+    "title": "Cheatsheet: Scikit-learn",
+    "section": "Performance",
+    "text": "Performance\n\nClass accuracy\nfrom sklearn.metrics import accuracy_score\naccuracy_score(y_test, y_model)\n# can also try to compare the results manually\nnp.sum(y_test == y_model) \n\n\nProbabilities\nCarry out row-wise summation, see if they sum up to 1\nrf_prob.sum(axis = 1)\n\n\nROC curve"
+  },
+  {
+    "objectID": "programming/py_pandas.html#create-new-columns",
+    "href": "programming/py_pandas.html#create-new-columns",
+    "title": "Cheatsheet: Pandas DataFrame",
+    "section": "Create new columns",
+    "text": "Create new columns\nAfter the above steps (in previous section), we want to also create an indicator based on two of the variables. Can use np.where function.\ndf['mismatch'] = np.where(df['y'] != df['yhat'], 1, 0)"
   }
 ]

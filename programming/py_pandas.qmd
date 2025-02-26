@@ -145,8 +145,9 @@ There are multiple ways to do it:
 * `pd.Series`
 * dictionary
 * 2-d array
+* combining mixed types 
 
-1. Create a dataframe by **combining Series**
+### Create a dataframe by **combining Series**
 
 ```{python}
 import pandas as pd
@@ -182,20 +183,48 @@ It is convenient to create a new column based on other columns,
 states['density'] = states['population'] / states['area']
 ```
 
-2. Create a df from dictionary
+### Create a df from dictionary
 
 ```{python}
 pd.DataFrame([{'a': 1, 'b': 2}, {'b': 3, 'c': 4}])
 ```
 
 
-3. Create a df from a 2-d array
+### Create a df from a 2-d array
 
 ```{python}
 pd.DataFrame(np.random.rand(3, 2),
              columns=['foo', 'bar'],
              index=['a', 'b', 'c'])
 ```
+
+
+### Mix types combination
+
+This is equivalent to R `cbind`. Assuming that we have the following **np.array**: `X` (n by 2), `y` (n by 1), `yhat` (n by 1). We want to combine them together for easier visualization. 
+
+* use `np.column.stack(())` first, then convert into pandas dataframe; This is similar to creating a numeric matrix, then convert it to dataframe in R.
+* or, create a dataframe based on one of the variables first; then attach a second variable using `df['new_var'] = var2`. This is similar to `df$new_var <- var2` in R.
+
+```python
+# option 1
+mat = np.column_stack((X, y, yhat)) # double bracket
+df1 = pd.DataFrame(mat, columns = ['x1', 'x2', 'y', 'yhat'])
+
+# option 2
+df2 = pd.DataFrame(X, columns = ['x1', 'x2'])
+df2['y'] = y
+df2['yhat'] = yhat
+```
+
+## Create new columns
+
+After the above steps (in previous section), we want to also create an indicator based on two of the variables. Can use `np.where` function.
+
+```python
+df['mismatch'] = np.where(df['y'] != df['yhat'], 1, 0)
+```
+
 
 
 ## Selection

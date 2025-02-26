@@ -180,7 +180,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a>
   <ul class="collapse">
-  <li><a href="#create-a-dataframe" id="toc-create-a-dataframe" class="nav-link" data-scroll-target="#create-a-dataframe">Create a dataframe</a></li>
+  <li><a href="#create-a-dataframe" id="toc-create-a-dataframe" class="nav-link" data-scroll-target="#create-a-dataframe">Create a dataframe</a>
+  <ul class="collapse">
+  <li><a href="#create-a-dataframe-by-combining-series" id="toc-create-a-dataframe-by-combining-series" class="nav-link" data-scroll-target="#create-a-dataframe-by-combining-series">Create a dataframe by <strong>combining Series</strong></a></li>
+  <li><a href="#create-a-df-from-dictionary" id="toc-create-a-df-from-dictionary" class="nav-link" data-scroll-target="#create-a-df-from-dictionary">Create a df from dictionary</a></li>
+  <li><a href="#create-a-df-from-a-2-d-array" id="toc-create-a-df-from-a-2-d-array" class="nav-link" data-scroll-target="#create-a-df-from-a-2-d-array">Create a df from a 2-d array</a></li>
+  <li><a href="#mix-types-combination" id="toc-mix-types-combination" class="nav-link" data-scroll-target="#mix-types-combination">Mix types combination</a></li>
+  </ul></li>
+  <li><a href="#create-new-columns" id="toc-create-new-columns" class="nav-link" data-scroll-target="#create-new-columns">Create new columns</a></li>
   <li><a href="#selection" id="toc-selection" class="nav-link" data-scroll-target="#selection">Selection</a></li>
   </ul></li>
   </ul>
@@ -316,11 +323,11 @@ Note
 <li><code>pd.Series</code></li>
 <li>dictionary</li>
 <li>2-d array</li>
+<li>combining mixed types</li>
 </ul>
-<ol type="1">
-<li>Create a dataframe by <strong>combining Series</strong></li>
-</ol>
-<div id="7416d984" class="cell" data-execution_count="1">
+<section id="create-a-dataframe-by-combining-series" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-dataframe-by-combining-series">Create a dataframe by <strong>combining Series</strong></h3>
+<div id="16d79c22" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -394,10 +401,10 @@ Note
 </div>
 <p>It is convenient to create a new column based on other columns,</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>states[<span class="st">'density'</span>] <span class="op">=</span> states[<span class="st">'population'</span>] <span class="op">/</span> states[<span class="st">'area'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Create a df from dictionary</li>
-</ol>
-<div id="f613c380" class="cell" data-execution_count="2">
+</section>
+<section id="create-a-df-from-dictionary" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-df-from-dictionary">Create a df from dictionary</h3>
+<div id="a5a847ef" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([{<span class="st">'a'</span>: <span class="dv">1</span>, <span class="st">'b'</span>: <span class="dv">2</span>}, {<span class="st">'b'</span>: <span class="dv">3</span>, <span class="st">'c'</span>: <span class="dv">4</span>}])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -433,10 +440,10 @@ Note
 </div>
 </div>
 </div>
-<ol start="3" type="1">
-<li>Create a df from a 2-d array</li>
-</ol>
-<div id="6730a56f" class="cell" data-execution_count="3">
+</section>
+<section id="create-a-df-from-a-2-d-array" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-df-from-a-2-d-array">Create a df from a 2-d array</h3>
+<div id="eda924cb" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.random.rand(<span class="dv">3</span>, <span class="dv">2</span>),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">'foo'</span>, <span class="st">'bar'</span>],</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -456,18 +463,18 @@ Note
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
-<td>0.309580</td>
-<td>0.622274</td>
+<td>0.689885</td>
+<td>0.040796</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
-<td>0.652878</td>
-<td>0.981840</td>
+<td>0.301851</td>
+<td>0.645022</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">c</td>
-<td>0.820927</td>
-<td>0.434668</td>
+<td>0.628453</td>
+<td>0.774906</td>
 </tr>
 </tbody>
 </table>
@@ -477,6 +484,28 @@ Note
 </div>
 </div>
 </section>
+<section id="mix-types-combination" class="level3">
+<h3 class="anchored" data-anchor-id="mix-types-combination">Mix types combination</h3>
+<p>This is equivalent to R <code>cbind</code>. Assuming that we have the following <strong>np.array</strong>: <code>X</code> (n by 2), <code>y</code> (n by 1), <code>yhat</code> (n by 1). We want to combine them together for easier visualization.</p>
+<ul>
+<li>use <code>np.column.stack(())</code> first, then convert into pandas dataframe; This is similar to creating a numeric matrix, then convert it to dataframe in R.</li>
+<li>or, create a dataframe based on one of the variables first; then attach a second variable using <code>df['new_var'] = var2</code>. This is similar to <code>df$new_var &lt;- var2</code> in R.</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># option 1</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> np.column_stack((X, y, yhat)) <span class="co"># double bracket</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(mat, columns <span class="op">=</span> [<span class="st">'x1'</span>, <span class="st">'x2'</span>, <span class="st">'y'</span>, <span class="st">'yhat'</span>])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># option 2</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(X, columns <span class="op">=</span> [<span class="st">'x1'</span>, <span class="st">'x2'</span>])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">'y'</span>] <span class="op">=</span> y</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">'yhat'</span>] <span class="op">=</span> yhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="create-new-columns" class="level2">
+<h2 class="anchored" data-anchor-id="create-new-columns">Create new columns</h2>
+<p>After the above steps (in previous section), we want to also create an indicator based on two of the variables. Can use <code>np.where</code> function.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'mismatch'</span>] <span class="op">=</span> np.where(df[<span class="st">'y'</span>] <span class="op">!=</span> df[<span class="st">'yhat'</span>], <span class="dv">1</span>, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="selection" class="level2">
 <h2 class="anchored" data-anchor-id="selection">Selection</h2>
 <ul>
@@ -484,17 +513,17 @@ Note
 <li>colnames: column</li>
 <li>select columns</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>states.index <span class="co"># rownames (index)</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>states.columns <span class="co"># colnames</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>states[<span class="st">'area'</span>] <span class="co"># select column by name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>states.index <span class="co"># rownames (index)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>states.columns <span class="co"># colnames</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>states[<span class="st">'area'</span>] <span class="co"># select column by name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Subsetting with <code>loc, iloc</code></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implicit index</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>states.iloc[:<span class="dv">3</span>, :<span class="dv">2</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># explicit index</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>states.iloc[:<span class="st">'Illinois'</span>, :<span class="st">'pop'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implicit index</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>states.iloc[:<span class="dv">3</span>, :<span class="dv">2</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># explicit index</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>states.iloc[:<span class="st">'Illinois'</span>, :<span class="st">'pop'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Combine filtering</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>states.loc[data.density <span class="op">&gt;</span> <span class="dv">100</span>, [<span class="st">'pop'</span>, <span class="st">'density'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>states.loc[data.density <span class="op">&gt;</span> <span class="dv">100</span>, [<span class="st">'pop'</span>, <span class="st">'density'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
