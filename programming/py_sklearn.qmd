@@ -75,6 +75,38 @@ cvs = cross_val_score(model, Xtrain, y_train, cv = 10)
 
 General workflow
 
+```python
+from sklearn.MODEL import CLASSIFIER
+YOUR_MODEL = CLASSIFIER(PARA)
+YOUR_MODEL.fit(Xtrain, ytrain)
+
+# predict class
+YOUR_MODEL.predict(Xtest)
+```
+
+Common parameters to tune
+
+* `C`: float, default is 1. Inverse of regularization strength. Must be a positive float. Smaller values specify stronger regularization
+* `random_state`: integer
+* `solver`: depends on the classifier. Should check the docs.
+
+
+### Logistic regression
+
+[Scikit-learn doc: Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression)
+
+```python
+from sklearn.linear_model import LogisticRegression
+LR = LogisticRegression(C=C, penalty="l2", solver="saga", max_iter=10000)
+```
+
+
+Usually for two classes, but also common in multiclass problems, such as `OneVsRestClassifier`
+
+
+
+
+
 ### Decision tree and random forest
 
 They can work on more than two classes, as well as regression.
@@ -142,85 +174,4 @@ rf_prob.sum(axis = 1)
 ### ROC curve
 
 
-
-
-# Visualize results 
-
-```{python}
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.datasets import make_blobs
-
-# from code_py.sklearn_1 import Xtrain
-
-X, y = make_blobs(n_samples=300,
-                  centers=4,
-                  random_state=0,
-                  cluster_std=1)
-                  
-# plot the two dimensions of X; color with the class in y
-
-sns.scatterplot(x = X[:,0], y = X[:,1], hue=y, palette=sns.color_palette("hls", 4))
-plt.show();
-```
-
-
-### Decision tree example
-
-```{python}
-# split the data
-from sklearn.model_selection import train_test_split
-Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size=0.3,random_state=42)
-
-# fit a decision tree
-from sklearn.tree import DecisionTreeClassifier
-tree = DecisionTreeClassifier().fit(Xtrain, ytrain)
-
-# make prediction
-ytest_pred = tree.predict(Xtest)
-ytest_pred[0:5]
-```
-
-Now we try to visualise the results. First put the predictions along with the original data, and then add a label for whether there is a mismatch.
-
-```{python}
-# tt = pd.DataFrame(Xtest, columns=['x1', 'x2'])
-# tt['new'] = ytest
-
-mat = np.column_stack((Xtest, ytest, ytest_pred))
-test_df = pd.DataFrame(mat, columns=['x1', 'x2', 'y', 'pred'])
-
-# add a new column where y and pred do not match
-test_df['mismatch'] = np.where(test_df['y'] != test_df['pred'], 1, 0)
-test_df.head()
-```
-
-Now visualize
-
-```{python}
-# visualize based on mismatch status
-sns.relplot(data = test_df,
-            x = 'x1',
-            y = 'x2',
-            col = 'mismatch',
-            hue = 'y',
-            palette=sns.color_palette("hls", 4))
-plt.show();
-```
-
-
-Another way to visualize
-
-
-```{python}
-sns.scatterplot(data = test_df,
-                x = 'x1',
-                y = 'x2',
-                hue = 'y',
-                style = 'mismatch',
-                palette=sns.color_palette("hls", 4))
-plt.show();
-```
 

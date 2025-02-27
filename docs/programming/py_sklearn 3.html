@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -181,6 +184,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#class-accuracy" id="toc-class-accuracy" class="nav-link" data-scroll-target="#class-accuracy">Class accuracy</a></li>
   <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities">Probabilities</a></li>
   <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve">ROC curve</a></li>
+  </ul></li>
+  <li><a href="#multiple-classifiers" id="toc-multiple-classifiers" class="nav-link" data-scroll-target="#multiple-classifiers">Multiple classifiers</a>
+  <ul class="collapse">
+  <li><a href="#set-up-dictionary" id="toc-set-up-dictionary" class="nav-link" data-scroll-target="#set-up-dictionary">Set up dictionary</a></li>
+  <li><a href="#run-the-classifiers" id="toc-run-the-classifiers" class="nav-link" data-scroll-target="#run-the-classifiers">Run the classifiers</a></li>
+  <li><a href="#investigate-results" id="toc-investigate-results" class="nav-link" data-scroll-target="#investigate-results">Investigate results</a></li>
+  <li><a href="#extract-results-with-dictionary-comprehension" id="toc-extract-results-with-dictionary-comprehension" class="nav-link" data-scroll-target="#extract-results-with-dictionary-comprehension">Extract results with dictionary comprehension</a></li>
+  <li><a href="#changing-names-for-the-result-dataframe" id="toc-changing-names-for-the-result-dataframe" class="nav-link" data-scroll-target="#changing-names-for-the-result-dataframe">Changing names for the result dataframe</a></li>
+  <li><a href="#dictionary-comprehension" id="toc-dictionary-comprehension" class="nav-link" data-scroll-target="#dictionary-comprehension">Dictionary comprehension</a></li>
+  </ul></li>
+  <li><a href="#visualize-results" id="toc-visualize-results" class="nav-link" data-scroll-target="#visualize-results">Visualize results</a>
+  <ul class="collapse">
+  <li><a href="#decision-tree-example" id="toc-decision-tree-example" class="nav-link" data-scroll-target="#decision-tree-example">Decision tree example</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -327,6 +343,419 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="roc-curve" class="level3">
 <h3 class="anchored" data-anchor-id="roc-curve">ROC curve</h3>
+</section>
+</section>
+<section id="multiple-classifiers" class="level1">
+<h1>Multiple classifiers</h1>
+<p>This is handy when you want to train multiple classifiers and store the results in a structured way. Similar to <strong>lists</strong> in R.</p>
+<section id="set-up-dictionary" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-dictionary">Set up dictionary</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>classifiers <span class="op">=</span> {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'LR1'</span>: LogisticRegression(multi_class<span class="op">=</span><span class="st">'multinomial'</span>, C<span class="op">=</span><span class="dv">10</span>, penalty<span class="op">=</span><span class="st">'l1'</span>, solver<span class="op">=</span><span class="st">'saga'</span>),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'LR2'</span>: LogisticRegression(multi_class<span class="op">=</span><span class="st">'multinomial'</span>, C<span class="op">=</span><span class="dv">10</span>, penalty<span class="op">=</span><span class="st">'l2'</span>, solver<span class="op">=</span><span class="st">'saga'</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Can check some information on the dictionary, with <code>len(classificers)</code> and <code>.items()</code>, <code>.keys()</code> and <code>values()</code>.</p>
+<p>To access the items inside a dictionary, use <code>dict['key1']</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>classifiers[<span class="st">'LR1'</span>].fit(Xtrain, ytrain)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>classifiers[<span class="st">'LR1'</span>].predict(Xtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Print out the information</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, model <span class="kw">in</span> classifiers.items():</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run-the-classifiers" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-classifiers">Run the classifiers</h3>
+<p>Want to run the classifiers together: set up the result dictionary to hold the outputs of potentially different structures. Remember to save them into the right name!</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># name extracts the key (can be x, i, whatever)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># model refers to the content</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, model <span class="kw">in</span> classifiers.items():</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    model.fit(Xtrain, y_train)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> model.predict(Xtest)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> accuracy_score(y_test, yhat)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># save results. it has to be saved in the proper name</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    results[name] <span class="op">=</span> {</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'model'</span>: name,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'accuracy'</span>: accuracy,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'coefficients'</span>: model.coef_,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'intercept'</span>: model.intercept_,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'yhat'</span>: yhat</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="investigate-results" class="level3">
+<h3 class="anchored" data-anchor-id="investigate-results">Investigate results</h3>
+<p>Say that the results look like the following format.</p>
+<div id="f05bec83" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> {</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'accuracy'</span>: <span class="fl">0.95</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'yhat'</span>: np.array([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>])</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> {</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'accuracy'</span>: <span class="fl">0.97</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'yhat'</span>: np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>])</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># put them together. remember dictionary must have a key, can not simply do {model1, model2}!</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'model1'</span>: model1,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'model2'</span>: model2</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="70">
+<pre><code>{'model1': {'accuracy': 0.95, 'yhat': array([1, 3, 5])},
+ 'model2': {'accuracy': 0.97, 'yhat': array([1, 4, 6])}}</code></pre>
+</div>
+</div>
+<p>Quick glance: <code>results.items()</code>, <code>results.keys()</code></p>
+<div id="238ff5bc" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>results.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="71">
+<pre><code>dict_keys(['model1', 'model2'])</code></pre>
+</div>
+</div>
+<div id="573e1fae" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>results.items()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<pre><code>dict_items([('model1', {'accuracy': 0.95, 'yhat': array([1, 3, 5])}), ('model2', {'accuracy': 0.97, 'yhat': array([1, 4, 6])})])</code></pre>
+</div>
+</div>
+<p>Get all the results from the first key (‘model1’)</p>
+<div id="5a293fb0" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>results[<span class="st">'model1'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
+<pre><code>{'accuracy': 0.95, 'yhat': array([1, 3, 5])}</code></pre>
+</div>
+</div>
+<p>More specific, just get <code>accuracy</code>.</p>
+<div id="f0aa296b" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>results[<span class="st">'model1'</span>][<span class="st">'accuracy'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="74">
+<pre><code>0.95</code></pre>
+</div>
+</div>
+</section>
+<section id="extract-results-with-dictionary-comprehension" class="level3">
+<h3 class="anchored" data-anchor-id="extract-results-with-dictionary-comprehension">Extract results with dictionary comprehension</h3>
+<p>Here we need to use <strong>list comprehension</strong> and <strong>dictionary comprehension</strong>. Recall that with LC, the syntax goes like <code>[&lt;expression&gt; for &lt;item&gt; in &lt;iterable&gt;]</code>.</p>
+<div id="6ccb1e0f" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all the elements</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>[x <span class="cf">for</span> x <span class="kw">in</span> results.values()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="75">
+<pre><code>[{'accuracy': 0.95, 'yhat': array([1, 3, 5])},
+ {'accuracy': 0.97, 'yhat': array([1, 4, 6])}]</code></pre>
+</div>
+</div>
+<p>Combine with dictionary syntax (the expression), to get <code>model_x['accuracy']</code> for both models:</p>
+<div id="8d8af0f4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># certain item only</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>[x[<span class="st">'accuracy'</span>] <span class="cf">for</span> x <span class="kw">in</span> results.values()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+<pre><code>[0.95, 0.97]</code></pre>
+</div>
+</div>
+<p>This can also be presented as a dataframe too.</p>
+<div id="13edc855" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> pd.DataFrame([x[<span class="st">'accuracy'</span>] <span class="cf">for</span> x <span class="kw">in</span> results.values()])</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="co"># can do accuracy.T  to change the layout</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="77">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.95</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.97</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Can do it to arrays too.</p>
+<div id="87a49bf3" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>[x[<span class="st">'yhat'</span>] <span class="cf">for</span> x <span class="kw">in</span> results.values()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>[array([1, 3, 5]), array([1, 4, 6])]</code></pre>
+</div>
+</div>
+</section>
+<section id="changing-names-for-the-result-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="changing-names-for-the-result-dataframe">Changing names for the result dataframe</h3>
+<p>Do it with <code>df.rename(columns = {'old':'new'})</code></p>
+<div id="6794f5de" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>accuracy.rename(columns <span class="op">=</span> {<span class="dv">0</span>:<span class="st">'accuracies'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="79">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">accuracies</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.95</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.97</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dictionary-comprehension" class="level3">
+<h3 class="anchored" data-anchor-id="dictionary-comprehension">Dictionary comprehension</h3>
+<p>Dictionary comprehension is similar to LC, and it’s more handy when keys are involved for later. Note that here we are extracting from <code>results.items()</code> rather than <code>values()</code>.</p>
+<div id="e147db97" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>{key: {<span class="st">'accuracy'</span>: value[<span class="st">'accuracy'</span>]} <span class="cf">for</span> key, value <span class="kw">in</span> results.items()}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>{'model1': {'accuracy': 0.95}, 'model2': {'accuracy': 0.97}}</code></pre>
+</div>
+</div>
+<p>The results here can be put directly into a dataframe.</p>
+<div id="f0053d97" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> {key: {<span class="st">'accuracy'</span>: value[<span class="st">'accuracy'</span>]} <span class="cf">for</span> key, value <span class="kw">in</span> results.items()}</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">model1</th>
+<th data-quarto-table-cell-role="th">model2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">accuracy</td>
+<td>0.95</td>
+<td>0.97</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="a80ab6bf" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>yhats <span class="op">=</span> pd.DataFrame({key: {<span class="st">'yhat'</span>: value[<span class="st">'yhat'</span>]} <span class="cf">for</span> key, value <span class="kw">in</span> results.items()})</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>yhats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="82">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">model1</th>
+<th data-quarto-table-cell-role="th">model2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">yhat</td>
+<td>[1, 3, 5]</td>
+<td>[1, 4, 6]</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualize-results" class="level1">
+<h1>Visualize results</h1>
+<div id="3d586055" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># from code_py.sklearn_1 import Xtrain</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                  centers<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                  random_state<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>                  cluster_std<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>                  </span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the two dimensions of X; color with the class in y</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> X[:,<span class="dv">0</span>], y <span class="op">=</span> X[:,<span class="dv">1</span>], hue<span class="op">=</span>y, palette<span class="op">=</span>sns.color_palette(<span class="st">"hls"</span>, <span class="dv">4</span>))</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="py_sklearn_files/figure-html/cell-15-output-1.png" width="569" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="decision-tree-example" class="level3">
+<h3 class="anchored" data-anchor-id="decision-tree-example">Decision tree example</h3>
+<div id="02d6f805" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split the data</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>Xtrain, Xtest, ytrain, ytest <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.3</span>,random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fit a decision tree</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier().fit(Xtrain, ytrain)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co"># make prediction</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>ytest_pred <span class="op">=</span> tree.predict(Xtest)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>ytest_pred[<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="84">
+<pre><code>array([2, 0, 0, 3, 1])</code></pre>
+</div>
+</div>
+<p>Now we try to visualise the results. First put the predictions along with the original data, and then add a label for whether there is a mismatch.</p>
+<div id="adef12bc" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tt = pd.DataFrame(Xtest, columns=['x1', 'x2'])</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tt['new'] = ytest</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> np.column_stack((Xtest, ytest, ytest_pred))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>test_df <span class="op">=</span> pd.DataFrame(mat, columns<span class="op">=</span>[<span class="st">'x1'</span>, <span class="st">'x2'</span>, <span class="st">'y'</span>, <span class="st">'pred'</span>])</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add a new column where y and pred do not match</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>test_df[<span class="st">'mismatch'</span>] <span class="op">=</span> np.where(test_df[<span class="st">'y'</span>] <span class="op">!=</span> test_df[<span class="st">'pred'</span>], <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>test_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">x1</th>
+<th data-quarto-table-cell-role="th">x2</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">pred</th>
+<th data-quarto-table-cell-role="th">mismatch</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>-1.993750</td>
+<td>1.500976</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1.840706</td>
+<td>3.561622</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-0.170058</td>
+<td>5.276275</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>-0.352996</td>
+<td>9.210424</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.118988</td>
+<td>1.086442</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Now visualize</p>
+<div id="782b09a9" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize based on mismatch status</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>sns.relplot(data <span class="op">=</span> test_df,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="st">'x1'</span>,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="st">'x2'</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>            col <span class="op">=</span> <span class="st">'mismatch'</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>            hue <span class="op">=</span> <span class="st">'y'</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>            palette<span class="op">=</span>sns.color_palette(<span class="st">"hls"</span>, <span class="dv">4</span>))</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="py_sklearn_files/figure-html/cell-18-output-1.png" width="1023" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Another way to visualize</p>
+<div id="3a33ae4e" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> test_df,</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> <span class="st">'x1'</span>,</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> <span class="st">'x2'</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>                hue <span class="op">=</span> <span class="st">'y'</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>                style <span class="op">=</span> <span class="st">'mismatch'</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span>sns.color_palette(<span class="st">"hls"</span>, <span class="dv">4</span>))</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="py_sklearn_files/figure-html/cell-19-output-1.png" width="585" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
