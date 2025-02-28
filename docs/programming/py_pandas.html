@@ -327,7 +327,7 @@ Note
 </ul>
 <section id="create-a-dataframe-by-combining-series" class="level3">
 <h3 class="anchored" data-anchor-id="create-a-dataframe-by-combining-series">Create a dataframe by <strong>combining Series</strong></h3>
-<div id="16d79c22" class="cell" data-execution_count="1">
+<div id="d8ffed3a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -353,7 +353,7 @@ Note
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'area'</span>: area</span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>states</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <div>
 
@@ -404,9 +404,9 @@ Note
 </section>
 <section id="create-a-df-from-dictionary" class="level3">
 <h3 class="anchored" data-anchor-id="create-a-df-from-dictionary">Create a df from dictionary</h3>
-<div id="a5a847ef" class="cell" data-execution_count="2">
+<div id="56affc73" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([{<span class="st">'a'</span>: <span class="dv">1</span>, <span class="st">'b'</span>: <span class="dv">2</span>}, {<span class="st">'b'</span>: <span class="dv">3</span>, <span class="st">'c'</span>: <span class="dv">4</span>}])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <div>
 
@@ -443,11 +443,11 @@ Note
 </section>
 <section id="create-a-df-from-a-2-d-array" class="level3">
 <h3 class="anchored" data-anchor-id="create-a-df-from-a-2-d-array">Create a df from a 2-d array</h3>
-<div id="eda924cb" class="cell" data-execution_count="3">
+<div id="9ac323a2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.random.rand(<span class="dv">3</span>, <span class="dv">2</span>),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">'foo'</span>, <span class="st">'bar'</span>],</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 <div>
 
@@ -463,18 +463,18 @@ Note
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
-<td>0.689885</td>
-<td>0.040796</td>
+<td>0.267536</td>
+<td>0.947471</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
-<td>0.301851</td>
-<td>0.645022</td>
+<td>0.039290</td>
+<td>0.090745</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">c</td>
-<td>0.628453</td>
-<td>0.774906</td>
+<td>0.215675</td>
+<td>0.245663</td>
 </tr>
 </tbody>
 </table>

@@ -129,12 +129,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reporting/index.html"> 
-<span class="menu-text">Reporting</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../programming/index.html"> 
 <span class="menu-text">Programming</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../gc_mle/index.html"> 
+<span class="menu-text">GC MLE</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../random/index.html"> 
+<span class="menu-text">Random tests</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -233,20 +237,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>       id         ab
-    &lt;num&gt;     &lt;char&gt;
- 1:     1 gentamicin
- 2:     1 ampicillin
- 3:     1  cefalotin
- 4:     2 gentamicin
- 5:     2 ampicillin
- 6:     3 ampicillin
- 7:     3  cefalotin
- 8:     3 ampicillin
- 9:     3 ampicillin
-10:     3 gentamicin
-11:     3  cefalotin
-12:     4 ampicillin</code></pre>
+<pre><code>       id           ab
+    &lt;num&gt;       &lt;char&gt;
+ 1:     1   gentamicin
+ 2:     1   ampicillin
+ 3:     1    cefalotin
+ 4:     2 metronidazol
+ 5:     2    cefalotin
+ 6:     3   gentamicin
+ 7:     3 metronidazol
+ 8:     3   gentamicin
+ 9:     3   ampicillin
+10:     3 metronidazol
+11:     3   gentamicin
+12:     4   gentamicin</code></pre>
 </div>
 </div>
 <section id="subsetting" class="level3">
@@ -255,20 +259,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dt[, <span class="sc">!</span><span class="fu">c</span>(<span class="st">'id'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            ab
-        &lt;char&gt;
- 1: gentamicin
- 2: ampicillin
- 3:  cefalotin
- 4: gentamicin
- 5: ampicillin
- 6: ampicillin
- 7:  cefalotin
- 8: ampicillin
- 9: ampicillin
-10: gentamicin
-11:  cefalotin
-12: ampicillin</code></pre>
+<pre><code>              ab
+          &lt;char&gt;
+ 1:   gentamicin
+ 2:   ampicillin
+ 3:    cefalotin
+ 4: metronidazol
+ 5:    cefalotin
+ 6:   gentamicin
+ 7: metronidazol
+ 8:   gentamicin
+ 9:   ampicillin
+10: metronidazol
+11:   gentamicin
+12:   gentamicin</code></pre>
 </div>
 </div>
 </section>

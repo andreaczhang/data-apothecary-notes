@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Apothecary’s Notes - Programming</title>
+<title>Data Apothecary’s Notes - Inference and models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,20 +71,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-ai .list');
+    const listingTargetEl = window.document.querySelector('#listing-settings .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-ai'] = new List('listing-ai', options);
+    window['quarto-listings']['listing-settings'] = new List('listing-settings', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -99,20 +99,20 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-python .list');
+    const listingTargetEl = window.document.querySelector('#listing-design .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-python'] = new List('listing-python', options);
+    window['quarto-listings']['listing-design'] = new List('listing-design', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -127,20 +127,20 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-db-cloud .list');
+    const listingTargetEl = window.document.querySelector('#listing-inference .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-db-cloud'] = new List('listing-db-cloud', options);
+    window['quarto-listings']['listing-inference'] = new List('listing-inference', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -155,20 +155,20 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-r-programming .list');
+    const listingTargetEl = window.document.querySelector('#listing-models .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-r-programming'] = new List('listing-r-programming', options);
+    window['quarto-listings']['listing-models'] = new List('listing-models', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -183,20 +183,20 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-r-pkg .list');
+    const listingTargetEl = window.document.querySelector('#listing-othertopics .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-r-pkg'] = new List('listing-r-pkg', options);
+    window['quarto-listings']['listing-othertopics'] = new List('listing-othertopics', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -211,20 +211,20 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-web .list');
+    const listingTargetEl = window.document.querySelector('#listing-casestudy .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-web'] = new List('listing-web', options);
+    window['quarto-listings']['listing-casestudy'] = new List('listing-casestudy', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -239,20 +239,20 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-setup .list');
+    const listingTargetEl = window.document.querySelector('#listing-interview .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-setup'] = new List('listing-setup', options);
+    window['quarto-listings']['listing-interview'] = new List('listing-interview', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -316,11 +316,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../method/index.html"> 
+    <a class="nav-link active" href="../method/index.html" aria-current="page"> 
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../programming/index.html" aria-current="page"> 
+    <a class="nav-link" href="../programming/index.html"> 
 <span class="menu-text">Programming</span></a>
   </li>  
   <li class="nav-item">
@@ -358,22 +358,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-programming" id="toc-r-programming" class="nav-link active" data-scroll-target="#r-programming">R programming</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  <li><a href="#database-and-cloud" id="toc-database-and-cloud" class="nav-link" data-scroll-target="#database-and-cloud">Database and cloud</a></li>
-  <li><a href="#r-package" id="toc-r-package" class="nav-link" data-scroll-target="#r-package">R package</a></li>
-  <li><a href="#web-and-quarto" id="toc-web-and-quarto" class="nav-link" data-scroll-target="#web-and-quarto">Web and quarto</a></li>
-  <li><a href="#ai" id="toc-ai" class="nav-link" data-scroll-target="#ai">AI</a></li>
-  <li><a href="#setting-things-up" id="toc-setting-things-up" class="nav-link" data-scroll-target="#setting-things-up">Setting things up</a></li>
+  <li><a href="#settings" id="toc-settings" class="nav-link active" data-scroll-target="#settings">Settings</a></li>
+  <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design">Study design</a></li>
+  <li><a href="#causal-inference" id="toc-causal-inference" class="nav-link" data-scroll-target="#causal-inference">Causal inference</a></li>
+  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
+  <li><a href="#other-topics" id="toc-other-topics" class="nav-link" data-scroll-target="#other-topics">Other topics</a></li>
+  <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case studies</a></li>
+  <li><a href="#interview-preparation" id="toc-interview-preparation" class="nav-link" data-scroll-target="#interview-preparation">Interview preparation</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(30)</span></div><div class="category" data-category="Automation">Automation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Bash">Bash <span class="quarto-category-count">(1)</span></div><div class="category" data-category="BigQuery">BigQuery <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data manip">Data manip <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GenAI">GenAI <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Git">Git <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(9)</span></div><div class="category" data-category="Quarto">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RSE">RSE <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Rpkg">Rpkg <span class="quarto-category-count">(7)</span></div><div class="category" data-category="SQL">SQL <span class="quarto-category-count">(3)</span></div><div class="category" data-category="System">System <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Text">Text <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Website">Website <span class="quarto-category-count">(3)</span></div><div class="category" data-category="revealjs">revealjs <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(35)</span></div><div class="category" data-category="Causal inference">Causal inference <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Clinical trial">Clinical trial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Design">Design <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Drugs">Drugs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Inference">Inference <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Missing data">Missing data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Model">Model <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Observational data">Observational data <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Omics data">Omics data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCT">RCT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RWD">RWD <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Regression">Regression <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Sample size">Sample size <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Survival">Survival <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Programming</h1>
+<h1 class="title">Inference and models</h1>
 </div>
 
 
@@ -390,42 +390,60 @@ window.Quarto = {
 </header>
 
 
-<p>This page hosts study notes on programming.</p>
-<section id="r-programming" class="level3">
-<h3 class="anchored" data-anchor-id="r-programming">R programming</h3>
-<div id="listing-r-programming" class="quarto-listing quarto-listing-container-table">
+<section id="settings" class="level2">
+<h2 class="anchored" data-anchor-id="settings">Settings</h2>
+<p>Different settings to apply methods.</p>
+<div id="listing-settings" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
 Title
 </th>
+<th>
+Description
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Data manip" data-listing-date-sort="1713564000000" data-listing-file-modified-sort="1740742194989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="120" data-listing-title-sort="Data manipulation with data.table" data-listing-filename-sort="df_manipulation.qmd">
+<tr data-index="0" data-categories="Observational data" data-listing-date-sort="1693778400000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="517" data-listing-title-sort="Real-world Data, Real-world Evidence" data-listing-filename-sort="rwd_rwe.qmd">
 <td>
-<a href="../programming/df_manipulation.html" class="title listing-title">Data manipulation with data.table</a>
+<a href="../method/rwd_rwe.html" class="title listing-title">Real-world Data, Real-world Evidence</a>
+</td>
+<td>
+<span class="listing-description">RWD, RWE </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1740741687113" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Error handling in R" data-listing-filename-sort="r_error_handling.qmd">
+<tr data-index="1" data-categories="Omics data" data-listing-date-sort="1704236400000" data-listing-file-modified-sort="1713078154246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="302" data-listing-title-sort="Genomics in Drug Discovery" data-listing-filename-sort="genomics.qmd">
 <td>
-<a href="../programming/r_error_handling.html" class="title listing-title">Error handling in R</a>
+<a href="../method/genomics.html" class="title listing-title">Genomics in Drug Discovery</a>
+</td>
+<td>
+<span class="listing-description">Use of machine learning techniques </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1696543200000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="186" data-listing-title-sort="Functions" data-listing-filename-sort="r_functions.qmd">
+<tr data-index="2" data-categories="Drugs" data-listing-date-sort="1708470000000" data-listing-file-modified-sort="1713078154244" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="267" data-listing-title-sort="Antibiotics" data-listing-filename-sort="antibiotics.qmd">
 <td>
-<a href="../programming/r_functions.html" class="title listing-title">Functions</a>
+<a href="../method/antibiotics.html" class="title listing-title">Antibiotics</a>
+</td>
+<td>
+<span class="listing-description">Background of antimicrobial drugs and resistance </span>
 </td>
 </tr>
-<tr data-index="3" data-categories="RSE,Rpkg" data-listing-date-sort="1677106800000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="843" data-listing-title-sort="OOP in R: S3" data-listing-filename-sort="r_roop.qmd">
+<tr data-index="3" data-categories="RWD" data-listing-date-sort="1711321200000" data-listing-file-modified-sort="1713078154248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="457" data-listing-title-sort="RWD EHR Vendor Engagement" data-listing-filename-sort="rwd_vendor_engagement.qmd">
 <td>
-<a href="../programming/r_roop.html" class="title listing-title">OOP in R: S3</a>
+<a href="../method/rwd_vendor_engagement.html" class="title listing-title">RWD EHR Vendor Engagement</a>
+</td>
+<td>
+<span class="listing-description">Overview of vendor engagement </span>
 </td>
 </tr>
-<tr data-index="4" data-categories="Text" data-listing-date-sort="1713477600000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27" data-listing-title-sort="Processing text and characters" data-listing-filename-sort="text.qmd">
+<tr data-index="4" data-listing-date-sort="1715896800000" data-listing-file-modified-sort="1715940324247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="452" data-listing-title-sort="Nutritional Epidemiology" data-listing-filename-sort="nut_epi.qmd">
 <td>
-<a href="../programming/text.html" class="title listing-title">Processing text and characters</a>
+<a href="../method/nut_epi.html" class="title listing-title">Nutritional Epidemiology</a>
+</td>
+<td>
+<span class="listing-description">About Food </span>
 </td>
 </tr>
 </tbody>
@@ -435,51 +453,89 @@ No matching items
 </div>
 </div>
 </section>
-<section id="python" class="level3">
-<h3 class="anchored" data-anchor-id="python">Python</h3>
-<div id="listing-python" class="quarto-listing quarto-listing-container-table">
+<section id="study-design" class="level2">
+<h2 class="anchored" data-anchor-id="study-design">Study design</h2>
+<ul>
+<li>Survey</li>
+<li>Clinical trial design
+<ul>
+<li>Phase I, II, III</li>
+<li>adaptive design</li>
+</ul></li>
+<li>Sample size calculation
+<ul>
+<li>comparing a few groups (visualization TBD)</li>
+<li>regression (LR, GLM)</li>
+<li>more advanced model (e.g.&nbsp;GLMM)</li>
+</ul></li>
+</ul>
+<div id="listing-design" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
 Title
 </th>
+<th>
+Description
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Python" data-listing-date-sort="1737500400000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="682" data-listing-title-sort="Cheatsheet: NumPy, Pandas Series" data-listing-filename-sort="py_numpy.qmd">
+<tr data-index="0" data-categories="RCT" data-listing-date-sort="1685570400000" data-listing-file-modified-sort="1729356241814" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1366" data-listing-title-sort="Clinical trial design: overview" data-listing-filename-sort="rct_design_overview.qmd">
 <td>
-<a href="../programming/py_numpy.html" class="title listing-title">Cheatsheet: NumPy, Pandas Series</a>
+<a href="../method/rct_design_overview.html" class="title listing-title">Clinical trial design: overview</a>
+</td>
+<td>
+<span class="listing-description">Notes related to clinical trial design. </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="Python" data-listing-date-sort="1739314800000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="592" data-listing-title-sort="Cheatsheet: Pandas DataFrame" data-listing-filename-sort="py_pandas.qmd">
+<tr data-index="1" data-categories="Sample size" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1713078154252" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="613" data-listing-title-sort="Sample size (part I)" data-listing-filename-sort="sample_size_1.qmd">
 <td>
-<a href="../programming/py_pandas.html" class="title listing-title">Cheatsheet: Pandas DataFrame</a>
+<a href="../method/sample_size_1.html" class="title listing-title">Sample size (part I)</a>
+</td>
+<td>
+<span class="listing-description">Overview, mean and proportion comparison </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="Python" data-listing-date-sort="1740610800000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="835" data-listing-title-sort="Cheatsheet: Result processing" data-listing-filename-sort="py_result_processing.qmd">
+<tr data-index="2" data-categories="Sample size" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1713078154252" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="237" data-listing-title-sort="Sample size (part II)" data-listing-filename-sort="sample_size_2.qmd">
 <td>
-<a href="../programming/py_result_processing.html" class="title listing-title">Cheatsheet: Result processing</a>
+<a href="../method/sample_size_2.html" class="title listing-title">Sample size (part II)</a>
+</td>
+<td>
+<span class="listing-description">Regression </span>
 </td>
 </tr>
-<tr data-index="3" data-categories="Python" data-listing-date-sort="1740524400000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="247" data-listing-title-sort="Cheatsheet: Scikit-learn" data-listing-filename-sort="py_sklearn.qmd">
+<tr data-index="3" data-categories="Design" data-listing-date-sort="1693000800000" data-listing-file-modified-sort="1727892132412" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="123" data-listing-title-sort="Adaptive design: overview" data-listing-filename-sort="adaptive_design.qmd">
 <td>
-<a href="../programming/py_sklearn.html" class="title listing-title">Cheatsheet: Scikit-learn</a>
+<a href="../method/adaptive_design.html" class="title listing-title">Adaptive design: overview</a>
+</td>
+<td>
+<span class="listing-description">Intro to adaptive design </span>
 </td>
 </tr>
-<tr data-index="4" data-categories="Python" data-listing-date-sort="1733353200000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="401" data-listing-title-sort="Control flow, exceptions" data-listing-filename-sort="py_exceptions.qmd">
+<tr data-index="4" data-categories="RWD" data-listing-date-sort="1713823200000" data-listing-file-modified-sort="1714033572896" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="295" data-listing-title-sort="Survey, stratification" data-listing-filename-sort="survey.qmd">
 <td>
-<a href="../programming/py_exceptions.html" class="title listing-title">Control flow, exceptions</a>
+<a href="../method/survey.html" class="title listing-title">Survey, stratification</a>
+</td>
+<td>
+<span class="listing-description">Survey sampling </span>
 </td>
 </tr>
-<tr data-index="5" data-categories="Python" data-listing-date-sort="1733353200000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="787" data-listing-title-sort="Functions, functional programming" data-listing-filename-sort="py_functional_prog.qmd">
+<tr data-index="5" data-categories="Inference" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1729442433070" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="906" data-listing-title-sort="Study design and statistical inference" data-listing-filename-sort="study_design_statinf.qmd">
 <td>
-<a href="../programming/py_functional_prog.html" class="title listing-title">Functions, functional programming</a>
+<a href="../method/study_design_statinf.html" class="title listing-title">Study design and statistical inference</a>
+</td>
+<td>
+<span class="listing-description">Terminology and examples </span>
 </td>
 </tr>
-<tr data-index="6" data-categories="Python" data-listing-date-sort="1733094000000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="743" data-listing-title-sort="Python data structure" data-listing-filename-sort="py_datastructure.qmd">
+<tr data-index="6" data-categories="Design" data-listing-date-sort="1728165600000" data-listing-file-modified-sort="1728207380027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="128" data-listing-title-sort="Observational study design" data-listing-filename-sort="observational_design.qmd">
 <td>
-<a href="../programming/py_datastructure.html" class="title listing-title">Python data structure</a>
+<a href="../method/observational_design.html" class="title listing-title">Observational study design</a>
+</td>
+<td>
+<span class="listing-description">Cohort, case control and related metrics </span>
 </td>
 </tr>
 </tbody>
@@ -489,31 +545,99 @@ No matching items
 </div>
 </div>
 </section>
-<section id="database-and-cloud" class="level3">
-<h3 class="anchored" data-anchor-id="database-and-cloud">Database and cloud</h3>
-<div id="listing-db-cloud" class="quarto-listing quarto-listing-container-table">
+<section id="causal-inference" class="level2">
+<h2 class="anchored" data-anchor-id="causal-inference">Causal inference</h2>
+<div id="listing-inference" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
 Title
 </th>
+<th>
+Description
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="SQL,BigQuery" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1740742194989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="378" data-listing-title-sort="Google BigQuery and GCP (Google Cloud Platform)" data-listing-filename-sort="db_gcp.qmd">
+<tr data-index="0" data-categories="Clinical trial,Observational data" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1739974213747" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="339" data-listing-title-sort="Effects and Estimands" data-listing-filename-sort="effects_estimands.qmd">
 <td>
-<a href="../programming/db_gcp.html" class="title listing-title">Google BigQuery and GCP (Google Cloud Platform)</a>
+<a href="../method/effects_estimands.html" class="title listing-title">Effects and Estimands</a>
+</td>
+<td>
+<span class="listing-description">Collider, confounder, mediator and M-bias </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="SQL" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1740742194989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="892" data-listing-title-sort="SQL basics" data-listing-filename-sort="db_sql_1.qmd">
+<tr data-index="1" data-categories="Causal inference" data-listing-date-sort="1693692000000" data-listing-file-modified-sort="1724160294247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238" data-listing-title-sort="General techniques" data-listing-filename-sort="weighting.qmd">
 <td>
-<a href="../programming/db_sql_1.html" class="title listing-title">SQL basics</a>
+<a href="../method/weighting.html" class="title listing-title">General techniques</a>
+</td>
+<td>
+<span class="listing-description">(to be integrated) </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="SQL" data-listing-date-sort="1736204400000" data-listing-file-modified-sort="1740742194989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="385" data-listing-title-sort="SQL: my workflow" data-listing-filename-sort="db_sql_myworkflow.qmd">
+<tr data-index="2" data-categories="Causal inference" data-listing-date-sort="1702335600000" data-listing-file-modified-sort="1713078154246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68" data-listing-title-sort="G-Computation" data-listing-filename-sort="g_computation.qmd">
 <td>
-<a href="../programming/db_sql_myworkflow.html" class="title listing-title">SQL: my workflow</a>
+<a href="../method/g_computation.html" class="title listing-title">G-Computation</a>
+</td>
+<td>
+<span class="listing-description">G-Computation </span>
+</td>
+</tr>
+<tr data-index="3" data-categories="Causal inference" data-listing-date-sort="1723932000000" data-listing-file-modified-sort="1724144908614" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="973" data-listing-title-sort="Notes from book: What If (Part 1)" data-listing-filename-sort="book_whatif_part1.qmd">
+<td>
+<a href="../method/book_whatif_part1.html" class="title listing-title">Notes from book: What If (Part 1)</a>
+</td>
+<td>
+<span class="listing-description">Causal inference notes: chapter 1 to 10 </span>
+</td>
+</tr>
+<tr data-index="4" data-categories="Causal inference" data-listing-date-sort="1724104800000" data-listing-file-modified-sort="1724255818869" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="402" data-listing-title-sort="Notes from book: What if (Part 2)" data-listing-filename-sort="book_whatif_part2_ipw_std.qmd">
+<td>
+<a href="../method/book_whatif_part2_ipw_std.html" class="title listing-title">Notes from book: What if (Part 2)</a>
+</td>
+<td>
+<span class="listing-description">IP weighting, standardization (g-computation) </span>
+</td>
+</tr>
+<tr data-index="5" data-categories="Causal inference" data-listing-date-sort="1724104800000" data-listing-file-modified-sort="1724160104968" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Notes from book: What if (Part 3)" data-listing-filename-sort="book_whatif_part3_propensity.qmd">
+<td>
+<a href="../method/book_whatif_part3_propensity.html" class="title listing-title">Notes from book: What if (Part 3)</a>
+</td>
+<td>
+<span class="listing-description">Outcome regression, propensity score </span>
+</td>
+</tr>
+<tr data-index="6" data-categories="Causal inference" data-listing-date-sort="1724104800000" data-listing-file-modified-sort="1724158053274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290" data-listing-title-sort="Notes from book: What if (Part x)" data-listing-filename-sort="book_whatif_part4_iv.qmd">
+<td>
+<a href="../method/book_whatif_part4_iv.html" class="title listing-title">Notes from book: What if (Part x)</a>
+</td>
+<td>
+<span class="listing-description">Instrumental variables </span>
+</td>
+</tr>
+<tr data-index="7" data-categories="Causal inference" data-listing-date-sort="1724364000000" data-listing-file-modified-sort="1724402972804" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="347" data-listing-title-sort="Matching" data-listing-filename-sort="matching.qmd">
+<td>
+<a href="../method/matching.html" class="title listing-title">Matching</a>
+</td>
+<td>
+<span class="listing-description">Overview of matching techniques </span>
+</td>
+</tr>
+<tr data-index="8" data-categories="Observational data" data-listing-date-sort="1739919600000" data-listing-file-modified-sort="1740073041845" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="126" data-listing-title-sort="Causal Inference in Data Science" data-listing-filename-sort="ci_ds.qmd">
+<td>
+<a href="../method/ci_ds.html" class="title listing-title">Causal Inference in Data Science</a>
+</td>
+<td>
+<span class="listing-description">Some topics that need to be reviewed </span>
+</td>
+</tr>
+<tr data-index="9" data-categories="Observational data" data-listing-date-sort="1739919600000" data-listing-file-modified-sort="1740072639769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="767" data-listing-title-sort="Causal Inference in Aggregated Time Series" data-listing-filename-sort="ci_ts.qmd">
+<td>
+<a href="../method/ci_ts.html" class="title listing-title">Causal Inference in Aggregated Time Series</a>
+</td>
+<td>
+<span class="listing-description">BSTS, ITS, Synthetic Control, difference-in-difference </span>
 </td>
 </tr>
 </tbody>
@@ -523,36 +647,43 @@ No matching items
 </div>
 </div>
 </section>
-<section id="r-package" class="level3">
-<h3 class="anchored" data-anchor-id="r-package">R package</h3>
-<div id="listing-r-pkg" class="quarto-listing quarto-listing-container-table">
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models">Models</h2>
+<div id="listing-models" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
 Title
 </th>
+<th>
+Description
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="RSE,Rpkg" data-listing-date-sort="1699311600000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="337" data-listing-title-sort="Dependencies" data-listing-filename-sort="r_pkg_dependency.qmd">
+<tr data-index="0" data-categories="Model" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1729518280422" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1423" data-listing-title-sort="Regression" data-listing-filename-sort="regression.qmd">
 <td>
-<a href="../programming/r_pkg_dependency.html" class="title listing-title">Dependencies</a>
+<a href="../method/regression.html" class="title listing-title">Regression</a>
+</td>
+<td>
+<span class="listing-description">Linear, logistic, Cox proportional hazard </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="RSE,Rpkg" data-listing-date-sort="1696716000000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="252" data-listing-title-sort="My workflow in working with functions in a package" data-listing-filename-sort="r_pkg_functions.qmd">
+<tr data-index="1" data-listing-file-modified-sort="1715334954419" data-listing-reading-time-sort="2" data-listing-word-count-sort="250" data-listing-title-sort="Mixed models for repeted measurements" data-listing-filename-sort="mixed_models.qmd">
 <td>
-<a href="../programming/r_pkg_functions.html" class="title listing-title">My workflow in working with functions in a package</a>
+<a href="../method/mixed_models.html" class="title listing-title">Mixed models for repeted measurements</a>
+</td>
+<td>
+<span class="listing-description">Resources:</span>
 </td>
 </tr>
-<tr data-index="2" data-categories="RSE,Rpkg" data-listing-date-sort="1696197600000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415" data-listing-title-sort="R package Engineering Workflow" data-listing-filename-sort="r_pkg_0_wf.qmd">
+<tr data-index="2" data-listing-file-modified-sort="1728122877436" data-listing-reading-time-sort="3" data-listing-word-count-sort="536" data-listing-title-sort="Survival" data-listing-filename-sort="survival.qmd">
 <td>
-<a href="../programming/r_pkg_0_wf.html" class="title listing-title">R package Engineering Workflow</a>
+<a href="../method/survival.html" class="title listing-title">Survival</a>
 </td>
-</tr>
-<tr data-index="3" data-categories="RSE,Rpkg" data-listing-date-sort="1696284000000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="228" data-listing-title-sort="R package: tests" data-listing-filename-sort="r_pkg_tests.qmd">
 <td>
-<a href="../programming/r_pkg_tests.html" class="title listing-title">R package: tests</a>
+<span class="listing-description">Links</span>
 </td>
 </tr>
 </tbody>
@@ -562,31 +693,44 @@ No matching items
 </div>
 </div>
 </section>
-<section id="web-and-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="web-and-quarto">Web and quarto</h3>
-<div id="listing-web" class="quarto-listing quarto-listing-container-table">
+<section id="other-topics" class="level2">
+<h2 class="anchored" data-anchor-id="other-topics">Other topics</h2>
+<p>Topics on inference in general, missing value handling</p>
+<div id="listing-othertopics" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
 Title
 </th>
+<th>
+Description
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Website,revealjs" data-listing-date-sort="1696370400000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22" data-listing-title-sort="Make slides with `reveal.js`" data-listing-filename-sort="revealjs.qmd">
+<tr data-index="0" data-categories="Missing data" data-listing-date-sort="1707865200000" data-listing-file-modified-sort="1727876229473" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665" data-listing-title-sort="Missing data and imputation" data-listing-filename-sort="imputation_1_overview.qmd">
 <td>
-<a href="../programming/revealjs.html" class="title listing-title">Make slides with <code>reveal.js</code></a>
+<a href="../method/imputation_1_overview.html" class="title listing-title">Missing data and imputation</a>
+</td>
+<td>
+<span class="listing-description">Overview of multiple imputation </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="Website" data-listing-date-sort="1692482400000" data-listing-file-modified-sort="1740742195005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="205" data-listing-title-sort="Web basics" data-listing-filename-sort="web_basics.qmd">
+<tr data-index="1" data-categories="Missing data" data-listing-date-sort="1708642800000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="746" data-listing-title-sort="Multiple imputation in R" data-listing-filename-sort="imputation_2.qmd">
 <td>
-<a href="../programming/web_basics.html" class="title listing-title">Web basics</a>
+<a href="../method/imputation_2.html" class="title listing-title">Multiple imputation in R</a>
+</td>
+<td>
+<span class="listing-description"><code>MICE</code>, regression, PMM </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="Website" data-listing-date-sort="1696111200000" data-listing-file-modified-sort="1740742195006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238" data-listing-title-sort="WebR: Use with an existing quarto website" data-listing-filename-sort="webr.qmd">
+<tr data-index="2" data-categories="Inference" data-listing-date-sort="1708729200000" data-listing-file-modified-sort="1713078154247" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1644" data-listing-title-sort="Intervals" data-listing-filename-sort="intervals.qmd">
 <td>
-<a href="../programming/webr.html" class="title listing-title">WebR: Use with an existing quarto website</a>
+<a href="../method/intervals.html" class="title listing-title">Intervals</a>
+</td>
+<td>
+<span class="listing-description">Confidence, credible and prediction intervals </span>
 </td>
 </tr>
 </tbody>
@@ -596,31 +740,51 @@ No matching items
 </div>
 </div>
 </section>
-<section id="ai" class="level3">
-<h3 class="anchored" data-anchor-id="ai">AI</h3>
-<div id="listing-ai" class="quarto-listing quarto-listing-container-table">
+<section id="case-studies" class="level2">
+<h2 class="anchored" data-anchor-id="case-studies">Case studies</h2>
+<div id="listing-casestudy" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
 Title
 </th>
+<th>
+Description
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="GenAI" data-listing-date-sort="1731279600000" data-listing-file-modified-sort="1740742194989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="48" data-listing-title-sort="ChatGPT in R" data-listing-filename-sort="ai_in_rstudio.qmd">
+<tr data-index="0" data-categories="RWD" data-listing-date-sort="1702854000000" data-listing-file-modified-sort="1727983864626" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1019" data-listing-title-sort="Length of hospital stay: Part I" data-listing-filename-sort="case_study_liggetid_1.qmd">
 <td>
-<a href="../programming/ai_in_rstudio.html" class="title listing-title">ChatGPT in R</a>
+<a href="../method/case_study_liggetid_1.html" class="title listing-title">Length of hospital stay: Part I</a>
+</td>
+<td>
+<span class="listing-description">Part 1: EDA </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="GenAI" data-listing-date-sort="1730156400000" data-listing-file-modified-sort="1740742194988" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154" data-listing-title-sort="Generative AI" data-listing-filename-sort="ai_genai.qmd">
+<tr data-index="1" data-categories="Survival" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1729615910604" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="699" data-listing-title-sort="Length of hospital stay: Part II" data-listing-filename-sort="case_study_liggetid_2_survival.qmd">
 <td>
-<a href="../programming/ai_genai.html" class="title listing-title">Generative AI</a>
+<a href="../method/case_study_liggetid_2_survival.html" class="title listing-title">Length of hospital stay: Part II</a>
+</td>
+<td>
+<span class="listing-description">Part 2: time-to-event analysis </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="GenAI" data-listing-date-sort="1731279600000" data-listing-file-modified-sort="1740742194989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="181" data-listing-title-sort="Google 5-Day Gen AI Intensive" data-listing-filename-sort="ai_google_genai.qmd">
+<tr data-index="2" data-categories="Regression" data-listing-date-sort="1728079200000" data-listing-file-modified-sort="1728157017883" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="101" data-listing-title-sort="Linear regression example: prestige" data-listing-filename-sort="case_study_linearreg.qmd">
 <td>
-<a href="../programming/ai_google_genai.html" class="title listing-title">Google 5-Day Gen AI Intensive</a>
+<a href="../method/case_study_linearreg.html" class="title listing-title">Linear regression example: prestige</a>
+</td>
+<td>
+<span class="listing-description">Linear regression </span>
+</td>
+</tr>
+<tr data-index="3" data-categories="Regression" data-listing-date-sort="1728079200000" data-listing-file-modified-sort="1728159085668" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="136" data-listing-title-sort="Logistic regression example: lung" data-listing-filename-sort="case_study_logistic.qmd">
+<td>
+<a href="../method/case_study_logistic.html" class="title listing-title">Logistic regression example: lung</a>
+</td>
+<td>
+<span class="listing-description">Logistic regression </span>
 </td>
 </tr>
 </tbody>
@@ -630,41 +794,43 @@ No matching items
 </div>
 </div>
 </section>
-<section id="setting-things-up" class="level3">
-<h3 class="anchored" data-anchor-id="setting-things-up">Setting things up</h3>
-<div id="listing-setup" class="quarto-listing quarto-listing-container-table">
+<section id="interview-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="interview-preparation">Interview preparation</h2>
+<div id="listing-interview" class="quarto-listing quarto-listing-container-table">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
 Title
 </th>
+<th>
+Description
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="Automation" data-listing-date-sort="1732143600000" data-listing-file-modified-sort="1740742194989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1121" data-listing-title-sort="Automation with GitHub Action" data-listing-filename-sort="automation.qmd">
+<tr data-index="0" data-categories="RCT" data-listing-date-sort="1727820000000" data-listing-file-modified-sort="1729416668088" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="651" data-listing-title-sort="Interview: clinical trial statistician" data-listing-filename-sort="interview_clinical_trial.qmd">
 <td>
-<a href="../programming/automation.html" class="title listing-title">Automation with GitHub Action</a>
+<a href="../method/interview_clinical_trial.html" class="title listing-title">Interview: clinical trial statistician</a>
+</td>
+<td>
+<span class="listing-description">Knowledge framework </span>
 </td>
 </tr>
-<tr data-index="1" data-categories="System,Bash" data-listing-date-sort="1712008800000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="310" data-listing-title-sort="Install R packages that require compilation" data-listing-filename-sort="install_pkg_compilation.qmd">
+<tr data-index="1" data-categories="Design" data-listing-date-sort="1728165600000" data-listing-file-modified-sort="1728234554348" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1529" data-listing-title-sort="Interview: behavior" data-listing-filename-sort="interview_behavior.qmd">
 <td>
-<a href="../programming/install_pkg_compilation.html" class="title listing-title">Install R packages that require compilation</a>
+<a href="../method/interview_behavior.html" class="title listing-title">Interview: behavior</a>
+</td>
+<td>
+<span class="listing-description">List of questions </span>
 </td>
 </tr>
-<tr data-index="2" data-categories="Python" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="394" data-listing-title-sort="Python set up via `pyenv`" data-listing-filename-sort="py_setup.qmd">
+<tr data-index="2" data-categories="Inference" data-listing-date-sort="1729375200000" data-listing-file-modified-sort="1729521864658" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1834" data-listing-title-sort="Interview: statistics used in my work" data-listing-filename-sort="interview_stat_cases.qmd">
 <td>
-<a href="../programming/py_setup.html" class="title listing-title">Python set up via <code>pyenv</code></a>
+<a href="../method/interview_stat_cases.html" class="title listing-title">Interview: statistics used in my work</a>
 </td>
-</tr>
-<tr data-index="3" data-categories="Python,Quarto" data-listing-date-sort="1732834800000" data-listing-file-modified-sort="1740742195004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="82" data-listing-title-sort="Python set up with Quarto" data-listing-filename-sort="py_quarto.qmd">
 <td>
-<a href="../programming/py_quarto.html" class="title listing-title">Python set up with Quarto</a>
-</td>
-</tr>
-<tr data-index="4" data-categories="Git" data-listing-date-sort="1712008800000" data-listing-file-modified-sort="1740742195003" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="264" data-listing-title-sort="Set up version control" data-listing-filename-sort="git_setup.qmd">
-<td>
-<a href="../programming/git_setup.html" class="title listing-title">Set up version control</a>
+<span class="listing-description">Case studies </span>
 </td>
 </tr>
 </tbody>
