@@ -1,0 +1,95 @@
+---
+title: "Cheatsheet: ML parameters"
+description: |
+  Refer to the jupyter notebook for rendered code.
+author: "Chi Zhang"
+date: "2025-03-03"
+categories: [Python, ML]
+sidebar: false
+code-block-bg: true
+code-block-border-left: true
+jupyter: python3
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: false
+    code-annotations: select
+---
+
+## Classical models
+
+|Model |Key parameters |Selection methods |Syntax |
+|--|--|--|--|
+|Linear regression |`alpha` for Ridge, Lasso |CV, AIC, BIC |`RidgeCV(alphas=[0.1, 1, 10])` |
+|Logistic regression |`C` | CV, AIC, BIC| |
+|Naive Bayes |`alpha` for Multinomial NB |GridSearchCV |`GridSearchCV(MultinomialNB(), param_grid={'alpha': [0.1, 0.5, 1]})` |
+|KNN |`n_neighbors`, `metric` (Euclidean, Manhattan) |CV | `GridSearchCV(KNeighborsClassifier(), param_grid={'n_neighbors': range(1, 50)})`|
+|SVM |`kernel`, `C`, `gamma` |GridSearchCV, RandomSearchCV | |
+|Decision Tree |`max_depth`, `min_samples_split`, `min_samples_leaf` |GridSearchCV, RandomSearchCV |`GridSearchCV(DecisionTreeClassifier(), param_grid={'max_depth': [3, 5, 10]})` |
+|Random forest |`n_estimators`, `max_depth`,`min_samples_leaf` |GridSearchCV, OOB score, feature importance |`RandomForestClassifier(n_estimators=100, oob_score=True)` |
+|Gradient boosting |`learning_rate`, `max_depth`, `n_estimators` |RandomSearchCV, Bayesian Optimization |`GridSearchCV(XGBClassifier(), param_grid={'max_depth': [3, 5, 7], 'learning_rate': [0.01, 0.1]})` |
+
+## Time series
+
+
+|Model |Key parameters |Selection methods |Syntax |
+|--|--|--|--|
+|ARIMA |`(p, d, q)` AR, differencing, MA | ACF/PACF plots, AIC, BIC | |
+|Exponential smoothing |`seasonal`, `trend` |AIC, BIC | |
+
+To be added
+
+
+## Deep learning
+
+MLP is in `sklearn`, the rest are from keras / tensorflow
+
+|Model |Key parameters |Selection methods |Syntax |
+|--|--|--|--|
+|MLP |`hidden_layer_sizes`, `activation`, `learning_rate`, `batch_size` | |`GridSearchCV(MLPClassifier(), param_grid={'hidden_layer_sizes': [(50,), (100,)]})` |
+| | | | |
+
+
+
+# Loss functions
+
+
+Regression models
+
+* MSE: $\frac{1}{n}\sum (y_i - \hat{y_i})^2$
+* MSE + L1: $MSE + \lambda \sum |\beta|$
+* MSE + L2: $MSE + \lambda \sum \beta^2$
+* MSE + (L1, L2): weighted sum of L1 and L2
+
+Classification 
+
+|Model |Loss function |Formula|
+|--|--|--|--|
+|LR | Log loss (binary cross entropy) |$-\frac{1}{n}\sum [y log(\hat{y}) + (1-y) log(1-\hat{y})]$ |
+|SVM | Hinge loss | $\sum max(0, 1-y*\hat{y})$|
+|Decision Tree, RF | Gini impurity  |$1-\sum p_i^2$ |
+| | Entropy| $-\sum p_i log p_i$|
+|KNN | 0-1 loss (misclassification rate) |$L = \frac{1}{n}\sum I(y_i \neq y_i)$ |
+|NB |Log loss | |
+|XGB |Log loss (cross entropy) | $-\sum y_i log \hat{y_i}$ |
+
+
+# Activation functions
+
+
+
+|Activation function |Formula |Range |Pros |Cons | Use cases | 
+|--|--|--|--|--|--|
+|Sigmoid |$\frac{1}{1+e^{-x}}$ |(0,1) | | |Output layer for binary classification |
+|Softmax |$\frac{e_i}{\sum e_j}$ |(0,1)| | |Output layer for multi-class classification |
+|Tanh |$\frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}$ | | | |Hidden layer |
+|ReLU |max(0, x) |$[0, inf)$ |No vanishing gradient issue, efficient | |Hidden layer |
+|Leaky Relu |x if $x>0$, else $\alpha x$ |$(-inf, inf)$ | | | Alternative to Relu for dead neurons|
+|ELU | | | | | |
+|Swish | | | | |Very deep networks |
+
+
+
+

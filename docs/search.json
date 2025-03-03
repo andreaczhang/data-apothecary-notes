@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nError handling in R\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas Series\n\n\n\n\nCheatsheet: Pandas DataFrame\n\n\n\n\nCheatsheet: Result processing\n\n\n\n\nCheatsheet: Scikit-learn\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nAI\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\nRun formulae in loops and handle error\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas Series\n\n\n\n\nCheatsheet: Pandas DataFrame\n\n\n\n\nCheatsheet: Result processing\n\n\n\n\nCheatsheet: Scikit-learn\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nAI/ML\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nCheatsheet: ML parameters\n\n\n\n\nEntropy and cross-entropy loss\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -3848,5 +3848,89 @@
     "title": "Run formulae in loops and handle error",
     "section": "Put together",
     "text": "Put together\n\n# create log \nlog_nosup_male &lt;- file.path(\"/cloud/project/log_nosup_male.log\")\n\n# Open log\nlog_open(log_nosup_male)\n\n\nfor (i in 1:length(fml_nosup_list)) {\n  varname &lt;- var_nosup[i]\n  \n  tryCatch({\n    \n    fml &lt;- fml_nosup_list[i]\n    fml &lt;- as.formula(fml)\n    \n    f.spade(\n      frml.ia = fml, # model for intake amounts,\n      frml.if = \"no.if\", \n      prb = c(25, 50, 75, 95, 97.5)/100,\n      data = d_nosup,\n      min.age = 18,\n      max.age = 80,\n      sex.label = \"male\", \n      seed = 29062020,\n      spade.output.path = \"output_nutrient_nosup\"\n    )\n    \n  }, \n  \n  error=function(e){\n    # print to the log\n    log_print(paste0('Error at variable ', i, ': ', \n                     # mark which variable it is\n                     varname, ' : ',\n                     #also print the error message\n                     conditionMessage(e),'\\n'))\n    # log_print(paste0(\"ERROR :\",conditionMessage(e), \"\\n\"))\n  })\n}\n\n# close log\nlog_close()"
+  },
+  {
+    "objectID": "programming/ml_sklearn.html",
+    "href": "programming/ml_sklearn.html",
+    "title": "Cheatsheet: ML parameters",
+    "section": "",
+    "text": "Model\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nLinear regression\nalpha for Ridge, Lasso\nCV, AIC, BIC\nRidgeCV(alphas=[0.1, 1, 10])\n\n\nLogistic regression\nC\nCV, AIC, BIC\n\n\n\nNaive Bayes\nalpha for Multinomial NB\nGridSearchCV\nGridSearchCV(MultinomialNB(), param_grid={'alpha': [0.1, 0.5, 1]})\n\n\nKNN\nn_neighbors, metric (Euclidean, Manhattan)\nCV\nGridSearchCV(KNeighborsClassifier(), param_grid={'n_neighbors': range(1, 50)})\n\n\nSVM\nkernel, C, gamma\nGridSearchCV, RandomSearchCV\n\n\n\nDecision Tree\nmax_depth, min_samples_split, min_samples_leaf\nGridSearchCV, RandomSearchCV\nGridSearchCV(DecisionTreeClassifier(), param_grid={'max_depth': [3, 5, 10]})\n\n\nRandom forest\nn_estimators, max_depth,min_samples_leaf\nGridSearchCV, OOB score, feature importance\nRandomForestClassifier(n_estimators=100, oob_score=True)\n\n\nGradient boosting\nlearning_rate, max_depth, n_estimators\nRandomSearchCV, Bayesian Optimization\nGridSearchCV(XGBClassifier(), param_grid={'max_depth': [3, 5, 7], 'learning_rate': [0.01, 0.1]})"
+  },
+  {
+    "objectID": "programming/ml_sklearn.html#classical-models",
+    "href": "programming/ml_sklearn.html#classical-models",
+    "title": "Cheatsheet: ML parameters",
+    "section": "",
+    "text": "Model\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nLinear regression\nalpha for Ridge, Lasso\nCV, AIC, BIC\nRidgeCV(alphas=[0.1, 1, 10])\n\n\nLogistic regression\nC\nCV, AIC, BIC\n\n\n\nNaive Bayes\nalpha for Multinomial NB\nGridSearchCV\nGridSearchCV(MultinomialNB(), param_grid={'alpha': [0.1, 0.5, 1]})\n\n\nKNN\nn_neighbors, metric (Euclidean, Manhattan)\nCV\nGridSearchCV(KNeighborsClassifier(), param_grid={'n_neighbors': range(1, 50)})\n\n\nSVM\nkernel, C, gamma\nGridSearchCV, RandomSearchCV\n\n\n\nDecision Tree\nmax_depth, min_samples_split, min_samples_leaf\nGridSearchCV, RandomSearchCV\nGridSearchCV(DecisionTreeClassifier(), param_grid={'max_depth': [3, 5, 10]})\n\n\nRandom forest\nn_estimators, max_depth,min_samples_leaf\nGridSearchCV, OOB score, feature importance\nRandomForestClassifier(n_estimators=100, oob_score=True)\n\n\nGradient boosting\nlearning_rate, max_depth, n_estimators\nRandomSearchCV, Bayesian Optimization\nGridSearchCV(XGBClassifier(), param_grid={'max_depth': [3, 5, 7], 'learning_rate': [0.01, 0.1]})"
+  },
+  {
+    "objectID": "programming/ml_sklearn.html#time-series",
+    "href": "programming/ml_sklearn.html#time-series",
+    "title": "Cheatsheet: ML parameters",
+    "section": "Time series",
+    "text": "Time series\n\n\n\nModel\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nARIMA\n(p, d, q) AR, differencing, MA\nACF/PACF plots, AIC, BIC\n\n\n\nExponential smoothing\nseasonal, trend\nAIC, BIC\n\n\n\n\nTo be added"
+  },
+  {
+    "objectID": "programming/ml_sklearn.html#deep-learning",
+    "href": "programming/ml_sklearn.html#deep-learning",
+    "title": "Cheatsheet: ML parameters",
+    "section": "Deep learning",
+    "text": "Deep learning\nMLP is in sklearn, the rest are from keras / tensorflow\n\n\n\n\n\n\n\n\n\nModel\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nMLP\nhidden_layer_sizes, activation, learning_rate, batch_size\n\nGridSearchCV(MLPClassifier(), param_grid={'hidden_layer_sizes': [(50,), (100,)]})"
+  },
+  {
+    "objectID": "programming/ml_entropy.html",
+    "href": "programming/ml_entropy.html",
+    "title": "Entropy and cross-entropy loss",
+    "section": "",
+    "text": "\\[H(X) = -\\sum p_i log_2 pi\\] * \\(p_i\\) is the proportion of sample in class i\n\ncompute_binary_entropy &lt;- function(p){\n  e = -1*(p*log2(p) + (1-p)*log2(1-p))\n  return(e)\n}\ncompute_binary_entropy(0.01) \n\n[1] 0.08079314\n\ncompute_binary_entropy(0.99)\n\n[1] 0.08079314\n\ncompute_binary_entropy(0.5) # evenly distributed, bad split\n\n[1] 1\n\n\nVisualize\n\npi &lt;- seq(0.01, 0.99, by = 0.01)\nei &lt;- sapply(pi, compute_binary_entropy)\nplot(pi, ei, main = 'Entropy (binary)')"
+  },
+  {
+    "objectID": "programming/ml_entropy.html#entropy",
+    "href": "programming/ml_entropy.html#entropy",
+    "title": "Entropy and cross-entropy loss",
+    "section": "",
+    "text": "\\[H(X) = -\\sum p_i log_2 pi\\] * \\(p_i\\) is the proportion of sample in class i\n\ncompute_binary_entropy &lt;- function(p){\n  e = -1*(p*log2(p) + (1-p)*log2(1-p))\n  return(e)\n}\ncompute_binary_entropy(0.01) \n\n[1] 0.08079314\n\ncompute_binary_entropy(0.99)\n\n[1] 0.08079314\n\ncompute_binary_entropy(0.5) # evenly distributed, bad split\n\n[1] 1\n\n\nVisualize\n\npi &lt;- seq(0.01, 0.99, by = 0.01)\nei &lt;- sapply(pi, compute_binary_entropy)\nplot(pi, ei, main = 'Entropy (binary)')"
+  },
+  {
+    "objectID": "programming/ml_entropy.html#in-decision-tree",
+    "href": "programming/ml_entropy.html#in-decision-tree",
+    "title": "Entropy and cross-entropy loss",
+    "section": "In decision tree",
+    "text": "In decision tree\n\nhigh entropy (close to 1) -&gt; classes are evenly distributed, each having probability of 0.5. High uncertainty, bad split\nlow entropy (close to 0) -&gt; low uncertainty, mostly one class, good split\n\nWhen building a decision tree, we want to reduce entropy and make the nodes purer, rather than having mixed classes in the nodes.\nInformation gain (IG) is defined as\n\\[IG = H(parent) - \\sum (\\frac{N_{child}}{N_{total}} \\times H(child))\\] We select the split where IG is maximised.\n\n\n\nY\nX1\nX2\n\n\n\n\n0\nno\nyes\n\n\n0\nno\nno\n\n\n0\nno\nyes\n\n\n1\nyes\nyes\n\n\n\nWith this example, the original entropy is compute_binary_entropy(1/4) =0.811. Now we try the following two splits:\nX1 * left branch no -&gt; 3 zeros; right branch yes -&gt; 1 yes * entropy for left: 0; entropy for right: 0 (since both are pure) * IG: 0.811 - 0 = 0.811\nX2 * left branch no -&gt; 1 zero; right branch yes -&gt; 2 zeros, 1 yes * entropy for left: 0; entropy for right: compute_binary_entropy(1/3) = 0.918 * compute weighted sum at the split\n\nws &lt;- 1/4 * 0 + 3/4 * compute_binary_entropy(1/3)\nws\n\n[1] 0.6887219\n\n\nInformation gain for this case is 0.811 - 0.689 = 0.122\nNow compare the IG at X1 and X2, it’s clear that X1 is producing a purer node, and hence is a better split."
+  },
+  {
+    "objectID": "programming/ml_entropy.html#cross-entropy-in-classification-models",
+    "href": "programming/ml_entropy.html#cross-entropy-in-classification-models",
+    "title": "Entropy and cross-entropy loss",
+    "section": "Cross entropy in classification models",
+    "text": "Cross entropy in classification models\nCross entropy measures the differences between true labels and predicted probabilities. For \\(p_i\\), \\(q_i\\) being the true class label (0,1) and predicted probability,\n\\[H(p, q) = -\\sum p_i \\text{ log } q_i\\]\nWhen it is a multi-class problem, \\(p_i\\) is 1 for the correct class and 0 otherwise.\nFor a data in class 1, the probability is predicted (to be class 1) are 0.9 and 0.2 respectively by two models. By computing the cross entropy we can see that the one with high probability of being in class 1 (correct) produces lower entropy (0.105) rather than higher (1.60).\n\ncompute_cross_entropy &lt;- function(p, q){\n  e = -1*(p*log(q) + (1-p)*log(1-q))\n  return(e)\n}\ncompute_cross_entropy(p=1, q = 0.9) \n\n[1] 0.1053605\n\ncompute_cross_entropy(p=1, q = 0.2) \n\n[1] 1.609438\n\n\n\npi &lt;- seq(0.01, 0.99, by = 0.01)\ncei &lt;- c()\nfor (i in 1:length(pi)){cei[i] &lt;- compute_cross_entropy(p=1, q=pi[i])}\nplot(pi, cei, main = 'Cross entropy loss')\nabline(v = 0.5, col = 'red')"
+  },
+  {
+    "objectID": "programming/ml_parameters.html",
+    "href": "programming/ml_parameters.html",
+    "title": "Cheatsheet: ML parameters",
+    "section": "",
+    "text": "Model\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nLinear regression\nalpha for Ridge, Lasso\nCV, AIC, BIC\nRidgeCV(alphas=[0.1, 1, 10])\n\n\nLogistic regression\nC\nCV, AIC, BIC\n\n\n\nNaive Bayes\nalpha for Multinomial NB\nGridSearchCV\nGridSearchCV(MultinomialNB(), param_grid={'alpha': [0.1, 0.5, 1]})\n\n\nKNN\nn_neighbors, metric (Euclidean, Manhattan)\nCV\nGridSearchCV(KNeighborsClassifier(), param_grid={'n_neighbors': range(1, 50)})\n\n\nSVM\nkernel, C, gamma\nGridSearchCV, RandomSearchCV\n\n\n\nDecision Tree\nmax_depth, min_samples_split, min_samples_leaf\nGridSearchCV, RandomSearchCV\nGridSearchCV(DecisionTreeClassifier(), param_grid={'max_depth': [3, 5, 10]})\n\n\nRandom forest\nn_estimators, max_depth,min_samples_leaf\nGridSearchCV, OOB score, feature importance\nRandomForestClassifier(n_estimators=100, oob_score=True)\n\n\nGradient boosting\nlearning_rate, max_depth, n_estimators\nRandomSearchCV, Bayesian Optimization\nGridSearchCV(XGBClassifier(), param_grid={'max_depth': [3, 5, 7], 'learning_rate': [0.01, 0.1]})"
+  },
+  {
+    "objectID": "programming/ml_parameters.html#classical-models",
+    "href": "programming/ml_parameters.html#classical-models",
+    "title": "Cheatsheet: ML parameters",
+    "section": "",
+    "text": "Model\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nLinear regression\nalpha for Ridge, Lasso\nCV, AIC, BIC\nRidgeCV(alphas=[0.1, 1, 10])\n\n\nLogistic regression\nC\nCV, AIC, BIC\n\n\n\nNaive Bayes\nalpha for Multinomial NB\nGridSearchCV\nGridSearchCV(MultinomialNB(), param_grid={'alpha': [0.1, 0.5, 1]})\n\n\nKNN\nn_neighbors, metric (Euclidean, Manhattan)\nCV\nGridSearchCV(KNeighborsClassifier(), param_grid={'n_neighbors': range(1, 50)})\n\n\nSVM\nkernel, C, gamma\nGridSearchCV, RandomSearchCV\n\n\n\nDecision Tree\nmax_depth, min_samples_split, min_samples_leaf\nGridSearchCV, RandomSearchCV\nGridSearchCV(DecisionTreeClassifier(), param_grid={'max_depth': [3, 5, 10]})\n\n\nRandom forest\nn_estimators, max_depth,min_samples_leaf\nGridSearchCV, OOB score, feature importance\nRandomForestClassifier(n_estimators=100, oob_score=True)\n\n\nGradient boosting\nlearning_rate, max_depth, n_estimators\nRandomSearchCV, Bayesian Optimization\nGridSearchCV(XGBClassifier(), param_grid={'max_depth': [3, 5, 7], 'learning_rate': [0.01, 0.1]})"
+  },
+  {
+    "objectID": "programming/ml_parameters.html#time-series",
+    "href": "programming/ml_parameters.html#time-series",
+    "title": "Cheatsheet: ML parameters",
+    "section": "Time series",
+    "text": "Time series\n\n\n\nModel\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nARIMA\n(p, d, q) AR, differencing, MA\nACF/PACF plots, AIC, BIC\n\n\n\nExponential smoothing\nseasonal, trend\nAIC, BIC\n\n\n\n\nTo be added"
+  },
+  {
+    "objectID": "programming/ml_parameters.html#deep-learning",
+    "href": "programming/ml_parameters.html#deep-learning",
+    "title": "Cheatsheet: ML parameters",
+    "section": "Deep learning",
+    "text": "Deep learning\nMLP is in sklearn, the rest are from keras / tensorflow\n\n\n\n\n\n\n\n\n\nModel\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nMLP\nhidden_layer_sizes, activation, learning_rate, batch_size\n\nGridSearchCV(MLPClassifier(), param_grid={'hidden_layer_sizes': [(50,), (100,)]})"
   }
 ]

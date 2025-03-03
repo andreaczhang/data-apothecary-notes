@@ -7,6 +7,8 @@ listing:
       - "ai_genai.qmd"
       - "ai_in_rstudio.qmd"
       - "ai_google_genai.qmd"
+      - "ml_parameters.qmd"
+      - "ml_entropy.qmd"
     type: table
     sort: "title"
     filter-ui: false
@@ -111,6 +113,12 @@ This page hosts study notes on programming.
 ::: {#python}
 :::
 
+### AI/ML
+
+::: {#ai}
+:::
+
+
 ### Database and cloud
 
 ::: {#db-cloud}
@@ -127,10 +135,6 @@ This page hosts study notes on programming.
 ::: {#web}
 :::
 
-### AI
-
-::: {#ai}
-:::
 
 
 ### Setting things up
