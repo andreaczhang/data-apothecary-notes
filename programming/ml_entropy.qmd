@@ -20,7 +20,7 @@ format:
 ## Entropy
 
 $$H(X) = -\sum p_i log_2 pi$$
-* $p_i$ is the proportion of sample in class i
+$p_i$ is the proportion of sample in class i
 
 
 ```{r}
@@ -64,11 +64,13 @@ We select the split where IG is maximised.
 With this example, the original entropy is `compute_binary_entropy(1/4)` =0.811. Now we try the following two splits:
 
 X1
+
 * left branch no -> 3 zeros; right branch yes -> 1 yes
 * entropy for left: 0; entropy for right: 0 (since both are pure) 
 * IG: 0.811 - 0 = 0.811
 
 X2
+
 * left branch no -> 1 zero; right branch yes -> 2 zeros, 1 yes
 * entropy for left: 0; entropy for right: `compute_binary_entropy(1/3)` = 0.918
 * compute weighted sum at the split

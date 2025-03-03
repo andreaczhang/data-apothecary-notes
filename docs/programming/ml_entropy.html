@@ -246,7 +246,7 @@ window.Quarto = {
 
 <section id="entropy" class="level2">
 <h2 class="anchored" data-anchor-id="entropy">Entropy</h2>
-<p><span class="math display">\[H(X) = -\sum p_i log_2 pi\]</span> * <span class="math inline">\(p_i\)</span> is the proportion of sample in class i</p>
+<p><span class="math display">\[H(X) = -\sum p_i log_2 pi\]</span> <span class="math inline">\(p_i\)</span> is the proportion of sample in class i</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>compute_binary_entropy <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  e <span class="ot">=</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>(p<span class="sc">*</span><span class="fu">log2</span>(p) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">*</span><span class="fu">log2</span>(<span class="dv">1</span><span class="sc">-</span>p))</span>
@@ -320,8 +320,18 @@ window.Quarto = {
 </tbody>
 </table>
 <p>With this example, the original entropy is <code>compute_binary_entropy(1/4)</code> =0.811. Now we try the following two splits:</p>
-<p>X1 * left branch no -&gt; 3 zeros; right branch yes -&gt; 1 yes * entropy for left: 0; entropy for right: 0 (since both are pure) * IG: 0.811 - 0 = 0.811</p>
-<p>X2 * left branch no -&gt; 1 zero; right branch yes -&gt; 2 zeros, 1 yes * entropy for left: 0; entropy for right: <code>compute_binary_entropy(1/3)</code> = 0.918 * compute weighted sum at the split</p>
+<p>X1</p>
+<ul>
+<li>left branch no -&gt; 3 zeros; right branch yes -&gt; 1 yes</li>
+<li>entropy for left: 0; entropy for right: 0 (since both are pure)</li>
+<li>IG: 0.811 - 0 = 0.811</li>
+</ul>
+<p>X2</p>
+<ul>
+<li>left branch no -&gt; 1 zero; right branch yes -&gt; 2 zeros, 1 yes</li>
+<li>entropy for left: 0; entropy for right: <code>compute_binary_entropy(1/3)</code> = 0.918</li>
+<li>compute weighted sum at the split</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ws <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span> <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">/</span><span class="dv">4</span> <span class="sc">*</span> <span class="fu">compute_binary_entropy</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ws</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
