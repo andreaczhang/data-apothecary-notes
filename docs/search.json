@@ -2377,7 +2377,7 @@
     "href": "method/index.html#causal-inference",
     "title": "Inference and models",
     "section": "Causal inference",
-    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nEffects and Estimands\n\n\nCollider, confounder, mediator and M-bias \n\n\n\n\nGeneral techniques\n\n\n(to be integrated) \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization (g-computation) \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\nMatching\n\n\nOverview of matching techniques \n\n\n\n\nCausal Inference in Data Science\n\n\nSome topics that need to be reviewed \n\n\n\n\nCausal Inference in Aggregated Time Series\n\n\nBSTS, ITS, Synthetic Control, difference-in-difference \n\n\n\n\n\nNo matching items"
+    "text": "Causal inference\n\n\n\n\n\nTitle\n\n\nDescription\n\n\n\n\n\n\nEffects and Estimands\n\n\nAn overview of key terminology \n\n\n\n\nMatching and weighting\n\n\nPropensity score \n\n\n\n\nG-Computation\n\n\nG-Computation \n\n\n\n\nNotes from book: What If (Part 1)\n\n\nCausal inference notes: chapter 1 to 10 \n\n\n\n\nNotes from book: What if (Part 2)\n\n\nIP weighting, standardization (g-computation) \n\n\n\n\nNotes from book: What if (Part 3)\n\n\nOutcome regression, propensity score \n\n\n\n\nNotes from book: What if (Part x)\n\n\nInstrumental variables \n\n\n\n\nCausal Inference in Data Science\n\n\nSome topics that need to be reviewed \n\n\n\n\nCausal Inference in Aggregated Time Series\n\n\nBSTS, ITS, Synthetic Control, difference-in-difference \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "method/index.html#other-topics",
@@ -3932,5 +3932,110 @@
     "title": "Cheatsheet: ML parameters",
     "section": "Deep learning",
     "text": "Deep learning\nMLP is in sklearn, the rest are from keras / tensorflow\n\n\n\n\n\n\n\n\n\nModel\nKey parameters\nSelection methods\nSyntax\n\n\n\n\nMLP\nhidden_layer_sizes, activation, learning_rate, batch_size\n\nGridSearchCV(MLPClassifier(), param_grid={'hidden_layer_sizes': [(50,), (100,)]})"
+  },
+  {
+    "objectID": "method/ci_g_computation.html",
+    "href": "method/ci_g_computation.html",
+    "title": "G-Computation",
+    "section": "",
+    "text": "G-computation\n\nFit a model for y ~ x + z, where z is all covariates\nCreate a duplicate for each level of x\nSet the value of x to a single value for each cloned dataset: x = 1 for one, x = 0 for the other\npredict\ncalculate estimate, mean(x_1) - mean(x_0)\n\nAdvantages\n\nflexible\nprecise (compared to propensity-score based methods)\nbasis of other important models (e.g. TMLE)"
+  },
+  {
+    "objectID": "method/ci_effects_estimands.html",
+    "href": "method/ci_effects_estimands.html",
+    "title": "Effects and Estimands",
+    "section": "",
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate\n\n\nGreifer, N., & Stuart, E. A. (2021). Choosing the estimand when matching or weighting in observational studies. arXiv preprint arXiv:2106.10577.\n\n\n\n\n\nATE: average treatment effect in the population\n\\(E[Y(1) - Y(0)]\\)\nATT: average treatment effect among the treated\n\\(E[Y(1) - Y(0) | Z = 1]\\)\nATC: average treatment effect among the controls\n\\(E[Y(1) - Y(0) | Z = 0]\\)\nATM: average treatment effect among the matched\nMost of the time we care about ATE and ATT. Pay attention to the matching and weight methods:\n\nATE commonly uses IPW (inverse probability weighting)\nATT uses PSM (propensity score matching)."
+  },
+  {
+    "objectID": "method/ci_effects_estimands.html#effects",
+    "href": "method/ci_effects_estimands.html#effects",
+    "title": "Effects and Estimands",
+    "section": "",
+    "text": "\\(Y^{a=1}, Y^{a=0}\\) are the potential outcomes under treatment 1 and 0. They are random variables. Treatment A has causal effect if \\(Y^{a=1} \\neq Y^{a=0}\\).\nFor individual \\(i\\), \\(Y_i^{a=1}, Y_i^{a=0}\\) are deterministic.\nIn reality we do not observe both potential outcomes for an individual, since we only have ONE outcome. We observe \\(Y\\) and \\(A\\). For a population, average treatment effect (ATE) can be estimate\n\n\nGreifer, N., & Stuart, E. A. (2021). Choosing the estimand when matching or weighting in observational studies. arXiv preprint arXiv:2106.10577.\n\n\n\n\n\nATE: average treatment effect in the population\n\\(E[Y(1) - Y(0)]\\)\nATT: average treatment effect among the treated\n\\(E[Y(1) - Y(0) | Z = 1]\\)\nATC: average treatment effect among the controls\n\\(E[Y(1) - Y(0) | Z = 0]\\)\nATM: average treatment effect among the matched\nMost of the time we care about ATE and ATT. Pay attention to the matching and weight methods:\n\nATE commonly uses IPW (inverse probability weighting)\nATT uses PSM (propensity score matching)."
+  },
+  {
+    "objectID": "method/ci_effects_estimands.html#graphical-representation",
+    "href": "method/ci_effects_estimands.html#graphical-representation",
+    "title": "Effects and Estimands",
+    "section": "Graphical representation",
+    "text": "Graphical representation\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1\n\n\n\n\nSelection bias\nThis bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.\n\nnon-response, missing data\nself-selection, volunteer bias\nselection affected by treatment before study started\n\nA form of lack of exchangeability between the treated and untreated.\nCorrect for selection bias: IP weighting"
+  },
+  {
+    "objectID": "method/ci_effects_estimands.html#ice-in-clinical-trial",
+    "href": "method/ci_effects_estimands.html#ice-in-clinical-trial",
+    "title": "Effects and Estimands",
+    "section": "ICE (in clinical trial)",
+    "text": "ICE (in clinical trial)\nKey question: how to present the data visually?\nWhat are considered as important, what are not?\nITT (intention to treat): include the data after rescue medicine. Includes dropouts\nPP (Per-protocol): exclude patients taking rescue medicine, only analyse the complete cases\nTrial estimands: trial treatment effect depends on how events occur after treatment initiation.\nTreatment effect for a given outcome.\nFive core attributes\n\npopulation\ntreatment conditions\nendpoint\nsummary measure\nstrategies to handle each type of intercurrent event\n\n\nIntercurrent event\nPost-baseline events (post randomisation in RCT) that affects the interpretation of outcome.\nTwo categories:\n\ntreatment-modifying events, affects the receipt of assigned treatment. E.g. early discontinuation, use of rescue, wrong dose, wrong type (placebo for example).\ntruncating events, e.g. death, amputation of limb when the limb is relevant for the research question.\n\nStrategies (multiple can be used for different ICE in the same study)\n\ntreatment policy strategy: treat as it is, ignore ICE\ncomposite strategy: modifies the endpoint value, defined by the investigator\nwhile-on-treatment (while alive): before intercurrent event data is used.\nhypothetical strategy\nprincipal stratum strategy: redefine the population"
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html",
+    "href": "method/ci_matching_weighting.html",
+    "title": "Matching and weighting",
+    "section": "",
+    "text": "(Rosenbaum and Rubin, 1983)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are no unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc."
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#matching",
+    "href": "method/ci_matching_weighting.html#matching",
+    "title": "Matching and weighting",
+    "section": "Matching",
+    "text": "Matching\n\nThis overview summary is based on the review paper Stuart 2010: Matching methods for causal inference: a review and a look forward\n\nGoal of matching: choosing well-matched samples of the original groups to reduce confounding - acquire treatment and control groups with similar covariate distributions.\nAlternatives to matching: adjust for covariates in a regression model, instrumental variables, structural equation modeling etc.\nBenefits of matching:\n\ncomplementary to regression adjustment, can and should be used together\nhave straightforward diagnostics, hence performance can be assessed\n\nTwo settings to use matching:\n\nwhen outcome values are NOT available, and matching is used to select subjects to follow up\noutcome values are available, matching is to reduce bias in treatment effect estimation\n\nHistory of matching methods\n\nthey’ve been used in 1940s, but a theoretical basis was not developed until 1970s (Rubin et al)\nwith multiple covariates it is difficult to find exact matches on even small number of covariates (Chapin 1947). The introduction of propensity score (1983, Rosenbaum and Rubin) helped.\n\nComments\n\nThe outcomes are usually not used even when they are available\nPS matching is ONE of the many matching techniques that uses PS as the difference\nMatching would reduce number of observations, hence loss of power\nmatching gives estimates for ATT\n\n\nSteps to implement matching methods\n\nDefine closeness: distance measure used to determine whether an individual is a good match for another\nimplement a matching method\nassess the quality of a matching method. Might require iteration of step 1 and 2\nanalyse the outcome given the matched data\n\nVignette: Estimating effects after matching by Noah Greifer\nExact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test"
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#weighting",
+    "href": "method/ci_matching_weighting.html#weighting",
+    "title": "Matching and weighting",
+    "section": "Weighting",
+    "text": "Weighting\nWeighting can be viewed as a generalization of matching. Weighting is commonly used for estimating ATE.\nWeights used in weighting:\n\nATE (population) \\(w_{ATE} = \\frac{Z_i}{p_i} + \\frac{1-Z_i}{1-p_i}\\)\nATT \\(w_{ATT} = \\frac{p_i Z_i}{p_i} + \\frac{p_i(1-Z_i)}{1-p_i}\\)\nATC \\(w_{ATC} = \\frac{(1 - p_i) Z_i}{p_i} + \\frac{(1 - p_i)(1-Z_i)}{1-p_i}\\)"
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#propensity-score",
+    "href": "method/ci_matching_weighting.html#propensity-score",
+    "title": "Matching and weighting",
+    "section": "",
+    "text": "(Rosenbaum and Rubin, 1983)\n\nin observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect\ngiven that there are no unmeasured confounders\nevery subject has a non-zero probability of receiving exposure\n\nFit a logistic regression:\n\nbinary outcome: exposure (1,0)\ncovariates: all but exposure\n\nPredict the values (probability), they are the propensity scores.\nPS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc."
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#step-1-define-closeness",
+    "href": "method/ci_matching_weighting.html#step-1-define-closeness",
+    "title": "Matching and weighting",
+    "section": "Step 1: define closeness",
+    "text": "Step 1: define closeness"
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#step-2-implement-matching",
+    "href": "method/ci_matching_weighting.html#step-2-implement-matching",
+    "title": "Matching and weighting",
+    "section": "Step 2: implement matching",
+    "text": "Step 2: implement matching\n\nnearest neighbor matching\n\n\nSubclassification, full matching, weighting"
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#step-3-diagnose-matches",
+    "href": "method/ci_matching_weighting.html#step-3-diagnose-matches",
+    "title": "Matching and weighting",
+    "section": "Step 3: diagnose matches",
+    "text": "Step 3: diagnose matches"
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#step-4-analysis-of-the-outcome",
+    "href": "method/ci_matching_weighting.html#step-4-analysis-of-the-outcome",
+    "title": "Matching and weighting",
+    "section": "Step 4: analysis of the outcome",
+    "text": "Step 4: analysis of the outcome\nVignette: Estimating effects after matching by Noah Greifer\n\nMatching (old notes)\nExact matching:\n\nperfect covariate balance; \\(F(X_i|T_i = 1) = F(X_i|T_i=0)\\)\ninfeasible when covariate is continuous, and when there are many covariates.\n\nProbability of receiving treatment, \\(\\pi(X_i) = P(T_i = 1 | X_i)\\)\nMatching based on distance measures\n\nMahalanobis distance\nEstimated propensity score, \\(D(X_i, X_j) = |P(T_i = 1|X_i) - P(T_j=1 | X_j)|\\)\n\nCheck covariate balance\n\nideally compare joint distribution of all covariates\npractically check lower-dimensional summaries (standardized mean difference, variance ratio, empirical CDF difference)\n\nBalance test\nMatching would reduce number of observations"
+  },
+  {
+    "objectID": "method/ci_matching_weighting.html#software",
+    "href": "method/ci_matching_weighting.html#software",
+    "title": "Matching and weighting",
+    "section": "Software",
+    "text": "Software\nMatchIt package\nPS matching is ONE of the many matching techniques that uses PS as the difference.\nLinks\nhttps://stats.stackexchange.com/questions/492218/should-the-choice-of-propensity-score-matching-versus-weighting-depend-on-the-de\nhttps://stats.stackexchange.com/questions/553853/understanding-propensity-score-matching?rq=1\nhttps://aetion.com/evidence-hub/understanding-propensity-score-weighting-methods-rwe/"
+  },
+  {
+    "objectID": "method/ci_effects_estimands.html#bias",
+    "href": "method/ci_effects_estimands.html#bias",
+    "title": "Effects and Estimands",
+    "section": "Bias",
+    "text": "Bias\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1\n\n\n\n\nSelection bias\nThis bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.\n\nnon-response, missing data\nself-selection, volunteer bias\nselection affected by treatment before study started\n\nA form of lack of exchangeability between the treated and untreated.\nCorrect for selection bias: IP weighting"
   }
 ]

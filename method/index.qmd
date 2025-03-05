@@ -43,15 +43,14 @@ listing:
     image-height: 150px
     fields: [title, description]
     contents: 
-      - "effects_estimands.qmd"
+      - "ci_effects_estimands.qmd"
       # - "rwd_statistics_overview.qmd"
       - "book_whatif_part1.qmd"
       - "book_whatif_part2_ipw_std.qmd"
       - "book_whatif_part3_propensity.qmd"
       - "book_whatif_part4_iv.qmd"
-      - "weighting.qmd"
-      - "matching.qmd"
-      - "g_computation.qmd"
+      - "ci_matching_weighting.qmd"
+      - "ci_g_computation.qmd"
       - "ci_ds.qmd"
       - "ci_ts.qmd"
       # - "target_trial_emulation.qmd"

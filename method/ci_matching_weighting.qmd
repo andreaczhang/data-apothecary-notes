@@ -1,9 +1,9 @@
 ---
-title: "Matching"
+title: "Matching and weighting"
 description: |
-  Overview of matching techniques
+  Propensity score
 author: "Chi Zhang"
-date: "2024-08-23"
+date: "2023-09-03"
 categories: [Causal inference]
 sidebar: false
 code-block-bg: true
@@ -15,6 +15,28 @@ format:
     code-fold: false
     code-tools: false
 ---
+
+## Propensity score
+
+(Rosenbaum and Rubin, 1983)
+
+* in observational studies, conditioning on propensity scores can lead to unbiased estimates of the exposure effect
+* given that there are no unmeasured confounders
+* every subject has a non-zero probability of receiving exposure
+
+Fit a logistic regression: 
+
+* binary outcome: exposure (1,0)
+* covariates: all but exposure
+
+Predict the values (probability), they are the propensity scores.
+
+PS can also be estimated using other methods that produce probabilities, not just logistic regression: random forest, lasso logistic regression etc.
+
+
+
+## Matching
+
 
 > This overview summary is based on the review paper [Stuart 2010](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2943670/): Matching methods for causal inference: a review and a look forward
 
@@ -29,18 +51,22 @@ Benefits of matching:
 * complementary to regression adjustment, can and should be used together
 * have straightforward diagnostics, hence performance can be assessed
 
-
 Two settings to use matching:
 
 * when outcome values are NOT available, and matching is used to select subjects to follow up
 * outcome values are available, matching is to **reduce bias in treatment effect estimation**
 
-(note that the outcomes are usually not used even when they are available)
-
 History of matching methods
 
 * they've been used in 1940s, but a theoretical basis was not developed until 1970s (Rubin et al)
 * with multiple covariates it is difficult to find exact matches on even small number of covariates (Chapin 1947). The introduction of **propensity score** (1983, Rosenbaum and Rubin) helped.
+
+Comments
+
+* The outcomes are usually not used even when they are available
+* PS matching is ONE of the many matching techniques that uses PS as the difference
+* Matching would reduce number of observations, hence loss of power
+* matching gives estimates for ATT
 
 
 ### Steps to implement matching methods
@@ -51,27 +77,7 @@ History of matching methods
 4. analyse the outcome given the matched data
 
 
-## Step 1: define closeness
-
-
-## Step 2: implement matching
-
-#### nearest neighbor matching
-
-
-#### Subclassification, full matching, weighting
-
-
-## Step 3: diagnose matches
-
-
-## Step 4: analysis of the outcome
-
 [Vignette: Estimating effects after matching](https://cran.r-project.org/web/packages/MatchIt/vignettes/estimating-effects.html#estimating-treatment-effects-and-standard-errors-after-matching) by Noah Greifer 
-
-
-### Matching (old notes)
-
 
 Exact matching: 
 
@@ -92,26 +98,25 @@ Check covariate balance
 
 Balance test
 
-Matching would reduce number of observations
-
-
-## Software
-
-`MatchIt` package
-
-PS matching is ONE of the many matching techniques that uses PS as the difference. 
 
 
 
 
+## Weighting
 
-Links
+Weighting can be viewed as a generalization of matching. Weighting is commonly used for estimating ATE.
+
+Weights used in weighting: 
+
+* ATE (population) $w_{ATE} = \frac{Z_i}{p_i} + \frac{1-Z_i}{1-p_i}$
+
+* ATT $w_{ATT} = \frac{p_i Z_i}{p_i} + \frac{p_i(1-Z_i)}{1-p_i}$
+
+* ATC $w_{ATC} = \frac{(1 - p_i) Z_i}{p_i} + \frac{(1 - p_i)(1-Z_i)}{1-p_i}$
 
 
-https://stats.stackexchange.com/questions/492218/should-the-choice-of-propensity-score-matching-versus-weighting-depend-on-the-de
 
-https://stats.stackexchange.com/questions/553853/understanding-propensity-score-matching?rq=1
 
-https://aetion.com/evidence-hub/understanding-propensity-score-weighting-methods-rwe/
+
 
 
