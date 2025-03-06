@@ -16,6 +16,28 @@ format:
 
 > STAR: situation, task, action, result
 
+# Personality and motivation
+
+What do you like to work on? What motivates you to do the best work?
+
+* problems that are challenging but solvable
+* build robust, reproducible and well-documented work (either code or analysis)
+* work that will satisfy my curiosity and help others, hence I like working with clinicians and teach them to do statistics
+* structure
+
+What do I not like?
+
+* unclear communication
+
+
+What am I good at?
+
+* communicating complex concepts to clinicians - experience gained through teaching and advising
+* identifying the key to a complex problem
+* time management
+
+
+
 # Highly relevant
 
 ### Collaboration & Communication	
