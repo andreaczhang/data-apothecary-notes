@@ -93,6 +93,7 @@ listing:
       - "install_pkg_compilation.qmd"
       - "automation.qmd"
       - "py_quarto.qmd"
+      - "shiny.qmd"
      # - "misc_software_papers.qmd"
     type: table
     sort: "title"

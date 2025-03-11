@@ -74,7 +74,7 @@
     "href": "programming/index.html",
     "title": "Programming",
     "section": "",
-    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\nRun formulae in loops and handle error\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas Series\n\n\n\n\nCheatsheet: Pandas DataFrame\n\n\n\n\nCheatsheet: Result processing\n\n\n\n\nCheatsheet: Scikit-learn\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nAI/ML\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nCheatsheet: ML parameters\n\n\n\n\nEntropy and cross-entropy loss\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\n\nNo matching items"
+    "text": "This page hosts study notes on programming.\n\nR programming\n\n\n\n\n\nTitle\n\n\n\n\n\n\nData manipulation with data.table\n\n\n\n\nFunctions\n\n\n\n\nOOP in R: S3\n\n\n\n\nProcessing text and characters\n\n\n\n\nRun formulae in loops and handle error\n\n\n\n\n\nNo matching items\n\n\n\n\nPython\n\n\n\n\n\nTitle\n\n\n\n\n\n\nCheatsheet: NumPy, Pandas Series\n\n\n\n\nCheatsheet: Pandas DataFrame\n\n\n\n\nCheatsheet: Result processing\n\n\n\n\nCheatsheet: Scikit-learn\n\n\n\n\nControl flow, exceptions\n\n\n\n\nFunctions, functional programming\n\n\n\n\nPython data structure\n\n\n\n\n\nNo matching items\n\n\n\n\nAI/ML\n\n\n\n\n\nTitle\n\n\n\n\n\n\nChatGPT in R\n\n\n\n\nCheatsheet: ML parameters\n\n\n\n\nEntropy and cross-entropy loss\n\n\n\n\nGenerative AI\n\n\n\n\nGoogle 5-Day Gen AI Intensive\n\n\n\n\n\nNo matching items\n\n\n\n\nDatabase and cloud\n\n\n\n\n\nTitle\n\n\n\n\n\n\nGoogle BigQuery and GCP (Google Cloud Platform)\n\n\n\n\nSQL basics\n\n\n\n\nSQL: my workflow\n\n\n\n\n\nNo matching items\n\n\n\n\nR package\n\n\n\n\n\nTitle\n\n\n\n\n\n\nDependencies\n\n\n\n\nMy workflow in working with functions in a package\n\n\n\n\nR package Engineering Workflow\n\n\n\n\nR package: tests\n\n\n\n\n\nNo matching items\n\n\n\n\nWeb and quarto\n\n\n\n\n\nTitle\n\n\n\n\n\n\nMake slides with reveal.js\n\n\n\n\nWeb basics\n\n\n\n\nWebR: Use with an existing quarto website\n\n\n\n\n\nNo matching items\n\n\n\n\nSetting things up\n\n\n\n\n\nTitle\n\n\n\n\n\n\nAutomation with GitHub Action\n\n\n\n\nInstall R packages that require compilation\n\n\n\n\nPython set up via pyenv\n\n\n\n\nPython set up with Quarto\n\n\n\n\nSet up version control\n\n\n\n\nShiny modules, serverless shiny\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "programming/understand_data.html",
@@ -443,9 +443,9 @@
   {
     "objectID": "programming/shiny.html",
     "href": "programming/shiny.html",
-    "title": "Shiny",
+    "title": "Shiny modules, serverless shiny",
     "section": "",
-    "text": "Number of bins:"
+    "text": "Some new technology related to shiny"
   },
   {
     "objectID": "programming/webr.html#installation",
@@ -4037,5 +4037,26 @@
     "title": "Effects and Estimands",
     "section": "Bias",
     "text": "Bias\n\n\n\n\n\n\n\n\nData generation\nCorrect causal model\nCorrect causal effect\n\n\n\n\nCollider\nY ~ X\n1\n\n\nConfounder\nY ~ X; Z\n0.5\n\n\nMediator\nDirect effect: Y ~ X; Z. Total effect: Y ~ X\nDirect: 0; total: 1\n\n\nM-Bias\nY ~ X\n1\n\n\n\n\nSelection bias\nThis bias is the result of selecting a common effect of 2 other variables (collider): a treatment, an outcome.\n\nnon-response, missing data\nself-selection, volunteer bias\nselection affected by treatment before study started\n\nA form of lack of exchangeability between the treated and untreated.\nCorrect for selection bias: IP weighting"
+  },
+  {
+    "objectID": "programming/shiny.html#setting-things-up",
+    "href": "programming/shiny.html#setting-things-up",
+    "title": "Shiny modules, serverless shiny",
+    "section": "Setting things up",
+    "text": "Setting things up"
+  },
+  {
+    "objectID": "programming/shiny.html#shiny-modules",
+    "href": "programming/shiny.html#shiny-modules",
+    "title": "Shiny modules, serverless shiny",
+    "section": "Shiny modules",
+    "text": "Shiny modules"
+  },
+  {
+    "objectID": "programming/shiny.html#serverless-shiny",
+    "href": "programming/shiny.html#serverless-shiny",
+    "title": "Shiny modules, serverless shiny",
+    "section": "Serverless shiny",
+    "text": "Serverless shiny\nMaking use of webR\nshinylive::export(from_here, to_there)\nUse GHA to deploy the app\nPublic! No secrets"
   }
 ]
